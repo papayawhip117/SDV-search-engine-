@@ -30,6 +30,8 @@ export const PALETTE = {
   l: '#cdbfb2', // cloud outline, steam
   H: '#cfe0c0', // far hills
   M: '#a8c896', // near hills
+  C: '#fffbf3', // paper
+  D: '#d9a23a', // coin shadow
 };
 
 /**
@@ -145,6 +147,36 @@ const GEM = [
   '...KVvVVK...',
   '....KVVK....',
   '.....KK.....',
+];
+
+const COIN = [
+  '....KKKK....',
+  '..KKSSSSKK..',
+  '.KSSSSSSSSK.',
+  '.KSSDDDDSSK.',
+  'KSSSDSSSSSDK',
+  'KSSSDDDSSSDK',
+  'KSSSSSSDSSDK',
+  'KSSSDDDDSSDK',
+  '.KSSSSSSSDK.',
+  '.KDSSSSSDDK.',
+  '..KKDDDDKK..',
+  '....KKKK....',
+];
+
+const CALENDAR = [
+  '..K......K..',
+  'KKKKKKKKKKKK',
+  'KRRRRRRRRRRK',
+  'KRRRRRRRRRRK',
+  'KKKKKKKKKKKK',
+  'KCCCCCCCCCCK',
+  'KCKCCKCCKCCK',
+  'KCCCCCCCCCCK',
+  'KCKCCKCCRRCK',
+  'KCCCCCCCRRCK',
+  'KCCCCCCCCCCK',
+  'KKKKKKKKKKKK',
 ];
 
 const SPARKLE = ['.S.', 'SSS', '.S.'];
@@ -292,6 +324,8 @@ export const ART = {
   pot: { width: 12, height: 12, layers: [{ y: 1, map: POT }] },
   leaf: { width: 12, height: 12, layers: [{ map: LEAF }] },
   gem: { width: 12, height: 12, layers: [{ y: 2, map: GEM }] },
+  coin: { width: 12, height: 12, layers: [{ map: COIN }] },
+  calendar: { width: 12, height: 12, layers: [{ map: CALENDAR }] },
   heart: { width: 8, height: 6, layers: [{ map: HEART }] },
   sparkle: { width: 3, height: 3, layers: [{ map: SPARKLE }] },
   farm: FARM,

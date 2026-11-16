@@ -9,7 +9,7 @@ Hi, I'm **Papaya** (Aaliyah)! Stardew Valley is one of my favorite games, and th
 ## What's inside:
 
 - 🗄️ **local SQLite database** built from the official wiki through its MediaWiki API. Every fact remembers where it came from: page title, URL, revision and retrieval date.
-- 🏡 **local website** (`npm start`, then open http://localhost:3000): a big search bar, category shortcuts, item and villager pages, and Ask AI, with original pixel art.
+- 🏡 **local website** (`npm start`, then open http://localhost:3000): a big search bar, category shortcuts, item and villager pages, a profit planner, a Today on the farm page and Ask AI, with original pixel art.
 - 🔎 **Search and item lookup**, with filters for season, type and price.
 - 🧮 **Game math done in app code** (never guessed by AI): profit per day and regrowth for crops, plus fish, artisan goods, cooking and crafting.
 - 🎁 **Villagers and gift tastes**: birthdays and who loves, likes or hates what.

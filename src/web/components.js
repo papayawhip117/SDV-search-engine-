@@ -36,6 +36,8 @@ export const TYPE_LABELS = {
 
 const NAV = [
   { label: 'Search', href: '/' },
+  { label: 'Today', href: '/today' },
+  { label: 'Profit', href: '/profit' },
   { label: 'Ask AI', href: '/ask' },
   { label: 'About', href: '/about' },
 ];

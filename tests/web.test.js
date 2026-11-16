@@ -9,7 +9,7 @@ import { openDatabase } from '../src/db/database.js';
 import { escapeHtml, html, queryString, raw } from '../src/web/html.js';
 import { ART, artSvg, pixelSvg } from '../src/web/pixelArt.js';
 import { CATEGORIES } from '../src/web/components.js';
-import { createApp } from '../src/web/server.js';
+import { createApp, upcomingBirthdays } from '../src/web/server.js';
 
 const fixturesDir = new URL('./fixtures/', import.meta.url);
 let db;
@@ -182,6 +182,63 @@ describe('the website', () => {
     expect((await site.get('/art/nope.svg')).status).toBe(404);
     expect((await site.get('/../package.json')).status).toBe(404);
     expect((await site.get('/nowhere')).status).toBe(404);
+  });
+});
+
+describe('the planning pages', () => {
+  let site;
+  beforeAll(async () => {
+    site = await startServer({ ai: null });
+  });
+  afterAll(() => site.close());
+
+  it('ranks crops by gold per day, with seed costs, sources and the assumptions', async () => {
+    const { status, body } = await site.get('/profit?season=Spring&day=1');
+    expect(status).toBe(200);
+    // Strawberry (5 harvests × 120g − 100g seed = 500g over 27 days) beats Parsnip.
+    expect(body.indexOf('>Strawberry<')).toBeLessThan(body.indexOf('>Parsnip<'));
+    expect(body).toContain('18.52g');
+    expect(body).toContain('1 × 100g at Egg Festival');
+    expect(body).toMatch(/oldid=\d+/);
+    expect(body).toContain('How these numbers are worked out');
+    expect(body).toContain('<option value="Spring" selected>');
+  });
+
+  it('opens on Spring 1 and explains a bad day', async () => {
+    expect((await site.get('/profit')).body).toContain('Planted on Spring 1');
+    const bad = await site.get('/profit?season=Spring&day=40');
+    expect(bad.status).toBe(400);
+    expect(bad.body).toContain('The day must be a whole number from 1 to 28.');
+    expect((await site.get('/today?season=Monsoon')).body).toContain('There’s no season called “Monsoon”.');
+  });
+
+  it('says when nothing planted that late would be ready', async () => {
+    expect((await site.get('/profit?season=Spring&day=28')).body).toContain('would be ready before the season ends');
+  });
+
+  it('shows today’s birthday, the week ahead, crops, fish and forage', async () => {
+    const { status, body } = await site.get('/today?season=Fall&day=13');
+    expect(status).toBe(200);
+    expect(body).toContain('’s birthday!');
+    expect(body).toContain('href="/gifts?villager=Abigail"');
+    expect(body).toContain('Coming up this week');
+    expect(body).toContain('15 days left in Fall');
+    expect(body).toContain('Worth planting today');
+    expect(body).toContain('Fish to catch');
+    expect(body).toContain('Forage this season');
+    expect(body).toContain('href="/profit?season=Fall&amp;day=13"');
+  });
+
+  it('filters fish by weather', async () => {
+    const rainy = (await site.get('/today?season=Fall&day=1&weather=Rain')).body;
+    expect(rainy).toContain('on a rainy day');
+    expect(rainy).toContain('<option value="Rain" selected>');
+  });
+
+  it('runs upcoming birthdays on into the next season', () => {
+    const names = (rows) => rows.map((row) => `${row.season} ${row.day}`);
+    for (const row of upcomingBirthdays(db, 'Fall', 26)) expect(['Fall', 'Winter']).toContain(row.season);
+    expect(names(upcomingBirthdays(db, 'Winter', 28)).every((text) => text.startsWith('Spring'))).toBe(true);
   });
 });
 

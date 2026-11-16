@@ -11,13 +11,15 @@
 
 import { existsSync, readFileSync } from 'node:fs';
 import http from 'node:http';
-import { SEASON_ORDER } from '../calc/profit.js';
+import { DAYS_PER_SEASON, SEASON_ORDER, rankCropsByProfit } from '../calc/profit.js';
 import { answerQuestion, createClaudeAI, explainError } from '../assistant/answer.js';
 import { findFacts } from '../assistant/findFacts.js';
 import { suggestNames } from '../cli/item.js';
 import { DATABASE_PATH } from '../db/buildDatabase.js';
 import { openDatabase } from '../db/database.js';
-import { getVillager, getVillagerNames } from '../queries/giftQueries.js';
+import { getProfitInputs } from '../queries/cropQueries.js';
+import { getFish } from '../queries/fishQueries.js';
+import { getBirthdays, getVillager, getVillagerNames } from '../queries/giftQueries.js';
 import { ITEM_TYPES, SORT_OPTIONS, getItemDetails, searchItems, toFtsQuery } from '../queries/search.js';
 import { isRunDirectly } from '../utils/isRunDirectly.js';
 import { artSvg } from './pixelArt.js';
@@ -32,6 +34,7 @@ import {
   resultsPage,
   villagerPage,
 } from './pages.js';
+import { profitPage, todayPage } from './plannerPages.js';
 
 export const DEFAULT_PORT = 3000;
 export const RESULTS_LIMIT = 60;
@@ -55,6 +58,32 @@ function send(res, status, body, contentType = 'text/html; charset=utf-8', extra
 /** Read one ?value from the URL, trimmed and limited in length. */
 function param(url, name, maxLength = 200) {
   return (url.searchParams.get(name) ?? '').trim().slice(0, maxLength);
+}
+
+/**
+ * Read ?season= and ?day= for the planning pages. Both have defaults
+ * (Spring 1), so the pages work with no ?values at all.
+ * Returns { season, day, error }.
+ */
+export function readSeasonAndDay(url) {
+  const seasonText = param(url, 'season');
+  const dayText = param(url, 'day');
+  const season = seasonText ? SEASON_ORDER.find((name) => name.toLowerCase() === seasonText.toLowerCase()) : 'Spring';
+  const day = dayText ? Number(dayText) : 1;
+  if (!season) return { season: 'Spring', day: 1, error: `There’s no season called “${seasonText}”.` };
+  if (!Number.isInteger(day) || day < 1 || day > DAYS_PER_SEASON) {
+    return { season, day: 1, error: `The day must be a whole number from 1 to ${DAYS_PER_SEASON}.` };
+  }
+  return { season, day, error: null };
+}
+
+/** Birthdays in the 7 days after `day`, running on into the next season. */
+export function upcomingBirthdays(db, season, day) {
+  const next = SEASON_ORDER[(SEASON_ORDER.indexOf(season) + 1) % SEASON_ORDER.length];
+  const later = getBirthdays(db, season).filter((row) => row.day > day && row.day <= day + 7);
+  const overflow = day + 7 - DAYS_PER_SEASON;
+  const nextSeason = overflow > 0 ? getBirthdays(db, next).filter((row) => row.day <= overflow) : [];
+  return [...later, ...nextSeason];
 }
 
 /** Find villagers named in the search words ("abigail" → Abigail). */
@@ -124,6 +153,31 @@ export function createApp({ db, ai = null }) {
       } catch (error) {
         return [200, askPage({ question, result: findFacts(db, question), hasKey: true, error: explainError(error) })];
       }
+    },
+
+    '/profit': (url) => {
+      const { season, day, error } = readSeasonAndDay(url);
+      if (error) return [400, profitPage({ season, day, error })];
+      return [200, profitPage({ season, day, ranking: rankCropsByProfit(getProfitInputs(db, season), { season, plantDay: day }) })];
+    },
+
+    '/today': (url) => {
+      const { season, day, error } = readSeasonAndDay(url);
+      const weatherText = param(url, 'weather');
+      const weather = ['Sun', 'Rain'].includes(weatherText) ? weatherText : '';
+      if (error) return [400, todayPage({ season, day, weather, error })];
+      const { fish, unclearWeather } = getFish(db, { season, weather: weather || undefined });
+      const plan = {
+        birthdaysToday: getBirthdays(db, season)
+          .filter((row) => row.day === day)
+          .map((row) => getVillager(db, row.name)),
+        upcoming: upcomingBirthdays(db, season, day),
+        ranking: rankCropsByProfit(getProfitInputs(db, season), { season, plantDay: day }),
+        fish,
+        unclearWeather,
+        forage: searchItems(db, { type: 'forage', season, sortBy: 'name', limit: 200 }).results,
+      };
+      return [200, todayPage({ season, day, weather, plan, knownItems })];
     },
 
     '/about': () => {

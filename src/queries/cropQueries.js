@@ -73,7 +73,8 @@ export function getProfitInputs(db, season) {
          c.regrows         AS regrows,
          c.regrowth_days   AS regrowthDays,
          seed.name         AS seedName,
-         sp.page_url       AS cropSourceUrl
+         sp.page_url       AS cropSourceUrl,
+         sp.revision_id    AS cropSourceRevision
        FROM crops c
        JOIN items i         ON i.id = c.item_id
        JOIN source_pages sp ON sp.id = c.source_page_id
