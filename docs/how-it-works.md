@@ -80,9 +80,11 @@ Run them with `npm test`.
 
 If `npm run collect` stops with **HTTP 403**, the site refused the program on purpose. The error message prints the `server` and `cf-mitigated` headers and the start of the page that came back, which shows who refused it (for example a Cloudflare bot check).
 
+This happened on the first real run (November 2026). Testing showed the wiki accepts `curl` with our name tag but refuses Node.js with the same name tag and URL, so the firewall is judging the *program*, not what it asks for. Swapping to another program just because it isn't recognised yet would be slipping past a rule, so we don't.
+
 We **don't** get around a refusal by pretending to be a web browser. The wiki decides who may use it automatically. Instead:
 
-1. Save the API responses from your browser, which the wiki does allow, and build the database from those files.
+1. Save the API responses from your browser, which the wiki does allow, and build the database from those files. `npm run import` prints the 3 URLs to save (one per season). Each uses a **generator**, which tells the API "take the members of this category and give me their page content", so one URL returns every crop in that season. `npm run import -- data/browser/*.json` then merges the files into the same `data/raw/` format that `collect` makes. It uses each file's save time as the download date, and warns if a file is incomplete.
 2. If we need regular automated access later, ask the wiki's administrators.
 
 ## Known limitations (so far)

@@ -50,8 +50,9 @@ Run these one at a time:
 | Command | What it does |
 |---|---|
 | `npm test` | Runs the automated tests. No internet needed. |
-| `npm run collect` | Downloads the crop pages from the wiki into `data/raw/`. Takes about a minute because it waits between requests. |
-| `npm run build-db` | Reads the newest file in `data/raw/`, extracts the crop facts, and saves them to `data/sdv.db`. |
+| `npm run collect` | Downloads the crop pages from the wiki into `data/raw/`. **Currently refused** (HTTP 403): the wiki's firewall blocks Node.js. Use `npm run import` instead. |
+| `npm run import` | Prints 3 wiki URLs to save from your browser into `data/browser/`. Then `npm run import -- data/browser/*.json` turns them into `data/raw/`. |
+| `npm run build-db` | Reads the newest file in `data/raw/` (from `collect` or `import`), extracts the crop facts, and saves them to `data/sdv.db`. |
 | `npm run crops -- Summer` | Lists Summer crops by sell price, with wiki links. Try `Spring` or `Fall` too. |
 
 ## Project layout

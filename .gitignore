@@ -10,6 +10,7 @@ node_modules/
 # Downloaded wiki data and the generated database. These are rebuilt by
 # `npm run collect` and `npm run build-db`, so they don't belong in Git.
 data/raw/
+data/browser/
 data/*.db
 data/*.db-*
 
