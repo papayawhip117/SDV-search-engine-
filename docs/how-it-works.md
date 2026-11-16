@@ -215,7 +215,46 @@ Some cells needed care:
 
 In search, each crafted item also gets its section ("Crafting: Rings") next to its categories, so `npm run search -- consumables` finds the Rain Totem and the Warp Totems.
 
-## 12. Tests: `tests/`
+## 12. Villagers and gifts: `src/extract/villagerExtractor.js` and `src/queries/giftQueries.js`
+
+Three pages, no villager pages needed:
+
+| Page | Revision | What we take |
+|---|---|---|
+| List of All Gifts | 195507 | one table: each of the 34 villagers' birthday and their loves, likes, neutrals, dislikes and hates, plus a "Universals" row (loves, likes, neutrals) and the lists of "All Eggs", "All Mushrooms" and "Fruit Tree Fruit" |
+| Villagers | 191346 | who can be married (Bachelors, Bachelorettes) |
+| Friendship | 195512 | the universal dislikes and hates, which the gift table only links to |
+
+`Category:Villagers` came back empty, which is why we read the Villagers page itself.
+
+**What we store.** Each line of a gift list becomes one row of `gift_tastes`: either one item ("Pearl") or a group with exceptions ("All Fruit (except Fruit Tree Fruit & Salmonberry)"). Universal rows have no villager. Groups are stored as written, not expanded into items, because many of their items (gems, books, artifacts) aren't collected yet. The lists at the top of the gift page ("All Eggs = Egg, Brown Egg, ...") go into `item_groups`.
+
+**How a taste is decided.** The wiki's rule is that a villager's own tastes override the universal ones. `giftTaste()` in `giftQueries.js` checks, and the first match wins:
+
+1. the villager names the item,
+2. the villager has a group the item is in, and doesn't except it,
+3. the universal lists name the item,
+4. the universal lists have a group the item is in.
+
+If nothing matches, the answer is "not listed": the wiki doesn't say, so we don't guess. Examples: Alex is neutral about Banana (his "All Fruit except Fruit Tree Fruit"), but likes Apple, because Apple is Fruit Tree Fruit, which is excepted from his list and universally liked.
+
+**Which items are in a group**, worked out from data we already have:
+
+| Group | Comes from |
+|---|---|
+| Fruits | the Fruits page |
+| Fruit Tree Fruit, Eggs, Mushrooms | the lists on the gift page |
+| Vegetables | the item's own page is in `Category:Vegetables` |
+| Fish | the fish table |
+| Artisan Goods | items of type `artisan` |
+| Cooking | the dishes table |
+| Seeds | items of type `seed`, and the Crafting page's Seeds section |
+| Bombs, Fences, Sprinklers, Fertilizer, Floors & Paths | the Crafting page sections (Floors & Paths is the Decor section) |
+| Gems, Minerals, Books, Artifacts, Flowers, Milk, Trash and the rest | not collected yet, so nothing matches them until a later phase |
+
+Names are compared without punctuation, because the Friendship page writes "Warp Totem Beach" where the Crafting page writes "Warp Totem: Beach". Exceptions keep both a link's page title and its shown text ("[[Red Mushroom|Red]]" → Red Mushroom and Red), so either form matches.
+
+## 13. Tests: `tests/`
 
 | File | Checks |
 |---|---|
@@ -233,6 +272,8 @@ In search, each crafted item also gets its section ("Crafting: Rings") next to i
 | `cooking.test.js` | dishes into one database with crops, fish and artisan goods, "what can I cook with this", ingredient values, dishes in search and item details |
 | `craftingExtractor.test.js` | the real Crafting page: names with quantities and second names, "any Fish" and "Wild Seeds (Any)", the Crab Pot's second recipe, recipe sources, two header rows, all 150 recipes |
 | `crafting.test.js` | the Crafting page with crop, fish and artisan pages: machines keep their own page, "what can I craft with this" through names and groups, sections, crafted items in search and item details |
+| `villagerExtractor.test.js` | the real gift, Villagers and Friendship pages: item and group lines, exceptions, the Friendship page's bold groups and named lists, birthdays, all 34 villagers |
+| `gifts.test.js` | every kind of page together: the four-step taste rule, exceptions that are groups, universal dislikes from the Friendship page, "who loves this", gift lines on item pages |
 | `search.test.js` | partial words, related terms, all-words matching, every filter and sort, hostile input, item details, typo suggestions |
 
 Run them with `npm test`.
@@ -250,12 +291,14 @@ We **don't** get around a refusal by pretending to be a web browser. The wiki de
 
 ## Known limitations (so far)
 
-- Crops in the Spring, Summer and Fall categories, their seeds, 71 fish, the artisan goods, 81 dishes and 150 crafting recipes. Villagers, fruit trees, forage and more come in the next phases.
+- Crops in the Spring, Summer and Fall categories, their seeds, 71 fish, the artisan goods, 81 dishes, 150 crafting recipes and 34 villagers with their gift tastes. Fruit trees, forage, minerals and more come in the next phase.
 - Cask aging (silver to iridium quality) and the Heavy Tapper's own page aren't stored yet. Recipes that take mushrooms, forage or roe are stored, but those items aren't collected yet.
 - Dish ingredients we don't collect yet (Egg, Milk, Wheat Flour, Sugar, Oil, Rice...) are shown by name without a price or wiki link until later phases add them.
 - Crafted items have no sell price except bombs, because only the Bombs table on the Crafting page lists one. Their own pages would add it.
 - "Transmute (Fe)" and "Transmute (Au)" are stored by their recipe names, as the Crafting page lists them; they make an Iron Bar and a Gold Bar.
 - Crafting ingredients we don't collect yet (Wood, Stone, ores and bars...) are shown by name only, until later phases add them.
+- Gift tastes for groups we haven't collected (Gems, Minerals, Books, Artifacts, Flowers, Milk...) can't be matched yet, so `npm run gifts -- --item Diamond` lists only the villagers who name Diamond themselves. The rest show as "not listed". Villagers aren't in the item search yet; use `npm run gifts`.
+- Villager schedules, addresses and heart events aren't stored; they're on each villager's own page.
 - Artisan values ignore the Artisan profession (+40%) and ingredient quality.
 - Profit doesn't model when a shop is open (Strawberry Seeds are only sold at the Egg Festival) or fertilizer, quality and professions.
 - Traveling Cart prices are random, so seeds only sold there have no price.

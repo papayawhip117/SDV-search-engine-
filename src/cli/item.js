@@ -118,6 +118,10 @@ export function formatItemDetails(item) {
   }
   if (item.usedInCrafting.length) lines.push(`Crafted into: ${item.usedInCrafting.join(', ')}`);
   if (item.growsInto.length) lines.push(`Grows into:  ${item.growsInto.join(', ')}`);
+  for (const [taste, label] of [['love', 'Loved by:'], ['like', 'Liked by:'], ['dislike', 'Disliked by:'], ['hate', 'Hated by:']]) {
+    const names = item.giftTastes[taste];
+    if (names.length) lines.push(`${label.padEnd(13)}${names.length === item.giftTastes.total ? 'everyone' : names.join(', ')}`);
+  }
   if (item.categories.length) lines.push(`Categories:  ${item.categories.join(', ')}`);
 
   lines.push(

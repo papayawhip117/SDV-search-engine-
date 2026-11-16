@@ -77,3 +77,12 @@ is still in it (the tests don't use that part). All 150 crafting recipes are rea
 
 Same license (CC BY-NC-SA, Stardew Valley Wiki). Source page:
 https://stardewvalleywiki.com/Crafting
+
+`villager-pages.json` holds the Villagers page (revision 191346) and the List of All
+Gifts page (revision 195507), and `friendship-page.json` holds the Friendship page
+(revision 195512), all saved 2026-11-16. Both are unmodified API responses; the first
+also has the (empty) `Category:Villagers` member list.
+
+Same license (CC BY-NC-SA, Stardew Valley Wiki). Source pages:
+https://stardewvalleywiki.com/Villagers, https://stardewvalleywiki.com/List_of_All_Gifts,
+https://stardewvalleywiki.com/Friendship

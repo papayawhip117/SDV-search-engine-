@@ -22,6 +22,7 @@ import { ARTISAN_PAGES, FRUIT_LIST_PAGE } from './artisanPages.js';
 import { COOKING_PAGE_GROUPS } from './cookingPages.js';
 import { FISH_CATEGORIES } from '../extract/fishExtractor.js';
 import { CRAFTING_PAGE } from '../extract/craftingExtractor.js';
+import { FRIENDSHIP_PAGE, GIFT_LIST_PAGE, VILLAGERS_PAGE } from '../extract/villagerExtractor.js';
 
 // The categories that say which collection a page belongs to, in order of preference.
 const COLLECTION_CATEGORIES = [...CROP_CATEGORIES, ...FISH_CATEGORIES, 'Artisan Goods', 'Craftable items', 'Crops', 'Cooking'];
@@ -159,6 +160,10 @@ function printInstructions() {
   });
   console.log('The Crafting page (every crafting recipe is in its tables), save as crafting.json:');
   console.log(`  ${browserUrlForPages([CRAFTING_PAGE])}\n`);
+  console.log('Villagers and gift tastes (the Villagers page and the List of All Gifts), save as villagers.json:');
+  console.log(`  ${browserUrlForPages([VILLAGERS_PAGE, GIFT_LIST_PAGE])}\n`);
+  console.log('The Friendship page (universal gift dislikes and hates), save as friendship.json:');
+  console.log(`  ${browserUrlForPages([FRIENDSHIP_PAGE])}\n`);
   console.log('Then run:  npm run import -- data/browser/*.json');
 }
 

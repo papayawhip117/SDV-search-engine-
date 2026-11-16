@@ -215,6 +215,34 @@ CREATE TABLE IF NOT EXISTS crafting_ingredients (
   PRIMARY KEY (crafted_item_id, position)
 );
 
+-- Villagers who take gifts, from the List of All Gifts page (birthdays)
+-- and the Villagers page (who can be married).
+CREATE TABLE IF NOT EXISTS villagers (
+  id                  INTEGER PRIMARY KEY,
+  name                TEXT    NOT NULL UNIQUE,
+  birthday_season     TEXT,      -- 'Summer'
+  birthday_day        INTEGER,   -- 13
+  marriageable        INTEGER,   -- 1/0 from the Villagers page, NULL if we don't have that page
+  source_page_id      INTEGER NOT NULL REFERENCES source_pages(id),  -- the gift list
+  villagers_page_id   INTEGER REFERENCES source_pages(id)            -- the Villagers page
+);
+
+-- Gift tastes, one row per line of the wiki's lists. villager_id NULL means
+-- universal (everyone). Each row is one item (item_name) or a group
+-- (group_name, e.g. 'Fruits') with exceptions; which items are in a group is
+-- worked out when the database is asked (src/queries/giftQueries.js).
+CREATE TABLE IF NOT EXISTS gift_tastes (
+  id             INTEGER PRIMARY KEY,
+  villager_id    INTEGER REFERENCES villagers(id),
+  taste          TEXT    NOT NULL CHECK (taste IN ('love', 'like', 'neutral', 'dislike', 'hate')),
+  item_name      TEXT,
+  group_name     TEXT,
+  exceptions     TEXT,      -- names separated by ' | ', e.g. 'Fruit Tree Fruit | Salmonberry'
+  note           TEXT,      -- the wiki's wording, e.g. 'All Fruit (except Salmonberry)' or '+250'
+  position       INTEGER NOT NULL,  -- order on the page
+  source_page_id INTEGER NOT NULL REFERENCES source_pages(id)
+);
+
 -- Full-text search index (SQLite's built-in FTS5). One row per item.
 -- It's filled from the tables above by rebuildSearchIndex() after each build,
 -- so it never holds facts of its own, only text to search through.

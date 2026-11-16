@@ -4,7 +4,7 @@ A Stardew Valley search engine built from the [Stardew Valley Wiki](https://star
 
 An AI assistant will come later. It will only answer from this verified local database and will cite the wiki page behind every fact.
 
-> **Status:** Phase 8. Crops, seed prices, profit per day, a search engine, fish, artisan goods with the machines that make them, cooking recipes and crafting recipes.
+> **Status:** Phase 9. Crops, seed prices, profit per day, a search engine, fish, artisan goods with the machines that make them, cooking and crafting recipes, and villagers with their birthdays and gift tastes.
 
 ## How it works
 
@@ -51,8 +51,8 @@ Run these one at a time:
 |---|---|
 | `npm test` | Runs the automated tests. No internet needed. |
 | `npm run collect` | Downloads the crop pages from the wiki into `data/raw/`. **Currently refused** (HTTP 403): the wiki's firewall blocks Node.js. Use `npm run import` instead. |
-| `npm run import` | Prints the wiki URLs to save from your browser into `data/browser/` (crops, seeds, fish, artisan goods, fruits, cooking, crafting). Then `npm run import -- data/browser/*.json` turns them into `data/raw/`. |
-| `npm run build-db` | Reads the newest file in `data/raw/` (from `collect` or `import`), extracts crops, seeds, fish, artisan goods, dishes and crafting recipes, and saves them to `data/sdv.db`. |
+| `npm run import` | Prints the wiki URLs to save from your browser into `data/browser/` (crops, seeds, fish, artisan goods, fruits, cooking, crafting, villagers and gifts). Then `npm run import -- data/browser/*.json` turns them into `data/raw/`. |
+| `npm run build-db` | Reads the newest file in `data/raw/` (from `collect` or `import`), extracts crops, seeds, fish, artisan goods, dishes, crafting recipes, villagers and gift tastes, and saves them to `data/sdv.db`. |
 | `npm run crops -- Summer` | Lists Summer crops by sell price, with wiki links. Try `Spring` or `Fall` too. |
 | `npm run search -- berry` | Searches names, wiki categories, shops and page summaries. Options: `--season fall`, `--type crop`, `seed`, `fish`, `artisan`, `machine`, `dish` or `crafted`, `--sort relevance`/`name`/`sell`/`buy`, `--reverse`, `--limit 10`. |
 | `npm run item -- "Parsnip Seeds"` | Shows one item with everything connected to it: seasons, growth, seed, shop prices, what a seed grows into, categories, and its wiki source and revision. |
@@ -60,6 +60,7 @@ Run these one at a time:
 | `npm run artisan -- Starfruit` | What an item can be turned into (Wine, Jelly, Dried Fruit...), which machine, how long it takes and what it's worth, best value first. Try `Corn`, `Tuna` or `Grape`. |
 | `npm run cook -- Tomato` | Lists the dishes that use Tomato, with sell price, ingredients, what the raw ingredients are worth, buffs and how to get the recipe. Names with spaces work without quotes (`npm run cook -- Wheat Flour`). Add `--buff Fishing` for dishes with that buff, or give no ingredient to list every dish. |
 | `npm run craft -- Iron Bar` | Lists the crafting recipes that use Iron Bar, with all their ingredients and how you get each recipe. Use `--section Rings` (or Fertilizer, Sprinklers...) for one section of the Crafting page, or no arguments to list the sections. |
+| `npm run gifts -- Abigail` | A villager's birthday, whether they can be married, and what they love, like, are neutral about, dislike and hate. `--item Diamond` shows how every villager feels about one item; `--birthday summer` lists birthdays by day. Item pages (`npm run item`) also show who loves, likes, dislikes and hates that item. |
 | `npm run profit -- Spring` | Ranks Spring crops by profit per day, using seed prices from the wiki. Add a day to plant later: `npm run profit -- Spring 10`. |
 
 ## Project layout
@@ -79,6 +80,7 @@ src/
   extract/artisanExtractor.js reads machine product tables, artisan goods pages and the Fruits list
   extract/cookingExtractor.js turns one dish page into a dish with its ingredients
   extract/craftingExtractor.js reads every recipe table on the Crafting page
+  extract/villagerExtractor.js reads villagers, birthdays and gift tastes
   calc/profit.js           harvests, costs and profit per day (no AI involved)
   db/schema.sql            the database tables
   db/database.js           opens the database and saves crops, seeds, fish, artisan goods, dishes and crafting recipes
@@ -90,6 +92,7 @@ src/
   queries/artisanQueries.js  what an item can be made into, and how goods are made
   queries/cookingQueries.js  dishes, their ingredients, and which dishes use an item
   queries/craftingQueries.js crafting recipes, and which recipes use an item
+  queries/giftQueries.js   villagers, birthdays, and what a villager thinks of an item
   cli/listCrops.js         the command-line search
   cli/profit.js            the command-line profit table
   cli/search.js, item.js   the command-line search and item details
@@ -97,6 +100,7 @@ src/
   cli/artisan.js           the command-line "what can I make from this" table
   cli/cook.js              the command-line "what can I cook with this" table
   cli/craft.js             the command-line "what can I craft with this" table
+  cli/gifts.js             the command-line villager and gift lookup
 tests/
   fixtures/                real wiki pages saved for tests
   *.test.js                Vitest tests

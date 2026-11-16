@@ -3,7 +3,7 @@
 // Run with:  npm run build-db
 //
 // Reads the newest data/raw/crops-*.json (made by `npm run collect` or
-// `npm run import`), extracts each page, saves crops, seeds, fish, artisan goods, dishes and crafting recipes to data/sdv.db, and prints a report
+// `npm run import`), extracts each page, saves crops, seeds, fish, artisan goods, dishes, crafting recipes and villagers to data/sdv.db, and prints a report
 // of skipped pages and warnings so they can be checked by hand.
 
 import { readdirSync, readFileSync, rmSync } from 'node:fs';
@@ -21,9 +21,26 @@ import {
 import { extractDish, isCookingPage } from '../extract/cookingExtractor.js';
 import { extractCraftingRecipes, isCraftingPage } from '../extract/craftingExtractor.js';
 import { extractFish, isFishPage } from '../extract/fishExtractor.js';
+import {
+  extractGiftList,
+  extractUniversalDislikes,
+  extractVillagerList,
+  isFriendshipPage,
+  isGiftListPage,
+  isVillagersPage,
+} from '../extract/villagerExtractor.js';
 import { extractSeed, isSeedPage } from '../extract/seedExtractor.js';
 import { isRunDirectly } from '../utils/isRunDirectly.js';
-import { openDatabase, saveArtisanData, saveCraftingRecipes, saveCrop, saveDish, saveFish, saveSeed } from './database.js';
+import {
+  openDatabase,
+  saveArtisanData,
+  saveCraftingRecipes,
+  saveCrop,
+  saveDish,
+  saveFish,
+  saveSeed,
+  saveVillagerData,
+} from './database.js';
 import { rebuildSearchIndex } from './searchIndex.js';
 
 export const DATABASE_PATH = path.join('data', 'sdv.db');
@@ -32,7 +49,7 @@ const RAW_DATA_FOLDER = path.join('data', 'raw');
 /** Extract and save every page in a raw collection. Returns a report. */
 export function buildFromRawData(db, rawData) {
   const report = {
-    saved: [], savedSeeds: [], savedFish: [], savedArtisan: [], savedMachines: [], savedDishes: [], craftingRecipes: 0, recipes: 0, fruits: 0,
+    saved: [], savedSeeds: [], savedFish: [], savedArtisan: [], savedMachines: [], savedDishes: [], craftingRecipes: 0, villagers: 0, giftTastes: 0, recipes: 0, fruits: 0,
     skipped: [], warnings: [], notes: [],
   };
   // Artisan pages are saved together at the end, because recipes on a machine
@@ -41,6 +58,8 @@ export function buildFromRawData(db, rawData) {
   // The Crafting page is saved last, so items that have their own page
   // (machines, seed packs) are saved from that page first.
   let crafting = null;
+  // The three villager pages (gift list, Villagers, Friendship) are saved together.
+  const villagerPages = { giftPage: null, gifts: null, villagersPage: null, villagerList: null, friendshipPage: null, universalDislikes: null };
   const addMessages = (title, result) => {
     for (const warning of result.warnings ?? []) report.warnings.push({ title, warning });
     for (const note of result.notes ?? []) report.notes.push({ title, note });
@@ -68,6 +87,24 @@ export function buildFromRawData(db, rawData) {
       }
       addMessages(page.title, result);
       crafting = { page, result };
+      continue;
+    }
+
+    // Villagers and gift tastes.
+    if (isGiftListPage(page) || isVillagersPage(page) || isFriendshipPage(page)) {
+      const result = isGiftListPage(page)
+        ? extractGiftList(page)
+        : isVillagersPage(page)
+          ? extractVillagerList(page)
+          : extractUniversalDislikes(page);
+      if (!result.ok) {
+        report.skipped.push({ title: page.title, reason: result.reason });
+        continue;
+      }
+      addMessages(page.title, result);
+      if (isGiftListPage(page)) Object.assign(villagerPages, { giftPage: page, gifts: result });
+      else if (isVillagersPage(page)) Object.assign(villagerPages, { villagersPage: page, villagerList: result });
+      else Object.assign(villagerPages, { friendshipPage: page, universalDislikes: result.tastes });
       continue;
     }
 
@@ -145,6 +182,17 @@ export function buildFromRawData(db, rawData) {
     report.craftingRecipes = crafting.result.recipes.length;
   }
 
+  if (villagerPages.giftPage) {
+    saveVillagerData(db, villagerPages, rawData.retrievedAt);
+    report.villagers = villagerPages.gifts.villagers.length;
+    report.giftTastes = db.prepare('SELECT COUNT(*) AS n FROM gift_tastes').get().n;
+    if (!villagerPages.friendshipPage) {
+      report.notes.push({ title: 'List of All Gifts', note: 'no Friendship page, so universal dislikes and hates are missing' });
+    }
+  } else if (villagerPages.villagersPage || villagerPages.friendshipPage) {
+    report.warnings.push({ title: 'Villagers', warning: 'the List of All Gifts page is missing, so no villagers were saved' });
+  }
+
   // Last step: refresh the search index from everything saved above.
   report.indexed = rebuildSearchIndex(db);
   return report;
@@ -180,8 +228,8 @@ function main() {
   console.log(
     `\nSaved ${report.saved.length} crops, ${report.savedSeeds.length} seeds, ${report.savedFish.length} fish, ` +
       `${report.savedArtisan.length} artisan goods, ${report.savedMachines.length} machines ` +
-      `(${report.recipes} recipes), ${report.fruits} fruits from the Fruits page, ${report.savedDishes.length} dishes ` +
-      `and ${report.craftingRecipes} crafting recipes to ${DATABASE_PATH}`,
+      `(${report.recipes} recipes), ${report.fruits} fruits from the Fruits page, ${report.savedDishes.length} dishes, ` +
+      `${report.craftingRecipes} crafting recipes and ${report.villagers} villagers (${report.giftTastes} gift tastes) to ${DATABASE_PATH}`,
   );
   console.log(`Search index holds ${report.indexed} items`);
   if (report.skipped.length) {

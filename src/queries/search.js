@@ -14,6 +14,7 @@ import { SEASON_ORDER } from '../calc/profit.js';
 import { getRecipesFor } from './artisanQueries.js';
 import { getDishIngredients, getDishesUsing } from './cookingQueries.js';
 import { getCraftedUsing, getCraftingRecipe } from './craftingQueries.js';
+import { whoLikes } from './giftQueries.js';
 
 export const ITEM_TYPES = ['crop', 'seed', 'fish', 'artisan', 'machine', 'dish', 'crafted'];
 
@@ -272,6 +273,9 @@ export function getItemDetails(db, name) {
     // How to craft it (from the Crafting page), and what it can be crafted into.
     crafting: getCraftingRecipe(db, item.name),
     usedInCrafting: getCraftedUsing(db, item.name).map((row) => row.name),
+    // How each villager feels about it as a gift ({ love: [...], like: [...], ... }).
+    // total is the number of villagers, so "loved by all 34" can say "everyone".
+    giftTastes: { ...whoLikes(db, item.name), total: db.prepare('SELECT COUNT(*) AS n FROM villagers').get().n },
     growsInto,
     source: { title: item.title, url: item.url, revision: item.revision, revisionTime: item.revisionTime, retrievedAt: item.retrievedAt },
   };
