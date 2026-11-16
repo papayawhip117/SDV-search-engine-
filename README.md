@@ -16,7 +16,7 @@ Hi, I'm **Papaya** (Aaliyah)! Stardew Valley is one of my favorite games, and th
 - 🍄 **Forage, minerals, artifacts, flowers and books.**
 - 🤖 **`npm run ask`**, an assistant that answers only from verified data and cites each fact. An optional Claude AI layer can write the answer (it needs your own API key and is off without one), and the app checks every AI answer before showing it.
 
-## 👀 A peek inside
+## Here’s a peek
 
 | | |
 |:---:|:---:|
