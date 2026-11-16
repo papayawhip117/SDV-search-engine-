@@ -189,7 +189,33 @@ From each infobox we keep:
 
 **What the ingredients are worth** is worked out in code: the sell prices of the ingredients we have, times the quantities. If any ingredient's price is unknown (an item we don't collect yet, or "any Fish"), the total is left empty rather than guessed. Fish Taco sells for 500g; its raw ingredients (Tuna, Tortilla, Red Cabbage, Mayonnaise) are worth 600g.
 
-## 11. Tests: `tests/`
+## 11. Crafting: `src/extract/craftingExtractor.js` and `src/queries/craftingQueries.js`
+
+Every crafting recipe comes from one page: the Crafting page (revision 195392). It has a table per section (Bombs, Fences, Sprinklers, Artisan Equipment, Fertilizer, Seeds, Decor, Fishing, Rings, Edible Items, Consumables, Lighting, Refining Equipment, Furniture, Storage Equipment, Signs, Misc), 150 recipes in all. Each row gives the item, its ingredients and how you get the recipe. `Category:Crafting` holds only the Crafting page itself, so there was nothing else to download.
+
+What we read from each row:
+
+| Cell | Example | Stored as |
+|---|---|---|
+| Name | `[[Speed-Gro]] (5)` | Speed-Gro, and one craft makes 5 |
+| Name with a second name | `Wild Seeds (Sp)<br />([[Spring Seeds]])` | Spring Seeds, also called "Wild Seeds (Sp)" |
+| Ingredients | `{{Name|Sap|4}} Any [[Fish]] (1)` | Sap ×4, any Fish ×1 (rows in `crafting_ingredients`) |
+| Recipe source | `[[File:...]] [[Farming]] Level 9` | "Farming Level 9" |
+| Extra columns | Radius (bombs), Duration (fences), Energy and Health (edible items) | one line of text, e.g. "Energy: 45; Health: 18" |
+| Sell price | only in the Bombs table | the item's sell price |
+
+Some cells needed care:
+
+- The Fences table has two header rows ("Duration" over "Days" and "Seasons"), so its columns become "Duration (days)" and "Duration (seasons)".
+- The Crab Pot has a second, cheaper recipe for the Trapper profession on a new line. Only the first is stored as ingredients; the second is kept as a note.
+- Tea Sapling takes "Wild Seeds (Any) (2)". The Seeds table marks the four wild seed packs with "Wild Seeds (Sp)" and so on, so those four become the group "Wild Seeds" in `item_groups`, and `npm run craft -- Spring Seeds` finds Tea Sapling.
+- Links are turned into their text before reading `{{NPC|...}}`, because `{{NPC|Linus|[[Quests#Community Cleanup|Special Order]]}}` has a `|` inside the link. Qi Gem prices (`{{Price|20|Gem}}`) read "20 Qi Gems", not "20g".
+
+**Which page an item cites.** Items that already have their own page (the Keg, Bee House and other machines) keep it as their source, and the crafting recipe cites the Crafting page separately; `npm run item -- Keg` shows both. The Crafting page is saved after every other page, so this works whatever order the pages come in. Items we only know from the Crafting page become type `crafted` and cite it. Their summary is left empty, because the Crafting page's opening is about crafting in general.
+
+In search, each crafted item also gets its section ("Crafting: Rings") next to its categories, so `npm run search -- consumables` finds the Rain Totem and the Warp Totems.
+
+## 12. Tests: `tests/`
 
 | File | Checks |
 |---|---|
@@ -205,6 +231,8 @@ From each infobox we keep:
 | `artisan.test.js` | crops + fish + artisan pages into one database, "what can I make from this" values worked out by hand, exclusions, machines in search |
 | `cookingExtractor.test.js` | real dish pages: the infobox wrapper, "any Fish" ingredients, recipe sources (TV, shops, friendship mail), buffs and how long they last |
 | `cooking.test.js` | dishes into one database with crops, fish and artisan goods, "what can I cook with this", ingredient values, dishes in search and item details |
+| `craftingExtractor.test.js` | the real Crafting page: names with quantities and second names, "any Fish" and "Wild Seeds (Any)", the Crab Pot's second recipe, recipe sources, two header rows, all 150 recipes |
+| `crafting.test.js` | the Crafting page with crop, fish and artisan pages: machines keep their own page, "what can I craft with this" through names and groups, sections, crafted items in search and item details |
 | `search.test.js` | partial words, related terms, all-words matching, every filter and sort, hostile input, item details, typo suggestions |
 
 Run them with `npm test`.
@@ -222,9 +250,12 @@ We **don't** get around a refusal by pretending to be a web browser. The wiki de
 
 ## Known limitations (so far)
 
-- Crops in the Spring, Summer and Fall categories, their seeds, 71 fish, the artisan goods and 81 dishes. Crafting, villagers, fruit trees, forage and more come in the next phases.
+- Crops in the Spring, Summer and Fall categories, their seeds, 71 fish, the artisan goods, 81 dishes and 150 crafting recipes. Villagers, fruit trees, forage and more come in the next phases.
 - Cask aging (silver to iridium quality) and the Heavy Tapper's own page aren't stored yet. Recipes that take mushrooms, forage or roe are stored, but those items aren't collected yet.
 - Dish ingredients we don't collect yet (Egg, Milk, Wheat Flour, Sugar, Oil, Rice...) are shown by name without a price or wiki link until later phases add them.
+- Crafted items have no sell price except bombs, because only the Bombs table on the Crafting page lists one. Their own pages would add it.
+- "Transmute (Fe)" and "Transmute (Au)" are stored by their recipe names, as the Crafting page lists them; they make an Iron Bar and a Gold Bar.
+- Crafting ingredients we don't collect yet (Wood, Stone, ores and bars...) are shown by name only, until later phases add them.
 - Artisan values ignore the Artisan profession (+40%) and ingredient quality.
 - Profit doesn't model when a shop is open (Strawberry Seeds are only sold at the Egg Festival) or fertilizer, quality and professions.
 - Traveling Cart prices are random, so seeds only sold there have no price.

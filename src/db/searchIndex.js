@@ -18,7 +18,8 @@ export function rebuildSearchIndex(db) {
       `SELECT i.id, i.name, sp.raw_wikitext AS wikitext,
               sp.page_title AS pageTitle,
               (SELECT group_concat(pc.category, ' | ') FROM page_categories pc WHERE pc.source_page_id = sp.id) AS categories,
-              (SELECT group_concat(sh.name, ' | ') FROM shop_prices p JOIN shops sh ON sh.id = p.shop_id WHERE p.item_id = i.id) AS shops
+              (SELECT group_concat(sh.name, ' | ') FROM shop_prices p JOIN shops sh ON sh.id = p.shop_id WHERE p.item_id = i.id) AS shops,
+              (SELECT 'Crafting: ' || r.section FROM crafting_recipes r WHERE r.item_id = i.id) AS craftingSection
        FROM items i
        JOIN source_pages sp ON sp.id = i.source_page_id`,
     )
@@ -33,7 +34,9 @@ export function rebuildSearchIndex(db) {
       // seed, so we only index them when the page really is this item's page.
       const ownPage = item.pageTitle.toLowerCase() === item.name.toLowerCase();
       const summary = ownPage ? extractSummary(item.wikitext) ?? '' : '';
-      const categories = ownPage ? item.categories ?? '' : '';
+      // Crafted items also get their Crafting page section ("Crafting: Rings"),
+      // so "ring" or "fertilizer" finds every recipe in that section.
+      const categories = [ownPage ? item.categories : null, item.craftingSection].filter(Boolean).join(' | ');
       insert.run(item.name, categories, item.shops ?? '', summary, item.id);
     }
   });

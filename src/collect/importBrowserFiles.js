@@ -21,6 +21,7 @@ import { FISH_PAGE_GROUPS } from './fishPages.js';
 import { ARTISAN_PAGES, FRUIT_LIST_PAGE } from './artisanPages.js';
 import { COOKING_PAGE_GROUPS } from './cookingPages.js';
 import { FISH_CATEGORIES } from '../extract/fishExtractor.js';
+import { CRAFTING_PAGE } from '../extract/craftingExtractor.js';
 
 // The categories that say which collection a page belongs to, in order of preference.
 const COLLECTION_CATEGORIES = [...CROP_CATEGORIES, ...FISH_CATEGORIES, 'Artisan Goods', 'Craftable items', 'Crops', 'Cooking'];
@@ -156,6 +157,8 @@ function printInstructions() {
     console.log(`Cooking recipes, part ${index + 1} of ${COOKING_PAGE_GROUPS.length} (${titles.length} dishes), save as cooking-${index + 1}.json:`);
     console.log(`  ${browserUrlForPages(titles)}\n`);
   });
+  console.log('The Crafting page (every crafting recipe is in its tables), save as crafting.json:');
+  console.log(`  ${browserUrlForPages([CRAFTING_PAGE])}\n`);
   console.log('Then run:  npm run import -- data/browser/*.json');
 }
 

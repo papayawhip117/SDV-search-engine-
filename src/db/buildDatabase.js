@@ -3,7 +3,7 @@
 // Run with:  npm run build-db
 //
 // Reads the newest data/raw/crops-*.json (made by `npm run collect` or
-// `npm run import`), extracts each page, saves crops, seeds, fish, artisan goods and dishes to data/sdv.db, and prints a report
+// `npm run import`), extracts each page, saves crops, seeds, fish, artisan goods, dishes and crafting recipes to data/sdv.db, and prints a report
 // of skipped pages and warnings so they can be checked by hand.
 
 import { readdirSync, readFileSync, rmSync } from 'node:fs';
@@ -19,10 +19,11 @@ import {
   isMachinePage,
 } from '../extract/artisanExtractor.js';
 import { extractDish, isCookingPage } from '../extract/cookingExtractor.js';
+import { extractCraftingRecipes, isCraftingPage } from '../extract/craftingExtractor.js';
 import { extractFish, isFishPage } from '../extract/fishExtractor.js';
 import { extractSeed, isSeedPage } from '../extract/seedExtractor.js';
 import { isRunDirectly } from '../utils/isRunDirectly.js';
-import { openDatabase, saveArtisanData, saveCrop, saveDish, saveFish, saveSeed } from './database.js';
+import { openDatabase, saveArtisanData, saveCraftingRecipes, saveCrop, saveDish, saveFish, saveSeed } from './database.js';
 import { rebuildSearchIndex } from './searchIndex.js';
 
 export const DATABASE_PATH = path.join('data', 'sdv.db');
@@ -31,12 +32,15 @@ const RAW_DATA_FOLDER = path.join('data', 'raw');
 /** Extract and save every page in a raw collection. Returns a report. */
 export function buildFromRawData(db, rawData) {
   const report = {
-    saved: [], savedSeeds: [], savedFish: [], savedArtisan: [], savedMachines: [], savedDishes: [], recipes: 0, fruits: 0,
+    saved: [], savedSeeds: [], savedFish: [], savedArtisan: [], savedMachines: [], savedDishes: [], craftingRecipes: 0, recipes: 0, fruits: 0,
     skipped: [], warnings: [], notes: [],
   };
   // Artisan pages are saved together at the end, because recipes on a machine
   // page are checked against the goods pages.
   const artisan = { machines: [], goods: [], fruitPage: null, fruits: [] };
+  // The Crafting page is saved last, so items that have their own page
+  // (machines, seed packs) are saved from that page first.
+  let crafting = null;
   const addMessages = (title, result) => {
     for (const warning of result.warnings ?? []) report.warnings.push({ title, warning });
     for (const note of result.notes ?? []) report.notes.push({ title, note });
@@ -52,6 +56,18 @@ export function buildFromRawData(db, rawData) {
       report.savedSeeds.push(result.seed.name);
       for (const warning of result.warnings) report.warnings.push({ title: page.title, warning });
       for (const note of result.notes) report.notes.push({ title: page.title, note });
+      continue;
+    }
+
+    // The Crafting page, with every crafting recipe in its tables.
+    if (isCraftingPage(page)) {
+      const result = extractCraftingRecipes(page);
+      if (!result.ok) {
+        report.skipped.push({ title: page.title, reason: result.reason });
+        continue;
+      }
+      addMessages(page.title, result);
+      crafting = { page, result };
       continue;
     }
 
@@ -110,7 +126,6 @@ export function buildFromRawData(db, rawData) {
     for (const warning of result.warnings) report.warnings.push({ title: page.title, warning });
     for (const note of result.notes) report.notes.push({ title: page.title, note });
   }
-  // Last step: refresh the search index from everything saved above.
   if (artisan.machines.length || artisan.goods.length || artisan.fruitPage) {
     const combined = combineArtisanData(
       artisan.machines.map(({ products }) => ({ products })),
@@ -125,6 +140,12 @@ export function buildFromRawData(db, rawData) {
     report.fruits = artisan.fruits.length;
   }
 
+  if (crafting) {
+    saveCraftingRecipes(db, crafting.page, crafting.result, rawData.retrievedAt);
+    report.craftingRecipes = crafting.result.recipes.length;
+  }
+
+  // Last step: refresh the search index from everything saved above.
   report.indexed = rebuildSearchIndex(db);
   return report;
 }
@@ -159,7 +180,8 @@ function main() {
   console.log(
     `\nSaved ${report.saved.length} crops, ${report.savedSeeds.length} seeds, ${report.savedFish.length} fish, ` +
       `${report.savedArtisan.length} artisan goods, ${report.savedMachines.length} machines ` +
-      `(${report.recipes} recipes), ${report.fruits} fruits from the Fruits page and ${report.savedDishes.length} dishes to ${DATABASE_PATH}`,
+      `(${report.recipes} recipes), ${report.fruits} fruits from the Fruits page, ${report.savedDishes.length} dishes ` +
+      `and ${report.craftingRecipes} crafting recipes to ${DATABASE_PATH}`,
   );
   console.log(`Search index holds ${report.indexed} items`);
   if (report.skipped.length) {

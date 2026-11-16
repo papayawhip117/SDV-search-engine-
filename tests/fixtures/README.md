@@ -70,3 +70,10 @@ buffs with a duration, and a dish that is an ingredient of another (Tortilla in 
 
 Same license (CC BY-NC-SA, Stardew Valley Wiki). Source pages:
 https://stardewvalleywiki.com/ + the page title with spaces as underscores.
+
+`crafting-page.json` is the Crafting page (revision 195392), saved 2026-11-16 with the
+helper URL that also lists `Category:Crafting`. It is unmodified, so the category list
+is still in it (the tests don't use that part). All 150 crafting recipes are read from it.
+
+Same license (CC BY-NC-SA, Stardew Valley Wiki). Source page:
+https://stardewvalleywiki.com/Crafting
