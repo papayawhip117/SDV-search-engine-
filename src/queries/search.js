@@ -12,7 +12,7 @@
 
 import { SEASON_ORDER } from '../calc/profit.js';
 
-export const ITEM_TYPES = ['crop', 'seed'];
+export const ITEM_TYPES = ['crop', 'seed', 'fish'];
 
 // Each sort option maps to a fixed piece of SQL. User input only ever picks
 // a key from this list; it's never pasted into the SQL itself.
@@ -55,13 +55,16 @@ function normaliseSeason(season) {
   return match;
 }
 
-// The seasons an item belongs to: a crop's own seasons, or for a seed,
-// the seasons of the crop it grows into.
+// The seasons an item belongs to: a crop's or fish's own seasons, or for a
+// seed, the seasons of the crop it grows into.
 const SEASONS_SQL = `
   SELECT DISTINCT s.id, s.name
-  FROM crop_seasons cs JOIN seasons s ON s.id = cs.season_id
-  WHERE cs.crop_item_id = :id
-     OR cs.crop_item_id IN (SELECT c.item_id FROM crops c WHERE c.seed_item_id = :id)
+  FROM seasons s
+  WHERE s.id IN (
+          SELECT cs.season_id FROM crop_seasons cs
+          WHERE cs.crop_item_id = :id
+             OR cs.crop_item_id IN (SELECT c.item_id FROM crops c WHERE c.seed_item_id = :id))
+     OR s.id IN (SELECT fs.season_id FROM fish_seasons fs WHERE fs.fish_item_id = :id)
   ORDER BY s.id`;
 
 /**
@@ -69,7 +72,7 @@ const SEASONS_SQL = `
  *
  * @param options.text        words to look for in names, wiki categories and summaries
  * @param options.season      'Spring' | 'Summer' | 'Fall' | 'Winter'
- * @param options.type        'crop' | 'seed'
+ * @param options.type        'crop' | 'seed' | 'fish'
  * @param options.sortBy      'relevance' (default when searching text) | 'name' | 'sell' | 'buy'
  * @param options.descending  true/false to override the sort's usual direction
  * @param options.limit       maximum number of results (default 50)
@@ -199,6 +202,27 @@ export function getItemDetails(db, name) {
     .all(item.id, item.id)
     .map((row) => row.name);
 
+  // If this item is a fish: where, when and how to catch it.
+  const fishRow = db
+    .prepare(
+      `SELECT catch_method AS catchMethod, is_legendary AS isLegendary, location_note AS location,
+              time_note AS time, season_note AS seasonNote, weather, weather_note AS weatherNote,
+              difficulty, behavior, size_min_inches AS sizeMin, size_max_inches AS sizeMax,
+              fishing_level AS fishingLevel, fishing_level_note AS fishingLevelNote
+       FROM fish WHERE item_id = ?`,
+    )
+    .get(item.id);
+  const fish = fishRow
+    ? {
+        ...fishRow,
+        isLegendary: fishRow.isLegendary === 1,
+        areas: db
+          .prepare('SELECT area FROM fish_areas WHERE fish_item_id = ? ORDER BY area')
+          .all(item.id)
+          .map((row) => row.area),
+      }
+    : null;
+
   return {
     name: item.name,
     type: item.type,
@@ -209,6 +233,7 @@ export function getItemDetails(db, name) {
     seasons: db.prepare(SEASONS_SQL).all({ id: item.id }).map((row) => row.name),
     categories,
     crop,
+    fish,
     growsInto,
     source: { title: item.title, url: item.url, revision: item.revision, revisionTime: item.revisionTime, retrievedAt: item.retrievedAt },
   };

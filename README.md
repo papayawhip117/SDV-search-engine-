@@ -4,7 +4,7 @@ A Stardew Valley search engine built from the [Stardew Valley Wiki](https://star
 
 An AI assistant will come later. It will only answer from this verified local database and will cite the wiki page behind every fact.
 
-> **Status:** Phase 4. Crops, seed prices, profit-per-day calculations and a search engine.
+> **Status:** Phase 5. Crops, seed prices, profit per day, a search engine, and fish.
 
 ## How it works
 
@@ -51,11 +51,12 @@ Run these one at a time:
 |---|---|
 | `npm test` | Runs the automated tests. No internet needed. |
 | `npm run collect` | Downloads the crop pages from the wiki into `data/raw/`. **Currently refused** (HTTP 403): the wiki's firewall blocks Node.js. Use `npm run import` instead. |
-| `npm run import` | Prints 3 wiki URLs to save from your browser into `data/browser/`. Then `npm run import -- data/browser/*.json` turns them into `data/raw/`. |
-| `npm run build-db` | Reads the newest file in `data/raw/` (from `collect` or `import`), extracts the crop facts, and saves them to `data/sdv.db`. |
+| `npm run import` | Prints the wiki URLs to save from your browser into `data/browser/` (crops, seeds, fish). Then `npm run import -- data/browser/*.json` turns them into `data/raw/`. |
+| `npm run build-db` | Reads the newest file in `data/raw/` (from `collect` or `import`), extracts crops, seeds and fish, and saves them to `data/sdv.db`. |
 | `npm run crops -- Summer` | Lists Summer crops by sell price, with wiki links. Try `Spring` or `Fall` too. |
-| `npm run search -- berry` | Searches names, wiki categories, shops and page summaries. Options: `--season fall`, `--type crop` or `seed`, `--sort relevance`/`name`/`sell`/`buy`, `--reverse`, `--limit 10`. |
+| `npm run search -- berry` | Searches names, wiki categories, shops and page summaries. Options: `--season fall`, `--type crop`, `seed` or `fish`, `--sort relevance`/`name`/`sell`/`buy`, `--reverse`, `--limit 10`. |
 | `npm run item -- "Parsnip Seeds"` | Shows one item with everything connected to it: seasons, growth, seed, shop prices, what a seed grows into, categories, and its wiki source and revision. |
+| `npm run fish -- Summer` | Lists Summer fish by sell price, with where, when and in what weather to catch them. Options: `--weather rain` or `sun`, `--area Ocean` (or River, Lake, Pond, ...), `--legendary` to include legendary fish. |
 | `npm run profit -- Spring` | Ranks Spring crops by profit per day, using seed prices from the wiki. Add a day to plant later: `npm run profit -- Spring 10`. |
 
 ## Project layout
@@ -65,19 +66,23 @@ src/
   wiki/apiClient.js        talks to the wiki API (rate limiting, retries)
   collect/collectCrops.js  finds every crop page and saves the raw data
   collect/importBrowserFiles.js  turns API responses saved in a browser into raw data
+  collect/fishPages.js     the list of fish pages to download
   extract/wikitext.js      general tools for reading wiki markup
   extract/cropExtractor.js turns one crop page into clean crop facts
   extract/seedExtractor.js reads shop prices from one seed page
+  extract/fishExtractor.js turns one fish page into clean fish facts
   calc/profit.js           harvests, costs and profit per day (no AI involved)
   db/schema.sql            the database tables
-  db/database.js           opens the database and saves crops
+  db/database.js           opens the database and saves crops, seeds and fish
   db/buildDatabase.js      raw data → extractor → database
   db/searchIndex.js        fills the full-text search index after each build
   queries/cropQueries.js   reusable database searches
   queries/search.js        the search engine: text search, filters, sorting, item details
+  queries/fishQueries.js   fish by season, weather and area
   cli/listCrops.js         the command-line search
   cli/profit.js            the command-line profit table
   cli/search.js, item.js   the command-line search and item details
+  cli/fish.js              the command-line fish list
 tests/
   fixtures/                real wiki pages saved for tests
   *.test.js                Vitest tests

@@ -167,7 +167,9 @@ export function parseFirstTable(wikitext) {
 /**
  * Turn a short piece of wikitext into plain readable text:
  *   "'''Parsnip Seeds''' are a type of [[seed]]. {{Price|20}}"  →  "Parsnip Seeds are a type of seed. 20g"
- * {{Name|X}} becomes X and {{Price|N}} becomes Ng; other templates are dropped.
+ * {{Name|X}}, {{Season|X}} and {{Weather inline|X}} become X, {{Price|N}}
+ * becomes Ng, {{Tprice|N}} (Traveling Cart) becomes "a random price", and
+ * other templates are dropped.
  */
 export function toPlainText(wikitext) {
   let text = wikitext;
@@ -175,8 +177,9 @@ export function toPlainText(wikitext) {
   for (let pass = 0; pass < 10 && text.includes('{{'); pass++) {
     text = text.replace(/\{\{([^{}]*)\}\}/g, (_, inner) => {
       const [name, ...args] = inner.split('|').map((part) => part.trim());
-      if (/^name$/i.test(name)) return args[0] ?? '';
+      if (/^(name|season|weather inline)$/i.test(name)) return args[0] ?? '';
       if (/^price$/i.test(name)) return args[0] ? `${args[0]}g` : '';
+      if (/^tprice$/i.test(name)) return 'a random price'; // Traveling Cart prices vary
       return '';
     });
   }
@@ -195,7 +198,10 @@ export function toPlainText(wikitext) {
 export function extractSummary(wikitext, maxLength = 300) {
   if (!wikitext) return null;
   let body = wikitext;
-  const infobox = findTemplateCall(wikitext, 'Infobox seed') ?? findTemplateCall(wikitext, 'Infobox');
+  const infobox =
+    findTemplateCall(wikitext, 'Infobox seed') ??
+    findTemplateCall(wikitext, 'Infobox fish') ??
+    findTemplateCall(wikitext, 'Infobox');
   if (infobox !== null) body = wikitext.slice(wikitext.indexOf(infobox) + infobox.length + 2);
 
   const paragraph = body

@@ -8,6 +8,7 @@ import {
   parseTemplateParams,
   splitTopLevel,
   stripLinks,
+  toPlainText,
 } from '../src/extract/wikitext.js';
 
 describe('findTemplateCall', () => {
@@ -55,6 +56,11 @@ describe('small cleaners', () => {
   it('firstTemplateArgument reads {{Name|...}}', () => {
     expect(firstTemplateArgument('{{Name|Parsnip Seeds}}', 'Name')).toBe('Parsnip Seeds');
     expect(firstTemplateArgument('Parsnip Seeds', 'Name')).toBeNull();
+  });
+
+  it('toPlainText keeps the words inside Name, Season and Weather templates', () => {
+    expect(toPlainText('{{Season|Summer}} • {{Weather inline|Sun}} at {{Name|Crab Pot|class=inline}}')).toBe('Summer • Sun at Crab Pot');
+    expect(toPlainText('at the Traveling Cart for {{tprice|100}}.')).toBe('at the Traveling Cart for a random price.');
   });
 
   it('parseLeadingInteger reads the number at the start', () => {

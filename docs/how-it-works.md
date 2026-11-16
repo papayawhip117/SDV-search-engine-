@@ -1,6 +1,6 @@
 # How it works
 
-This explains the crops proof of concept piece by piece, in the order data flows through it.
+This explains the project piece by piece, in the order data flows through it.
 
 ## 1. Collecting: `src/wiki/apiClient.js` and `src/collect/collectCrops.js`
 
@@ -125,7 +125,30 @@ We use the **trigram** tokenizer, which indexes every 3-letter piece of every wo
 
 **Related records.** `getItemDetails()` gathers everything connected to one item: a crop's growth, stages, regrowth and its seed with every shop price, or a seed's prices and what it grows into. It also returns the wiki categories, the summary, and the source page with its revision and download date. `npm run item` prints it all, and suggests names when the one you typed doesn't exist ("strawbery" → Strawberry).
 
-## 8. Tests: `tests/`
+## 8. Fish: `src/extract/fishExtractor.js` and `src/queries/fishQueries.js`
+
+`Category:Fish` on the wiki only holds the overview page "Fish", so the 71 fish pages to download were read from the tables on that page and listed in `src/collect/fishPages.js` (48 rod fish, 3 Night Market fish, 10 legendary and 10 crab pot fish, in two groups because the API returns at most 50 pages at a time). Seaweed, algae and the jellies are left out because the Fish page says they don't count as fish.
+
+Fish pages use `{{Infobox fish}}`:
+
+```
+|location   = [[The Beach|Ocean]] • [[Ginger Island]]
+|time       = 6am – 7pm
+|season     = {{Season|Summer}} • {{Season|Winter}}<br />'''[[Ginger Island]] (except Island North):''' {{Season|All}}
+|weather    = Any
+|difficulty = 70
+|price      = 100
+```
+
+**Seasons.** The season field is often a sentence: Walleye says `Fall • Winter with Rain Totem`. Reading every word as a season would claim you can catch Walleye in any Winter, which isn't true. So when the field is a plain list (`Summer • Winter`, `All`) we use it and check it against the page's season categories (`Category:Summer fish`). When it's a sentence, we use the categories, which list the normal seasons, and keep the sentence in `fish.season_note`. The build prints a **note** for each of those 9 fish.
+
+**Where.** The kinds of water (Ocean, River, Lake, Pond, The Mines, ...) come from the categories (`Category:Ocean fish`) into `fish_areas`. The infobox's exact wording ("River • Mountain Lake • Forest Pond") is kept in `location_note`. Crab pot fish have a `source` field ("Crab Pot: Saltwater") instead, so that's used.
+
+**Weather.** `Any`, `Sun` or `Rain` goes in `fish.weather`. Anything longer (Rainbow Trout: "Sun; Any during Trout Derby") leaves `weather` empty and keeps the text in `weather_note`. A weather search (`npm run fish -- Summer --weather rain`) lists fish whose weather is Rain or Any, plus crab pot fish, and names the ones with longer rules separately so you can check them, rather than guessing.
+
+**Time** is kept as text ("6am – 11am; 6pm – 2am"). Legendary fish also store the fishing level they need (`fl`).
+
+## 9. Tests: `tests/`
 
 | File | Checks |
 |---|---|
@@ -135,6 +158,8 @@ We use the **trigram** tokenizer, which indexes every 3-letter piece of every wo
 | `database.test.js` | the full pipeline into an in-memory database, attribution on every result, no duplicates on a rebuild, cheapest seed price |
 | `seedExtractor.test.js` | real seed pages: Pierre/JojaMart/Oasis prices, Year 2+ notes, festival prices, seeds no shop sells |
 | `profit.test.js` | harvest counts and profit worked out by hand for Parsnip, Strawberry and Corn |
+| `fishExtractor.test.js` | real fish pages: plain vs. conditional seasons, two time windows, crab pot fish, legendary fish, Night Market fish, unclear weather |
+| `fish.test.js` | fish into an in-memory database, the season/weather/area filters, fish in search and item details |
 | `search.test.js` | partial words, related terms, all-words matching, every filter and sort, hostile input, item details, typo suggestions |
 
 Run them with `npm test`.
@@ -152,10 +177,11 @@ We **don't** get around a refusal by pretending to be a web browser. The wiki de
 
 ## Known limitations (so far)
 
-- Only crops in the Spring, Summer and Fall categories. Fruit trees, forage and special crops come later.
+- Crops in the Spring, Summer and Fall categories, their seeds, and 71 fish. Artisan goods, cooking, crafting, villagers, fruit trees, forage and more come in the next phases.
 - Profit doesn't model when a shop is open (Strawberry Seeds are only sold at the Egg Festival) or fertilizer, quality and professions.
 - Traveling Cart prices are random, so seeds only sold there have no price.
-- Search covers only what's in the database (crops and seeds so far), and search words need 3+ letters.
+- Search covers only what's in the database, and search words need 3+ letters.
+- Fish times are stored as text, so you can't yet ask "what can I catch at 8pm". The legendary fish of Mr. Qi's quest (Legend II and the others) show all seasons, because the wiki lists them as "Any", but they can only be caught while that quest is active.
 - Harvest yield ("1, with a 2% chance for more") is only written as a sentence on the wiki, so it isn't stored yet.
 - Sell price is base quality only. Quality and profession bonuses will be calculated in code later, with their formulas documented.
 - The exact license version still needs confirming on the wiki's copyright page.

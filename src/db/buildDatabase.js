@@ -3,15 +3,16 @@
 // Run with:  npm run build-db
 //
 // Reads the newest data/raw/crops-*.json (made by `npm run collect` or
-// `npm run import`), extracts each page, saves crops and seeds to data/sdv.db, and prints a report
+// `npm run import`), extracts each page, saves crops, seeds and fish to data/sdv.db, and prints a report
 // of skipped pages and warnings so they can be checked by hand.
 
 import { readdirSync, readFileSync, rmSync } from 'node:fs';
 import path from 'node:path';
 import { extractCrop } from '../extract/cropExtractor.js';
+import { extractFish, isFishPage } from '../extract/fishExtractor.js';
 import { extractSeed, isSeedPage } from '../extract/seedExtractor.js';
 import { isRunDirectly } from '../utils/isRunDirectly.js';
-import { openDatabase, saveCrop, saveSeed } from './database.js';
+import { openDatabase, saveCrop, saveFish, saveSeed } from './database.js';
 import { rebuildSearchIndex } from './searchIndex.js';
 
 export const DATABASE_PATH = path.join('data', 'sdv.db');
@@ -19,14 +20,29 @@ const RAW_DATA_FOLDER = path.join('data', 'raw');
 
 /** Extract and save every page in a raw collection. Returns a report. */
 export function buildFromRawData(db, rawData) {
-  const report = { saved: [], savedSeeds: [], skipped: [], warnings: [], notes: [] };
+  const report = { saved: [], savedSeeds: [], savedFish: [], skipped: [], warnings: [], notes: [] };
 
   for (const page of rawData.pages) {
-    // Seed pages ({{Infobox seed}}) hold shop prices; everything else is tried as a crop.
+    // Seed pages ({{Infobox seed}}) hold shop prices, fish pages have
+    // {{Infobox fish}}, and everything else is tried as a crop.
     if (isSeedPage(page)) {
       const result = extractSeed(page);
       saveSeed(db, page, result.seed, rawData.retrievedAt);
       report.savedSeeds.push(result.seed.name);
+      for (const warning of result.warnings) report.warnings.push({ title: page.title, warning });
+      for (const note of result.notes) report.notes.push({ title: page.title, note });
+      continue;
+    }
+
+    // Fish pages ({{Infobox fish}}).
+    if (isFishPage(page)) {
+      const result = extractFish(page);
+      if (!result.ok) {
+        report.skipped.push({ title: page.title, reason: result.reason });
+        continue;
+      }
+      saveFish(db, page, result.fish, rawData.retrievedAt);
+      report.savedFish.push(result.fish.name);
       for (const warning of result.warnings) report.warnings.push({ title: page.title, warning });
       for (const note of result.notes) report.notes.push({ title: page.title, note });
       continue;
@@ -74,7 +90,9 @@ function main() {
   const report = buildFromRawData(db, rawData);
   db.close();
 
-  console.log(`\nSaved ${report.saved.length} crops and ${report.savedSeeds.length} seeds to ${DATABASE_PATH}`);
+  console.log(
+    `\nSaved ${report.saved.length} crops, ${report.savedSeeds.length} seeds and ${report.savedFish.length} fish to ${DATABASE_PATH}`,
+  );
   console.log(`Search index holds ${report.indexed} items`);
   if (report.skipped.length) {
     console.log(`\nSkipped ${report.skipped.length} pages (not crops, or unreadable):`);

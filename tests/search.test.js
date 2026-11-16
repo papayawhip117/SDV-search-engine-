@@ -106,7 +106,7 @@ describe('searchItems: filters and sorting', () => {
 
   it('rejects unknown options with a clear message', () => {
     expect(() => searchItems(db, { season: 'Autumn' })).toThrow(/Unknown season/);
-    expect(() => searchItems(db, { type: 'fish' })).toThrow(/Unknown type/);
+    expect(() => searchItems(db, { type: 'furniture' })).toThrow(/Unknown type/);
     expect(() => searchItems(db, { sortBy: 'price; DROP TABLE items' })).toThrow(/Can't sort/);
   });
 });
