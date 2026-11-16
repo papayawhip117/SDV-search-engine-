@@ -21,7 +21,7 @@ Run these one at a time:
 | Command | What it does |
 |---|---|
 | `npm test` | Runs the automated tests. No internet needed. |
-| `npm start` | Starts the website on your computer. Open http://localhost:3000 in your browser to search, browse categories, look up villagers' gifts and ask questions. Press Ctrl+C in the terminal to stop it. Needs the database from `npm run build-db`. |
+| `npm start` | Starts the website on your computer. Open http://localhost:3000 in your browser to search, browse categories, look up villagers' gifts, plan your day (Today), rank crops by profit and ask questions. Press Ctrl+C in the terminal to stop it. Needs the database from `npm run build-db`. |
 | `npm run collect` | Downloads the crop pages from the wiki into `data/raw/`. **Currently refused** (HTTP 403): the wiki's firewall blocks Node.js. Use `npm run import` instead. |
 | `npm run import` | Prints the wiki URLs to save from your browser into `data/browser/` (crops, seeds, fish, artisan goods, fruits, cooking, crafting, villagers and gifts, forage, minerals, artifacts, flowers, books). Then `npm run import -- data/browser/*.json` turns them into `data/raw/`. |
 | `npm run build-db` | Reads the newest file in `data/raw/` (from `collect` or `import`), extracts crops, seeds, fish, artisan goods, dishes, crafting recipes, villagers, gift tastes, forage, minerals, artifacts, flowers and books, and saves them to `data/sdv.db`. |
@@ -81,6 +81,7 @@ src/
   cli/ask.js               the command-line assistant
   web/server.js            the local website (Node's built-in http module, no framework)
   web/pages.js, components.js  the pages and the reusable pieces they're built from
+  web/plannerPages.js      the profit planner and Today on the farm pages
   web/html.js              builds HTML safely (everything typed is escaped)
   web/pixelArt.js          our own pixel-art drawings, as letter grids turned into SVG
   web/public/style.css     the website's look: colours and sizes are variables at the top

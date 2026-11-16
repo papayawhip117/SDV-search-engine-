@@ -345,6 +345,8 @@ These checks are simple on purpose, and they can't catch everything. A sentence 
 | `/search?q=berry&type=fish&season=Summer&sort=sell` | results, from the same `searchItems()` the command line uses |
 | `/item?name=Corn` | one item, from `getItemDetails()` |
 | `/gifts`, `/gifts?villager=Abigail` | villagers, birthdays and gift tastes |
+| `/profit?season=Spring&day=1` | the profit planner: crops ranked by gold per day, from `rankCropsByProfit()` in `calc/profit.js` (the same code as `npm run profit`) |
+| `/today?season=Fall&day=13&weather=Rain` | Today on the farm: birthdays today and in the next 7 days, the 5 best crops to plant, fish for the season and weather, forage in season |
 | `/ask?q=...` | the assistant: cited facts, or Claude's checked answer when a key is set |
 | `/about` | what's in the database, and the license |
 
