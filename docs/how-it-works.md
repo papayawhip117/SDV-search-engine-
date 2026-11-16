@@ -51,13 +51,20 @@ Regrowth isn't in the infobox. It comes from the `Regrowth: 4 Days` cell of the 
 
 The rule throughout: **if we can't read a value, it becomes `null` with a warning. We never guess.**
 
+Real pages that needed special handling (found on the first full run, 40 crops):
+
+- **Grape** lists two ways to grow it on separate lines: `7 days (Summer Seeds)<br />10 days (Grape Starter)`, with matching seasons and seeds. The Stages table only describes one of them (it adds up to 10 days), so the extractor picks the variant whose growth time matches the table, here Grape Starter in Fall, and prints a **note**. If no variant (or more than one) matched, it would store those fields as `null` with a warning.
+- **Unmilled Rice** says `8 days (6 when irrigated)`. We store 8 as the growth days and keep `(6 when irrigated)` in `growth_note`, so the information isn't lost.
+- **Coffee Bean** is its own seed, so its `seed_item_id` points at its own item.
+- **Trellis crops** come from the wiki's `Category:Trellis Crops`.
+
 ## 3. Storing: `src/db/`
 
 `schema.sql` creates the tables. The reasons for each table are in [phase-1-research.md](phase-1-research.md), section 5. The key idea is that every fact points to a row in `source_pages`, which records the wiki page title, URL, revision id, edit time and download date.
 
 `database.js` → `saveCrop()` writes one crop inside a **transaction**: either every row for that crop is saved or none is, so a crash can't leave half a crop behind. It uses "upserts" (insert, or update if the row already exists), so running `npm run build-db` twice doesn't create duplicates.
 
-`buildDatabase.js` connects the steps: newest raw file → extractor → database, then prints which pages were skipped and why.
+`buildDatabase.js` connects the steps: newest raw file → extractor → database, then prints which pages were skipped, the notes and the warnings. It deletes and rebuilds `data/sdv.db` each time, because the database is made entirely from the raw files, and this means a change to `schema.sql` never clashes with an old database file.
 
 ## 4. Searching: `src/queries/cropQueries.js` and `src/cli/listCrops.js`
 

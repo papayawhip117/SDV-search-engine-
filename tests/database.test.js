@@ -23,6 +23,7 @@ describe('building the database', () => {
     expect(report.saved).toEqual(['Parsnip', 'Strawberry', 'Corn']);
     expect(report.skipped).toEqual([]);
     expect(report.warnings).toEqual([]);
+    expect(report.notes).toEqual([]);
   });
 
   it('links each crop to its seed, which has no price yet', () => {
@@ -64,6 +65,8 @@ describe('getCropsBySeason', () => {
         name: 'Corn',
         sellPrice: 50,
         growthDays: 14,
+        growthNote: null,
+        isTrellis: null,
         regrows: true,
         regrowthDays: 4,
         seedName: 'Corn Seeds',
@@ -92,5 +95,16 @@ describe('getCropsBySeason', () => {
 
   it('refuses unknown sort columns', () => {
     expect(() => getCropsBySeason(db, 'Spring', { sortBy: 'price; DROP TABLE crops' })).toThrow(/Can't sort/);
+  });
+});
+
+describe('a crop that is its own seed', () => {
+  it('points seed_item_id at the crop itself and keeps it a crop', () => {
+    const edgeCases = JSON.parse(readFileSync(new URL('./fixtures/edge-case-pages.json', import.meta.url)));
+    const coffeeDb = openDatabase(':memory:');
+    buildFromRawData(coffeeDb, { retrievedAt: RETRIEVED_AT, pages: edgeCases.query.pages.filter((p) => p.title === 'Coffee Bean') });
+    const row = coffeeDb.prepare('SELECT c.item_id, c.seed_item_id, i.item_type FROM crops c JOIN items i ON i.id = c.item_id').get();
+    expect(row.seed_item_id).toBe(row.item_id);
+    expect(row.item_type).toBe('crop');
   });
 });

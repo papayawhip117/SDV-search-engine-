@@ -20,6 +20,11 @@ export function openDatabase(filePath) {
   return db;
 }
 
+/** SQLite has no true/false, so we store 1/0, and NULL for "unknown". */
+function toSqlBoolean(value) {
+  return value === null || value === undefined ? null : Number(value);
+}
+
 /**
  * Save one crop and its source page.
  *
@@ -74,6 +79,8 @@ export function saveCrop(db, page, crop, retrievedAt) {
 
     // 4. The seed as an item. We only know its name so far (its price is on
     //    another page), so we never overwrite a seed that's already there.
+    //    Some crops are their own seed (you plant a Coffee Bean), in which case
+    //    seed_item_id simply points at the crop's own item.
     let seedItemId = null;
     if (crop.seedName) {
       db.prepare(
@@ -87,14 +94,16 @@ export function saveCrop(db, page, crop, retrievedAt) {
     // 5. Crop facts. "INSERT OR REPLACE" swaps out any older row for this crop.
     db.prepare(
       `INSERT OR REPLACE INTO crops
-         (item_id, seed_item_id, growth_days, regrows, regrowth_days, harvest_yield, is_trellis, source_page_id)
-       VALUES (?, ?, ?, ?, ?, NULL, NULL, ?)`,
+         (item_id, seed_item_id, growth_days, growth_note, regrows, regrowth_days, harvest_yield, is_trellis, source_page_id)
+       VALUES (?, ?, ?, ?, ?, ?, NULL, ?, ?)`,
     ).run(
       cropItemId,
       seedItemId,
       crop.growthDays,
-      crop.regrows === null ? null : Number(crop.regrows),
+      crop.growthNote ?? null,
+      toSqlBoolean(crop.regrows),
       crop.regrowthDays,
+      toSqlBoolean(crop.isTrellis),
       sourcePageId,
     );
 

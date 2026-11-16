@@ -10,6 +10,17 @@ import { SEASONS } from '../extract/cropExtractor.js';
 import { getCropsBySeason } from '../queries/cropQueries.js';
 import { isRunDirectly } from '../utils/isRunDirectly.js';
 
+function describeGrowth(crop) {
+  if (crop.growthDays === null) return 'unknown';
+  return crop.growthNote ? `${crop.growthDays} ${crop.growthNote}` : crop.growthDays;
+}
+
+function describeRegrowth(crop) {
+  if (crop.regrows === null) return 'unknown';
+  if (!crop.regrows) return 'no';
+  return crop.regrowthDays === 1 ? 'every day' : `every ${crop.regrowthDays} days`;
+}
+
 function main() {
   const season = process.argv[2];
   const knownSeason = SEASONS.find((name) => name.toLowerCase() === season?.toLowerCase());
@@ -38,8 +49,8 @@ function main() {
     crops.map((crop) => ({
       Crop: crop.name,
       'Sell price': crop.sellPrice ?? 'unknown',
-      'Growth days': crop.growthDays ?? 'unknown',
-      Regrows: crop.regrows === null ? 'unknown' : crop.regrows ? `every ${crop.regrowthDays} days` : 'no',
+      'Growth days': describeGrowth(crop),
+      Regrows: describeRegrowth(crop),
       Source: crop.sourceUrl,
     })),
   );

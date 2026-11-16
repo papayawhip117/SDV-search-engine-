@@ -11,6 +11,8 @@ const SORT_COLUMNS = {
   name: 'i.name',
 };
 
+const fromSqlBoolean = (value) => (value === null ? null : value === 1);
+
 /**
  * Crops that grow in a season, each with its wiki source.
  *   getCropsBySeason(db, 'Summer', { sortBy: 'sell_price', descending: true })
@@ -28,6 +30,8 @@ export function getCropsBySeason(db, season, { sortBy = 'sell_price', descending
          i.name             AS name,
          i.base_sell_price  AS sellPrice,
          c.growth_days      AS growthDays,
+         c.growth_note      AS growthNote,
+         c.is_trellis       AS isTrellis,
          c.regrows          AS regrows,
          c.regrowth_days    AS regrowthDays,
          seed.name          AS seedName,
@@ -45,5 +49,5 @@ export function getCropsBySeason(db, season, { sortBy = 'sell_price', descending
        ORDER BY ${sortColumn} IS NULL, ${sortColumn} ${direction}, i.name`,
     )
     .all(season)
-    .map((row) => ({ ...row, regrows: row.regrows === null ? null : row.regrows === 1 }));
+    .map((row) => ({ ...row, regrows: fromSqlBoolean(row.regrows), isTrellis: fromSqlBoolean(row.isTrellis) }));
 }

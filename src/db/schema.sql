@@ -47,10 +47,11 @@ CREATE TABLE IF NOT EXISTS crops (
   item_id        INTEGER PRIMARY KEY REFERENCES items(id),
   seed_item_id   INTEGER REFERENCES items(id),
   growth_days    INTEGER,
+  growth_note    TEXT,      -- extra text after the days, e.g. '(6 when irrigated)'
   regrows        INTEGER,   -- 1 = yes, 0 = no, NULL = the page didn't tell us
   regrowth_days  INTEGER,   -- NULL when regrows is not 1
   harvest_yield  TEXT,      -- only in prose on the wiki, so NULL for now
-  is_trellis     INTEGER,   -- filled in a later phase
+  is_trellis     INTEGER,   -- 1/0 from Category:Trellis Crops, NULL if unknown
   source_page_id INTEGER NOT NULL REFERENCES source_pages(id)
 );
 

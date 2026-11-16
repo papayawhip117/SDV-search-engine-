@@ -15,3 +15,17 @@ licensed CC BY-NC-SA. Sources:
 [Parsnip](https://stardewvalleywiki.com/Parsnip),
 [Strawberry](https://stardewvalleywiki.com/Strawberry),
 [Corn](https://stardewvalleywiki.com/Corn).
+
+`edge-case-pages.json` holds four pages that broke the simple assumptions, taken from
+the Spring/Summer/Fall crop downloads saved on 2026-11-16 (via `npm run import`):
+
+| Page | Revision | Why it's here |
+|---|---|---|
+| [Grape](https://stardewvalleywiki.com/Grape) | 192072 | infobox lists two ways to grow it (Summer Seeds, Grape Starter) |
+| [Unmilled Rice](https://stardewvalleywiki.com/Unmilled_Rice) | 194130 | growth is "8 days (6 when irrigated)" |
+| [Coffee Bean](https://stardewvalleywiki.com/Coffee_Bean) | 193175 | the crop is its own seed |
+| [Ancient Fruit](https://stardewvalleywiki.com/Ancient_Fruit) | 192083 | grows in three seasons |
+
+Same license as above (CC BY-NC-SA, Stardew Valley Wiki). The full downloads are
+not committed: they're large, they go out of date, and `data/` is rebuilt from the
+wiki rather than stored in Git.
