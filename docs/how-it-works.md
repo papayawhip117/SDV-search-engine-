@@ -310,13 +310,31 @@ Every fact gets an id (F1, F2…) and at least one source: page title, URL and r
 
 Claude never sees the database or the internet. If `findFacts` found nothing, Claude isn't asked at all, and the answer says the wiki data doesn't cover the question.
 
-From the reply we read the cited ids, and return the cited facts with their wiki sources (`cited`), plus any ids Claude made up (`uncitedIds`). `npm run ask` prints the answer, then each cited fact and its page, URL and revision. Step 3 will reject answers that don't hold up.
+From the reply we read the cited ids, and return the cited facts with their wiki sources (`cited`), `npm run ask` prints the answer, then each cited fact and its page, URL and revision. Section 16 explains how the app checks the answer first.
 
 **The AI is passed in.** `answerQuestion` takes an `ai` object with one method, `complete({ system, user })`. `createClaudeAI()` makes the real one with the official `@anthropic-ai/sdk`, model `claude-opus-5-5` at low effort (a short answer from a short list needs little thinking, and costs less). The tests pass a fake that returns a fixed reply, so they never need a key, the internet or money, and always give the same result.
 
 **The key** is read from `ANTHROPIC_API_KEY`, which `npm run ask` loads from `.env` (ignored by Git; `.env.example` is the empty template). It never appears in the code, the database or error messages.
 
-## 16. Tests: `tests/`
+## 16. The assistant, step 3: checking the answer: `src/assistant/validateAnswer.js`
+
+The rules ask Claude to stick to the facts, but asking isn't proof. So `answerQuestion` runs `validateAnswer(answer, facts)` on every reply, in plain code with no AI. It splits the answer into sentences (list items count as sentences, and a citation just after a full stop belongs to the sentence before) and checks three things:
+
+| Check | Example that fails |
+|---|---|
+| Every cited id is one we gave it | "Penny loves Diamonds [F9]." when there is no F9 |
+| Every sentence that says something cites a fact, or ends with `[not in facts]` | "She also loves Diamonds." |
+| Every number in a sentence is in a fact that sentence cites | "Her birthday is in 30 days [F2]." when F2 only says Fall 2 |
+
+The third check is what keeps maths in the app: Claude can copy "18.52g per day" from a fact the app worked out, but can't work out "2,000g over a year" itself. Numbers are compared without commas, so "1,000g" matches "1000g".
+
+Some sentences need no citation: a lead-in to a list ("Penny loves:") and a word or three with no numbers ("Yes!"). A sentence marked `[not in facts]` is Claude saying what the facts don't cover, which the rules ask for; it may not contain a number.
+
+One problem rejects the whole answer (`accepted: false`, with `problems` in plain words). `npm run ask` then doesn't show the answer. It lists the problems and shows the facts themselves, which always come with their wiki sources. A rejected answer is never shown as true.
+
+These checks are simple on purpose, and they can't catch everything. A sentence could cite the right fact and still twist its meaning. They do make the most common mistakes (an invented fact, a made-up price, a missing source) impossible to slip through.
+
+## 17. Tests: `tests/`
 
 | File | Checks |
 |---|---|
@@ -339,7 +357,8 @@ From the reply we read the cited ids, and return the cited facts with their wiki
 | `collectionExtractor.test.js` | the five real overview pages: prices, edibility, where found, two header rows, items in several tables, two items shown with one name, books |
 | `collections.test.js` | overview pages with crops, villagers and artisan pages: crops keep their own page, forage seasons in search, gift groups like "All Gems" now matching |
 | `findFacts.test.js` | every kind of page together: names, plurals and seasons in questions, gift answers first, profit worked out by the app, a source on every fact, the search fallback, no facts rather than a guess |
-| `answer.test.js` | with a fake AI: exactly what Claude is sent, the rules, cited facts and their sources, made-up ids, no AI call when there are no facts, a missing key |
+| `answer.test.js` | with a fake AI: exactly what Claude is sent, the rules, cited facts and their sources, rejected answers (made-up ids, numbers the AI worked out) showing the facts instead, no AI call when there are no facts, a missing key |
+| `validateAnswer.test.js` | splitting answers into sentences, accepted answers (lists, `[not in facts]`), and each reason to reject: unknown ids, no citation, a number not in the cited fact, an empty answer |
 | `search.test.js` | partial words, related terms, all-words matching, every filter and sort, hostile input, item details, typo suggestions |
 
 Run them with `npm test`.

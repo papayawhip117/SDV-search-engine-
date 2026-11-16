@@ -5,7 +5,8 @@
 //   npm run ask -- --facts "best crops to plant in summer"   only the facts, no AI
 //
 // The app finds the facts (step 1), then Claude writes an answer from those
-// facts only, citing them like [F2] (step 2). Without an API key in .env, or
+// facts only, citing them like [F2] (step 2). The app checks that answer and
+// shows the facts instead if it fails (step 3). Without an API key in .env, or
 // with --facts, it shows the facts and doesn't call Claude.
 
 import { existsSync } from 'node:fs';
@@ -38,17 +39,29 @@ export function formatFacts({ understood, facts, usedSearch }) {
   return lines;
 }
 
-/** An answer from answerQuestion → printable lines: the answer, then the sources it cites. Exported for tests. */
-export function formatAnswer({ answer, cited, uncitedIds }) {
-  const lines = [answer, ''];
-  if (cited.length > 0) {
+/**
+ * An answer from answerQuestion → printable lines: the answer, then the sources it cites.
+ * A rejected answer isn't shown; the facts are, with the reasons. Exported for tests.
+ */
+export function formatAnswer(result) {
+  if (!result.accepted) {
+    return [
+      "The AI's answer didn't pass the app's checks, so it isn't shown:",
+      ...result.problems.map((problem) => `  - ${problem}`),
+      '',
+      'Here are the facts from the wiki instead.',
+      '',
+      ...formatFacts(result),
+    ];
+  }
+  const lines = [result.answer, ''];
+  if (result.cited.length > 0) {
     lines.push('Sources:');
-    for (const fact of cited) {
+    for (const fact of result.cited) {
       lines.push(`[${fact.id}] ${fact.text}`);
       for (const source of fact.sources) lines.push(`      ${source.title}: ${source.url} (revision ${source.revision})`);
     }
   }
-  if (uncitedIds.length > 0) lines.push(`Warning: the answer cites ${uncitedIds.join(', ')}, which we never gave it.`);
   return lines;
 }
 
@@ -75,8 +88,11 @@ async function main() {
   const db = openDatabase(DATABASE_PATH);
   try {
     if (factsOnly || !process.env.ANTHROPIC_API_KEY) {
-      console.log(formatFacts(findFacts(db, question)).join('\n'));
-      if (!factsOnly) console.log('\n(No ANTHROPIC_API_KEY in .env, so no AI answer. These are the facts it would get.)');
+      const result = findFacts(db, question);
+      console.log(formatFacts(result).join('\n'));
+      if (!factsOnly && result.facts.length > 0) {
+        console.log('\n(No AI answer, because there is no ANTHROPIC_API_KEY in .env. The facts above come straight from the wiki.)');
+      }
     } else {
       const result = await answerQuestion(db, question, { ai: createClaudeAI() });
       console.log(formatAnswer(result).join('\n'));
