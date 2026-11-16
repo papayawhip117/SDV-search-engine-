@@ -84,7 +84,7 @@ Seed pages use a different template, `{{Infobox seed}}`, with one field per shop
 |otherprice = [[Egg Festival]]: {{Price|100}}
 ```
 
-Which field means which shop was checked against each page's own text ("can be purchased at Pierre's General Store, at JojaMart..."). `Not Sold` means no row. A note like `(Year 2+)` is kept in `shop_prices.availability_note`. Seeds nobody sells (Carrot, Ancient Seeds) simply have no price, so their profit isn't calculated.
+Which field means which shop was checked against each page's own text ("can be purchased at Pierre's General Store, at JojaMart..."). `Not Sold` means no row. A note like `(Year 2+)` is kept in `shop_prices.availability_note`. When a page lists several sell prices (Sunflower Seeds: `20 (harvested)` or `100 (purchased from JojaMart)`), the lowest is stored in `base_sell_price` so estimates never assume the better case, and all of them are kept in `items.sell_price_note`. Seeds nobody sells (Carrot, Ancient Seeds) simply have no price, so their profit isn't calculated.
 
 To get them: save the seed-pages URL from your browser as `data/browser/seeds.json`, then run the same `npm run import -- data/browser/*.json` and `npm run build-db`. The build sends `{{Infobox seed}}` pages to the seed extractor and everything else to the crop extractor.
 

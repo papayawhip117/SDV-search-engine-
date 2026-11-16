@@ -27,6 +27,7 @@ export function buildFromRawData(db, rawData) {
       saveSeed(db, page, result.seed, rawData.retrievedAt);
       report.savedSeeds.push(result.seed.name);
       for (const warning of result.warnings) report.warnings.push({ title: page.title, warning });
+      for (const note of result.notes) report.notes.push({ title: page.title, note });
       continue;
     }
 

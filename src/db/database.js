@@ -156,13 +156,15 @@ export function saveSeed(db, page, seed, retrievedAt) {
       // first mentioned it, so it replaces that source here.
       seedItemId = db
         .prepare(
-          `INSERT INTO items (name, item_type, base_sell_price, source_page_id)
-           VALUES (?, 'seed', ?, ?)
+          `INSERT INTO items (name, item_type, base_sell_price, sell_price_note, source_page_id)
+           VALUES (?, 'seed', ?, ?, ?)
            ON CONFLICT (name) DO UPDATE SET
-             base_sell_price = excluded.base_sell_price, source_page_id = excluded.source_page_id
+             base_sell_price = excluded.base_sell_price,
+             sell_price_note = excluded.sell_price_note,
+             source_page_id = excluded.source_page_id
            RETURNING id`,
         )
-        .get(seed.name, seed.sellPrice, sourcePageId).id;
+        .get(seed.name, seed.sellPrice, seed.sellPriceNote ?? null, sourcePageId).id;
     }
 
     // Replace this seed's shop prices with the ones on the current page.

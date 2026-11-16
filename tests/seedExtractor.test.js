@@ -3,7 +3,7 @@
 
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { extractSeed, isSeedPage, parseOtherPrices, parseShopPrice } from '../src/extract/seedExtractor.js';
+import { extractSeed, isSeedPage, parseOtherPrices, parseSellPrice, parseShopPrice } from '../src/extract/seedExtractor.js';
 
 const fixture = JSON.parse(readFileSync(new URL('./fixtures/seed-pages.json', import.meta.url)));
 const seedPage = (title) => fixture.query.pages.find((page) => page.title === title);
@@ -19,6 +19,15 @@ describe('parseShopPrice', () => {
   it('reports values it does not understand instead of guessing', () => {
     expect(parseShopPrice('varies').error).toMatch(/unreadable/);
     expect(parseShopPrice('{{Price|1}}<br />{{Price|2}}').error).toMatch(/several/);
+  });
+});
+
+describe('parseSellPrice', () => {
+  it('reads one price, several labelled prices, or reports a problem', () => {
+    expect(parseSellPrice('{{Price|10}}')).toEqual({ sellPrice: 10, sellPriceNote: null });
+    expect(parseSellPrice('{{Price|30}} (a)<br />{{Price|5}} (b)')).toEqual({ sellPrice: 5, sellPriceNote: '30g (a) / 5g (b)' });
+    expect(parseSellPrice('varies').problem).toMatch(/could not read/);
+    expect(parseSellPrice(undefined).sellPrice).toBeNull();
   });
 });
 
@@ -39,12 +48,14 @@ describe('extractSeed on real wiki pages', () => {
         name: 'Parsnip Seeds',
         cropName: 'Parsnip',
         sellPrice: 10,
+        sellPriceNote: null,
         prices: [
           { shop: "Pierre's General Store", price: 20, note: null },
           { shop: 'JojaMart', price: 25, note: null },
         ],
       },
       warnings: [],
+      notes: [],
     });
   });
 
@@ -64,14 +75,16 @@ describe('extractSeed on real wiki pages', () => {
     ]);
   });
 
-  it('Sunflower Seeds: JojaMart is cheaper than Pierre, and the double sell price is left unknown', () => {
+  it('Sunflower Seeds: JojaMart is cheaper than Pierre, and of two sell prices the lower is stored', () => {
     const result = extractSeed(seedPage('Sunflower Seeds'));
     expect(result.seed.prices).toEqual([
       { shop: "Pierre's General Store", price: 200, note: null },
       { shop: 'JojaMart', price: 125, note: null },
     ]);
-    expect(result.seed.sellPrice).toBeNull();
-    expect(result.warnings[0]).toMatch(/single sell price/);
+    expect(result.seed.sellPrice).toBe(20);
+    expect(result.seed.sellPriceNote).toBe('20g (harvested) / 100g (purchased from JojaMart)');
+    expect(result.warnings).toEqual([]);
+    expect(result.notes[0]).toMatch(/stored the lowest, 20g/);
   });
 
   it('Carrot Seeds: no shop sells them', () => {
