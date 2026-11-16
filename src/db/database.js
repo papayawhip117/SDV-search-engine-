@@ -1,4 +1,4 @@
-// Opening the database and saving crops, seeds, fish and artisan goods into it.
+// Opening the database and saving crops, seeds, fish, artisan goods and dishes into it.
 //
 // We use better-sqlite3. "Synchronous" means each database call finishes
 // before the next line runs, so there's no `await` here. That keeps the
@@ -332,6 +332,42 @@ export function saveArtisanData(db, { machines, goods, fruitPage, fruits }, reci
       );
       for (const fruit of fruits) insertFruit.run(fruit.name, fruit.basePrice, sourcePageId);
     }
+  });
+  return save();
+}
+
+/**
+ * Save one cooked dish, its ingredients and its source page.
+ *
+ * @param dish  the result of extractDish(page).dish
+ */
+export function saveDish(db, page, dish, retrievedAt) {
+  const save = db.transaction(() => {
+    const sourcePageId = saveSourcePage(db, page, retrievedAt);
+    const { id: dishItemId } = db
+      .prepare(
+        `INSERT INTO items (name, item_type, base_sell_price, source_page_id)
+         VALUES (?, 'dish', ?, ?)
+         ON CONFLICT (name) DO UPDATE SET
+           item_type = 'dish', base_sell_price = excluded.base_sell_price, source_page_id = excluded.source_page_id
+         RETURNING id`,
+      )
+      .get(dish.name, dish.sellPrice, sourcePageId);
+
+    db.prepare(
+      `INSERT OR REPLACE INTO dishes (item_id, edibility, buffs, buff_duration, recipe_source, source_page_id)
+       VALUES (?, ?, ?, ?, ?, ?)`,
+    ).run(dishItemId, dish.edibility, dish.buffs, dish.buffDuration, dish.recipeSource, sourcePageId);
+
+    db.prepare('DELETE FROM dish_ingredients WHERE dish_item_id = ?').run(dishItemId);
+    const insertIngredient = db.prepare(
+      `INSERT INTO dish_ingredients (dish_item_id, position, ingredient_name, ingredient_group, quantity)
+       VALUES (?, ?, ?, ?, ?)`,
+    );
+    dish.ingredients.forEach((ingredient, index) =>
+      insertIngredient.run(dishItemId, index + 1, ingredient.name, ingredient.group, ingredient.quantity),
+    );
+    return dishItemId;
   });
   return save();
 }

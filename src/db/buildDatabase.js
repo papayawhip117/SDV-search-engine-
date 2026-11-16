@@ -3,7 +3,7 @@
 // Run with:  npm run build-db
 //
 // Reads the newest data/raw/crops-*.json (made by `npm run collect` or
-// `npm run import`), extracts each page, saves crops, seeds, fish and artisan goods to data/sdv.db, and prints a report
+// `npm run import`), extracts each page, saves crops, seeds, fish, artisan goods and dishes to data/sdv.db, and prints a report
 // of skipped pages and warnings so they can be checked by hand.
 
 import { readdirSync, readFileSync, rmSync } from 'node:fs';
@@ -18,10 +18,11 @@ import {
   isFruitListPage,
   isMachinePage,
 } from '../extract/artisanExtractor.js';
+import { extractDish, isCookingPage } from '../extract/cookingExtractor.js';
 import { extractFish, isFishPage } from '../extract/fishExtractor.js';
 import { extractSeed, isSeedPage } from '../extract/seedExtractor.js';
 import { isRunDirectly } from '../utils/isRunDirectly.js';
-import { openDatabase, saveArtisanData, saveCrop, saveFish, saveSeed } from './database.js';
+import { openDatabase, saveArtisanData, saveCrop, saveDish, saveFish, saveSeed } from './database.js';
 import { rebuildSearchIndex } from './searchIndex.js';
 
 export const DATABASE_PATH = path.join('data', 'sdv.db');
@@ -30,7 +31,7 @@ const RAW_DATA_FOLDER = path.join('data', 'raw');
 /** Extract and save every page in a raw collection. Returns a report. */
 export function buildFromRawData(db, rawData) {
   const report = {
-    saved: [], savedSeeds: [], savedFish: [], savedArtisan: [], savedMachines: [], recipes: 0, fruits: 0,
+    saved: [], savedSeeds: [], savedFish: [], savedArtisan: [], savedMachines: [], savedDishes: [], recipes: 0, fruits: 0,
     skipped: [], warnings: [], notes: [],
   };
   // Artisan pages are saved together at the end, because recipes on a machine
@@ -51,6 +52,19 @@ export function buildFromRawData(db, rawData) {
       report.savedSeeds.push(result.seed.name);
       for (const warning of result.warnings) report.warnings.push({ title: page.title, warning });
       for (const note of result.notes) report.notes.push({ title: page.title, note });
+      continue;
+    }
+
+    // Cooking recipes ({{Infobox cooking}}).
+    if (isCookingPage(page)) {
+      const result = extractDish(page);
+      if (!result.ok) {
+        report.skipped.push({ title: page.title, reason: result.reason });
+        continue;
+      }
+      saveDish(db, page, result.dish, rawData.retrievedAt);
+      report.savedDishes.push(result.dish.name);
+      addMessages(page.title, result);
       continue;
     }
 
@@ -145,7 +159,7 @@ function main() {
   console.log(
     `\nSaved ${report.saved.length} crops, ${report.savedSeeds.length} seeds, ${report.savedFish.length} fish, ` +
       `${report.savedArtisan.length} artisan goods, ${report.savedMachines.length} machines ` +
-      `(${report.recipes} recipes) and ${report.fruits} fruits from the Fruits page to ${DATABASE_PATH}`,
+      `(${report.recipes} recipes), ${report.fruits} fruits from the Fruits page and ${report.savedDishes.length} dishes to ${DATABASE_PATH}`,
   );
   console.log(`Search index holds ${report.indexed} items`);
   if (report.skipped.length) {

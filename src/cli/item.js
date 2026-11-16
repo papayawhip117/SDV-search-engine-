@@ -14,6 +14,11 @@ function formatPrices(prices) {
   return prices.map(({ shop, price, note }) => `${price}g at ${shop}${note ? ` ${note}` : ''}`).join('; ');
 }
 
+/** "Tomato ×1" or "any Fish ×1" */
+export function formatIngredient(ingredient) {
+  return `${ingredient.name ?? `any ${ingredient.group ?? '?'}`} ×${ingredient.quantity}`;
+}
+
 /** "Keg: Any Fruit (1) → 1, 10000 min (6.25 days), 3 × Base Fruit Price" */
 export function formatRecipe(recipe) {
   const output = recipe.outputQuantity > 1 ? ` → ${recipe.outputQuantity}` : '';
@@ -88,6 +93,14 @@ export function formatItemDetails(item) {
     lines.push('How it is made:');
     for (const recipe of item.madeBy) lines.push(`  - ${formatRecipe(recipe)}`);
   }
+  if (item.dish) {
+    const { dish } = item;
+    lines.push(`Ingredients: ${dish.ingredients.map(formatIngredient).join(', ')}`);
+    if (dish.buffs) lines.push(`Buffs:       ${dish.buffs}${dish.buffDuration ? ` (${dish.buffDuration})` : ''}`);
+    if (dish.edibility !== null) lines.push(`Edibility:   ${dish.edibility}`);
+    lines.push(`Recipe from: ${dish.recipeSource ?? 'unknown'}`);
+  }
+  if (item.usedInDishes.length) lines.push(`Cooked into: ${item.usedInDishes.join(', ')}`);
   if (item.growsInto.length) lines.push(`Grows into:  ${item.growsInto.join(', ')}`);
   if (item.categories.length) lines.push(`Categories:  ${item.categories.join(', ')}`);
 
