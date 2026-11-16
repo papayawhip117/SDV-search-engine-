@@ -335,7 +335,24 @@ One problem rejects the whole answer (`accepted: false`, with `problems` in plai
 
 These checks are simple on purpose, and they can't catch everything. A sentence could cite the right fact and still twist its meaning. They do make the most common mistakes (an invented fact, a made-up price, a missing source) impossible to slip through.
 
-## 17. Tests: `tests/`
+## 17. The website: `src/web/`
+
+`npm start` runs `server.js`, a small web server made with Node's built-in `http` module. It only listens on `127.0.0.1`, so only your own computer can open it. Each address is a **route**:
+
+| Address | Page |
+|---|---|
+| `/` | the homepage: search bar and category shortcuts |
+| `/search?q=berry&type=fish&season=Summer&sort=sell` | results, from the same `searchItems()` the command line uses |
+| `/item?name=Corn` | one item, from `getItemDetails()` |
+| `/gifts`, `/gifts?villager=Abigail` | villagers, birthdays and gift tastes |
+| `/ask?q=...` | the assistant: cited facts, or Claude's checked answer when a key is set |
+| `/about` | what's in the database, and the license |
+
+The server builds each page as finished HTML, so the browser runs no JavaScript at all. Pages are built from small functions in `components.js` (the search bar, category chips, source links) with the `html` tag from `html.js`, which escapes every value. Someone typing `<script>` into the search box just sees the text. The server also sends a Content-Security-Policy header telling the browser to refuse any script.
+
+Every result shows its wiki page and a link to the exact revision the fact came from. The pixel art in `pixelArt.js` is drawn for this project as grids of letters (each letter is a colour) and turned into SVG; no game images are used. The fonts are the computer's own rounded fonts, so the page makes no requests to other websites.
+
+## 18. Tests: `tests/`
 
 | File | Checks |
 |---|---|

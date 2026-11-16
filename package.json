@@ -22,6 +22,7 @@
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest",
+    "start": "node src/web/server.js",
     "collect": "node src/collect/collectCrops.js",
     "import": "node src/collect/importBrowserFiles.js",
     "build-db": "node src/db/buildDatabase.js",

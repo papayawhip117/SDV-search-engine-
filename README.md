@@ -9,6 +9,7 @@ Hi, I'm **Papaya** (Aaliyah)! Stardew Valley is one of my favorite video games, 
 ## 🧺 What's inside
 
 - 🗄️ **A local SQLite database** built from the official wiki through its MediaWiki API. Every fact remembers where it came from: page title, URL, revision and retrieval date.
+- 🏡 **A cozy local website** (`npm start`, then open http://localhost:3000): a big search bar, category shortcuts, item and villager pages, and Ask AI, with original pixel art.
 - 🔎 **Search and item lookup**, with filters for season, type and price.
 - 🧮 **Game math done in app code** (never guessed by AI): profit per day and regrowth for crops, plus fish, artisan goods, cooking and crafting.
 - 🎁 **Villagers and gift tastes**: birthdays and who loves, likes or hates what.
@@ -31,7 +32,13 @@ npm run import -- data/browser/*.json
 npm run build-db
 ```
 
-Try a few things:
+Open the website:
+
+```
+npm start
+```
+
+then go to http://localhost:3000 in your browser (Ctrl+C in the terminal stops it). Or try a few commands:
 
 ```
 npm run search -- berry
