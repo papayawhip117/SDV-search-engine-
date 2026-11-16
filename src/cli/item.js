@@ -118,6 +118,13 @@ export function formatItemDetails(item) {
   }
   if (item.usedInCrafting.length) lines.push(`Crafted into: ${item.usedInCrafting.join(', ')}`);
   if (item.growsInto.length) lines.push(`Grows into:  ${item.growsInto.join(', ')}`);
+  for (const entry of item.collections) {
+    lines.push(`${`${entry.page}:`.padEnd(13)}${entry.sections ?? ''}${entry.sourceUrl !== item.source.url ? `  (from ${entry.sourceUrl}, revision ${entry.revisionId})` : ''}`);
+    if (entry.found) lines.push(`Found:       ${entry.found}`);
+    if (entry.gemologistPrice !== null) lines.push(`Gemologist:  ${entry.gemologistPrice}g (with the Gemologist profession)`);
+    if (entry.edibility !== null) lines.push(`Edibility:   ${entry.edibility}`);
+    if (entry.details) lines.push(`Details:     ${entry.details}`);
+  }
   for (const [taste, label] of [['love', 'Loved by:'], ['like', 'Liked by:'], ['dislike', 'Disliked by:'], ['hate', 'Hated by:']]) {
     const names = item.giftTastes[taste];
     if (names.length) lines.push(`${label.padEnd(13)}${names.length === item.giftTastes.total ? 'everyone' : names.join(', ')}`);

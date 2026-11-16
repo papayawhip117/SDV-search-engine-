@@ -4,7 +4,7 @@ A Stardew Valley search engine built from the [Stardew Valley Wiki](https://star
 
 An AI assistant will come later. It will only answer from this verified local database and will cite the wiki page behind every fact.
 
-> **Status:** Phase 9. Crops, seed prices, profit per day, a search engine, fish, artisan goods with the machines that make them, cooking and crafting recipes, and villagers with their birthdays and gift tastes.
+> **Status:** Phase 10. Crops, seed prices, profit per day, a search engine, fish, artisan goods with the machines that make them, cooking and crafting recipes, villagers with their birthdays and gift tastes, and forage, minerals, geodes, artifacts, flowers and books.
 
 ## How it works
 
@@ -51,10 +51,10 @@ Run these one at a time:
 |---|---|
 | `npm test` | Runs the automated tests. No internet needed. |
 | `npm run collect` | Downloads the crop pages from the wiki into `data/raw/`. **Currently refused** (HTTP 403): the wiki's firewall blocks Node.js. Use `npm run import` instead. |
-| `npm run import` | Prints the wiki URLs to save from your browser into `data/browser/` (crops, seeds, fish, artisan goods, fruits, cooking, crafting, villagers and gifts). Then `npm run import -- data/browser/*.json` turns them into `data/raw/`. |
-| `npm run build-db` | Reads the newest file in `data/raw/` (from `collect` or `import`), extracts crops, seeds, fish, artisan goods, dishes, crafting recipes, villagers and gift tastes, and saves them to `data/sdv.db`. |
+| `npm run import` | Prints the wiki URLs to save from your browser into `data/browser/` (crops, seeds, fish, artisan goods, fruits, cooking, crafting, villagers and gifts, forage, minerals, artifacts, flowers, books). Then `npm run import -- data/browser/*.json` turns them into `data/raw/`. |
+| `npm run build-db` | Reads the newest file in `data/raw/` (from `collect` or `import`), extracts crops, seeds, fish, artisan goods, dishes, crafting recipes, villagers, gift tastes, forage, minerals, artifacts, flowers and books, and saves them to `data/sdv.db`. |
 | `npm run crops -- Summer` | Lists Summer crops by sell price, with wiki links. Try `Spring` or `Fall` too. |
-| `npm run search -- berry` | Searches names, wiki categories, shops and page summaries. Options: `--season fall`, `--type crop`, `seed`, `fish`, `artisan`, `machine`, `dish` or `crafted`, `--sort relevance`/`name`/`sell`/`buy`, `--reverse`, `--limit 10`. |
+| `npm run search -- berry` | Searches names, wiki categories, shops and page summaries. Options: `--season fall`, `--type crop`, `seed`, `fish`, `artisan`, `machine`, `dish`, `crafted`, `forage`, `mineral`, `geode`, `artifact`, `flower` or `book`, `--sort relevance`/`name`/`sell`/`buy`, `--reverse`, `--limit 10`. |
 | `npm run item -- "Parsnip Seeds"` | Shows one item with everything connected to it: seasons, growth, seed, shop prices, what a seed grows into, categories, and its wiki source and revision. |
 | `npm run fish -- Summer` | Lists Summer fish by sell price, with where, when and in what weather to catch them. Options: `--weather rain` or `sun`, `--area Ocean` (or River, Lake, Pond, ...), `--legendary` to include legendary fish. |
 | `npm run artisan -- Starfruit` | What an item can be turned into (Wine, Jelly, Dried Fruit...), which machine, how long it takes and what it's worth, best value first. Try `Corn`, `Tuna` or `Grape`. |
@@ -81,6 +81,7 @@ src/
   extract/cookingExtractor.js turns one dish page into a dish with its ingredients
   extract/craftingExtractor.js reads every recipe table on the Crafting page
   extract/villagerExtractor.js reads villagers, birthdays and gift tastes
+  extract/collectionExtractor.js reads the Foraging, Minerals, Artifacts, Flowers and Books tables
   calc/profit.js           harvests, costs and profit per day (no AI involved)
   db/schema.sql            the database tables
   db/database.js           opens the database and saves crops, seeds, fish, artisan goods, dishes and crafting recipes

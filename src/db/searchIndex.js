@@ -19,7 +19,9 @@ export function rebuildSearchIndex(db) {
               sp.page_title AS pageTitle,
               (SELECT group_concat(pc.category, ' | ') FROM page_categories pc WHERE pc.source_page_id = sp.id) AS categories,
               (SELECT group_concat(sh.name, ' | ') FROM shop_prices p JOIN shops sh ON sh.id = p.shop_id WHERE p.item_id = i.id) AS shops,
-              (SELECT 'Crafting: ' || r.section FROM crafting_recipes r WHERE r.item_id = i.id) AS craftingSection
+              (SELECT 'Crafting: ' || r.section FROM crafting_recipes r WHERE r.item_id = i.id) AS craftingSection,
+              (SELECT group_concat(ci.page_title || ': ' || replace(ci.sections, ' | ', ', '), ' | ')
+                 FROM collection_items ci WHERE ci.item_id = i.id) AS collectionSections
        FROM items i
        JOIN source_pages sp ON sp.id = i.source_page_id`,
     )
@@ -36,7 +38,10 @@ export function rebuildSearchIndex(db) {
       const summary = ownPage ? extractSummary(item.wikitext) ?? '' : '';
       // Crafted items also get their Crafting page section ("Crafting: Rings"),
       // so "ring" or "fertilizer" finds every recipe in that section.
-      const categories = [ownPage ? item.categories : null, item.craftingSection].filter(Boolean).join(' | ');
+      // Items from an overview page get their table too ("Minerals: Gems", "Foraging: Spring, Fall").
+      const categories = [ownPage ? item.categories : null, item.craftingSection, item.collectionSections]
+        .filter(Boolean)
+        .join(' | ');
       insert.run(item.name, categories, item.shops ?? '', summary, item.id);
     }
   });

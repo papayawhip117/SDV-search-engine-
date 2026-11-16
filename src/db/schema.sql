@@ -243,6 +243,32 @@ CREATE TABLE IF NOT EXISTS gift_tastes (
   source_page_id INTEGER NOT NULL REFERENCES source_pages(id)
 );
 
+-- Items read from an overview page's tables: Foraging, Minerals, Artifacts,
+-- Flowers and Books. One row per item per page (Sweet Pea is on both
+-- Foraging and Flowers). Items that already exist (Grape, a crop) keep their
+-- own type and source; this table adds what the overview page says.
+CREATE TABLE IF NOT EXISTS collection_items (
+  item_id          INTEGER NOT NULL REFERENCES items(id),
+  page_title       TEXT    NOT NULL,  -- 'Minerals'
+  sections         TEXT,              -- the tables it's in, e.g. 'Spring | Fall' or 'Gems'
+  sell_price       INTEGER,           -- as that page lists it
+  gemologist_price INTEGER,           -- minerals: price with the Gemologist profession
+  edibility        INTEGER,           -- forage and flowers; energy and health come from it
+  found            TEXT,              -- where to find it, as one line
+  details          TEXT,              -- e.g. for books, what reading it again gives
+  source_page_id   INTEGER NOT NULL REFERENCES source_pages(id),
+  PRIMARY KEY (item_id, page_title)
+);
+
+-- Seasons from those pages: a Foraging section named after a season, or the
+-- Flowers and beach "Season" columns.
+CREATE TABLE IF NOT EXISTS collection_seasons (
+  item_id        INTEGER NOT NULL REFERENCES items(id),
+  season_id      INTEGER NOT NULL REFERENCES seasons(id),
+  source_page_id INTEGER NOT NULL REFERENCES source_pages(id),
+  PRIMARY KEY (item_id, season_id)
+);
+
 -- Full-text search index (SQLite's built-in FTS5). One row per item.
 -- It's filled from the tables above by rebuildSearchIndex() after each build,
 -- so it never holds facts of its own, only text to search through.
