@@ -168,8 +168,8 @@ export function parseFirstTable(wikitext) {
  * Turn a short piece of wikitext into plain readable text:
  *   "'''Parsnip Seeds''' are a type of [[seed]]. {{Price|20}}"  →  "Parsnip Seeds are a type of seed. 20g"
  * {{Name|X}}, {{Season|X}} and {{Weather inline|X}} become X, {{Price|N}}
- * becomes Ng, {{Tprice|N}} (Traveling Cart) becomes "a random price", and
- * other templates are dropped.
+ * becomes Ng, {{Tprice|N}} (Traveling Cart) becomes "a random price",
+ * {{Bundle|X}} becomes "X Bundle", and other templates are dropped.
  */
 export function toPlainText(wikitext) {
   let text = wikitext;
@@ -180,6 +180,7 @@ export function toPlainText(wikitext) {
       if (/^(name|season|weather inline)$/i.test(name)) return args[0] ?? '';
       if (/^price$/i.test(name)) return args[0] ? `${args[0]}g` : '';
       if (/^tprice$/i.test(name)) return 'a random price'; // Traveling Cart prices vary
+      if (/^bundle$/i.test(name)) return args[0] ? `${args[0]} Bundle` : '';
       return '';
     });
   }
@@ -215,4 +216,74 @@ export function extractSummary(wikitext, maxLength = 300) {
   const cut = plain.slice(0, maxLength);
   const lastSentenceEnd = cut.lastIndexOf('. ');
   return lastSentenceEnd > 0 ? cut.slice(0, lastSentenceEnd + 1) : `${cut.trimEnd()}…`;
+}
+
+/** Read rowspan="N" / colspan="N" from a cell's attribute text. */
+function spanOf(attributes, name) {
+  const match = new RegExp(`${name}\\s*=\\s*"?(\\d+)`, 'i').exec(attributes);
+  return match ? Number(match[1]) : 1;
+}
+
+/**
+ * Read the first {| table |} in some wikitext as a grid of cell strings,
+ * like parseFirstTable, but also:
+ *   - a cell that spans several rows (rowspan="3") is repeated in each row
+ *   - a cell that spans several columns (colspan="2") fills each column
+ *   - a cell that continues on the next lines (a list) keeps those lines
+ * The first row is usually the header row.
+ */
+export function parseTableWithSpans(wikitext) {
+  const start = wikitext.indexOf('{|');
+  if (start === -1) return null;
+  const end = wikitext.indexOf('\n|}', start);
+  const lines = wikitext.slice(start, end === -1 ? undefined : end).split('\n').slice(1);
+
+  // 1. Group the lines into rows of raw cells: { attributes, content }.
+  const rawRows = [];
+  let row = [];
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (trimmed.startsWith('|-')) {
+      if (row.length) rawRows.push(row);
+      row = [];
+    } else if (trimmed.startsWith('|') || trimmed.startsWith('!')) {
+      const separator = trimmed.startsWith('!') ? '!!' : '||';
+      for (const cell of splitTopLevel(trimmed.slice(1), separator)) {
+        const pieces = splitTopLevel(cell, '|');
+        // "rowspan="3" | content": the part before the first | is attributes
+        // when it looks like attributes (or is empty, as in "||content").
+        const hasAttributes = pieces.length > 1 && (/^\s*$/.test(pieces[0]) || /^[^[{]*=/.test(pieces[0]));
+        row.push({
+          attributes: hasAttributes ? pieces[0] : '',
+          content: (hasAttributes ? pieces.slice(1).join('|') : cell).trim(),
+        });
+      }
+    } else if (row.length && trimmed) {
+      row[row.length - 1].content += `\n${trimmed}`; // e.g. "* item" lines of a list
+    }
+  }
+  if (row.length) rawRows.push(row);
+
+  // 2. Lay the cells out on a grid, carrying rowspans down.
+  const carried = []; // column index → { content, rowsLeft }
+  return rawRows.map((cells) => {
+    const output = [];
+    const takeCarried = () => {
+      while (carried[output.length]?.rowsLeft > 0) {
+        const carry = carried[output.length];
+        carry.rowsLeft--;
+        output.push(carry.content);
+      }
+    };
+    for (const { attributes, content } of cells) {
+      takeCarried();
+      const rowspan = spanOf(attributes, 'rowspan');
+      for (let i = 0; i < spanOf(attributes, 'colspan'); i++) {
+        if (rowspan > 1) carried[output.length] = { content, rowsLeft: rowspan - 1 };
+        output.push(content);
+      }
+    }
+    takeCarried();
+    return output;
+  });
 }

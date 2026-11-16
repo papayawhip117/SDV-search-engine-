@@ -1,4 +1,4 @@
-// Opening the database and saving crops, seeds and fish into it.
+// Opening the database and saving crops, seeds, fish and artisan goods into it.
 //
 // We use better-sqlite3. "Synchronous" means each database call finishes
 // before the next line runs, so there's no `await` here. That keeps the
@@ -240,5 +240,98 @@ export function saveFish(db, page, fish, retrievedAt) {
     return fishItemId;
   });
 
+  return save();
+}
+
+/** Insert an item if there's none with that name yet; return its id either way. */
+function ensureItem(db, name, itemType, sourcePageId) {
+  db.prepare(
+    `INSERT INTO items (name, item_type, base_sell_price, source_page_id) VALUES (?, ?, NULL, ?)
+     ON CONFLICT (name) DO NOTHING`,
+  ).run(name, itemType, sourcePageId);
+  return db.prepare('SELECT id FROM items WHERE name = ?').get(name).id;
+}
+
+/**
+ * Save the artisan goods, machines, recipes and fruit list together.
+ *
+ * @param pages  { machines: [{ page, machine }], goods: [{ page, good }], fruitPage, fruits }
+ * @param recipes  the recipes from combineArtisanData()
+ */
+export function saveArtisanData(db, { machines, goods, fruitPage, fruits }, recipes, retrievedAt) {
+  const save = db.transaction(() => {
+    const sourceIdByTitle = new Map();
+
+    // 1. Goods pages: each good is an item with its own page as the source.
+    for (const { page, good } of goods) {
+      const sourcePageId = saveSourcePage(db, page, retrievedAt);
+      sourceIdByTitle.set(page.title, sourcePageId);
+      db.prepare(
+        `INSERT INTO items (name, item_type, base_sell_price, sell_price_note, source_page_id)
+         VALUES (?, 'artisan', ?, ?, ?)
+         ON CONFLICT (name) DO UPDATE SET
+           item_type = 'artisan', base_sell_price = excluded.base_sell_price,
+           sell_price_note = excluded.sell_price_note, source_page_id = excluded.source_page_id`,
+      ).run(good.name, good.sellPrice, good.sellPriceNote, sourcePageId);
+    }
+
+    // 2. Machines.
+    for (const { page, machine } of machines) {
+      const sourcePageId = saveSourcePage(db, page, retrievedAt);
+      sourceIdByTitle.set(machine.name, sourcePageId);
+      const machineItemId = ensureItem(db, machine.name, 'machine', sourcePageId);
+      db.prepare("UPDATE items SET item_type = 'machine', sell_price_note = ?, source_page_id = ? WHERE id = ?").run(
+        machine.sellPriceNote ?? null,
+        sourcePageId,
+        machineItemId,
+      );
+      db.prepare(
+        `INSERT OR REPLACE INTO machines (item_id, recipe_source, ingredients, source_page_id) VALUES (?, ?, ?, ?)`,
+      ).run(machineItemId, machine.recipeSource, machine.ingredients, sourcePageId);
+    }
+
+    // 3. Recipes. A recipe from a machine table cites the machine page; one
+    //    taken from a goods page cites that page. Products without a page of
+    //    their own (Jelly, Pickles, Vinegar) become items citing the machine page.
+    db.prepare('DELETE FROM artisan_recipes').run();
+    const insertRecipe = db.prepare(
+      `INSERT INTO artisan_recipes
+         (machine_name, product_item_id, output_quantity, input_name, input_group, input_quantity, input_exclusions,
+          input_note, minutes, time_note, sell_price, price_multiplier, price_bonus, price_note, source_page_id)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    );
+    for (const recipe of recipes) {
+      const sourcePageId = sourceIdByTitle.get(recipe.source === 'machine' ? recipe.machine : recipe.product);
+      const productItemId = ensureItem(db, recipe.product, 'artisan', sourcePageId);
+      const { input } = recipe;
+      insertRecipe.run(
+        recipe.machine,
+        productItemId,
+        recipe.outputQuantity,
+        input.name,
+        input.group,
+        input.quantity,
+        input.exclusions.length ? input.exclusions.join(' | ') : null,
+        input.note,
+        recipe.minutes,
+        recipe.timeNote,
+        recipe.sellPrice,
+        recipe.multiplier,
+        recipe.bonus,
+        recipe.priceNote,
+        sourcePageId,
+      );
+    }
+
+    // 4. The fruit list.
+    if (fruitPage) {
+      const sourcePageId = saveSourcePage(db, fruitPage, retrievedAt);
+      db.prepare("DELETE FROM item_groups WHERE group_name = 'Fruits'").run();
+      const insertFruit = db.prepare(
+        "INSERT OR REPLACE INTO item_groups (group_name, item_name, base_price, source_page_id) VALUES ('Fruits', ?, ?, ?)",
+      );
+      for (const fruit of fruits) insertFruit.run(fruit.name, fruit.basePrice, sourcePageId);
+    }
+  });
   return save();
 }

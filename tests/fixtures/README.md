@@ -46,3 +46,17 @@ fish, the fishing level a fish needs, an island-only fish with no season
 categories, and a Night Market fish.
 Same license (CC BY-NC-SA, Stardew Valley Wiki). Source pages:
 https://stardewvalleywiki.com/ + the page title with spaces as underscores.
+
+`artisan-pages.json` holds fourteen pages from the artisan download saved 2026-11-16:
+the machines Keg (195253), Preserves Jar (195389), Oil Maker (190486), Bee House
+(191201), Dehydrator (193436), Fish Smoker (194228), Cask (179542) and Tapper (193620),
+and the goods Wine (192625), Juice (190319), Cheese (189929), Maple Syrup (190350),
+Raisins (193433) and Jellies and Pickles (191929). Between them they cover: a table
+with rowspans (Oil Maker), a two-column price header (Bee House), a list of
+ingredients (Pickles), price formulas, exceptions only on the goods page (Juice),
+a machine with no products table (Tapper), and a page with no infobox.
+
+`fruits-page.json` is the Fruits page (revision 193430), saved 2026-11-16.
+
+Same license (CC BY-NC-SA, Stardew Valley Wiki). Source pages:
+https://stardewvalleywiki.com/ + the page title with spaces as underscores.

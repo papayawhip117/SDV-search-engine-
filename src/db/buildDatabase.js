@@ -3,16 +3,25 @@
 // Run with:  npm run build-db
 //
 // Reads the newest data/raw/crops-*.json (made by `npm run collect` or
-// `npm run import`), extracts each page, saves crops, seeds and fish to data/sdv.db, and prints a report
+// `npm run import`), extracts each page, saves crops, seeds, fish and artisan goods to data/sdv.db, and prints a report
 // of skipped pages and warnings so they can be checked by hand.
 
 import { readdirSync, readFileSync, rmSync } from 'node:fs';
 import path from 'node:path';
 import { extractCrop } from '../extract/cropExtractor.js';
+import {
+  combineArtisanData,
+  extractArtisanGood,
+  extractFruitList,
+  extractMachine,
+  isArtisanGoodPage,
+  isFruitListPage,
+  isMachinePage,
+} from '../extract/artisanExtractor.js';
 import { extractFish, isFishPage } from '../extract/fishExtractor.js';
 import { extractSeed, isSeedPage } from '../extract/seedExtractor.js';
 import { isRunDirectly } from '../utils/isRunDirectly.js';
-import { openDatabase, saveCrop, saveFish, saveSeed } from './database.js';
+import { openDatabase, saveArtisanData, saveCrop, saveFish, saveSeed } from './database.js';
 import { rebuildSearchIndex } from './searchIndex.js';
 
 export const DATABASE_PATH = path.join('data', 'sdv.db');
@@ -20,17 +29,46 @@ const RAW_DATA_FOLDER = path.join('data', 'raw');
 
 /** Extract and save every page in a raw collection. Returns a report. */
 export function buildFromRawData(db, rawData) {
-  const report = { saved: [], savedSeeds: [], savedFish: [], skipped: [], warnings: [], notes: [] };
+  const report = {
+    saved: [], savedSeeds: [], savedFish: [], savedArtisan: [], savedMachines: [], recipes: 0, fruits: 0,
+    skipped: [], warnings: [], notes: [],
+  };
+  // Artisan pages are saved together at the end, because recipes on a machine
+  // page are checked against the goods pages.
+  const artisan = { machines: [], goods: [], fruitPage: null, fruits: [] };
+  const addMessages = (title, result) => {
+    for (const warning of result.warnings ?? []) report.warnings.push({ title, warning });
+    for (const note of result.notes ?? []) report.notes.push({ title, note });
+  };
 
   for (const page of rawData.pages) {
-    // Seed pages ({{Infobox seed}}) hold shop prices, fish pages have
-    // {{Infobox fish}}, and everything else is tried as a crop.
+    // Seed pages ({{Infobox seed}}) hold shop prices, then come artisan
+    // machines and goods, fish pages ({{Infobox fish}}), and everything
+    // else is tried as a crop.
     if (isSeedPage(page)) {
       const result = extractSeed(page);
       saveSeed(db, page, result.seed, rawData.retrievedAt);
       report.savedSeeds.push(result.seed.name);
       for (const warning of result.warnings) report.warnings.push({ title: page.title, warning });
       for (const note of result.notes) report.notes.push({ title: page.title, note });
+      continue;
+    }
+
+    // Artisan machines, goods and the fruit list.
+    if (isMachinePage(page) || isArtisanGoodPage(page) || isFruitListPage(page)) {
+      if (isFruitListPage(page)) {
+        artisan.fruitPage = page;
+        artisan.fruits = extractFruitList(page);
+        continue;
+      }
+      const result = isMachinePage(page) ? extractMachine(page) : extractArtisanGood(page);
+      if (!result.ok) {
+        report.skipped.push({ title: page.title, reason: result.reason });
+        continue;
+      }
+      addMessages(page.title, result);
+      if (result.machine) artisan.machines.push({ page, machine: result.machine, products: result.products });
+      else artisan.goods.push({ page, good: result.good });
       continue;
     }
 
@@ -59,6 +97,20 @@ export function buildFromRawData(db, rawData) {
     for (const note of result.notes) report.notes.push({ title: page.title, note });
   }
   // Last step: refresh the search index from everything saved above.
+  if (artisan.machines.length || artisan.goods.length || artisan.fruitPage) {
+    const combined = combineArtisanData(
+      artisan.machines.map(({ products }) => ({ products })),
+      artisan.goods.map(({ good }) => ({ good })),
+    );
+    report.warnings.push(...combined.warnings);
+    report.notes.push(...combined.notes);
+    saveArtisanData(db, artisan, combined.recipes, rawData.retrievedAt);
+    report.savedArtisan = artisan.goods.map(({ good }) => good.name);
+    report.savedMachines = artisan.machines.map(({ machine }) => machine.name);
+    report.recipes = combined.recipes.length;
+    report.fruits = artisan.fruits.length;
+  }
+
   report.indexed = rebuildSearchIndex(db);
   return report;
 }
@@ -91,7 +143,9 @@ function main() {
   db.close();
 
   console.log(
-    `\nSaved ${report.saved.length} crops, ${report.savedSeeds.length} seeds and ${report.savedFish.length} fish to ${DATABASE_PATH}`,
+    `\nSaved ${report.saved.length} crops, ${report.savedSeeds.length} seeds, ${report.savedFish.length} fish, ` +
+      `${report.savedArtisan.length} artisan goods, ${report.savedMachines.length} machines ` +
+      `(${report.recipes} recipes) and ${report.fruits} fruits from the Fruits page to ${DATABASE_PATH}`,
   );
   console.log(`Search index holds ${report.indexed} items`);
   if (report.skipped.length) {
