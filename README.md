@@ -4,7 +4,7 @@ A Stardew Valley search engine built from the [Stardew Valley Wiki](https://star
 
 An AI assistant will come later. It will only answer from this verified local database and will cite the wiki page behind every fact.
 
-> **Status:** Phase 3. Crops, seed prices and profit-per-day calculations.
+> **Status:** Phase 4. Crops, seed prices, profit-per-day calculations and a search engine.
 
 ## How it works
 
@@ -54,6 +54,8 @@ Run these one at a time:
 | `npm run import` | Prints 3 wiki URLs to save from your browser into `data/browser/`. Then `npm run import -- data/browser/*.json` turns them into `data/raw/`. |
 | `npm run build-db` | Reads the newest file in `data/raw/` (from `collect` or `import`), extracts the crop facts, and saves them to `data/sdv.db`. |
 | `npm run crops -- Summer` | Lists Summer crops by sell price, with wiki links. Try `Spring` or `Fall` too. |
+| `npm run search -- berry` | Searches names, wiki categories, shops and page summaries. Options: `--season fall`, `--type crop` or `seed`, `--sort relevance`/`name`/`sell`/`buy`, `--reverse`, `--limit 10`. |
+| `npm run item -- "Parsnip Seeds"` | Shows one item with everything connected to it: seasons, growth, seed, shop prices, what a seed grows into, categories, and its wiki source and revision. |
 | `npm run profit -- Spring` | Ranks Spring crops by profit per day, using seed prices from the wiki. Add a day to plant later: `npm run profit -- Spring 10`. |
 
 ## Project layout
@@ -70,9 +72,12 @@ src/
   db/schema.sql            the database tables
   db/database.js           opens the database and saves crops
   db/buildDatabase.js      raw data → extractor → database
+  db/searchIndex.js        fills the full-text search index after each build
   queries/cropQueries.js   reusable database searches
+  queries/search.js        the search engine: text search, filters, sorting, item details
   cli/listCrops.js         the command-line search
   cli/profit.js            the command-line profit table
+  cli/search.js, item.js   the command-line search and item details
 tests/
   fixtures/                real wiki pages saved for tests
   *.test.js                Vitest tests

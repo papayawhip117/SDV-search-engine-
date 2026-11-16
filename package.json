@@ -14,7 +14,9 @@
     "import": "node src/collect/importBrowserFiles.js",
     "build-db": "node src/db/buildDatabase.js",
     "crops": "node src/cli/listCrops.js",
-    "profit": "node src/cli/profit.js"
+    "profit": "node src/cli/profit.js",
+    "search": "node src/cli/search.js",
+    "item": "node src/cli/item.js"
   },
   "dependencies": {
     "better-sqlite3": "^13.2.0"

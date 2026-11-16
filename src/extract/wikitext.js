@@ -163,3 +163,50 @@ export function parseFirstTable(wikitext) {
   if (currentRow.length) rows.push(currentRow);
   return rows;
 }
+
+/**
+ * Turn a short piece of wikitext into plain readable text:
+ *   "'''Parsnip Seeds''' are a type of [[seed]]. {{Price|20}}"  →  "Parsnip Seeds are a type of seed. 20g"
+ * {{Name|X}} becomes X and {{Price|N}} becomes Ng; other templates are dropped.
+ */
+export function toPlainText(wikitext) {
+  let text = wikitext;
+  // Replace templates from the innermost outwards, so nested ones work too.
+  for (let pass = 0; pass < 10 && text.includes('{{'); pass++) {
+    text = text.replace(/\{\{([^{}]*)\}\}/g, (_, inner) => {
+      const [name, ...args] = inner.split('|').map((part) => part.trim());
+      if (/^name$/i.test(name)) return args[0] ?? '';
+      if (/^price$/i.test(name)) return args[0] ? `${args[0]}g` : '';
+      return '';
+    });
+  }
+  return stripLinks(text)
+    .replace(/'{2,}/g, '') // '''bold''' and ''italic''
+    .replace(/<[^>]+>/g, '') // HTML tags like <ref> or <br />
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+/**
+ * The opening paragraph of a page (after its infobox), as plain text,
+ * cut to at most `maxLength` characters at the end of a sentence.
+ * Used for search and for showing what an item is.
+ */
+export function extractSummary(wikitext, maxLength = 300) {
+  if (!wikitext) return null;
+  let body = wikitext;
+  const infobox = findTemplateCall(wikitext, 'Infobox seed') ?? findTemplateCall(wikitext, 'Infobox');
+  if (infobox !== null) body = wikitext.slice(wikitext.indexOf(infobox) + infobox.length + 2);
+
+  const paragraph = body
+    .split('\n')
+    .map((line) => line.trim())
+    .find((line) => line && !/^(\{\{|\{\||\||!|==|\[\[(File|Category):|<|\*|#|__|:|;)/i.test(line));
+  if (!paragraph) return null;
+
+  const plain = toPlainText(paragraph);
+  if (plain.length <= maxLength) return plain || null;
+  const cut = plain.slice(0, maxLength);
+  const lastSentenceEnd = cut.lastIndexOf('. ');
+  return lastSentenceEnd > 0 ? cut.slice(0, lastSentenceEnd + 1) : `${cut.trimEnd()}…`;
+}

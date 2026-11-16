@@ -100,7 +100,32 @@ Calculations live in plain functions with tests, never in the AI:
 
 `npm run profit -- Spring 10` ranks the season's crops by profit per day for one plant planted on Spring 10, lists what couldn't be calculated and why, and prints every assumption. It also flags data the numbers ignore, like rice's "(6 when irrigated)" or seeds only sold at a festival.
 
-## 7. Tests: `tests/`
+## 7. Searching: `src/db/searchIndex.js` and `src/queries/search.js`
+
+Search reads only the local database. It never contacts the wiki or uses AI.
+
+**The index.** SQLite has a built-in full-text search feature called **FTS5**. A full-text index is like the index at the back of a book: it lists which items contain which text, so searches don't have to read every row. `rebuildSearchIndex()` runs at the end of every `build-db` and stores four pieces of text per item:
+
+| Column | Example (Blueberry Seeds) | Why |
+|---|---|---|
+| `name` | Blueberry Seeds | the main thing people type |
+| `categories` | Summer seeds | the wiki's own labels: "vegetables", "trellis" |
+| `shops` | Pierre's General Store | "oasis" finds what the Oasis sells |
+| `summary` | Blueberry Seeds are a type of seed. Mature plants yield Blueberries. | the page's opening sentences, as plain text |
+
+That's where "related terms" come from. Every one of them comes from the wiki, not from a list we made up. Categories and summary are only used when the page really is the item's own page: a seed we only know from its crop page (like Grape Starter before its seed page is downloaded) doesn't borrow the crop's categories.
+
+We use the **trigram** tokenizer, which indexes every 3-letter piece of every word. That's why "berry" finds Strawberry and "blueb" finds Blueberry. The trade-off is that search words need at least 3 letters, and the command says so when it skips one.
+
+**Ranking.** With search words, results are ordered by **bm25**, the standard relevance formula for text search. A match in the name counts 10×, in categories or shops 3×, and in the summary 1×, so searching "corn" puts Corn and Corn Seeds above pages that only mention corn.
+
+**Safety.** What the user types is never pasted into SQL. Words are pulled out with a pattern (letters, digits and apostrophes only), each one is quoted for FTS5, and everything is passed to the database as a **parameter** (a value the database treats strictly as data). The sort column comes from a fixed list. A test searches for `"; DROP TABLE items; --` and checks the table is still there.
+
+**Filters and sorting.** `--season` keeps items that grow in that season. Seeds count through the crop they grow into, so `--season fall --type seed` lists Fall seeds. `--sort buy` uses the cheapest shop price, and items nobody sells go last.
+
+**Related records.** `getItemDetails()` gathers everything connected to one item: a crop's growth, stages, regrowth and its seed with every shop price, or a seed's prices and what it grows into. It also returns the wiki categories, the summary, and the source page with its revision and download date. `npm run item` prints it all, and suggests names when the one you typed doesn't exist ("strawbery" → Strawberry).
+
+## 8. Tests: `tests/`
 
 | File | Checks |
 |---|---|
@@ -110,6 +135,7 @@ Calculations live in plain functions with tests, never in the AI:
 | `database.test.js` | the full pipeline into an in-memory database, attribution on every result, no duplicates on a rebuild, cheapest seed price |
 | `seedExtractor.test.js` | real seed pages: Pierre/JojaMart/Oasis prices, Year 2+ notes, festival prices, seeds no shop sells |
 | `profit.test.js` | harvest counts and profit worked out by hand for Parsnip, Strawberry and Corn |
+| `search.test.js` | partial words, related terms, all-words matching, every filter and sort, hostile input, item details, typo suggestions |
 
 Run them with `npm test`.
 
@@ -129,6 +155,7 @@ We **don't** get around a refusal by pretending to be a web browser. The wiki de
 - Only crops in the Spring, Summer and Fall categories. Fruit trees, forage and special crops come later.
 - Profit doesn't model when a shop is open (Strawberry Seeds are only sold at the Egg Festival) or fertilizer, quality and professions.
 - Traveling Cart prices are random, so seeds only sold there have no price.
+- Search covers only what's in the database (crops and seeds so far), and search words need 3+ letters.
 - Harvest yield ("1, with a 2% chance for more") is only written as a sentence on the wiki, so it isn't stored yet.
 - Sell price is base quality only. Quality and profession bonuses will be calculated in code later, with their formulas documented.
 - The exact license version still needs confirming on the wiki's copyright page.
