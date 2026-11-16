@@ -1,3 +1,86 @@
 # SDV Search Engine
 
-A Stardew Valley search engine and source-attributed assistant built from the Stardew Valley Wiki.
+A Stardew Valley search engine built from the [Stardew Valley Wiki](https://stardewvalleywiki.com/). Every fact in the database records which wiki page it came from, which revision of that page, and when it was downloaded.
+
+An AI assistant will come later. It will only answer from this verified local database and will cite the wiki page behind every fact.
+
+> **Status:** Phase 2, crops proof of concept. Only crops are collected so far.
+
+## How it works
+
+```
+ Stardew Valley Wiki        your computer
+ (MediaWiki API)
+        │
+        │  1. npm run collect      polite, one request at a time
+        ▼
+ data/raw/crops-<date>.json      raw API responses, saved as-is
+        │
+        │  2. npm run build-db     extract facts from the wikitext
+        ▼
+ data/sdv.db  (SQLite)           crops, seeds, seasons, stages, sources
+        │
+        │  3. npm run crops -- Summer
+        ▼
+ a table of Summer crops sorted by sell price, each with its wiki link
+```
+
+The app never looks things up on the wiki while you search. It only reads the local database. The wiki is contacted once per collection run.
+
+More detail: [docs/how-it-works.md](docs/how-it-works.md). The original research is in [docs/phase-1-research.md](docs/phase-1-research.md).
+
+## Setup
+
+You need [Node.js](https://nodejs.org/) version 20 or newer. Check with:
+
+```
+node --version
+```
+
+Install the project's dependencies (this creates the `node_modules/` folder):
+
+```
+npm install
+```
+
+## Usage
+
+Run these one at a time:
+
+| Command | What it does |
+|---|---|
+| `npm test` | Runs the automated tests. No internet needed. |
+| `npm run collect` | Downloads the crop pages from the wiki into `data/raw/`. Takes about a minute because it waits between requests. |
+| `npm run build-db` | Reads the newest file in `data/raw/`, extracts the crop facts, and saves them to `data/sdv.db`. |
+| `npm run crops -- Summer` | Lists Summer crops by sell price, with wiki links. Try `Spring` or `Fall` too. |
+
+## Project layout
+
+```
+src/
+  wiki/apiClient.js        talks to the wiki API (rate limiting, retries)
+  collect/collectCrops.js  finds every crop page and saves the raw data
+  extract/wikitext.js      general tools for reading wiki markup
+  extract/cropExtractor.js turns one crop page into clean crop facts
+  db/schema.sql            the database tables
+  db/database.js           opens the database and saves crops
+  db/buildDatabase.js      raw data → extractor → database
+  queries/cropQueries.js   reusable database searches
+  cli/listCrops.js         the command-line search
+tests/
+  fixtures/                real wiki pages saved for tests
+  *.test.js                Vitest tests
+docs/                      design notes and research
+```
+
+## Data source and license
+
+All game data comes from the [Stardew Valley Wiki](https://stardewvalleywiki.com/). Its text is licensed under [Creative Commons Attribution-NonCommercial-ShareAlike](https://creativecommons.org/licenses/by-nc-sa/3.0/) (the exact version still has to be confirmed on the wiki's copyright page). This means:
+
+- every fact links back to its wiki page (the database stores the title, URL, revision id and download date)
+- this project and its data may not be used commercially
+- any shared copy of the extracted data must use the same license
+
+Game images are © ConcernedApe and are not copied into this project.
+
+The license of this project's own source code has not been chosen yet.

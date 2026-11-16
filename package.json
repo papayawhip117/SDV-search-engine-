@@ -1,0 +1,23 @@
+{
+  "name": "sdv-search-engine",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Stardew Valley search engine built from the Stardew Valley Wiki, with source attribution for every fact.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "collect": "node src/collect/collectCrops.js",
+    "build-db": "node src/db/buildDatabase.js",
+    "crops": "node src/cli/listCrops.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^13.2.0"
+  },
+  "devDependencies": {
+    "vitest": "^5.1.0"
+  }
+}
