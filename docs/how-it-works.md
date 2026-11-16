@@ -169,7 +169,7 @@ What "Any X" means:
 | Fruits | the Fruits page |
 | Vegetables | the item's own page is in `Category:Vegetables` |
 | Fish | the item is in the fish table |
-| Mushrooms, Forage, Roe | not collected yet (later phases), so nothing matches them yet |
+| Mushrooms, Forage, Roe | no group yet, so nothing matches them yet (forage items are collected in section 13, but "any positive energy Forage" needs the energy rule) |
 
 ## 10. Cooking: `src/extract/cookingExtractor.js` and `src/queries/cookingQueries.js`
 
@@ -250,7 +250,8 @@ If nothing matches, the answer is "not listed": the wiki doesn't say, so we don'
 | Cooking | the dishes table |
 | Seeds | items of type `seed`, and the Crafting page's Seeds section |
 | Bombs, Fences, Sprinklers, Fertilizer, Floors & Paths | the Crafting page sections (Floors & Paths is the Decor section) |
-| Gems, Minerals, Books, Artifacts, Flowers, Milk, Trash and the rest | not collected yet, so nothing matches them until a later phase |
+| Gems, Minerals, Geodes, Artifacts, Flowers, Books | the Minerals, Artifacts, Flowers and Books pages (section 13) |
+| Milk, Trash and the rest | not collected yet, so nothing matches them until a later phase |
 
 Names are compared without punctuation, because the Friendship page writes "Warp Totem Beach" where the Crafting page writes "Warp Totem: Beach". Exceptions keep both a link's page title and its shown text ("[[Red Mushroom|Red]]" → Red Mushroom and Red), so either form matches.
 
@@ -377,7 +378,7 @@ We **don't** get around a refusal by pretending to be a web browser. The wiki de
 ## Known limitations (so far)
 
 - Crops in the Spring, Summer and Fall categories, their seeds, 71 fish, the artisan goods, 81 dishes, 150 crafting recipes, 34 villagers with their gift tastes, and 169 items from the Foraging, Minerals, Artifacts, Flowers and Books pages. Not yet: fruit trees, animal products (eggs, milk), monster loot, trash, tools, weapons, rings and other items without an overview table here.
-- Cask aging (silver to iridium quality) and the Heavy Tapper's own page aren't stored yet. Recipes that take mushrooms, forage or roe are stored, but those items aren't collected yet.
+- Cask aging (silver to iridium quality) and the Heavy Tapper's own page aren't stored yet. Recipes that take mushrooms, forage or roe are stored, but those groups aren't matched to items yet.
 - Dish ingredients we don't collect yet (Egg, Milk, Wheat Flour, Sugar, Oil, Rice...) are shown by name without a price or wiki link until later phases add them.
 - Crafted items have no sell price except bombs, because only the Bombs table on the Crafting page lists one. Their own pages would add it.
 - "Transmute (Fe)" and "Transmute (Au)" are stored by their recipe names, as the Crafting page lists them; they make an Iron Bar and a Gold Bar.

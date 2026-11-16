@@ -1,136 +1,58 @@
-# SDV Search Engine
+# 🌱 SDV Search Engine
 
-A Stardew Valley search engine built from the [Stardew Valley Wiki](https://stardewvalleywiki.com/). Every fact in the database records which wiki page it came from, which revision of that page, and when it was downloaded.
+A cozy little search engine for Stardew Valley: prices, items, recipes, fish, villagers and gift tastes, all in one place. It also has an assistant that only answers from facts it can back up with a wiki page.
 
-An AI assistant will come later. It will only answer from this verified local database and will cite the wiki page behind every fact.
+## 💚 Why I made this
 
-> **Status:** Phase 11, step 3 (the AI assistant answers from cited wiki facts, and the app checks every answer). Crops, seed prices, profit per day, a search engine, fish, artisan goods with the machines that make them, cooking and crafting recipes, villagers with their birthdays and gift tastes, and forage, minerals, geodes, artifacts, flowers and books. `npm run ask` answers a question with Claude, using only facts from the database and citing the wiki page for each.
+Hi, I'm **Papaya** (Aaliyah)! Stardew Valley is one of my favorite video games, and the [Stardew Valley Wiki](https://stardewvalleywiki.com/) is a resource I love and use all the time. I wanted a quick way to look things up and plan an efficient farm day, so I built one, and learned a lot of JavaScript along the way. 🐔
 
-## How it works
+## 🧺 What's inside
 
-```
- Stardew Valley Wiki        your computer
- (MediaWiki API)
-        │
-        │  1. npm run collect      polite, one request at a time
-        ▼
- data/raw/crops-<date>.json      raw API responses, saved as-is
-        │
-        │  2. npm run build-db     extract facts from the wikitext
-        ▼
- data/sdv.db  (SQLite)           crops, seeds, seasons, stages, sources
-        │
-        │  3. npm run crops -- Summer
-        ▼
- a table of Summer crops sorted by sell price, each with its wiki link
-```
+- 🗄️ **A local SQLite database** built from the official wiki through its MediaWiki API. Every fact remembers where it came from: page title, URL, revision and retrieval date.
+- 🔎 **Search and item lookup**, with filters for season, type and price.
+- 🧮 **Game math done in app code** (never guessed by AI): profit per day and regrowth for crops, plus fish, artisan goods, cooking and crafting.
+- 🎁 **Villagers and gift tastes**: birthdays and who loves, likes or hates what.
+- 🍄 **Forage, minerals, artifacts, flowers and books.**
+- 🤖 **`npm run ask`**, an assistant that answers only from verified data and cites each fact. An optional Claude AI layer can write the answer (it needs your own API key and is off without one), and the app checks every AI answer before showing it.
 
-The app never looks things up on the wiki while you search. It only reads the local database. The wiki is contacted once per collection run.
+## 🚜 Quick start
 
-More detail: [docs/how-it-works.md](docs/how-it-works.md). The original research is in [docs/phase-1-research.md](docs/phase-1-research.md).
-
-## Setup
-
-You need [Node.js](https://nodejs.org/) version 20 or newer. Check with:
-
-```
-node --version
-```
-
-Install the project's dependencies (this creates the `node_modules/` folder):
+You need [Node.js](https://nodejs.org/) 20 or newer.
 
 ```
 npm install
+npm run import
 ```
 
-### The API key (only for `npm run ask`)
-
-The assistant uses Claude, which needs an Anthropic API key. Everything else works without one.
-
-1. Create a key in the [Claude Console](https://platform.claude.com/settings/keys) under **API keys**. Using it costs a little money per question, so set a spending limit there.
-2. Copy the template: `cp .env.example .env`
-3. Open `.env` and paste your key after `ANTHROPIC_API_KEY=` (no spaces or quotes).
-
-`.env` is in `.gitignore`, so the key stays on your computer and never goes to GitHub. Never paste it into code, an issue or a chat. If it ever leaks, delete it in the Console and make a new one.
-
-## Usage
-
-Run these one at a time:
-
-| Command | What it does |
-|---|---|
-| `npm test` | Runs the automated tests. No internet needed. |
-| `npm run collect` | Downloads the crop pages from the wiki into `data/raw/`. **Currently refused** (HTTP 403): the wiki's firewall blocks Node.js. Use `npm run import` instead. |
-| `npm run import` | Prints the wiki URLs to save from your browser into `data/browser/` (crops, seeds, fish, artisan goods, fruits, cooking, crafting, villagers and gifts, forage, minerals, artifacts, flowers, books). Then `npm run import -- data/browser/*.json` turns them into `data/raw/`. |
-| `npm run build-db` | Reads the newest file in `data/raw/` (from `collect` or `import`), extracts crops, seeds, fish, artisan goods, dishes, crafting recipes, villagers, gift tastes, forage, minerals, artifacts, flowers and books, and saves them to `data/sdv.db`. |
-| `npm run crops -- Summer` | Lists Summer crops by sell price, with wiki links. Try `Spring` or `Fall` too. |
-| `npm run search -- berry` | Searches names, wiki categories, shops and page summaries. Options: `--season fall`, `--type crop`, `seed`, `fish`, `artisan`, `machine`, `dish`, `crafted`, `forage`, `mineral`, `geode`, `artifact`, `flower` or `book`, `--sort relevance`/`name`/`sell`/`buy`, `--reverse`, `--limit 10`. |
-| `npm run item -- "Parsnip Seeds"` | Shows one item with everything connected to it: seasons, growth, seed, shop prices, what a seed grows into, categories, and its wiki source and revision. |
-| `npm run fish -- Summer` | Lists Summer fish by sell price, with where, when and in what weather to catch them. Options: `--weather rain` or `sun`, `--area Ocean` (or River, Lake, Pond, ...), `--legendary` to include legendary fish. |
-| `npm run artisan -- Starfruit` | What an item can be turned into (Wine, Jelly, Dried Fruit...), which machine, how long it takes and what it's worth, best value first. Try `Corn`, `Tuna` or `Grape`. |
-| `npm run cook -- Tomato` | Lists the dishes that use Tomato, with sell price, ingredients, what the raw ingredients are worth, buffs and how to get the recipe. Names with spaces work without quotes (`npm run cook -- Wheat Flour`). Add `--buff Fishing` for dishes with that buff, or give no ingredient to list every dish. |
-| `npm run craft -- Iron Bar` | Lists the crafting recipes that use Iron Bar, with all their ingredients and how you get each recipe. Use `--section Rings` (or Fertilizer, Sprinklers...) for one section of the Crafting page, or no arguments to list the sections. |
-| `npm run gifts -- Abigail` | A villager's birthday, whether they can be married, and what they love, like, are neutral about, dislike and hate. `--item Diamond` shows how every villager feels about one item; `--birthday summer` lists birthdays by day. Item pages (`npm run item`) also show who loves, likes, dislikes and hates that item. |
-| `npm run ask -- "What does Abigail love?"` | Finds the facts in the database that answer a question (item and villager names, plurals too, seasons, and topics like profit, fishing, birthdays, foraging and gifts), then has Claude answer from those facts only, citing each one, followed by the wiki sources. The app checks the answer first and shows the facts instead if it fails. Needs an API key in `.env` (see Setup); without one, or with `--facts`, it shows the facts and doesn't call Claude. |
-| `npm run profit -- Spring` | Ranks Spring crops by profit per day, using seed prices from the wiki. Add a day to plant later: `npm run profit -- Spring 10`. |
-
-## Project layout
+`npm run import` prints the wiki URLs to save from your browser into `data/browser/`. Then:
 
 ```
-src/
-  wiki/apiClient.js        talks to the wiki API (rate limiting, retries)
-  collect/collectCrops.js  finds every crop page and saves the raw data
-  collect/importBrowserFiles.js  turns API responses saved in a browser into raw data
-  collect/fishPages.js     the list of fish pages to download
-  collect/artisanPages.js  the list of artisan goods and machine pages to download
-  collect/cookingPages.js  the list of dish pages to download
-  extract/wikitext.js      general tools for reading wiki markup
-  extract/cropExtractor.js turns one crop page into clean crop facts
-  extract/seedExtractor.js reads shop prices from one seed page
-  extract/fishExtractor.js turns one fish page into clean fish facts
-  extract/artisanExtractor.js reads machine product tables, artisan goods pages and the Fruits list
-  extract/cookingExtractor.js turns one dish page into a dish with its ingredients
-  extract/craftingExtractor.js reads every recipe table on the Crafting page
-  extract/villagerExtractor.js reads villagers, birthdays and gift tastes
-  extract/collectionExtractor.js reads the Foraging, Minerals, Artifacts, Flowers and Books tables
-  calc/profit.js           harvests, costs and profit per day (no AI involved)
-  db/schema.sql            the database tables
-  db/database.js           opens the database and saves crops, seeds, fish, artisan goods, dishes and crafting recipes
-  db/buildDatabase.js      raw data → extractor → database
-  db/searchIndex.js        fills the full-text search index after each build
-  queries/cropQueries.js   reusable database searches
-  queries/search.js        the search engine: text search, filters, sorting, item details
-  queries/fishQueries.js   fish by season, weather and area
-  queries/artisanQueries.js  what an item can be made into, and how goods are made
-  queries/cookingQueries.js  dishes, their ingredients, and which dishes use an item
-  queries/craftingQueries.js crafting recipes, and which recipes use an item
-  queries/giftQueries.js   villagers, birthdays, and what a villager thinks of an item
-  cli/listCrops.js         the command-line search
-  cli/profit.js            the command-line profit table
-  cli/search.js, item.js   the command-line search and item details
-  cli/fish.js              the command-line fish list
-  cli/artisan.js           the command-line "what can I make from this" table
-  cli/cook.js              the command-line "what can I cook with this" table
-  cli/craft.js             the command-line "what can I craft with this" table
-  cli/gifts.js             the command-line villager and gift lookup
-  assistant/findFacts.js   turns a question into numbered, cited facts for the assistant
-  assistant/answer.js      has Claude answer from those facts only (the AI is swappable, so tests use a fake)
-  assistant/validateAnswer.js  checks an answer in code: known fact ids, a citation on every sentence, no made-up numbers
-  cli/ask.js               the command-line assistant
-tests/
-  fixtures/                real wiki pages saved for tests
-  *.test.js                Vitest tests
-docs/                      design notes and research
+npm run import -- data/browser/*.json
+npm run build-db
 ```
 
-## Data source and license
+Try a few things:
 
-All game data comes from the [Stardew Valley Wiki](https://stardewvalleywiki.com/). Its text is licensed under [Creative Commons Attribution-NonCommercial-ShareAlike](https://creativecommons.org/licenses/by-nc-sa/3.0/) (the exact version still has to be confirmed on the wiki's copyright page). This means:
+```
+npm run search -- berry
+npm run profit -- Spring
+npm run gifts -- Abigail
+npm run ask -- "What does Abigail love?"
+npm test
+```
 
-- every fact links back to its wiki page (the database stores the title, URL, revision id and download date)
-- this project and its data may not be used commercially
-- any shared copy of the extracted data must use the same license
+Every command and option: [docs/commands.md](docs/commands.md). How it all works inside: [docs/how-it-works.md](docs/how-it-works.md).
 
-Game images are © ConcernedApe and are not copied into this project.
+## 🔑 API keys
 
-The license of this project's own source code has not been chosen yet.
+API keys live in a `.env` file on your own computer. `.env` is in `.gitignore`, so keys are never committed. Copy `.env.example` to start; setup steps are in [docs/commands.md](docs/commands.md#the-api-key-only-for-npm-run-ask).
+
+## 📜 Credits and license
+
+All game data comes from the [Stardew Valley Wiki](https://stardewvalleywiki.com/), whose content is licensed [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/3.0/). Thank you to everyone who writes it! 💛
+
+- Every fact links back to its wiki page.
+- This is a non-commercial fan project, and any shared copy of the extracted data uses the same license.
+- Not affiliated with ConcernedApe or the Stardew Valley Wiki. Stardew Valley and its images are © ConcernedApe, and no game images are included here.
+
+The license for this project's own code hasn't been chosen yet.
