@@ -88,6 +88,42 @@ CREATE TABLE IF NOT EXISTS shop_prices (
   PRIMARY KEY (shop_id, item_id)
 );
 
+-- Fish facts, from {{Infobox fish}}. One row per fish; item_id is the fish item.
+-- The *_note columns keep the wiki's own wording where it says more than
+-- the structured columns can hold ("Anytime during Night Market").
+CREATE TABLE IF NOT EXISTS fish (
+  item_id            INTEGER PRIMARY KEY REFERENCES items(id),
+  catch_method       TEXT    NOT NULL,  -- 'fishing rod' or 'crab pot'
+  is_legendary       INTEGER NOT NULL,  -- 1/0, from Category:Legendary fish
+  location_note      TEXT,              -- e.g. 'River • Mountain Lake'
+  time_note          TEXT,              -- e.g. '6am – 11am; 6pm – 2am', 'Any'
+  season_note        TEXT,              -- the infobox text when it's more than a list of seasons
+  weather            TEXT,              -- 'Any', 'Sun' or 'Rain'; NULL when it's more complicated
+  weather_note       TEXT,              -- e.g. 'Sun; Any during Trout Derby'
+  difficulty         INTEGER,           -- NULL for crab pot fish
+  behavior           TEXT,              -- 'Mixed', 'Dart', 'Smooth', 'Sinker', 'Floater'
+  size_min_inches    INTEGER,
+  size_max_inches    INTEGER,
+  fishing_level      INTEGER,           -- level needed (legendary fish), else NULL
+  fishing_level_note TEXT,              -- e.g. '(Forge)'
+  source_page_id     INTEGER NOT NULL REFERENCES source_pages(id)
+);
+
+-- Which seasons a fish can be caught in (see fishExtractor.js for where they come from).
+CREATE TABLE IF NOT EXISTS fish_seasons (
+  fish_item_id INTEGER NOT NULL REFERENCES fish(item_id),
+  season_id    INTEGER NOT NULL REFERENCES seasons(id),
+  PRIMARY KEY (fish_item_id, season_id)
+);
+
+-- Kinds of water a fish lives in, from the wiki's categories
+-- (Category:Ocean fish → 'Ocean'). Exact spots are in fish.location_note.
+CREATE TABLE IF NOT EXISTS fish_areas (
+  fish_item_id INTEGER NOT NULL REFERENCES fish(item_id),
+  area         TEXT    NOT NULL,
+  PRIMARY KEY (fish_item_id, area)
+);
+
 -- Full-text search index (SQLite's built-in FTS5). One row per item.
 -- It's filled from the tables above by rebuildSearchIndex() after each build,
 -- so it never holds facts of its own, only text to search through.

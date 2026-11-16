@@ -1,4 +1,4 @@
-// Opening the database and saving crops and seeds into it.
+// Opening the database and saving crops, seeds and fish into it.
 //
 // We use better-sqlite3. "Synchronous" means each database call finishes
 // before the next line runs, so there's no `await` here. That keeps the
@@ -180,6 +180,64 @@ export function saveSeed(db, page, seed, retrievedAt) {
       insertPrice.run(findShop.get(shop).id, seedItemId, price, note, sourcePageId);
     }
     return seedItemId;
+  });
+
+  return save();
+}
+
+/**
+ * Save one fish and its source page.
+ *
+ * @param fish  the result of extractFish(page).fish
+ */
+export function saveFish(db, page, fish, retrievedAt) {
+  const save = db.transaction(() => {
+    const sourcePageId = saveSourcePage(db, page, retrievedAt);
+
+    const { id: fishItemId } = db
+      .prepare(
+        `INSERT INTO items (name, item_type, base_sell_price, source_page_id)
+         VALUES (?, 'fish', ?, ?)
+         ON CONFLICT (name) DO UPDATE SET
+           item_type = 'fish', base_sell_price = excluded.base_sell_price, source_page_id = excluded.source_page_id
+         RETURNING id`,
+      )
+      .get(fish.name, fish.sellPrice, sourcePageId);
+
+    db.prepare(
+      `INSERT OR REPLACE INTO fish
+         (item_id, catch_method, is_legendary, location_note, time_note, season_note, weather, weather_note,
+          difficulty, behavior, size_min_inches, size_max_inches, fishing_level, fishing_level_note, source_page_id)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    ).run(
+      fishItemId,
+      fish.catchMethod,
+      toSqlBoolean(fish.isLegendary),
+      fish.locationNote,
+      fish.timeNote,
+      fish.seasonNote,
+      fish.weather,
+      fish.weatherNote,
+      fish.difficulty,
+      fish.behavior,
+      fish.sizeMin,
+      fish.sizeMax,
+      fish.fishingLevel,
+      fish.fishingLevelNote,
+      sourcePageId,
+    );
+
+    db.prepare('DELETE FROM fish_seasons WHERE fish_item_id = ?').run(fishItemId);
+    const insertSeason = db.prepare(
+      'INSERT INTO fish_seasons (fish_item_id, season_id) SELECT ?, id FROM seasons WHERE name = ?',
+    );
+    for (const season of fish.seasons) insertSeason.run(fishItemId, season);
+
+    db.prepare('DELETE FROM fish_areas WHERE fish_item_id = ?').run(fishItemId);
+    const insertArea = db.prepare('INSERT INTO fish_areas (fish_item_id, area) VALUES (?, ?)');
+    for (const area of fish.areas) insertArea.run(fishItemId, area);
+
+    return fishItemId;
   });
 
   return save();

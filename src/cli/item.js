@@ -47,6 +47,19 @@ export function formatItemDetails(item) {
       if (crop.seed.name !== item.name) lines.push(`             ${formatPrices(crop.seed.prices)}`);
     }
   }
+  if (item.fish) {
+    const { fish } = item;
+    if (fish.seasonNote) lines.push(`             wiki says: ${fish.seasonNote}`);
+    lines.push(`Caught with: ${fish.catchMethod}${fish.isLegendary ? '  (legendary)' : ''}`);
+    lines.push(`Where:       ${fish.location ?? 'unknown'}${fish.areas.length ? `  [${fish.areas.join(', ')}]` : ''}`);
+    if (fish.time) lines.push(`Time:        ${fish.time}`);
+    if (fish.weather || fish.weatherNote) lines.push(`Weather:     ${fish.weather ?? fish.weatherNote}`);
+    if (fish.difficulty !== null) lines.push(`Difficulty:  ${fish.difficulty}${fish.behavior ? ` (${fish.behavior})` : ''}`);
+    if (fish.sizeMin !== null) lines.push(`Size:        ${fish.sizeMin}–${fish.sizeMax} inches`);
+    if (fish.fishingLevel !== null) {
+      lines.push(`Needs:       fishing level ${fish.fishingLevel}${fish.fishingLevelNote ? ` ${fish.fishingLevelNote}` : ''}`);
+    }
+  }
   if (item.growsInto.length) lines.push(`Grows into:  ${item.growsInto.join(', ')}`);
   if (item.categories.length) lines.push(`Categories:  ${item.categories.join(', ')}`);
 

@@ -1,0 +1,353 @@
+{
+ "batchcomplete": true,
+ "query": {
+  "pages": [
+   {
+    "pageid": 2468,
+    "ns": 0,
+    "title": "Tuna",
+    "revisions": [
+     {
+      "revid": 195394,
+      "parentid": 193000,
+      "timestamp": "2026-10-14T18:57:41Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "{{Infobox fish\n|eng        = Tuna\n|location   = [[The Beach|Ocean]] • [[Ginger Island]]\n|time       = 6am – 7pm\n|season     = {{Season|Summer}} • {{Season|Winter}}<br />\n'''[[Ginger Island]] (except Island North):''' {{Season|All}}\n|weather    = Any\n|difficulty = 70\n|behavior   = Smooth\n|size       = 12-61\n|price      = 100\n|edibility  = 15\n|roe        = Blue\n}}\nThe '''Tuna''' is a [[fish]] that can be caught in the ocean at [[The Beach]] or on the [[Farm Maps#Beach|Beach Farm]] during [[Summer]] and [[Winter]]. It can also be caught on [[Ginger Island]] during any season on Island West (ocean), South, Southeast, and in the Pirate Cove. It can also randomly be found in [[Garbage Can]]s during Summer or Winter or at the Traveling Cart for {{tprice|100}}.\n\nTuna can be caught regardless of time of day or season using [[Magic Bait]].\n\n==Map==\nThe Tuna can be found at the Beach and on Ginger Island West (ocean), South, Southeast, and Pirate Cove.\n{{Map|275|200|island=true|islandloc1x=68|islandloc1y=175|islandloc2x=210|islandloc2y=165|islandloc3x=240|islandloc3y=160|islandloc4x=260|islandloc4y=145}}\n\n==Gifting==\n{{GiftsByItem\n|dislike=Robin,Maru,Caroline,Abigail,Alex,George,Lewis,Clint,Penny,Emily,Jas,Vincent,Jodi,Kent,Sam,Leah,Shane,Marnie,Gus,Dwarf,Wizard,Harvey,Sandy,Krobus\n|neutral=Demetrius,Sebastian,Linus,Pam,Elliott,Willy,Leo\n|hate=Pierre,Evelyn,Haley\n}}\n\n==Bundles==\n*Tuna is used in the {{Bundle|Ocean Fish||y}}.\n*1 gold/iridium quality Tuna is required for the {{Bundle|quality fish||y}}.\n\n==Recipes==\n{{Recipes|header}}\n{{:Fish Taco|RecipeRow}}\n{{:Maki Roll|RecipeRow}}\n{{:Quality Fertilizer|RecipeRow}}\n{{:Sashimi|RecipeRow}}\n{{Recipes|footer}}\n\n==Tailoring==\nTuna can be used in the spool of the [[2 Willow Lane#Sewing Machine|Sewing Machine]] to create the dyeable [[Tailoring|Sailor Shirt]].  [[File:Shirt259a.png|24px]]\n\n==Fish Pond==\nTuna can be placed in a [[Fish Pond]], where they will reproduce every 3 days. The initial pond capacity is 3 fish, but the capacity can be increased to 10 by completing three quests. The only possible output is blue Tuna [[Roe]].\n\n'''[[Fish Pond#Quests|Quests]]'''\n{| class=\"wikitable\"\n|-\n!colspan=\"2\"|Pond Capacity\n!rowspan=\"2\"|Quest Item\n!rowspan=\"2\"|Fishing XP Granted\n|-\n!Before Quest\n!After Quest\n|-\n| 3   || 5   || 3 [[Driftwood]], 1 [[Frozen Geode]], or 1-2 [[Seaweed]] || 35\n|-\n| 5   || 7   || 2 [[Clam]]s or 2 [[Coral]] || 35\n|-\n| 7   || 10  || 2 [[Aquamarine]], 1 [[Mussel]], or 2 [[Sea Urchin]]s || 35\n|}\n\n'''[[Fish Pond#Produce|Produce]]'''\n{| class=\"wikitable\"\n|-\n!Item(s) Produced\n!Fishing XP Granted\n!Population\n!% of Items\n!Overall Daily Chance\n|-\n|rowspan=\"2\"|{{Name|Blue Roe|1|link=Roe}}\n|rowspan=\"2\"|13\n| 1-4  || 70%     || 16-33%\n|-\n| 5-10 || 100%    || 55-95%\n|-\n|rowspan=\"2\"|''Nothing''\n|rowspan=\"2\"| \n| 1-4  || 30%     || 84-67%\n|-\n| 5-10 || 0%      || 45-5%\n|}\n\n==Quests==\n*'''Item Delivery:''' One Tuna may be randomly requested in [[Summer]] or [[Winter]] at the [[Quests#Help Wanted Quests|\"Help Wanted\" board]] outside [[Pierre's General Store]] for a reward of {{Price|300}} and 150 [[Friendship]] points.\n*'''Fishing:''' [[Demetrius]] or [[Willy]] may randomly request 1-4 Tuna to be caught during [[Summer]] or [[Winter]] at the [[Quests#Help Wanted Quests|\"Help Wanted\" board]] outside [[Pierre's General Store]] for a reward of {{Price|100}} per fish.  (You get to keep the fish).\n*'''Aquatic Overpopulation:''' [[Demetrius]] may request 10 Tuna to be caught in [[Summer]] at the [[Quests#List of Special Orders|Special Orders board]] outside the [[Mayor's Manor]] for a reward of gold equivalent to selling the fish and the [[Farm Computer]] recipe.\n\n==History==\n{{History|1.4|Added iridium quality.  Can now be used in [[Tailoring]].}}\n{{History|1.5|Is now used in a remixed bundle. Special Order quest added. Can now be caught on Ginger Island during any season on Island West (ocean), South, Southeast, and in the Pirate Cove.}}\n\n{{NavboxFish}}\n\n[[Category:Summer fish]]\n[[Category:Winter fish]]\n[[Category:Ocean fish]]\n[[Category:Island fish]]\n\n[[de:Thunfisch]]\n[[es:Atún]]\n[[fr:Thon]]\n[[it:Tonno]]\n[[ja:マグロ]]\n[[ko:참치]]\n[[hu:Tonhal]]\n[[pt:Atum]]\n[[ru:Тунец]]\n[[tr:Ton Balığı]]\n[[zh:金枪鱼]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Island fish"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Ocean fish"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Summer fish"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Winter fish"
+     }
+    ]
+   },
+   {
+    "pageid": 2489,
+    "ns": 0,
+    "title": "Catfish",
+    "revisions": [
+     {
+      "revid": 194361,
+      "parentid": 194139,
+      "timestamp": "2026-09-21T02:25:45Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "{{Infobox fish\n|eng        = Catfish\n|location   = River • [[Secret Woods]] • [[Witch's Swamp]]\n|time       = 6am - 12am\n|season     = {{Season|Spring}} • {{Season|Fall}}\n<span class=\"no-wrap\">'''[[Secret Woods]]/[[Witch's Swamp]]:'''<br />\n{{Season|Spring}} • {{Season|Summer}} • {{Season|Fall}}</span>\n<span class=\"no-wrap\">'''Only with [[Rain Totem]]:''' {{Season|Winter}}</span>\n|weather    = Rain\n|difficulty = 75\n|behavior   = Mixed\n|size       = 12-73\n|price      = 200\n|edibility  = 20\n|roe        = Dark Gray\n}}\nThe '''Catfish''' is a [[fish]] that can be caught in the river (in [[Pelican Town]] or [[Cindersap Forest]]), and the [[Farm Maps|Riverlands Farm]], [[Farm Maps|Forest Farm]], or [[Farm Maps|Hill-Top Farm]] during [[Spring]] and [[Fall]] when raining, or in the [[Secret Woods]] or [[Witch's Swamp]] during [[Spring]], [[Summer]], and [[Fall]] when raining. It can also be caught in [[Winter]] at these locations if a [[Rain Totem]] is used. \n\nIt can also be acquired from the following:\n*A [[Animals#Pets|pet]] cat with max [[Animals#Friendship|friendship]] may gift it to the player.\n*[[Garbage Can]]s may randomly contain one during Spring and Fall.\n*The [[Traveling Cart]] may randomly sell one for {{Tprice|200}}.\n*[[Linus]] may randomly send a Catfish in the mail as a gift.\n*One Catfish is contained in the [[Bundles#Fish Tank|Community Center Fish Tank]] right after the Community Center is repaired.\n\nCatfish can be caught regardless of weather, time, or season using [[Magic Bait]].\n\n==Map==\nThe Catfish can be found in the river, in the Secret Woods pond when it's raining, and in the Witch's Swamp.\n{{Map|10|100|loc2x=200|loc2y=150|loc3x=120|loc3y=150}}\n\n==Gifting==\n{{GiftsByItem\n|dislike=Robin,Maru,Caroline,Abigail,Alex,George,Lewis,Clint,Penny,Emily,Jas,Vincent,Jodi,Kent,Sam,Leah,Shane,Marnie,Gus,Dwarf,Wizard,Harvey,Sandy,Krobus\n|neutral=Demetrius,Sebastian,Linus,Pam,Elliott,Leo\n|hate=Pierre,Evelyn,Haley\n|love=Willy\n}}\n\n==Bundles==\nCatfish is used in the {{Bundle|River Fish||y}}.\n\n==Recipes==\n{{Recipes|header|hide=buff,duration}}\n{{:Maki Roll|RecipeRow/NoBuffs}}\n{{:Quality Fertilizer|RecipeRow/NoBuffs}}\n{{:Sashimi|RecipeRow/NoBuffs}}\n{{Recipes|footer}}\n\n==Tailoring==\nCatfish can be used in the spool of the [[2 Willow Lane#Sewing Machine|Sewing Machine]] to create the dyeable [[Tailoring|Fish Shirt]].  [[File:Shirt158.png|24px]]\n\n==Fish Pond==\nCatfish can be placed in a [[Fish Pond]], where they will reproduce every 4 days.  The initial pond capacity is 3 fish, but the capacity can be increased to 10 by completing three quests.  The only possible output is dark gray Catfish [[Roe]].\n\n'''[[Fish Pond#Quests|Quests]]'''\n{|class=\"wikitable\"\n|-\n!colspan=\"2\"|Pond Capacity\n!rowspan=\"2\"|Quest Item\n!rowspan=\"2\"|Fishing XP Granted\n|-\n!Before Quest\n!After Quest\n|-\n| 3   || 5   || 2 [[Amethyst]], 3 [[Copper Bar]]s, 3 [[Red Mushroom]]s, or 2 [[Topaz]] || 40\n|-\n| 5   || 7   || 10 [[Bat Wing]], 2 [[Earth Crystal]]s, 5 [[Mixed Seeds]], or 2-3 [[Purple Mushroom]]s || 40\n|-\n| 7   || 10  || 1 [[Diamond]], 3 [[Iron Bar]]s, 1 [[Mayonnaise]], or 1 [[Jellies and Pickles|Pickles]] || 40\n|}\n\n'''[[Fish Pond#Produce|Produce]]'''\n{|class=\"wikitable\"\n|-\n!Item(s) Produced\n!Fishing XP Granted\n!Population\n!% of Items\n!Overall Daily Chance\n|-\n|{{Name|Dark Gray Roe|1|link=Roe}}\n|15\n| 1-10 || 100%    || 23-95%\n|-\n|''Nothing''\n|\n| 1-10 || 0%      || 77-5%\n|}\n\n==Quests==\n*'''Item Delivery:''' One Catfish may be randomly requested in [[Spring]] or [[Fall]] at the [[Quests#Help Wanted Quests|\"Help Wanted\" board]] outside [[Pierre's General Store]] for a reward of {{Price|600}} and 150 [[Friendship]] points.\n*'''Fishing:''' [[Demetrius]] or [[Willy]] may randomly request 1-4 Catfish to be caught in [[Spring]] or [[Fall]] at the [[Quests#Help Wanted Quests|\"Help Wanted\" board]] outside [[Pierre's General Store]] for a reward of {{Price|200}} per fish.  (You get to keep the fish). \n\n==Bugs==\n*Catfish may be requested in a '''Fishing''' quest during Winter, requiring a [[Rain Totem]] to be used, despite 1.4.4 version patch notes detailing its removal from the quest.\n\n==History==\n{{History|1.4|Removed from garbage cans and most quests in Winter.  Added iridium quality.  Can now be used in [[Tailoring]].}}\n{{History|1.4.4|Fixed a mistake in the game data that prevented catfish-specific fish pond data from being applied (in earlier versions, catfish used the same fish pond data as all generic river fish). Catfish can no longer be requested by [[Demetrius]] or [[Willy]] in a [[Quests#Help Wanted Quests|Fishing Help Wanted quest]] during [[Winter]].}}\n{{History|1.6|One is contained in the [[Bundles#Fish Tank|Community Center Fish Tank]] right after it is repaired. Can now be gifted by a [[Animals#Pets|pet]] cat with max [[Animals#Friendship|friendship]].}}\n\n{{NavboxFish}}\n\n[[Category:Spring fish]]\n[[Category:Fall fish]]\n[[Category:River fish]]\n\n[[de:Katzenfisch]]\n[[es:Pez gato]]\n[[fr:Poisson-chat]]\n[[it:Pesce gatto]]\n[[ja:ナマズ]]\n[[ko:메기]]\n[[hu:Harcsa]]\n[[pt:Bagre]]\n[[ru:Сом]]\n[[tr:Kedibalığı]]\n[[zh:鲶鱼]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Fall fish"
+     },
+     {
+      "ns": 14,
+      "title": "Category:River fish"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Spring fish"
+     }
+    ]
+   },
+   {
+    "pageid": 2474,
+    "ns": 0,
+    "title": "Walleye",
+    "revisions": [
+     {
+      "revid": 193033,
+      "parentid": 193019,
+      "timestamp": "2026-05-15T00:07:54Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "{{Infobox fish\n|eng        = Walleye\n|location   = River • [[The Mountain|Mountain Lake]] • [[Cindersap Forest|Forest]] Pond • [[Farm Maps|Forest Farm]] Pond\n|time       = 12pm – 2am <!--Note that 12pm = NOON.  Please refrain from changing the time.-->\n|season     = {{Season|Fall}} • {{Season|Winter}} with [[Rain Totem]]\n|weather    = Rain\n|difficulty = 45\n|behavior   = Smooth\n|size       = 10-41\n|price      = 105\n|edibility  = 12\n|roe        = Yellow\n}}\nThe '''Walleye''' is a [[fish]] that can be caught in the river (in [[Pelican Town]] or [[Cindersap Forest]]), the [[The Mountain|mountain Lake]], and the [[Cindersap Forest]] pond during [[Fall]] when it is [[Weather|raining]]. It can also be caught in [[Winter]] if a [[Rain Totem]] is used. It can also be gifted by a [[Animals#Pets|pet]] cat with max [[Animals#Friendship|friendship]]. It can randomly be found in [[Garbage Can]]s during Fall and Winter, or at the [[Traveling Cart]] for {{tprice|105}}. If the player chooses the [[Farm Maps#Riverland|Riverland Farm]] or the [[Farm Maps#Forest|Forest Farm]], Walleye can also be caught in the farm pond.\n\nWalleye is most common in the Cindersap Forest pond. Every cast in the pond during raining Fall days has a 32% chance of hooking a Walleye.\n\nWalleye can be caught regardless of weather, time, or season using [[Magic Bait]].\n\n==Map==\nWalleye can be found in the river, [[The Mountain|mountain lake]], and [[Cindersap Forest|forest pond]] during [[Fall]] when it is raining.\n{{Map|200|150|loc2x=270|loc2y=43|loc3x=88|loc3y=133|loc4x=120|loc4y=150}}\n\n==Gifting==\n{{GiftsByItem\n|dislike=Robin,Maru,Caroline,Abigail,Alex,George,Lewis,Clint,Penny,Emily,Jas,Vincent,Jodi,Kent,Sam,Leah,Shane,Marnie,Gus,Dwarf,Wizard,Harvey,Sandy,Krobus\n|neutral=Demetrius,Sebastian,Linus,Pam,Elliott,Willy,Leo\n|hate=Pierre,Evelyn,Haley\n}}\n\n==Bundles==\n*Walleye is used in the {{Bundle|Night Fish||y}}. Despite this, it can be caught at any time after midday, so long as it is raining.\n*1 gold/iridium quality Walleye is used in the {{Bundle|Quality Fish||y}}.\n\n==Recipes==\n{{Recipes|header|hide=buff,duration}}\n{{:Maki Roll|RecipeRow/NoBuffs}}\n{{:Quality Fertilizer|RecipeRow/NoBuffs}}\n{{:Sashimi|RecipeRow/NoBuffs}}\n{{Recipes|footer}}\n\n==Tailoring==\nWalleye can be used in the spool of the [[2 Willow Lane#Sewing Machine|Sewing Machine]] to create the [[Tailoring|Fishing Vest]].  [[File:Shirt157.png|24px]] It can be used in [[dyeing]], serving as a yellow dye at the dye pots, located in [[Emily]]'s and [[Haley]]'s house, [[2 Willow Lane]].\n\n==Fish Pond==\nWalleye can be placed in a [[Fish Pond]], where they will reproduce every 3 days. The initial pond capacity is 3 fish, but the capacity can be increased to 10 by completing three quests. The only possible output is yellow Walleye [[Roe]].\n\n'''[[Fish Pond#Quests|Quests]]'''\n{| class=\"wikitable\"\n|-\n!colspan=\"2\"|Pond Capacity\n!rowspan=\"2\"|Quest Item\n!rowspan=\"2\"|Fishing XP Granted\n|-\n!Before Quest\n!After Quest\n|-\n| 3   || 5   || 3 [[Acorn]]s, 10 [[Bug Meat]], 3 [[Maple Seed]]s, or 3 [[Pine Cone]]s || 35\n|-\n| 5   || 7   || 3 [[Gold Ore]], 1 [[Maple Syrup]], or 5 [[Mixed Seeds]] || 35\n|-\n| 7   || 10  || 1 [[Crayfish]], 1 [[Honey]], 2 [[Jade]], or 1 [[Periwinkle]] || 35\n|}\n\n'''[[Fish Pond#Produce|Produce]]'''\n{| class=\"wikitable\"\n|-\n!Item(s) Produced\n!Fishing XP Granted\n!Population\n!% of Items\n!Overall Daily Chance\n|-\n|{{Name|Yellow Roe|1|link=Roe}}\n|13\n| 1-10 || 90%     || 21-86%\n|-\n|''Nothing''\n| \n| 1-10 || 10%     || 79-14%\n|}\n\n==Quests==\n*'''Item Delivery:''' One Walleye may be randomly requested in [[Fall]] or [[Winter]] at the [[Quests#Help Wanted Quests|\"Help Wanted\" board]] outside [[Pierre's General Store]] for a reward of {{Price|315}} and 150 [[Friendship]] points.\n\n==History==\n{{History|1.4|Added iridium quality. Can now be used in [[Tailoring]].}}\n{{History|1.5|Is now used in a remixed bundle.}}\n{{History|1.6|Can now be gifted by a [[Animals#Pets|pet]] cat with max [[Animals#Friendship|friendship]].}}\n\n{{NavboxFish}}\n\n[[Category:Pond fish]]\n[[Category:Fall fish]]\n[[Category:Lake fish]]\n[[Category:River fish]]\n\n[[de:Glasaugenbarsch]]\n[[es:Lucio]]\n[[fr:Doré jaune]]\n[[it:Walleye]]\n[[ja:ウォールアイ]]\n[[ko:월아이]]\n[[hu:Süllő]]\n[[pt:Picão-verde]]\n[[ru:Желтый судак]]\n[[tr:Kömür Balığı]]\n[[zh:大眼鱼]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Fall fish"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Lake fish"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Pond fish"
+     },
+     {
+      "ns": 14,
+      "title": "Category:River fish"
+     }
+    ]
+   },
+   {
+    "pageid": 2464,
+    "ns": 0,
+    "title": "Albacore",
+    "revisions": [
+     {
+      "revid": 193224,
+      "parentid": 166893,
+      "timestamp": "2026-05-19T16:38:19Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "{{Infobox fish\n|eng        = Albacore\n|location   = [[The Beach|Ocean]]\n|time       = 6am – 11am<br />6pm – 2am\n|season     = {{Season|Fall}} • {{Season|Winter}}\n|weather    = Any\n|difficulty = 60\n|behavior   = Mixed\n|size       = 20-41\n|price      = 75\n|edibility  = 10\n|roe        = Blue\n}}\nThe '''Albacore''' is a [[fish]] that can be caught in the ocean at [[The Beach]] or on the [[Farm Maps#Beach|Beach Farm]] during [[Fall]] and [[Winter]] in the early morning and at night. It may also randomly appear in [[Krobus]]' shop on [[Days of the Week#Wednesday|Wednesdays]] for {{Price|200}}, or at the [[Traveling Cart]] for {{Tprice|75}}.\n\nAlbacore can be caught regardless of time of day or season using [[Magic Bait]].\n\n==Map==\nAlbacore can be found in the ocean.\n{{Map|275|200}}\n\n==Gifting==\n{{GiftsByItem\n|dislike=Robin,Maru,Caroline,Abigail,Alex,George,Lewis,Clint,Penny,Emily,Jas,Vincent,Jodi,Kent,Sam,Leah,Shane,Marnie,Gus,Dwarf,Wizard,Harvey,Sandy,Krobus\n|neutral=Demetrius,Sebastian,Linus,Pam,Elliott,Willy,Leo\n|hate=Pierre,Evelyn,Haley\n}}\n\n==Bundles==\nAlbacore is not used in any [[bundles]].\n\n==Recipes==\n{{Recipes|header|hide=buff,duration}}\n{{:Maki Roll|RecipeRow/NoBuffs}}\n{{:Quality Fertilizer|RecipeRow/NoBuffs}}\n{{:Sashimi|RecipeRow/NoBuffs}}\n{{Recipes|footer}}\n\n==Tailoring==\nAlbacore can be used in the spool of the [[2 Willow Lane#Sewing Machine|Sewing Machine]] to create the dyeable [[Tailoring|Sailor Shirt]].  [[File:Shirt259a.png|24px]] It can be used in [[dyeing]], serving as a blue dye at the dye pots, located in [[Emily]]'s and [[Haley]]'s house, [[2 Willow Lane]].\n\n==Fish Pond==\nAlbacore can be placed in a [[Fish Pond]], where they will reproduce every 2 days. The initial pond capacity is 3 fish, but the capacity can be increased to 10 by completing three quests. The only possible output is blue Albacore [[Roe]].\n\n'''[[Fish Pond#Quests|Quests]]'''\n{|class=\"wikitable\"\n|-\n!colspan=\"2\"|Pond Capacity\n!rowspan=\"2\"|Quest Item\n!rowspan=\"2\"|Fishing XP Granted\n|-\n!Before Quest\n!After Quest\n|-\n| 3   || 5   || 3 [[Driftwood]], 1 [[Frozen Geode]], or 1-2 [[Seaweed]] || 30\n|-\n| 5   || 7   || 2 [[Clam]]s or 2 [[Coral]] || 30\n|-\n| 7   || 10  || 2 [[Aquamarine]], 1 [[Mussel]], or 2 [[Sea Urchin]]s || 30\n|}\n\n'''[[Fish Pond#Produce|Produce]]'''\n{|class=\"wikitable\"\n|-\n!Item(s) Produced\n!Fishing XP Granted\n!Population\n!% of Items\n!Overall Daily Chance\n|-\n|rowspan=\"2\"|{{Name|Blue Roe|1|link=Roe}}\n|rowspan=\"2\"|12\n| 1-4  || 70%     || 16-33%\n|-\n| 5-10 || 100%    || 55-95%\n|-\n|rowspan=\"2\"|''Nothing''\n|rowspan=\"2\"| \n| 1-4  || 30%     || 84-67%\n|-\n| 5-10 || 0%      || 45-5%\n|}\n\n==Quests==\n*[[Gus]] requests an albacore by mail on the 26th of [[Winter]] in the [[Quests#Fish Stew|\"Fish Stew\" quest]].  The reward is {{Price|400}} and 1 [[Friendship]] heart.\n*'''Fishing:''' [[Willy]] may randomly request 1-4 albacore in [[Fall]] or [[Winter]] at the [[Quests#Help Wanted Quests|\"Help Wanted\" board]] outside [[Pierre's General Store]] for a reward of {{Price|75}} per fish.  (You get to keep the fish).\n*'''Aquatic Overpopulation:''' [[Demetrius]] may request 10 Albacore to be caught in [[Fall]] at the [[Quests#List of Special Orders|Special Orders Board]] outside the [[Mayor's Manor]] for a reward of gold equivalent to selling the fish and the [[Farm Computer]] recipe.\n\n==History==\n{{History|1.4|Added iridium quality.  Can now be used in [[Tailoring]].}}\n{{History|1.5|Special Order quest added.}}\n\n{{NavboxFish}}\n\n[[Category:Ocean fish]]\n[[Category:Fall fish]]\n[[Category:Winter fish]]\n\n[[de:Weißer Thun]]\n[[es:Atún blanco]]\n[[fr:Albacore]]\n[[it:Alalonga]]\n[[ja:ビンナガ]]\n[[ko:날개다랑어]]\n[[hu:Germon]]\n[[pt:Albacora]]\n[[ru:Альбакор]]\n[[tr:Orkinoz]]\n[[zh:青花鱼]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Fall fish"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Ocean fish"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Winter fish"
+     }
+    ]
+   },
+   {
+    "pageid": 2488,
+    "ns": 0,
+    "title": "Rainbow Trout",
+    "revisions": [
+     {
+      "revid": 193322,
+      "parentid": 193017,
+      "timestamp": "2026-05-19T16:38:46Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "{{Infobox fish\n|eng        = Rainbow Trout\n|location   = River • [[The Mountain|Mountain Lake]]\n|time       = <ul><li>6am – 7pm</li><li>Anytime during [[Trout Derby]]</li></ul>\n|season     = Summer\n|weather    = <ul><li>Sun</li><li>Any during [[Trout Derby]]</li></ul> \n|difficulty = 45\n|behavior   = Mixed\n|size       = 10-26\n|price      = 65\n|edibility  = 10\n|roe        = Orange\n}}\n:''See also: [[Trout Derby]].''\nThe '''Rainbow Trout''' is a [[fish]] that can be caught in the river (in [[Pelican Town]] and [[Cindersap Forest]]) and the [[The Mountain|mountain lake]] during [[Summer]] during sunny [[weather]]. It can also be gifted by a [[Animals#Pets|pet]] cat with max [[Animals#Friendship|friendship]]. It can also randomly be found in [[Garbage Can]]s during Summer, or at the [[Traveling Cart]] for {{Tprice|65}}.\n\nOn Summer 20th and 21st during the [[Trout Derby]] festival, Rainbow Trout can be caught in the Cindersap Forest during the entire day and regardless of weather. The fish can also be caught during Trout Derby without the normal restrictions in [[Farm Maps]] with Cindersap Forest fish, such as the Riverland, Hilltop, Forest, and Meadowlands farms.\n\nRainbow Trout can be caught regardless of weather, time, or season using [[Magic Bait]].\n\n==Map==\nThe Rainbow Trout can be found in the river and the mountain lake.\n{{Map|270|43|loc2x=200|loc2y=150|loc3x=120|loc3y=150}}\n\n==Gifting==\n{{GiftsByItem\n|dislike=Robin,Maru,Caroline,Abigail,Alex,George,Lewis,Clint,Penny,Emily,Jas,Vincent,Jodi,Kent,Sam,Leah,Shane,Marnie,Gus,Dwarf,Wizard,Harvey,Sandy,Krobus\n|neutral=Demetrius,Sebastian,Linus,Pam,Elliott,Willy,Leo\n|hate=Pierre,Evelyn,Haley\n}}\n\n==Bundles==\nRainbow Trout is not used in any [[bundles]].\n\n==Recipes==\n{{Recipes|header}}\n{{:Maki Roll|RecipeRow}}\n{{:Quality Fertilizer|RecipeRow}}\n{{:Sashimi|RecipeRow}}\n{{:Trout Soup|RecipeRow}}\n{{Recipes|footer}}\n\n==Tailoring==\nRainbow Trout can be used in the spool of the [[2 Willow Lane#Sewing Machine|Sewing Machine]] to create the dyeable [[Tailoring|Fish Shirt]].  [[File:Shirt158.png|24px]]\n\nIt can also be used as an orange dye in the dye pots located in [[Haley]]'s and [[Emily]]'s house, [[2 Willow Lane]]. \n\n==Fish Pond==\nRainbow Trout can be placed in a [[Fish Pond]], where they will reproduce every 2 days. The initial pond capacity is 3 fish, but the capacity can be increased to 10 by completing three quests. The primary output is orange Rainbow Trout [[Roe]]. However, more valuable items are possible starting at population 9, including a 0.09% daily chance of producing a [[Prismatic Shard]].\n\n'''[[Fish Pond#Quests|Quests]]'''\n{| class=\"wikitable\"\n|-\n!colspan=\"2\"|Pond Capacity\n!rowspan=\"2\"|Quest Item\n!rowspan=\"2\"|Fishing XP Granted\n|-\n!Before Quest\n!After Quest\n|-\n| 3   || 5   || 3 [[Coral]], 1 [[Honey]], 1 [[Oyster]], or 3 [[Refined Quartz]] || 30\n|-\n| 5   || 7   || 1 [[Dried Starfish]], 2 [[Emerald]]s, 2-3 [[Omni Geode]]s, or 2-3 [[Purple Mushroom]]s || 30\n|-\n| 7   || 10  || 1 [[Diamond]], 3 [[Gold Bar]]s, 1 [[Iridium Ore]], 1 [[Jellies and Pickles|Jelly]], or 1 [[Jellies and Pickles|Pickle]] || 30\n|}\n\n'''[[Fish Pond#Produce|Produce]]'''\n{| class=\"wikitable\"\n|-\n!Item(s) Produced\n!Fishing XP Granted\n!Population\n!% of Items\n!Overall Daily Chance\n|-\n|rowspan=\"2\"|{{Name|Orange Roe|1|link=Roe}}\n|rowspan=\"2\"|12\n| 1-8  || 100%    || 23-79%\n|-\n| 9-10 || 98%     || 85-93%\n|-\n|{{Name|Rainbow Shell|1}}\n|22\n| 9-10 || 2%      || 1.7-1.9%\n|-\n|{{Name|Prismatic Shard|1}}\n|90\n| 9-10 || 0.1%    || 0.09%\n|-\n|rowspan=\"2\"|''Nothing''\n|rowspan=\"2\"| \n| 1-8  || 0%      || 77-21%\n|-\n| 9-10 || 0%      || 13-5%\n|}\n\n==Quests==\n*'''Item Delivery:''' One Rainbow Trout may be randomly requested in [[Summer]] at the [[Quests#Help Wanted Quests|\"Help Wanted\" board]] outside [[Pierre's General Store]] for a reward of {{Price|195}} and 150 [[Friendship]] points.\n*'''Fishing:''' [[Demetrius]] or [[Willy]] may randomly request 1-4 Rainbow Trout to be caught during [[Summer]] at the [[Quests#Help Wanted Quests|\"Help Wanted\" board]] outside [[Pierre's General Store]] for a reward of {{Price|65}} per fish.  (You get to keep the fish).\n*'''Aquatic Overpopulation:''' [[Demetrius]] may request 10 Rainbow Trout to be caught in [[Summer]] at the [[Quests#List of Special Orders|Special Orders board]] outside the [[Mayor's Manor]] for a reward of gold equivalent to selling the fish and the [[Farm Computer]] recipe.\n\n==History==\n{{History|1.4|Added iridium quality.  Can now be used in [[Tailoring]].}}\n{{History|1.4.4|Fixed a mistake in the game data that prevented rainbow trout-specific fish pond data from being applied (in earlier versions, rainbow trout used the same fish pond data as all generic river fish).}}\n{{History|1.5|Special Order quest added.}}\n{{History|1.6|Can now be caught during the entire day and in the rain when the [[Trout Derby]] festival is active. Can now be gifted by a [[Animals#Pets|pet]] cat with max [[Animals#Friendship|friendship]].}}\n\n{{NavboxFish}}\n\n[[Category:Summer fish]]\n[[Category:River fish]]\n[[Category:Lake fish]]\n\n[[de:Regenbogenforelle]]\n[[es:Trucha arcoíris]]\n[[fr:Truite arc-en-ciel]]\n[[it:Trota arcobaleno]]\n[[ja:ニジマス]]\n[[ko:무지개송어]]\n[[hu:Szivárvány pisztráng]]\n[[pt:Truta arco-íris]]\n[[ru:Радужная форель]]\n[[tr:Renkli Alabalık]]\n[[zh:虹鳟鱼]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Lake fish"
+     },
+     {
+      "ns": 14,
+      "title": "Category:River fish"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Summer fish"
+     }
+    ]
+   },
+   {
+    "pageid": 2001,
+    "ns": 0,
+    "title": "Crab",
+    "revisions": [
+     {
+      "revid": 194156,
+      "parentid": 193302,
+      "timestamp": "2026-09-01T12:11:17Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "{{Infobox fish\n|eng        = Crab\n|source     = <nowiki />\n* {{Name|Crab Pot|class=inline}}: [[Crab Pot#Saltwater|Saltwater]]\n* [[Monsters|Monster]] Drops: [[Rock Crab]] • [[Lava Crab]]\n* [[Animals#Pets|Turtle]]\n|xp           = Crab Pot: 5 [[Fishing#Experience Points|Fishing XP]]\n|season     = All\n|edibility  = -300\n|price      = 100\n|size       = 1-20\n|quality    = 0,1\n|roe        = Red\n}}\nThe '''Crab''' is a [[fish]] that can be caught using a [[Crab Pot]] in any [[Crab Pot#Saltwater|saltwater]] body of water. It can also be dropped by a [[Rock Crab]] (15% chance) or [[Lava Crab]] (25% chance) when slain. It can also be gifted by a [[Animals#Pets|pet]] turtle with max [[Animals#Friendship|friendship]], or randomly found at the [[Traveling Cart]] for {{Tprice|100}}. Five can be purchased from [[Elliott]]'s [[Desert Festival#Villager Shops|shop]] at the [[Desert Festival]] for {{Price|30|Calico}} [[Calico Egg]]s each. Like all fish caught from the crab pot, it cannot be eaten unless it is used in a [[Cooking]] recipe or [[Smoked Fish|smoked]].\n\n==Gifting==\n{{GiftsByItem\n|dislike=Robin,Maru,Caroline,Abigail,Alex,George,Lewis,Clint,Penny,Emily,Jas,Vincent,Jodi,Kent,Sam,Leah,Shane,Marnie,Gus,Dwarf,Wizard,Harvey,Sandy,Krobus\n|neutral=Demetrius,Sebastian,Linus,Pam,Elliott,Willy,Leo\n|hate=Pierre,Evelyn,Haley\n}}\n\n==Bundles==\nA Crab is an option for the {{Bundle|Crab||y}}.\n\n==Recipes==\n{{Recipes|header}}\n{{:Crab Cakes|RecipeRow}}\n{{:Maki Roll|RecipeRow}}\n{{:Quality Fertilizer|RecipeRow}}\n{{:Sashimi|RecipeRow}}\n{{Recipes|footer}}\n\n==Fish Pond==\nCrabs can be placed in a [[Fish Pond]], where they will reproduce every 3 days. The initial pond capacity is 3 fish, but the capacity can be increased to 10 by completing three quests. Typical output includes red Crab [[Roe]], [[Seaweed]], and various [[Trash]] items, but more valuable items are possible starting at population 5.\n\n'''[[Fish Pond#Quests|Quests]]'''\n{|class=\"wikitable\"\n|-\n!colspan=\"2\"|Pond Capacity\n!rowspan=\"2\"|Quest Item\n!rowspan=\"2\"|Fishing XP Granted\n|-\n!Before Quest\n!After Quest\n|-\n| 3   || 5   || 5 [[Clay]] || 35\n|-\n| 5   || 7   || 10 [[Bug Meat]] or 5 [[Quartz]] || 35\n|-\n| 7   || 10  || 1 [[Sea Urchin]], 5 [[Solar Essence]], or 1 [[Wild Bait]] || 35\n|}\n\n'''[[Fish Pond#Produce|Produce]]'''\n{|class=\"wikitable sortable\"\n|-\n!Item(s) Produced\n!data-sort-type=\"number\"|Fishing XP Granted\n!data-sort-type=\"number\"|Population\n!% of Items\n!data-sort-type=\"number\"|Overall Daily Chance\n|-\n|rowspan=\"3\" data-sort-value=\"Roe\"|{{Name|Red Roe|1|link=Roe}}\n|rowspan=\"3\"|13\n| 1-4  || 13%     || 3-6%\n|-\n| 5-8  || 12%     || 6-9%\n|-\n| 9-10 || 11%     || 9-10%\n|-\n|rowspan=\"3\" data-sort-value=\"Seaweed\"|{{Name|Seaweed|1-3}}\n|rowspan=\"3\"|10\n| 1-4  || 9%      || 2-4%\n|-\n| 5-8  || 9%      || 5-7%\n|-\n| 9-10 || 8%      || 7-8%\n|-\n|rowspan=\"3\" data-sort-value=\"Trash\"|{{Name|Trash (item)|1|link=Trash (item){{!}}Trash}}\n|rowspan=\"3\"|10\n| 1-4  || 8%      || 1.9-4%\n|-\n| 5-8  || 7%      || 4-6%\n|-\n| 9-10 || 6%      || 6%\n|-\n|rowspan=\"3\" data-sort-value=\"Driftwood\"|{{Name|Driftwood|1}}\n|rowspan=\"3\"|10\n| 1-4  || 4%      || 1-2%\n|-\n| 5-8  || 4%      || 2.1-3%\n|-\n| 9-10 || 3%      || 3%\n|-\n|rowspan=\"3\" data-sort-value=\"Broken Glasses\"|{{Name|Broken Glasses|1}}\n|rowspan=\"3\"|10\n| 1-4  || 4%      || 0.9-1.9%\n|-\n| 5-8  || 4%      || 2-3%\n|-\n| 9-10 || 3%      || 3%\n|-\n|rowspan=\"3\" data-sort-value=\"Broken CD\"|{{Name|Broken CD|1}}\n|rowspan=\"3\"|10\n| 1-4  || 4%      || 0.9-1.8%\n|-\n| 5-8  || 3%      || 1.9-3%\n|-\n| 9-10 || 3%      || 3%\n|-\n|rowspan=\"3\" data-sort-value=\"Soggy Newspaper\"|{{Name|Soggy Newspaper|1}}\n|rowspan=\"3\"|10\n| 1-4  || 4%      || 0.9-1.7%\n|-\n| 5-8  || 3%      || 1.8-3%\n|-\n| 9-10 || 3%      || 3%\n|-\n|rowspan=\"2\" data-sort-value=\"Coral\"|{{Name|Coral|1}}\n|rowspan=\"2\"|13\n| 5-8  || 6%      || 4-5%\n|-\n| 9-10 || 6%      || 5-6%\n|-\n|rowspan=\"2\" data-sort-value=\"Sea Urchin\"|{{Name|Sea Urchin|1}}\n|rowspan=\"2\"|16\n| 5-8  || 5%      || 3-4%\n|-\n| 9-10 || 4%      || 4%\n|-\n|data-sort-value=\"Warp Totem: Beach\"|{{Name|Warp Totem Beach|1}}\n|10\n| 9-10 || 7%      || 6-7%\n|-\n|data-sort-value=\"Nautilus Shell\"| {{Name|Nautilus Shell|1}}\n|14\n| 9-10 || 2%      || 1.7-1.9%\n|-\n|rowspan=\"3\" data-sort-value=\"ZZZZ\"|''Nothing''\n|rowspan=\"3\"| \n| 1-4  || 54%     || 89-78%\n|-\n| 5-8  || 47%     || 71-58%\n|-\n| 9-10 || 43%     || 50-46%\n|}\n\n==Quests==\nCrab is not used in any [[quests]].\n\n==Tailoring==\nCrab can be used in the spool of the [[2 Willow Lane#Sewing Machine|Sewing Machine]] to create the dyeable [[Tailoring|Sailor Shirt]].  [[File:Shirt261a.png|24px]] It can be also used as a red dye color at the dye pots in [[Emily]]'s and [[Haley]]'s house, [[2 Willow Lane]].\n\n==Notes==\nAfter being dropped by a [[Rock Crab]], a crab will bounce around until it is picked up.\n\n==Trivia==\n*After filling a [[Fish Pond]] with 10 Crabs, [[Willy]] will give the player one [[Pearl]] the next time they talk to him within 14 days<ref name=\"crab_pearl\" />.\n\n==References==\n<references>\n   <ref name=\"crab_pearl\">See <samp>FishPond::dayUpdate</samp>.</ref>\n</references>\n\n==History==\n{{History|1.4|Can now be used in [[Tailoring]].}}\n{{History|1.6|Can now be gifted by a [[Animals#Pets|pet]] turtle with max [[Animals#Friendship|friendship]]. Now obtainable during [[Desert Festival]]. Added silver quality.}}\n\n{{NavboxFish}}\n\n[[Category:Crab pot fish]]\n[[Category:Ocean fish]]\n[[Category:Spring fish]]\n[[Category:Summer fish]]\n[[Category:Fall fish]]\n[[Category:Winter fish]]\n\n[[de:Krabbe]]\n[[es:Cangrejo]]\n[[fr:Crabe]]\n[[it:Granchio]]\n[[ja:カニ]]\n[[ko:게]]\n[[hu:Rák]]\n[[pt:Caranguejo]]\n[[ru:Краб]]\n[[tr:Yengeç]]\n[[zh:螃蟹]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Crab pot fish"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Fall fish"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Ocean fish"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Spring fish"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Summer fish"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Winter fish"
+     }
+    ]
+   },
+   {
+    "pageid": 2500,
+    "ns": 0,
+    "title": "Legend",
+    "revisions": [
+     {
+      "revid": 193653,
+      "parentid": 193648,
+      "timestamp": "2026-06-23T18:29:22Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "{{Infobox fish\n|eng        = Legend\n|location   = [[The Mountain|Mountain Lake]]\n|time       = Any\n|season     = Spring\n|weather    = Rain\n|difficulty = 110\n|size       = 49-51\n|fl         = 10\n|price      = 5000\n|edibility  = 200\n|behavior   = Mixed\n|roe        = Green\n}}\n:''See also: [[Legend II]]. For the achievement, see [[Achievements#Achievements list|Achievements]].''\nThe '''Legend''' is a [[fish]] that can be caught during [[Spring]] in [[the Mountain]] lake during rainy [[weather]]. It is one of the five [[Fish#Legendary Fish|Legendary Fish]], so it can only be caught once per [[Saves|save file]], or once per player in [[Multiplayer]].\n\nThe special requirements necessary to hook a Legend are:<ref name=\"requirements\"/>\n* [[Fishing#Fishing Skill|Fishing level 10]], either naturally or using Fishing [[Buffs]].\n* The bobber must be located in water with a [[Fishing#Distance from Land|distance from land]] of 4, ''i.e.,'' it must be at least four tiles away from any land (including bridges) in every direction.\n** The Legend can appear one tile closer to land if the bobber lands in [[Fishing#Bubbles|bubbles]].\n** The region of the lake near the large submerged log meets this requirement, as suggested in ''[[Lost Books#Secrets of the Legendary Fish|Secrets of the Legendary Fish]]''. However, there are other locations in the lake that also work.\n\nWhen all of these requirements are met, each cast has a 10% chance of hooking a Legend (20% if using a [[Curiosity Lure]]). Contrary to the information provided by ''[[Lost Books#The Fisherman, Act II|The Fisherman, Act II]]'', none of the other Legendary Fish need to be caught first.\n\nAlthough the Legend cannot be hooked again after it is caught, it is still possible to obtain multiple Legends in singleplayer. The player can catch up to 3 by using [[Challenge Bait]], or an infinite number by [[Pans|Panning]] in the correct [[#Map|tiles]] with the [[Forge#Enchantments|Fisher enchantment]] (so long as the player has not already caught the Legend normally). \n\nThe Legend can be caught regardless of weather or season using [[Magic Bait]].\n\n==Map==\nThe Legend can be found in the mountain lake.\n{{Map|275|50}}\n[[File:LegendLocations.png|thumb|left]]\n{{clear}}\n\n==Gifting==\n{{GiftsByItem\n|dislike=Robin,Maru,Caroline,Abigail,Alex,George,Lewis,Clint,Penny,Emily,Jas,Vincent,Jodi,Kent,Sam,Leah,Shane,Marnie,Gus,Dwarf,Wizard,Harvey,Sandy,Krobus\n|neutral=Demetrius,Sebastian,Linus,Pam,Elliott,Willy,Leo\n|hate=Pierre,Evelyn,Haley\n}}\n\n==Bundles==\nThe Legend is not used in any [[bundles]].\n\n==Recipes==\n{{Recipes|header|hide=buff,duration}}\n{{:Maki Roll|RecipeRow/NoBuffs}}\n{{:Quality Fertilizer|RecipeRow/NoBuffs}}\n{{:Sashimi|RecipeRow/NoBuffs}}\n{{Recipes|footer}}\n\n==Dyeing==\nIt can be used in [[dyeing]], serving as a green dye at the dye pots, located in [[Emily]]'s and [[Haley]]'s house, [[2 Willow Lane]].\n\n==Fish Pond==\nLegend can be placed in a [[Fish Pond]]. The pond capacity is 1 fish and this cannot be increased. The only possible output is Legend [[Roe]].\n\n'''[[Fish Pond#Produce|Produce]]'''\n{|class=\"wikitable\"\n|-\n!Item(s) Produced\n!Fishing XP Granted\n!Population\n!% of Items\n!Overall Daily Chance\n|-\n|{{Name|Green Roe|1|link=Roe}}\n|112\n| 1 || 43%     || 21.5%\n|-\n|{{Name|Green Roe|1-2|link=Roe}}\n|112\n| 1 || 28.5%     || 14.25%\n|-\n|''Nothing''\n| \n| 1 || 28.5%     || 64.25%\n|}\n\n==Quests==\nThe Legend is not used in any [[quests]].\n\n==References==\n<references>\n    <ref name=\"requirements\">See <samp>Data\\Locations.xnb</samp>.</ref>\n</references>\n\n==History==\n{{History|1.4|Removed bug allowing it to be caught more than once per save file.  Added iridium quality.}}\n{{History|1.5|Chance of catching it can now be increased by using a [[Curiosity Lure]].}}\n{{History|1.6|Fixed bug allowing [[Fish#Legendary Fish|Legendary Fish]] to be hooked with the [[Training Rod]]. Legendary Fish [[Roe]] now obtainable by the power from the [[Jewels Of The Sea]] book. Can now obtain multiple Legends per player using [[Challenge Bait]] or by [[Pans|panning]] with the [[Forge#Enchantments|Fisher enchantment]].}}\n{{History|1.6.9|Can now be placed in a [[Fish Pond]].}}\n{{History|1.6.13|Reduced chance of obtaining [[Roe]] from Fish Pond.}}\n{{History|1.6.15|Now produce roe much more often and have a higher average daily value.}}\n\n{{NavboxFish}}\n\n[[Category:Legendary fish]]\n[[Category:Spring fish]]\n[[Category:Lake fish]]\n\n[[de:Legende]]\n[[es:Leyenda]]\n[[fr:Légende]]\n[[it:Leggenda]]\n[[ja:レジェンド]]\n[[ko:전설의 물고기]]\n[[hu:Legenda]]\n[[pt:Lenda]]\n[[ru:Легенда]]\n[[tr:Efsane]]\n[[zh:传说之鱼]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Lake fish"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Legendary fish"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Spring fish"
+     }
+    ]
+   },
+   {
+    "pageid": 1771,
+    "ns": 0,
+    "title": "Lava Eel",
+    "revisions": [
+     {
+      "revid": 190296,
+      "parentid": 187047,
+      "timestamp": "2026-01-12T17:58:52Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "{{Infobox fish\n|eng        = Lava Eel\n|location   = Floor 100 of [[The Mines]] • [[Forge|Volcano Caldera]]\n|time       = Any\n|season     = All\n|weather    = Any\n|difficulty = 90\n|behavior   = Mixed\n|size       = 31-33\n|fl         = 7 (Forge)\n|price      = 700\n|edibility  = 20\n|roe        = Red\n}}\nThe '''Lava Eel''' is a [[fish]] that can be caught during all times and seasons in [[the Mines]] on the 100th floor and at the [[Forge|Volcano Caldera]]. It is the only fish that can spawn in lava.\n\nIn the Mines, the chances of hooking a Lava Eel depends on fishing level and equipment of the farmer, as well as the [[Fishing#Distance from Land|distance from land]] of the fished tile. The base chance of hooking a Lava Eel is 1.8%, which is increased by 0.32% per Fishing Level and 0.08% per tile from land. This is increased by a further 4% if a [[Curiosity Lure]] is equipped, and by 8% if [[Targeted Bait|Lava Eel Bait]] is equipped.<ref name=\"mines_rates\"/> For example, with a Fishing Level of 10 and 5 tiles from land, the chance of hooking a Lava Eel is 5.4%. This increases to 9.4% with a Curiosity Lure equipped, to 13.4% with Lava Eel Bait equipped, and to 17.4% with both a Curiosity Lure and Lava Eel Bait equipped.\n\nAt the Volcano Caldera, the percent chance of hooking a Lava Eel is equivalent to 10 times the [[Fishing#Distance from Land|distance from land]] of the spot fished, assuming the [['Physics 101']] painting was not caught. For example, there is a 50% chance to hook a Lava Eel if the bobber lands 5 tiles from land.<ref name=\"forgechance\" />\n\nOf the non-[[Fish#Legendary Fish|legendary fish]], it is the fish with the highest sell price and the second highest difficulty fish (after [[Octopus]], tied with the [[Scorpion Carp]]).\n\n==Map==\nThe Lava Eel can be found in the Mines and at the Volcano Caldera.\n{{Map|270|20|island=true|islandloc1x=203|islandloc1y=32}}\n\n==Gifting==\n{{GiftsByItem\n|love=Dwarf\n|dislike=Robin,Maru,Caroline,Abigail,Alex,George,Lewis,Clint,Penny,Emily,Jas,Vincent,Jodi,Kent,Sam,Leah,Shane,Marnie,Gus,Wizard,Harvey,Sandy,Krobus\n|neutral=Demetrius,Sebastian,Linus,Pam,Elliott,Willy,Leo\n|hate=Pierre,Evelyn,Haley\n}}\n\n==Bundles==\nLava Eel is an option in the {{Bundle|Master Fishers||y}}.\n\n==Recipes==\n{{Recipes|header|hide=buff,duration}}\n{{:Maki Roll|RecipeRow/NoBuffs}}\n{{:Quality Fertilizer|RecipeRow/NoBuffs}}\n{{:Sashimi|RecipeRow/NoBuffs}}\n{{Recipes|footer}}\n\n==Tailoring==\nLava Eel is used in the spool of the [[2 Willow Lane#Sewing Machine|Sewing Machine]] to create the {{Name|Logo Cap|class=inline}}. It can also be used as a red dye color at the dye pots in [[Emily]]'s and [[Haley]]'s house, located at [[2 Willow Lane]].\n\n==Fish Pond==\nLava Eels can be placed in a [[Fish Pond]], where they will reproduce every 5 days. The initial pond capacity is 1 fish, but the capacity can be increased to 10 by completing four quests. After the first quest is completed, the color of the pond water changes to red. The primary output is red Lava Eel [[Roe]], but [[Gold Ore]] is possible starting at population 3 and several more valuable items are possible starting at population 8.\n\n'''[[Fish Pond#Quests|Quests]]'''\n{|class=\"wikitable\"\n|-\n!colspan=\"2\"|Pond Capacity\n!rowspan=\"2\"|Quest Item\n!rowspan=\"2\"|Fishing XP Granted\n|-\n!Before Quest\n!After Quest\n|-\n| 1   || 3   || 3 [[Fire Quartz]] || 45\n|-\n| 3   || 5   || 1 [[Basalt]], 2 [[Diamond]]s, or 1 [[Dwarf Scroll III]] || 45\n|-\n| 5   || 7   || 2 [[Mega Bomb]]s || 45\n|-\n| 7   || 10  || 1 [[Iridium Bar]] || 45\n|}\n\n'''[[Fish Pond#Produce|Produce]]'''\n{|class=\"wikitable sortable\"\n|-\n!Item(s) Produced\n!data-sort-type=\"number\"|Fishing XP Granted\n!data-sort-type=\"number\"|Population\n!% of Items\n!data-sort-type=\"number\"|Overall Daily Chance\n|-\n|rowspan=\"6\" data-sort-value=\"Roe 1\"|{{Name|Red Roe|1|link=Roe}}\n|rowspan=\"6\"|25\n| 1-2  || 80%     || 18-25%\n|-\n| 3-5  || 72%     || 28-40%\n|-\n| 6-7  || 90%     || 57-64%\n|-\n| 8    || 86%     || 68%\n|-\n| 9    || 67%     || 58%\n|-\n| 10   || 62%     || 59%\n|-\n|rowspan=\"2\" data-sort-value=\"Roe 2\"|{{Name|Red Roe|2|link=Roe}}\n|rowspan=\"2\"|25\n| 9    || 14%     || 12%\n|-\n| 10   || 13%     || 12%\n|-\n|rowspan=\"2\" data-sort-value=\"Roe 3\"|{{Name|Red Roe|3|link=Roe}}\n|rowspan=\"2\"|25\n| 9    || 3.1%      || 2.7%\n|-\n| 10   || 2.9%      || 2.7%\n|-\n|rowspan=\"4\" data-sort-value=\"Gold Ore\"|{{Name|Gold Ore|5}}\n|rowspan=\"4\"|11\n| 3-7  || 10%     || 4-7%\n|-\n| 8    || 9.6%    || 7.6%\n|-\n| 9    || 7.4%    || 6.4%\n|-\n| 10   || 6.9%    || 6.5%\n|-\n|rowspan=\"3\" data-sort-value=\"Cave Jelly 1\"|{{Name|Cave Jelly|1}}\n|rowspan=\"3\"|17\n| 8   || 4%      || 3.2%\n|-\n| 9   || 3.1%      || 2.7%\n|-\n| 10   || 2.9%      || 2.7%\n|-\n|data-sort-value=\"Cave Jelly 3\"|{{Name|Cave Jelly|3}}\n|17\n| 10   || 3.9%      || 3.7%\n|-\n|rowspan=\"2\" data-sort-value=\"Spicy Eel\"|{{Name|Spicy Eel|5}}\n|rowspan=\"2\"|17\n| 9    || 3.9%      || 3.4%\n|-\n| 10   || 3.6%      || 3.5%\n|-\n|rowspan=\"2\" data-sort-value=\"Magma Geode 5\"|{{Name|Magma Geode|5}}\n|rowspan=\"2\"|16\n| 9    || 2%      || 1.7%\n|-\n| 10   || 1.9%    || 1.8%\n|-\n|data-sort-value=\"Magma Geode 10\"|{{Name|Magma Geode|10}}\n|16\n| 10   || 3.3%      || 3.1%\n|-\n|rowspan=\"3\" data-sort-value=\"ZZZZ\"|''Nothing''\n|rowspan=\"3\"| \n| 1-2  || 20%     || 82-75%\n|-\n| 3-5  || 18%     || 68-55%\n|-\n| 6-10 || 0%      || 37-5%\n|}\n\n==Quests==\nLava Eel is not used in any [[quests]].\n\n==References==\n<references>\n    <ref name=\"mines_rates\">See <samp>MineShaft::getFish</samp> in the game code. As the code used to fish in Level 100 of the Mines never invokes the default Fishing function, this means that Location and Fish data is unused, bypassing the requirement for Level 7 Fishing.</ref>\n    <ref name=\"forgechance\">See <samp>Data\\Locations.xnb</samp> in the game files.</ref>\n</references>\n\n==History==\n{{History|1.4|Added iridium quality. Can now be used in [[Tailoring]].}}\n{{History|1.5|Is now used in a remixed bundle. Can now be caught at the [[Forge]]. Chance of catching it in [[The Mines]] now increased by 4% when using a [[Curiosity Lure]].}}\n{{History|1.6|Added [[Cave Jelly]] to possible [[Fish Pond]] outputs. Dwarf now loves Lava Eel. Chance of catching it in [[The Mines]] now increased by 8% when using [[Targeted Bait|Lava Eel Bait]]. Spawn rates in the [[Forge]] significantly reduced. Now requires [[Fishing#Fishing Skill|Fishing level 7]] to hook in the Forge.}}\n{{History|1.6.9|Spawn rates in the Forge changed back to what they were in 1.5}} \n\n{{NavboxFish}}\n\n[[Category:Mine fish]]\n[[Category:Spring fish]]\n[[Category:Summer fish]]\n[[Category:Fall fish]]\n[[Category:Winter fish]]\n[[Category:Island fish]]\n\n[[de:Lava-Aal]]\n[[es:Anguila de lava]]\n[[fr:Anguille de lave]]\n[[it:Anguilla lavica]]\n[[ja:溶岩ウナギ]]\n[[ko:용암 장어]]\n[[hu:Láva angolna]]\n[[pt:Enguia de lava]]\n[[ru:Лавовый угорь]]\n[[tr:Lav Yılanbalığı]]\n[[zh:岩浆鳗鱼]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Fall fish"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Island fish"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Mine fish"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Spring fish"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Summer fish"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Winter fish"
+     }
+    ]
+   },
+   {
+    "pageid": 11695,
+    "ns": 0,
+    "title": "Stingray",
+    "revisions": [
+     {
+      "revid": 180872,
+      "parentid": 180870,
+      "timestamp": "2024-11-13T08:29:29Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "{{Infobox fish\n|eng        = Stingray\n|location   = [[Ginger Island#Pirate Cove|Pirate Cove]]\n|time       = Any\n|season     = All\n|weather    = Any\n|difficulty = 80\n|behavior   = Sinker\n|size       = 18-61\n|price      = 180\n|edibility  = 15\n|roe        = Dark Brown\n}}\nThe '''Stingray''' is a [[fish]] that can be caught at the [[Ginger Island#Pirate Cove|Pirate Cove]] on [[Ginger Island#Island Southeast|Ginger Island Southeast]].\n\nThe player can purchase [[Mahogany Seed]]s from the [[Island Trader]] for 1 stingray each.\n\n==Map==\nThe Stingray can be found in the [[Ginger Island#Pirate Cove|Pirate Cove]].\n{{Map|main=false|island=true|islandloc1x=260|islandloc1y=145}}\n\n==Gifting==\n{{GiftsByItem\n|dislike=Robin,Maru,Caroline,Abigail,Alex,George,Lewis,Clint,Penny,Emily,Jas,Vincent,Jodi,Kent,Sam,Leah,Shane,Marnie,Gus,Dwarf,Wizard,Harvey,Sandy,Krobus\n|neutral=Demetrius,Sebastian,Linus,Leo,Pam,Elliott,Willy\n|hate=Pierre,Evelyn,Haley\n}}\n\n==Bundles==\nStingray is not used in any [[bundles]].\n\n==Recipes==\n{{Recipes|header|hide=buff,duration}}\n{{:Maki Roll|RecipeRow/NoBuffs}}\n{{:Quality Fertilizer|RecipeRow/NoBuffs}}\n{{:Sashimi|RecipeRow/NoBuffs}}\n{{Recipes|footer}}\n\n==Tailoring==\nStingray can be used in the spool of the [[2 Willow Lane#Sewing Machine|Sewing Machine]] to create the dyeable [[Tailoring|Sailor Shirt]].  [[File:Shirt259a.png|24px]] It can be used in [[dyeing]], serving as an orange dye at the dye pots, located in [[Emily]]'s and [[Haley]]'s house, [[2 Willow Lane]].\n\n==Fish Pond==\nStingrays can be placed in a [[Fish Pond]], where they will reproduce every 4 days. The initial pond capacity is 3 fish, but the capacity can be increased to 10 by completing two quests. The primary output is dark brown Stingray [[Roe]], but more valuable items are possible starting at population 4.\n\n'''[[Fish Pond#Quests|Quests]]'''\n{| class=\"wikitable\"\n|-\n!colspan=\"2\"|Pond Capacity\n!rowspan=\"2\"|Quest Item\n!rowspan=\"2\"|Fishing XP Granted\n|-\n!Before Quest\n!After Quest\n|-\n| 3   || 5   || 7 [[Cinder Shard]]s || 40\n|-\n| 5   || 10  || 1 [[Dragon Tooth]] || 40\n|}\n\n'''[[Fish Pond#Produce|Produce]]'''\n{| class=\"wikitable sortable\"\n|-\n!Item(s) Produced\n!data-sort-type=\"number\"|Fishing XP Granted\n!data-sort-type=\"number\"|Population\n!% of Items\n!data-sort-type=\"number\"|Overall Daily Chance\n|-\n|rowspan=\"5\" data-sort-value=\"Roe\"|{{Name|Dark Brown Roe|1|link=Roe}}\n|rowspan=\"5\"|14\n| 1-3  || 80%     || 18-31%\n|-\n| 4    || 76%     || 36%\n|-\n| 5-6  || 95%     || 52-60%\n|-\n| 7-8  || 86%     || 61-68%\n|-\n| 9-10 || 72%     || 63-69%\n|-\n|rowspan=\"3\" data-sort-value=\"Magma Cap\"|{{Name|Magma Cap|1}}\n|rowspan=\"3\"|26\n| 4-6  || 5%      || 2-3%\n|-\n| 7-8  || 4%      || 3-4%\n|-\n| 9-10 || 4%      || 4%\n|-\n|rowspan=\"2\" data-sort-value=\"Cinder Shard\"|{{Name|Cinder Shard|2-5}}\n|rowspan=\"2\"|12\n| 7-8  || 10%     || 7-8%\n|-\n| 9-10 || 8%      || 9-10%\n|-\n|data-sort-value=\"Dragon Tooth\"|{{Name|Dragon Tooth|1}}\n|30\n| 9-10 || 5%      || 5%\n|-\n|data-sort-value=\"Battery Pack\"|{{Name|Battery Pack|1}}\n|30\n| 9-10 || 10%      || 9-10%\n|-\n|rowspan=\"4\" data-sort-value=\"ZZZZ\"|''Nothing''\n|rowspan=\"4\"|\n| 1-3  || 20%     || 82-69%\n|-\n| 4    || 19%     || 68%\n|-\n| 5-10 || 0%     || 45-5%\n|-\n|}\n\n==Quests==\n*[[Willy]] may request 5 Stingray to be caught at the [[Quests#Tropical Fish|Special Orders board]] outside the [[Mayor's Manor]] after [[Ginger Island]] is unlocked as part of the \"Tropical Fish\" special order.\n\n==History==\n{{History|1.5|Introduced.}}\n\n{{NavboxFish}}\n\n[[Category:Island fish]]\n\n[[de:Stachelrochen]]\n[[es:Mantarraya]]\n[[fr:Raie]]\n[[it:Razza]]\n[[ja:エイ]]\n[[ko:가오리]]\n[[hu:Rája]]\n[[pt:Arraia]]\n[[ru:Скат]]\n[[tr:İğnelivatoz]]\n[[zh:黄貂鱼]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Island fish"
+     }
+    ]
+   },
+   {
+    "pageid": 8033,
+    "ns": 0,
+    "title": "Midnight Squid",
+    "revisions": [
+     {
+      "revid": 192188,
+      "parentid": 190666,
+      "timestamp": "2026-04-08T14:23:20Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "{{Infobox fish\n|eng        = Midnight Squid\n|location   = Submarine at [[Night Market]]\n|time       = Anytime during [[Night Market]] (5pm - 2am)\n|season     = Winter\n|weather    = Any\n|difficulty = 55\n|behavior   = Sinker\n|size       = 8-26\n|price      = 100\n|edibility  = 15\n|roe        = Blue\n}}\nThe '''Midnight Squid''' is a [[fish]] that can be caught in the submarine ride at the [[Night Market]], which takes place at [[The Beach]] during [[Winter]] 15-17.\n\nIn the submarine ride at the Night Market, there is a 21% chance to hook a Midnight Squid (17% if using a [[Curiosity Lure]]). If using Magic Bait in the southwest corner of the beach, there is a 3.3% chance to hook a Midnight Squid (10.2% if using a Curiosity Lure).<ref name=\"requirements\"/>\n\nWhen placed in a [[Fish Pond]], Midnight Squid will produce [[Squid Ink]] instead of [[Roe]]. However, Midnight Squid Roe can be found in [[Fishing#Treasure Chests|Fishing Treasure Chests]] after obtaining the power from the [[Jewels Of The Sea]] book.\n\nMidnight Squid can also be caught regardless of time of day or season using [[Magic Bait]] — cast west from the left-most pier in the southwest corner of the beach.\n\n==Map==\nMidnight Squid can be found in the submarine ride at the [[Night Market]] ([[Winter]] 15-17).\n{{Map|243|200}}\n[[File:NightMarketMagicBaitArea.png|thumb|left|Magic Bait locations]]\t\n{{clear}}\n\n==Gifting==\n{{GiftsByItem\n|dislike=Robin,Maru,Caroline,Abigail,Alex,George,Lewis,Clint,Penny,Emily,Jas,Vincent,Jodi,Kent,Sam,Leah,Shane,Marnie,Gus,Dwarf,Wizard,Harvey,Sandy,Krobus\n|neutral=Demetrius,Sebastian,Linus,Pam,Elliott,Willy,Leo\n|hate=Pierre,Evelyn,Haley\n}}\n\n==Bundles==\nMidnight Squid is not used in any [[bundles]].\n\n==Recipes==\n{{Recipes|header|hide=buff,duration}}\n{{:Maki Roll|RecipeRow/NoBuffs}}\n{{:Quality Fertilizer|RecipeRow/NoBuffs}}\n{{:Sashimi|RecipeRow/NoBuffs}}\n{{Recipes|footer}}\n\n==Tailoring==\nMidnight Squid can be used in the spool of the [[2 Willow Lane#Sewing Machine|Sewing Machine]] to create the {{Name|Fishing Hat|class=inline}}. It can be used in [[dyeing]], serving as a blue dye at the dye pots, located in [[Emily]]'s and [[Haley]]'s house, [[2 Willow Lane]].\n\n==Fish Pond==\nMidnight Squid can be placed in a [[Fish Pond]], where they will reproduce every 3 days.  The initial pond capacity is 3 fish, but the capacity can be increased to 10 by completing three quests.  Instead of producing [[Roe]], squid ponds produce [[Squid Ink]].\n\n'''[[Fish Pond#Quests|Quests]]'''\n{|class=\"wikitable\"\n|-\n!colspan=\"2\"|Pond Capacity\n!rowspan=\"2\"|Quest Item\n!rowspan=\"2\"|Fishing XP Granted\n|-\n!Before Quest\n!After Quest\n|-\n| 3  || 5  || 3 [[Coral]] or 2 [[Sea Urchin]]s || 35\n|-\n| 5  || 8  || 2 [[Sardine]]s || 35\n|-\n| 8  || 10 || 1 [[Ocean Stone]] || 35\n|}\n\n'''[[Fish Pond#Produce|Produce]]'''\n{|class=\"wikitable sortable\"\n|-\n!Item(s) Produced\n!data-sort-type=\"number\"|Fishing XP Granted\n!data-sort-type=\"number\"|Population\n!% of Items\n!data-sort-type=\"number\"|Overall Daily Chance\n|-\n|rowspan=\"5\" data-sort-value=\"Squid Ink 1\"|{{Name|Squid Ink|1}}\n|rowspan=\"5\"|14\n| 1-2  || 20%     || 5-6%\n|-\n| 3-4  || 56%     || 22-26%\n|-\n| 5-6  || 82%     || 45-52%\n|-\n| 7-9  || 96%     || 69-84%\n|-\n| 10   || 72%     || 69%\n|-\n|data-sort-value=\"Squid Ink 2\"| {{Name|Squid Ink|2}}\n|14\n| 10   || 25%     || 24%\n|-\n|rowspan=\"5\" data-sort-value=\"ZZZZ\"|''Nothing''\n|rowspan=\"5\"|\n| 1-2  || 80%     || 95-94%\n|-\n| 3-4  || 44%     || 78-74%\n|-\n| 5-6  || 18%     || 55-48%\n|-\n| 7-9  || 4%      || 31-16%\n|-\n| 10   || 3%      || 8%\n|}\n\n==Quests==\nMidnight Squid is not used in any [[quests]].\n\n==Notes==\n* Due to the small size of the Submarine pond limiting its tiles' [[Fishing#Distance from Land|distance from land]], the Midnight Squid can only be caught at its maximum [[Fishing#Fish Size & Quality|Size]] of 26\" when fishing on the Beach using Magic Bait.\n\n==References==\n<references>\n    <ref name=\"requirements\">See <samp>Data\\Locations.xnb</samp> in the game files.</ref>\n</references>\n\n==History==\n{{History|1.3.27|Introduced.}}\n{{History|1.4|Added iridium quality.  Can now be used in [[Tailoring]].}}\n{{History|1.5.3|Can now be caught by using [[Magic Bait]] in the southwest corner of [[the Beach]].}}\n{{History|1.6|Fixed bug allowing all Night Market fish to be hooked with the [[Training Rod]] during the submarine ride. Chance of hooking using [[Magic Bait]] in the southwest corner of [[the Beach]] using a [[Curiosity Lure]] increased. Midnight Squid [[Roe]] now obtainable by the power from the [[Jewels Of The Sea]] book.}}\n\n{{NavboxFish}}\n\n[[Category:Winter fish]]\n\n[[de:Mitternächtlicher Tintenfisch]]\n[[es:Calamar de medianoche]]\n[[fr:Calmar de minuit]]\n[[it:Calamaro di mezzanotte]]\n[[ja:夜闇イカ]]\n[[ko:자정오징어]]\n[[hu:Éjféli tintahal]]\n[[pt:Lula da Meia-noite]]\n[[ru:Ночной кальмар]]\n[[tr:Gecekalamarı]]\n[[zh:午夜鱿鱼]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Winter fish"
+     }
+    ]
+   }
+  ]
+ }
+}

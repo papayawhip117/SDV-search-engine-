@@ -36,3 +36,13 @@ them they cover: Pierre + JojaMart, Year 2+ notes, Oasis only, festival only,
 JojaMart cheaper than Pierre, a double sell price, and no shop at all.
 Same license (CC BY-NC-SA, Stardew Valley Wiki). Source pages:
 https://stardewvalleywiki.com/ + the page title with spaces as underscores.
+
+`fish-pages.json` holds ten fish pages from the fish downloads saved 2026-11-16:
+Tuna (195394), Catfish (194361), Walleye (193033), Albacore (193224), Rainbow Trout
+(193322), Crab (194156), Legend (193653), Lava Eel (190296), Stingray (180872) and
+Midnight Squid (192188). Between them they cover: plain and conditional seasons,
+two time windows, weather that is more than one word, a crab pot fish, a legendary
+fish, the fishing level a fish needs, an island-only fish with no season
+categories, and a Night Market fish.
+Same license (CC BY-NC-SA, Stardew Valley Wiki). Source pages:
+https://stardewvalleywiki.com/ + the page title with spaces as underscores.

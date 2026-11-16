@@ -17,6 +17,11 @@ import path from 'node:path';
 import { API_URL, buildApiUrl } from '../wiki/apiClient.js';
 import { isRunDirectly } from '../utils/isRunDirectly.js';
 import { CROP_CATEGORIES } from './collectCrops.js';
+import { FISH_PAGE_GROUPS } from './fishPages.js';
+import { FISH_CATEGORIES } from '../extract/fishExtractor.js';
+
+// The categories that say which collection a page belongs to, in order of preference.
+const COLLECTION_CATEGORIES = [...CROP_CATEGORIES, ...FISH_CATEGORIES];
 import { openDatabase } from '../db/database.js';
 
 const DATABASE_PATH = path.join('data', 'sdv.db');
@@ -109,7 +114,7 @@ export function combineSavedResponses(files) {
         title: page.title,
         revisions: page.revisions,
         categories: page.categories ?? [],
-        foundInCategory: CROP_CATEGORIES.find((name) => categoryTitles.includes(name)) ?? null,
+        foundInCategory: COLLECTION_CATEGORIES.find((name) => categoryTitles.includes(name)) ?? null,
       });
     }
   }
@@ -137,6 +142,10 @@ function printInstructions() {
   } else {
     console.log('(After your first build-db, this also prints a URL for the seed pages.)\n');
   }
+  FISH_PAGE_GROUPS.forEach((titles, index) => {
+    console.log(`Fish pages, part ${index + 1} of ${FISH_PAGE_GROUPS.length} (${titles.length} fish), save as fish-${index + 1}.json:`);
+    console.log(`  ${browserUrlForPages(titles)}\n`);
+  });
   console.log('Then run:  npm run import -- data/browser/*.json');
 }
 
