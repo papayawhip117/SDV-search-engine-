@@ -254,7 +254,31 @@ If nothing matches, the answer is "not listed": the wiki doesn't say, so we don'
 
 Names are compared without punctuation, because the Friendship page writes "Warp Totem Beach" where the Crafting page writes "Warp Totem: Beach". Exceptions keep both a link's page title and its shown text ("[[Red Mushroom|Red]]" → Red Mushroom and Red), so either form matches.
 
-## 13. Tests: `tests/`
+## 13. Forage, minerals, artifacts, flowers and books: `src/extract/collectionExtractor.js`
+
+Five overview pages list their items in tables, with the name, sell price and where to find each one, so no item pages are needed:
+
+| Page | Revision | Tables | Items | Type |
+|---|---|---|---|---|
+| Foraging | 195239 | Basic, Spring, Summer, Fall, Winter, The Beach, The Mines, The Desert, Ginger Island | 38 | `forage` |
+| Minerals | 195242 | Foraged Minerals, Gems, Geode Minerals, Geodes | 57 | `mineral` (`geode` for the four geodes) |
+| Artifacts | 186104 | one table | 42 | `artifact` |
+| Flowers | 171283 | one table | 8 | `flower` |
+| Books | 193598 | Power Books, Skill Books | 26 | `book` |
+
+From each row we keep the sell price (the "Base" one on the Flowers page; the Books page has none), the Gemologist price for minerals, edibility for forage and flowers, and where it's found, as one line. `collection_items` holds one row per item per page, because some items are on two pages (Sweet Pea and Crocus are on Foraging and Flowers). Seasons come from a Foraging table named after a season, or from a "Season" column, and go into `collection_seasons`, so `npm run search -- --type forage --season winter` works. A beach item whose season is "All" gets all four.
+
+**Items that already exist keep their own page.** Grape is a crop with its own page, so it stays a crop; `npm run item -- Grape` adds what the Foraging page says about it. The overview pages are saved after the single-item pages, in the order Minerals, Artifacts, Books, Flowers, Foraging, so Sweet Pea becomes a flower before Foraging lists it.
+
+**Groups.** Each item also joins the group of its table in `item_groups`: Foraged Minerals, Gems, Geode Minerals, Geodes, Artifacts, Flowers and Books. Those are the groups the gift lists mean by "All Gems" and so on, so they now match (section 12): Alex likes Diamond (universal "All Gems"), Leah dislikes Emerald (her own "All Gems"). Forage gets no group, because the Keg's and Preserves Jar's "any positive energy Forage" needs the energy rule, not just a list of names.
+
+A few cells needed care:
+
+- Two artifacts are both shown as "Strange Doll". When two rows show the same name, we use their page titles instead: Strange Doll (green) and Strange Doll (yellow).
+- The Books page hides its "Subsequent reading" column in `<noinclude>` tags; we keep what's inside them, so each Power Book says what reading it again gives.
+- The Flowers table has two header rows ("Sell Price" over "Base" and "Tiller"); like the Crafting page's Fences table, the labels are joined.
+
+## 14. Tests: `tests/`
 
 | File | Checks |
 |---|---|
@@ -274,6 +298,8 @@ Names are compared without punctuation, because the Friendship page writes "Warp
 | `crafting.test.js` | the Crafting page with crop, fish and artisan pages: machines keep their own page, "what can I craft with this" through names and groups, sections, crafted items in search and item details |
 | `villagerExtractor.test.js` | the real gift, Villagers and Friendship pages: item and group lines, exceptions, the Friendship page's bold groups and named lists, birthdays, all 34 villagers |
 | `gifts.test.js` | every kind of page together: the four-step taste rule, exceptions that are groups, universal dislikes from the Friendship page, "who loves this", gift lines on item pages |
+| `collectionExtractor.test.js` | the five real overview pages: prices, edibility, where found, two header rows, items in several tables, two items shown with one name, books |
+| `collections.test.js` | overview pages with crops, villagers and artisan pages: crops keep their own page, forage seasons in search, gift groups like "All Gems" now matching |
 | `search.test.js` | partial words, related terms, all-words matching, every filter and sort, hostile input, item details, typo suggestions |
 
 Run them with `npm test`.
@@ -291,13 +317,14 @@ We **don't** get around a refusal by pretending to be a web browser. The wiki de
 
 ## Known limitations (so far)
 
-- Crops in the Spring, Summer and Fall categories, their seeds, 71 fish, the artisan goods, 81 dishes, 150 crafting recipes and 34 villagers with their gift tastes. Fruit trees, forage, minerals and more come in the next phase.
+- Crops in the Spring, Summer and Fall categories, their seeds, 71 fish, the artisan goods, 81 dishes, 150 crafting recipes, 34 villagers with their gift tastes, and 169 items from the Foraging, Minerals, Artifacts, Flowers and Books pages. Not yet: fruit trees, animal products (eggs, milk), monster loot, trash, tools, weapons, rings and other items without an overview table here.
 - Cask aging (silver to iridium quality) and the Heavy Tapper's own page aren't stored yet. Recipes that take mushrooms, forage or roe are stored, but those items aren't collected yet.
 - Dish ingredients we don't collect yet (Egg, Milk, Wheat Flour, Sugar, Oil, Rice...) are shown by name without a price or wiki link until later phases add them.
 - Crafted items have no sell price except bombs, because only the Bombs table on the Crafting page lists one. Their own pages would add it.
 - "Transmute (Fe)" and "Transmute (Au)" are stored by their recipe names, as the Crafting page lists them; they make an Iron Bar and a Gold Bar.
 - Crafting ingredients we don't collect yet (Wood, Stone, ores and bars...) are shown by name only, until later phases add them.
-- Gift tastes for groups we haven't collected (Gems, Minerals, Books, Artifacts, Flowers, Milk...) can't be matched yet, so `npm run gifts -- --item Diamond` lists only the villagers who name Diamond themselves. The rest show as "not listed". Villagers aren't in the item search yet; use `npm run gifts`.
+- Gift groups we still don't fill (Milk, Trash, Monster Loot, Bait, Tackle, Trinkets, Fossils) don't match anything yet; items in them show as "not listed" unless a list names them.
+- Forage isn't a group yet, so artisan recipes for "any positive energy Forage" (Keg, Preserves Jar) don't list forage items. Villagers aren't in the item search yet; use `npm run gifts`.
 - Villager schedules, addresses and heart events aren't stored; they're on each villager's own page.
 - Artisan values ignore the Artisan profession (+40%) and ingredient quality.
 - Profit doesn't model when a shop is open (Strawberry Seeds are only sold at the Egg Festival) or fertilizer, quality and professions.

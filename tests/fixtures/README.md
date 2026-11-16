@@ -86,3 +86,10 @@ also has the (empty) `Category:Villagers` member list.
 Same license (CC BY-NC-SA, Stardew Valley Wiki). Source pages:
 https://stardewvalleywiki.com/Villagers, https://stardewvalleywiki.com/List_of_All_Gifts,
 https://stardewvalleywiki.com/Friendship
+
+`collection-pages.json` holds the Foraging (revision 195239), Minerals (195242),
+Artifacts (186104), Flowers (171283) and Books (193598) pages, saved 2026-11-16. It is
+an unmodified API response.
+
+Same license (CC BY-NC-SA, Stardew Valley Wiki). Source pages:
+https://stardewvalleywiki.com/ + the page title.

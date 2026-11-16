@@ -1,5 +1,5 @@
 // Opening the database and saving crops, seeds, fish, artisan goods, dishes, crafting recipes,
-// villagers and gift tastes into it.
+// villagers and gift tastes, and forage, minerals, artifacts, flowers and books into it.
 //
 // We use better-sqlite3. "Synchronous" means each database call finishes
 // before the next line runs, so there's no `await` here. That keeps the
@@ -495,6 +495,61 @@ export function saveVillagerData(db, { giftPage, gifts, villagersPage, villagerL
         'INSERT OR REPLACE INTO item_groups (group_name, item_name, base_price, source_page_id) VALUES (?, ?, NULL, ?)',
       );
       for (const name of names) insertMember.run(groupName, name, giftPageId);
+    }
+  });
+  return save();
+}
+
+/**
+ * Save the items of one overview page (Foraging, Minerals, Artifacts, Flowers, Books).
+ *
+ * New items get the page's type ('forage', 'mineral'...) and cite the page.
+ * Items that already exist (crops like Grape, flowers saved from the Flowers
+ * page first) keep their type and source. Every item also joins the groups
+ * of its table (Gems, Artifacts...) in item_groups.
+ *
+ * @param items  the result of extractCollection(page).items
+ */
+export function saveCollection(db, page, items, retrievedAt) {
+  const save = db.transaction(() => {
+    const sourcePageId = saveSourcePage(db, page, retrievedAt);
+    db.prepare('DELETE FROM collection_seasons WHERE source_page_id IN (SELECT id FROM source_pages WHERE page_title = ?)').run(page.title);
+    db.prepare('DELETE FROM collection_items WHERE page_title = ?').run(page.title);
+    const insertItem = db.prepare(
+      `INSERT INTO items (name, item_type, base_sell_price, source_page_id) VALUES (?, ?, ?, ?)
+       ON CONFLICT (name) DO NOTHING`,
+    );
+    const insertEntry = db.prepare(
+      `INSERT INTO collection_items
+         (item_id, page_title, sections, sell_price, gemologist_price, edibility, found, details, source_page_id)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    );
+    const insertSeason = db.prepare(
+      `INSERT OR IGNORE INTO collection_seasons (item_id, season_id, source_page_id)
+       SELECT ?, id, ? FROM seasons WHERE name = ?`,
+    );
+    const insertMember = db.prepare(
+      'INSERT OR REPLACE INTO item_groups (group_name, item_name, base_price, source_page_id) VALUES (?, ?, ?, ?)',
+    );
+    const groups = new Set(items.flatMap((item) => item.groups));
+    for (const group of groups) db.prepare('DELETE FROM item_groups WHERE group_name = ?').run(group);
+
+    for (const item of items) {
+      insertItem.run(item.name, item.type, item.sellPrice, sourcePageId);
+      const itemId = db.prepare('SELECT id FROM items WHERE name = ?').get(item.name).id;
+      insertEntry.run(
+        itemId,
+        page.title,
+        item.sections.join(' | ') || null,
+        item.sellPrice,
+        item.gemologistPrice,
+        item.edibility,
+        item.found,
+        item.details,
+        sourcePageId,
+      );
+      for (const season of item.seasons) insertSeason.run(itemId, sourcePageId, season);
+      for (const group of item.groups) insertMember.run(group, item.name, item.sellPrice, sourcePageId);
     }
   });
   return save();

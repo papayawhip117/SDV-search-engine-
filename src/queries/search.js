@@ -16,7 +16,9 @@ import { getDishIngredients, getDishesUsing } from './cookingQueries.js';
 import { getCraftedUsing, getCraftingRecipe } from './craftingQueries.js';
 import { whoLikes } from './giftQueries.js';
 
-export const ITEM_TYPES = ['crop', 'seed', 'fish', 'artisan', 'machine', 'dish', 'crafted'];
+export const ITEM_TYPES = [
+  'crop', 'seed', 'fish', 'artisan', 'machine', 'dish', 'crafted', 'forage', 'mineral', 'geode', 'artifact', 'flower', 'book',
+];
 
 // Each sort option maps to a fixed piece of SQL. User input only ever picks
 // a key from this list; it's never pasted into the SQL itself.
@@ -59,8 +61,8 @@ function normaliseSeason(season) {
   return match;
 }
 
-// The seasons an item belongs to: a crop's or fish's own seasons, or for a
-// seed, the seasons of the crop it grows into.
+// The seasons an item belongs to: a crop's or fish's own seasons, the seasons
+// a Foraging or Flowers table gives it, or for a seed, the seasons of the crop it grows into.
 const SEASONS_SQL = `
   SELECT DISTINCT s.id, s.name
   FROM seasons s
@@ -69,6 +71,7 @@ const SEASONS_SQL = `
           WHERE cs.crop_item_id = :id
              OR cs.crop_item_id IN (SELECT c.item_id FROM crops c WHERE c.seed_item_id = :id))
      OR s.id IN (SELECT fs.season_id FROM fish_seasons fs WHERE fs.fish_item_id = :id)
+     OR s.id IN (SELECT cs.season_id FROM collection_seasons cs WHERE cs.item_id = :id)
   ORDER BY s.id`;
 
 /**
@@ -76,7 +79,7 @@ const SEASONS_SQL = `
  *
  * @param options.text        words to look for in names, wiki categories and summaries
  * @param options.season      'Spring' | 'Summer' | 'Fall' | 'Winter'
- * @param options.type        'crop' | 'seed' | 'fish' | 'artisan' | 'machine' | 'dish' | 'crafted'
+ * @param options.type        one of ITEM_TYPES ('crop', 'fish', 'forage', 'mineral'...)
  * @param options.sortBy      'relevance' (default when searching text) | 'name' | 'sell' | 'buy'
  * @param options.descending  true/false to override the sort's usual direction
  * @param options.limit       maximum number of results (default 50)
@@ -275,6 +278,15 @@ export function getItemDetails(db, name) {
     usedInCrafting: getCraftedUsing(db, item.name).map((row) => row.name),
     // How each villager feels about it as a gift ({ love: [...], like: [...], ... }).
     // total is the number of villagers, so "loved by all 34" can say "everyone".
+    // What the overview pages (Foraging, Minerals, Artifacts, Flowers, Books) say about it.
+    collections: db
+      .prepare(
+        `SELECT ci.page_title AS page, ci.sections, ci.sell_price AS sellPrice, ci.gemologist_price AS gemologistPrice,
+                ci.edibility, ci.found, ci.details, sp.page_url AS sourceUrl, sp.revision_id AS revisionId
+         FROM collection_items ci JOIN source_pages sp ON sp.id = ci.source_page_id
+         WHERE ci.item_id = ? ORDER BY ci.page_title`,
+      )
+      .all(item.id),
     giftTastes: { ...whoLikes(db, item.name), total: db.prepare('SELECT COUNT(*) AS n FROM villagers').get().n },
     growsInto,
     source: { title: item.title, url: item.url, revision: item.revision, revisionTime: item.revisionTime, retrievedAt: item.retrievedAt },

@@ -3,7 +3,8 @@
 // Run with:  npm run build-db
 //
 // Reads the newest data/raw/crops-*.json (made by `npm run collect` or
-// `npm run import`), extracts each page, saves crops, seeds, fish, artisan goods, dishes, crafting recipes and villagers to data/sdv.db, and prints a report
+// `npm run import`), extracts each page, saves crops, seeds, fish, artisan goods, dishes, crafting recipes, villagers, and
+// forage, minerals, artifacts, flowers and books to data/sdv.db, and prints a report
 // of skipped pages and warnings so they can be checked by hand.
 
 import { readdirSync, readFileSync, rmSync } from 'node:fs';
@@ -18,6 +19,7 @@ import {
   isFruitListPage,
   isMachinePage,
 } from '../extract/artisanExtractor.js';
+import { extractCollection, isCollectionPage } from '../extract/collectionExtractor.js';
 import { extractDish, isCookingPage } from '../extract/cookingExtractor.js';
 import { extractCraftingRecipes, isCraftingPage } from '../extract/craftingExtractor.js';
 import { extractFish, isFishPage } from '../extract/fishExtractor.js';
@@ -34,6 +36,7 @@ import { isRunDirectly } from '../utils/isRunDirectly.js';
 import {
   openDatabase,
   saveArtisanData,
+  saveCollection,
   saveCraftingRecipes,
   saveCrop,
   saveDish,
@@ -49,7 +52,7 @@ const RAW_DATA_FOLDER = path.join('data', 'raw');
 /** Extract and save every page in a raw collection. Returns a report. */
 export function buildFromRawData(db, rawData) {
   const report = {
-    saved: [], savedSeeds: [], savedFish: [], savedArtisan: [], savedMachines: [], savedDishes: [], craftingRecipes: 0, villagers: 0, giftTastes: 0, recipes: 0, fruits: 0,
+    saved: [], savedSeeds: [], savedFish: [], savedArtisan: [], savedMachines: [], savedDishes: [], craftingRecipes: 0, villagers: 0, giftTastes: 0, collectionItems: {}, recipes: 0, fruits: 0,
     skipped: [], warnings: [], notes: [],
   };
   // Artisan pages are saved together at the end, because recipes on a machine
@@ -58,6 +61,9 @@ export function buildFromRawData(db, rawData) {
   // The Crafting page is saved last, so items that have their own page
   // (machines, seed packs) are saved from that page first.
   let crafting = null;
+  // Overview pages (Foraging, Minerals...) are saved after the pages of single
+  // items, so a crop like Grape keeps its own page as its source.
+  const collections = [];
   // The three villager pages (gift list, Villagers, Friendship) are saved together.
   const villagerPages = { giftPage: null, gifts: null, villagersPage: null, villagerList: null, friendshipPage: null, universalDislikes: null };
   const addMessages = (title, result) => {
@@ -87,6 +93,18 @@ export function buildFromRawData(db, rawData) {
       }
       addMessages(page.title, result);
       crafting = { page, result };
+      continue;
+    }
+
+    // Overview pages: Foraging, Minerals, Artifacts, Flowers, Books.
+    if (isCollectionPage(page)) {
+      const result = extractCollection(page);
+      if (!result.ok) {
+        report.skipped.push({ title: page.title, reason: result.reason });
+        continue;
+      }
+      addMessages(page.title, result);
+      collections.push({ page, items: result.items });
       continue;
     }
 
@@ -177,6 +195,14 @@ export function buildFromRawData(db, rawData) {
     report.fruits = artisan.fruits.length;
   }
 
+  // In this order, so Sweet Pea is saved as a flower (Flowers page) before Foraging lists it too.
+  const pageOrder = ['Minerals', 'Artifacts', 'Books', 'Flowers', 'Foraging'];
+  collections.sort((a, b) => pageOrder.indexOf(a.page.title) - pageOrder.indexOf(b.page.title));
+  for (const { page, items } of collections) {
+    saveCollection(db, page, items, rawData.retrievedAt);
+    report.collectionItems[page.title] = items.length;
+  }
+
   if (crafting) {
     saveCraftingRecipes(db, crafting.page, crafting.result, rawData.retrievedAt);
     report.craftingRecipes = crafting.result.recipes.length;
@@ -231,6 +257,10 @@ function main() {
       `(${report.recipes} recipes), ${report.fruits} fruits from the Fruits page, ${report.savedDishes.length} dishes, ` +
       `${report.craftingRecipes} crafting recipes and ${report.villagers} villagers (${report.giftTastes} gift tastes) to ${DATABASE_PATH}`,
   );
+  const collected = Object.entries(report.collectionItems);
+  if (collected.length) {
+    console.log(`From overview pages: ${collected.map(([title, count]) => `${count} on ${title}`).join(', ')}`);
+  }
   console.log(`Search index holds ${report.indexed} items`);
   if (report.skipped.length) {
     console.log(`\nSkipped ${report.skipped.length} pages (not crops, or unreadable):`);
