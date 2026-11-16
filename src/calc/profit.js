@@ -12,6 +12,8 @@
 //   - one item per harvest, base (normal) quality, no fertilizer, no profession bonuses
 //   - profit per day = profit ÷ days from planting to the end of the last growing season
 
+import { SHOP_FIELDS } from '../extract/seedExtractor.js';
+
 export const SEASON_ORDER = ['Spring', 'Summer', 'Fall', 'Winter'];
 export const DAYS_PER_SEASON = 28;
 
@@ -92,4 +94,42 @@ export function calculateProfit(crop, seedPrice, { season, plantDay = 1 }) {
     profit,
     profitPerDay: profit / days,
   };
+}
+
+/** The assumptions behind every profit number, in words (shown by `npm run profit` and the website). */
+export const PROFIT_ASSUMPTIONS = [
+  'One plant, planted on the day shown. Each season has 28 days.',
+  'One-time crops are replanted on harvest day; regrowing crops are planted once.',
+  'Crops that also grow in the next season (e.g. Corn) keep producing into it.',
+  'One item per harvest, base quality, no fertilizer, no profession bonuses.',
+  'Seed price = cheapest shop on the wiki (Traveling Cart prices are random, so not used).',
+  'Profit per day = profit / days from planting to the end of the growing period.',
+];
+
+/**
+ * Work out the profit of every crop from getProfitInputs() and rank them,
+ * best profit per day first. Used by the command line and the website.
+ *
+ * Returns { ranked: [{ crop, result }], notCalculated: [{ crop, reason }], footnotes: [text] }.
+ * footnotes are things the numbers don't account for, straight from the data.
+ */
+export function rankCropsByProfit(inputs, { season, plantDay = 1 }) {
+  const ranked = [];
+  const notCalculated = [];
+  for (const crop of inputs) {
+    const result = calculateProfit(crop, crop.seedPrice, { season, plantDay });
+    if (result.ok) ranked.push({ crop, result });
+    else notCalculated.push({ crop, reason: result.reason });
+  }
+  ranked.sort((a, b) => b.result.profitPerDay - a.result.profitPerDay || a.crop.name.localeCompare(b.crop.name));
+
+  const regularShops = Object.values(SHOP_FIELDS);
+  const footnotes = [];
+  for (const { crop } of ranked) {
+    if (crop.growthNote) footnotes.push(`${crop.name}: growth time also says "${crop.growthNote}", which isn't used here.`);
+    if (!regularShops.includes(crop.seedShop)) {
+      footnotes.push(`${crop.name}: its seed is only sold at ${crop.seedShop}, so check you can buy it by the planting day.`);
+    }
+  }
+  return { ranked, notCalculated, footnotes };
 }

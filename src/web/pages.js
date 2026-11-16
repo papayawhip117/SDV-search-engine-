@@ -33,6 +33,10 @@ export function homePage() {
         <p class="hero__tagline">${pixelImage('sparkle', { size: 12 })} Find crops, fish, gifts, recipes and more ${pixelImage('sparkle', { size: 12 })}</p>
         ${searchBar({ big: true })}
         ${categoryChips()}
+        <p class="hero__plan">Planning your day?
+          <a href="/today">${pixelImage('calendar', { size: 18 })} Today on the farm</a>
+          <a href="/profit">${pixelImage('coin', { size: 18 })} Profit planner</a>
+        </p>
       </section>`,
   });
 }
@@ -127,7 +131,8 @@ export function resultsPage({ query, results = [], ignoredWords = [], error = nu
 
 // ---- One item ---------------------------------------------------------------
 
-function nameLinks(names, knownItems) {
+/** A comma-separated list of names, linking the ones that have an item page. */
+export function nameLinks(names, knownItems) {
   return names.map((name, i) => html`${i ? ', ' : ''}${knownItems.has(name) ? html`<a href="${itemHref(name)}">${name}</a>` : name}`);
 }
 

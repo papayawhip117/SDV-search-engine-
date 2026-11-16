@@ -146,6 +146,8 @@ a:hover {
 
 .site-nav {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 0.25rem;
   margin: 0;
   padding: 0;
@@ -159,6 +161,7 @@ a:hover {
   color: var(--brown);
   text-decoration: none;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .site-nav a:hover {
@@ -593,6 +596,150 @@ a:hover {
   padding-left: 1.25rem;
 }
 
+/* ---- Homepage planning links -------------------------------------------- */
+
+.hero__plan {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem 1.25rem;
+  margin: 1.5rem 0 0;
+  color: var(--brown-soft);
+}
+
+.hero__plan a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+}
+
+/* ---- Planning pages (profit planner, Today) ----------------------------- */
+
+.with-icon {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+h3 {
+  font-size: 1.05rem;
+  margin: 1.5rem 0 0.4rem;
+}
+
+.day-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.75rem;
+  margin: 1rem 0 1.5rem;
+}
+
+.field input,
+.field select {
+  min-height: 2.6rem;
+}
+
+.field input {
+  width: 5.5rem;
+  margin-top: 0.2rem;
+  padding: 0.45rem 0.6rem;
+  border: var(--border);
+  border-radius: var(--radius-small);
+  background: var(--paper);
+  color: var(--brown);
+  font: inherit;
+  font-weight: 400;
+}
+
+/* Wide tables scroll sideways on small screens instead of squashing. */
+.table-wrap {
+  position: relative; /* keeps screen-reader-only text inside the scrolling box */
+  overflow-x: auto;
+  border: var(--border);
+  border-radius: var(--radius);
+  background: var(--paper);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.table th,
+.table td {
+  padding: 0.55rem 0.8rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px dashed var(--line);
+}
+
+.table thead th {
+  background: var(--peach);
+  border-bottom: var(--border);
+  white-space: nowrap;
+}
+
+.table tbody tr:last-child > * {
+  border-bottom: 0;
+}
+
+.table .num {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.assumptions {
+  margin-top: 2rem;
+}
+
+.assumptions summary {
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.today-date {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.15rem;
+}
+
+.today-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: 0 2.5rem;
+}
+
+.today-section {
+  padding: 0.5rem 0 1rem;
+  border-top: 2px dashed var(--line);
+}
+
+.today-section h2 {
+  margin-top: 0.75rem;
+}
+
+.today-section p {
+  margin: 0.4rem 0;
+}
+
+.mini-list {
+  margin: 0.4rem 0;
+  padding-left: 1.4rem;
+}
+
+.mini-list li {
+  margin: 0.2rem 0;
+}
+
+.mini-list .muted {
+  font-size: 0.9rem;
+}
+
 /* ---- Footer ------------------------------------------------------------- */
 
 .site-footer {
@@ -632,6 +779,10 @@ a:hover {
 
   .button {
     padding: 0.5rem 0.9rem;
+  }
+
+  .site-nav a {
+    padding: 0.3rem 0.55rem;
   }
 
   .facts > div {

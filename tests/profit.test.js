@@ -2,7 +2,7 @@
 // Crop facts below are the real values from the wiki pages.
 
 import { describe, expect, it } from 'vitest';
-import { calculateProfit, countHarvests, daysAvailable } from '../src/calc/profit.js';
+import { calculateProfit, countHarvests, daysAvailable, rankCropsByProfit } from '../src/calc/profit.js';
 
 const parsnip = { growthDays: 4, regrows: false, regrowthDays: null, sellPrice: 35, seasons: ['Spring'] };
 const strawberry = { growthDays: 8, regrows: true, regrowthDays: 4, sellPrice: 120, seasons: ['Spring'] };
@@ -73,5 +73,22 @@ describe('calculateProfit', () => {
 
   it('rejects impossible planting days', () => {
     expect(() => calculateProfit(parsnip, 20, { season: 'Spring', plantDay: 29 })).toThrow(/1 to 28/);
+  });
+});
+
+describe('rankCropsByProfit', () => {
+  const crop = (name, extra) => ({
+    name, growthDays: 4, regrows: false, regrowthDays: null, sellPrice: 35, seasons: ['Spring'],
+    seedPrice: 20, seedShop: "Pierre's General Store", seedPriceNote: null, growthNote: null, ...extra,
+  });
+
+  it('puts the best profit per day first and lists what it could not work out', () => {
+    const { ranked, notCalculated, footnotes } = rankCropsByProfit(
+      [crop('Parsnip'), crop('Strawberry', { growthDays: 8, regrows: true, regrowthDays: 4, sellPrice: 120, seedPrice: 100, seedShop: 'Egg Festival' }), crop('Mystery', { seedPrice: null })],
+      { season: 'Spring', plantDay: 1 },
+    );
+    expect(ranked.map((row) => row.crop.name)).toEqual(['Strawberry', 'Parsnip']);
+    expect(notCalculated).toEqual([{ crop: expect.objectContaining({ name: 'Mystery' }), reason: 'missing a shop price for its seed' }]);
+    expect(footnotes).toEqual(['Strawberry: its seed is only sold at Egg Festival, so check you can buy it by the planting day.']);
   });
 });

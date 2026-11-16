@@ -1,5 +1,4 @@
-// Fish searches. Like the other query files, the command line uses these
-// now and the web app and AI assistant will reuse them later.
+// Fish searches, used by the command line, the website's Today page and the AI assistant.
 //
 //   getFish(db, { season: 'Summer', weather: 'Rain', area: 'Ocean' })
 
@@ -61,7 +60,8 @@ export function getFish(db, { season, weather, area, includeLegendary = false } 
          f.season_note      AS seasonNote,
          f.difficulty       AS difficulty,
          sp.page_title      AS sourceTitle,
-         sp.page_url        AS sourceUrl
+         sp.page_url        AS sourceUrl,
+         sp.revision_id     AS sourceRevision
        FROM fish f
        JOIN items i         ON i.id = f.item_id
        JOIN source_pages sp ON sp.id = f.source_page_id
