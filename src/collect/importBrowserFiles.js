@@ -11,12 +11,15 @@
 // Then, after saving them into data/browser/:
 //   npm run import -- data/browser/*.json
 
-import { readFileSync, statSync } from 'node:fs';
+import { existsSync, readFileSync, statSync } from 'node:fs';
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { API_URL, buildApiUrl } from '../wiki/apiClient.js';
 import { isRunDirectly } from '../utils/isRunDirectly.js';
 import { CROP_CATEGORIES } from './collectCrops.js';
+import { openDatabase } from '../db/database.js';
+
+const DATABASE_PATH = path.join('data', 'sdv.db');
 
 const RAW_DATA_FOLDER = path.join('data', 'raw');
 
@@ -40,6 +43,37 @@ export function browserUrlForCategory(categoryName) {
   });
   url.searchParams.delete('maxlag'); // only matters for automated tools
   return url.toString();
+}
+
+/**
+ * One URL that returns several named pages at once (up to 50), e.g. all seed pages.
+ */
+export function browserUrlForPages(titles) {
+  if (titles.length > 50) throw new Error(`The API returns at most 50 pages per request, not ${titles.length}`);
+  const url = buildApiUrl({
+    action: 'query',
+    titles: titles.join('|'),
+    prop: 'revisions|categories',
+    rvprop: 'ids|timestamp|content',
+    rvslots: 'main',
+    cllimit: 'max',
+    clshow: '!hidden',
+    redirects: 1, // follow a page that was renamed to its new title
+  });
+  url.searchParams.delete('maxlag');
+  return url.toString();
+}
+
+/** Names of all seeds the crops in the database grow from. */
+function seedNamesInDatabase() {
+  if (!existsSync(DATABASE_PATH)) return [];
+  const db = openDatabase(DATABASE_PATH);
+  const names = db
+    .prepare('SELECT DISTINCT seed.name FROM crops c JOIN items seed ON seed.id = c.seed_item_id ORDER BY seed.name')
+    .all()
+    .map((row) => row.name);
+  db.close();
+  return names;
 }
 
 /**
@@ -95,6 +129,13 @@ function printInstructions() {
   console.log('in the data/browser/ folder (for example spring.json, summer.json, fall.json).\n');
   for (const categoryName of CROP_CATEGORIES) {
     console.log(`${categoryName}:\n  ${browserUrlForCategory(categoryName)}\n`);
+  }
+  const seedNames = seedNamesInDatabase();
+  if (seedNames.length) {
+    console.log(`Seed pages (the ${seedNames.length} seeds of the crops already in your database), save as seeds.json:`);
+    console.log(`  ${browserUrlForPages(seedNames)}\n`);
+  } else {
+    console.log('(After your first build-db, this also prints a URL for the seed pages.)\n');
   }
   console.log('Then run:  npm run import -- data/browser/*.json');
 }

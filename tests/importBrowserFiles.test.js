@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { browserUrlForCategory, combineSavedResponses } from '../src/collect/importBrowserFiles.js';
+import { browserUrlForCategory, browserUrlForPages, combineSavedResponses } from '../src/collect/importBrowserFiles.js';
 
 const fixture = JSON.parse(readFileSync(new URL('./fixtures/crop-pages.json', import.meta.url)));
 const [parsnip, strawberry, corn] = fixture.query.pages;
@@ -46,5 +46,13 @@ describe('combineSavedResponses', () => {
     expect(problems[0]).toMatch(/partial\.json.*continue/);
     expect(problems[1]).toMatch(/wrong\.json/);
     expect(problems[2]).toMatch(/Bad value/);
+  });
+});
+
+describe('browserUrlForPages', () => {
+  it('asks for up to 50 named pages in one request', () => {
+    const url = new URL(browserUrlForPages(['Parsnip Seeds', 'Corn Seeds']));
+    expect(url.searchParams.get('titles')).toBe('Parsnip Seeds|Corn Seeds');
+    expect(() => browserUrlForPages(Array.from({ length: 51 }, (_, i) => `Page ${i}`))).toThrow(/50/);
   });
 });

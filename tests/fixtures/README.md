@@ -29,3 +29,10 @@ the Spring/Summer/Fall crop downloads saved on 2026-11-16 (via `npm run import`)
 Same license as above (CC BY-NC-SA, Stardew Valley Wiki). The full downloads are
 not committed: they're large, they go out of date, and `data/` is rebuilt from the
 wiki rather than stored in Git.
+
+`seed-pages.json` holds seven seed pages from the seed download saved 2026-11-16
+(Carrot, Corn, Garlic, Parsnip, Rhubarb, Strawberry and Sunflower Seeds). Between
+them they cover: Pierre + JojaMart, Year 2+ notes, Oasis only, festival only,
+JojaMart cheaper than Pierre, a double sell price, and no shop at all.
+Same license (CC BY-NC-SA, Stardew Valley Wiki). Source pages:
+https://stardewvalleywiki.com/ + the page title with spaces as underscores.
