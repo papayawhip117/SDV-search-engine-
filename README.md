@@ -4,7 +4,7 @@ A Stardew Valley search engine built from the [Stardew Valley Wiki](https://star
 
 An AI assistant will come later. It will only answer from this verified local database and will cite the wiki page behind every fact.
 
-> **Status:** Phase 10. Crops, seed prices, profit per day, a search engine, fish, artisan goods with the machines that make them, cooking and crafting recipes, villagers with their birthdays and gift tastes, and forage, minerals, geodes, artifacts, flowers and books.
+> **Status:** Phase 11, step 1 (the assistant's fact finder). Crops, seed prices, profit per day, a search engine, fish, artisan goods with the machines that make them, cooking and crafting recipes, villagers with their birthdays and gift tastes, and forage, minerals, geodes, artifacts, flowers and books. `npm run ask` turns a question into the cited facts the AI assistant will answer from.
 
 ## How it works
 
@@ -61,6 +61,7 @@ Run these one at a time:
 | `npm run cook -- Tomato` | Lists the dishes that use Tomato, with sell price, ingredients, what the raw ingredients are worth, buffs and how to get the recipe. Names with spaces work without quotes (`npm run cook -- Wheat Flour`). Add `--buff Fishing` for dishes with that buff, or give no ingredient to list every dish. |
 | `npm run craft -- Iron Bar` | Lists the crafting recipes that use Iron Bar, with all their ingredients and how you get each recipe. Use `--section Rings` (or Fertilizer, Sprinklers...) for one section of the Crafting page, or no arguments to list the sections. |
 | `npm run gifts -- Abigail` | A villager's birthday, whether they can be married, and what they love, like, are neutral about, dislike and hate. `--item Diamond` shows how every villager feels about one item; `--birthday summer` lists birthdays by day. Item pages (`npm run item`) also show who loves, likes, dislikes and hates that item. |
+| `npm run ask -- "What does Abigail love?"` | Finds the facts in the database that answer a question, each with its wiki source and revision. It recognises item and villager names (plurals too), seasons, and topics like profit, fishing, birthdays, foraging and gifts. No AI yet: this is what the assistant will be allowed to use. |
 | `npm run profit -- Spring` | Ranks Spring crops by profit per day, using seed prices from the wiki. Add a day to plant later: `npm run profit -- Spring 10`. |
 
 ## Project layout
@@ -102,6 +103,8 @@ src/
   cli/cook.js              the command-line "what can I cook with this" table
   cli/craft.js             the command-line "what can I craft with this" table
   cli/gifts.js             the command-line villager and gift lookup
+  assistant/findFacts.js   turns a question into numbered, cited facts for the assistant
+  cli/ask.js               the command-line "what does the database know about this question"
 tests/
   fixtures/                real wiki pages saved for tests
   *.test.js                Vitest tests

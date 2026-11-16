@@ -278,7 +278,30 @@ A few cells needed care:
 - The Books page hides its "Subsequent reading" column in `<noinclude>` tags; we keep what's inside them, so each Power Book says what reading it again gives.
 - The Flowers table has two header rows ("Sell Price" over "Base" and "Tiller"); like the Crafting page's Fences table, the labels are joined.
 
-## 14. Tests: `tests/`
+## 14. The assistant, step 1: questions → cited facts: `src/assistant/findFacts.js`
+
+The AI assistant must answer only from the wiki. So before any AI is involved, the app itself finds the facts a question needs, and the AI (step 2) will only see those. `npm run ask -- "…"` shows that list.
+
+**Understanding a question** (`understandQuestion`) needs no AI. It looks for:
+
+- item and villager names from the database, longest first, so "Ancient Fruit" wins over "Fruit"; plurals work ("strawberries", "peaches"), and a name must start a word, so "Pam" doesn't match inside "Spam";
+- seasons ("autumn" counts as Fall);
+- topics, from a few word lists: profit, fish, birthday, forage and gift.
+
+**Finding facts** (`findFacts`) then asks the queries we already have:
+
+| Found in the question | Facts |
+|---|---|
+| an item | what it is and its price, summary, seasons, growth and seeds, fish details, what it can be made into, how it's made, dishes, crafting, the overview pages, who loves or hates it |
+| a villager | birthday, whether they can be married, their five gift lists |
+| a villager and an item | first, what that villager thinks of it (the four-step rule in section 12) |
+| a season and "profit" | the top 5 crops by profit per day, planted on day 1 |
+| a season and "fish" / "birthday" / "forage" | the fish, birthdays or forage that season |
+| nothing | a plain search (section 7), and `usedSearch` says so |
+
+Every fact gets an id (F1, F2…) and at least one source: page title, URL and revision. A fact without a source is dropped, never shown. Numbers the app works out (profit, artisan values) say "(Worked out by the app…)", so nobody mistakes them for wiki text. At most 40 facts are returned, so the AI's input stays small. A question the database can't answer gets no facts at all, rather than a guess.
+
+## 15. Tests: `tests/`
 
 | File | Checks |
 |---|---|
@@ -300,6 +323,7 @@ A few cells needed care:
 | `gifts.test.js` | every kind of page together: the four-step taste rule, exceptions that are groups, universal dislikes from the Friendship page, "who loves this", gift lines on item pages |
 | `collectionExtractor.test.js` | the five real overview pages: prices, edibility, where found, two header rows, items in several tables, two items shown with one name, books |
 | `collections.test.js` | overview pages with crops, villagers and artisan pages: crops keep their own page, forage seasons in search, gift groups like "All Gems" now matching |
+| `findFacts.test.js` | every kind of page together: names, plurals and seasons in questions, gift answers first, profit worked out by the app, a source on every fact, the search fallback, no facts rather than a guess |
 | `search.test.js` | partial words, related terms, all-words matching, every filter and sort, hostile input, item details, typo suggestions |
 
 Run them with `npm test`.
