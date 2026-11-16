@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS items (
   name            TEXT    NOT NULL UNIQUE,
   item_type       TEXT    NOT NULL,   -- 'crop', 'seed', ...
   base_sell_price INTEGER,            -- NULL when the wiki doesn't state it
+  sell_price_note TEXT,               -- all prices when the wiki lists several (Sunflower Seeds)
   source_page_id  INTEGER NOT NULL REFERENCES source_pages(id)
 );
 

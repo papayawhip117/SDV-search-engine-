@@ -76,6 +76,33 @@ export function parseOtherPrices(value) {
   return { prices, errors };
 }
 
+/**
+ * Read a seed's sell price. Usually one value, but Sunflower Seeds says:
+ *   "{{Price|20}} (harvested)<br />{{Price|100}} (purchased from [[JojaMart]])"
+ * Then we store the LOWEST price, so a profit estimate never counts on the
+ * better case, and keep every price with its label in sellPriceNote.
+ *
+ *   "{{Price|10}}"  → { sellPrice: 10, sellPriceNote: null }
+ *   Sunflower       → { sellPrice: 20, sellPriceNote: '20g (harvested) / 100g (purchased from JojaMart)' }
+ *   unreadable      → { sellPrice: null, problem: '...' }
+ */
+export function parseSellPrice(value) {
+  const variants = splitVariants(value ?? '');
+  const parsed = variants.map((variant) => ({
+    price: parsePriceTemplate(variant),
+    label: stripLinks(variant.replace(/\{\{[^}]*\}\}/g, '')).trim(),
+  }));
+  if (parsed.length === 0 || parsed.some(({ price }) => price === null)) {
+    return { sellPrice: null, sellPriceNote: null, problem: `could not read the sell price "${value ?? ''}"` };
+  }
+  if (parsed.length === 1) return { sellPrice: parsed[0].price, sellPriceNote: null };
+
+  return {
+    sellPrice: Math.min(...parsed.map(({ price }) => price)),
+    sellPriceNote: parsed.map(({ price, label }) => `${price}g${label ? ` ${label}` : ''}`).join(' / '),
+  };
+}
+
 /** True if the page uses the seed infobox. */
 export function isSeedPage(page) {
   const wikitext = getWikitext(page);
@@ -95,11 +122,10 @@ export function extractSeed(page) {
   const fields = parseTemplateParams(infobox).named;
   const warnings = [];
 
-  // Sunflower Seeds lists two sell prices ("20 (harvested)<br />100 (purchased...)"),
-  // so a sell price is only stored when there's exactly one.
-  let sellPrice = null;
-  if (splitVariants(fields.sellprice).length === 1) sellPrice = parsePriceTemplate(fields.sellprice);
-  if (sellPrice === null) warnings.push(`could not read a single sell price from "${fields.sellprice ?? ''}"`);
+  const notes = [];
+  const { sellPrice, sellPriceNote, problem } = parseSellPrice(fields.sellprice);
+  if (problem) warnings.push(problem);
+  if (sellPriceNote) notes.push(`sells for ${sellPriceNote}; stored the lowest, ${sellPrice}g`);
 
   const prices = [];
   for (const [field, shop] of Object.entries(SHOP_FIELDS)) {
@@ -117,8 +143,10 @@ export function extractSeed(page) {
       name: page.title,
       cropName: fields.crop ? firstTemplateArgument(fields.crop, 'Name') : null,
       sellPrice,
+      sellPriceNote,
       prices,
     },
     warnings,
+    notes,
   };
 }

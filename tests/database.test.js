@@ -139,4 +139,11 @@ describe('seed prices and profit inputs', () => {
       .get();
     expect(row.source).toBe('Parsnip Seeds');
   });
+
+  it('keeps every sell price in the note when a seed has several', () => {
+    const seedPages = JSON.parse(readFileSync(new URL('./fixtures/seed-pages.json', import.meta.url)));
+    buildFromRawData(db, { retrievedAt: RETRIEVED_AT, pages: seedPages.query.pages });
+    expect(db.prepare("SELECT base_sell_price AS price, sell_price_note AS note FROM items WHERE name = 'Sunflower Seeds'").get())
+      .toEqual({ price: 20, note: '20g (harvested) / 100g (purchased from JojaMart)' });
+  });
 });
