@@ -1,0 +1,190 @@
+{
+ "batchcomplete": true,
+ "query": {
+  "pages": [
+   {
+    "pageid": 15053,
+    "ns": 0,
+    "title": "Carrot Seeds",
+    "revisions": [
+     {
+      "revid": 182667,
+      "parentid": 180007,
+      "timestamp": "2024-12-17T02:48:36Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "{{Infobox seed\n|image     = Carrot Seeds.png\n|crop      = {{Name|Carrot}}\n|growth    = 3 days\n|season    = Spring\n|sellprice  = {{Price|15}}\n}}\n'''Carrot Seeds''' are a type of seed. Mature plants yield [[Carrot]]s.\n\nThey cannot be purchased using {{Name|Gold|class=inline}} from any traditional store, and are instead found in various other ways:<ref name=\"raccoonseeds\" />\n* Digging up [[Seed Spot]]s.\n* Completing [[Giant Stump|Raccoon]] requests.\n* Trading at the [[Giant Stump#Raccoon Wife's Shop|Raccoon Wife's Shop]] for 1 {{Name|Maple Seed|class=inline}}.\n* Catching [[Fishing#Golden Treasure Chests|Golden Fishing Treasure Chests]] (7% chance).<ref name=\"chestchance\" />\n* Using the [[Seed Maker]].\n* As the first prize from the Prize Machine in the [[Mayor's Manor]].\n* Opening [[Mystery Box]]es or [[Golden Mystery Box]]es.\n* Breaking open [[The Mines#Crates and Barrels|crates and barrels]] in [[the Mines]], [[Skull Cavern]], or [[Volcano Dungeon]] (2% chance).<ref name=\"containerchance\" />\n* Slaying [[Iridium Golem]]s (50% chance).<ref name=\"golemchance\" />\n\nAll methods, other than trading at the Raccoon Wife's Shop and using the Seed Maker, only yield Carrot Seeds between [[Winter]] 21 and [[Spring]] 23.\n\n==Stages==\n{{#lsth:Carrot|Stages}}\n==Gifting==\n{{GiftsByItem\n|dislike=Abigail,Haley,Jas,Sam,Vincent,Alex,Caroline,Clint,Demetrius,Dwarf,Elliott,Emily,Evelyn,George,Gus,Harvey,Jodi,Kent,Krobus,Leah,Lewis,Leo,Linus,Marnie,Maru,Pam,Pierre,Robin,Sebastian,Shane,Sandy,Vincent,Willy,Wizard\n}}\n\n==Tailoring==\nCarrot Seeds are not used in any [[tailoring]]. They can be used in [[dyeing]], serving as an orange dye at the dye pots located in [[Emily]]'s and [[Haley]]'s house, [[2 Willow Lane]]. They can also be used as a brown dye when used in the spool of the [[Sewing Machine]] with a dyeable clothing item in the feed.\n\n==References==\n<references>\n   <ref name=\"raccoonseeds\">See <samp>Utility::getRaccoonSeedForCurrentTimeOfYear</samp> in the game code.</ref>\n   <ref name=\"chestchance\">See <samp>FishingRod::openTreasureMenuEndFunction</samp> in the game code.</ref>\n   <ref name=\"containerchance\">See <samp>BreakableContainer::releaseContents</samp> in the game code.</ref>\n   <ref name=\"golemchance\">See <samp>RockGolem::getExtraDropItems</samp> in the game code.</ref>\n</references>\n\n==History==\n{{History|1.6|Introduced.}}\n\n{{NavboxSeeds}}\n\n[[Category:Spring seeds]]\n\n[[de:Karottensamen]]\n[[es:Semillas de zanahoria]]\n[[fr:Graines de carotte]]\n[[it:Semi di carota]]\n[[ja:ニンジンのタネ]]\n[[ko:당근 씨앗]]\n[[hu:Répa magvak]]\n[[pt:Sementes de Cenoura]]\n[[ru:Семена моркови]]\n[[tr:Havuç Tohumu]]\n[[zh:胡萝卜种子]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Spring seeds"
+     }
+    ]
+   },
+   {
+    "pageid": 3724,
+    "ns": 0,
+    "title": "Corn Seeds",
+    "revisions": [
+     {
+      "revid": 193908,
+      "parentid": 193155,
+      "timestamp": "2026-07-30T13:33:53Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "{{Infobox seed\n|image     = Corn Seeds.png\n|crop      = {{Name|Corn}}\n|growth    = 14 days\n|season    = {{Season|Summer}} • {{Season|Fall}}\n|sellprice = {{Price|75}}\n|gPrice    = {{Price|150}}\n|jPrice    = {{Price|187}}\n|tPrice    = {{Tprice|75}}\n|nmday     = 16 & 17\n}}\n'''Corn Seeds''' are a type of seed. Mature plants yield [[Corn]].\n\nThey can be purchased at [[Pierre's General Store]], at [[JojaMart]], from the Magic Shop Boat at the [[Night Market]] on Winter 16 and 17, and occasionally from the [[Traveling Cart]]. They can also be obtained by using the [[Seed Maker]], as well as having a chance of being planted when using [[Mixed Seeds]].  Five to twenty Corn Seeds may occasionally be found in [[Skull Cavern#Treasure Rooms|treasure rooms]] in the Skull Cavern. Eight to twenty Corn Seeds may be received from opening a [[Mystery Box]] or [[Golden Mystery Box]].\n\n==Stages==\n{{#lsth:Corn|Stages}}\n\n==Gifting==\n{{GiftsByItem\n|dislike=Robin,Demetrius,Maru,Sebastian,Linus,Pierre,Caroline,Abigail,Alex,George,Evelyn,Lewis,Clint,Penny,Pam,Emily,Haley,Jas,Vincent,Jodi,Kent,Sam,Leah,Shane,Marnie,Elliott,Gus,Dwarf,Wizard,Harvey,Sandy,Willy,Krobus,Leo\n}}\n\n==Trivia==\n*Normal quality [[Corn]] sells for {{Price|50}}, but 2 packets of Corn Seeds sell for a total of {{Price|150}}. This is the same sell price as corn pickles (assuming no [[Skills#Farming|Artisan Profession]]), but instead of 4000 minutes in a [[Preserves Jar]], it takes 20 minutes in a [[Seed Maker]].\n\n{{NavboxSeeds}}\n\n[[Category:Summer seeds]]\n[[Category:Fall seeds]]\n\n[[de:Mais-Saat]]\n[[es:Semillas de maíz]]\n[[fr:Graines de maïs]]\n[[it:Semi di mais]]\n[[ja:トウモロコシのタネ]]\n[[ko:옥수수 씨앗]]\n[[hu:Kukorica magvak]]\n[[pt:Sementes de milho]]\n[[ru:Семена кукурузы]]\n[[tr:Mısır Tohumu]]\n[[zh:玉米种子]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Fall seeds"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Summer seeds"
+     }
+    ]
+   },
+   {
+    "pageid": 3706,
+    "ns": 0,
+    "title": "Garlic Seeds",
+    "revisions": [
+     {
+      "revid": 193128,
+      "parentid": 176370,
+      "timestamp": "2026-05-19T16:37:52Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "{{Infobox seed\n|image     = Garlic Seeds.png\n|crop      = {{Name|Garlic}}\n|growth    = 4 days\n|season    = Spring\n|sellprice = {{Price|20}}\n|gPrice    = {{Price|40}} (Year 2+)\n|jPrice    = Not Sold\n|tPrice    = {{Tprice|20}}\n|nmday     = 15\n}}\n'''Garlic Seeds''' are a type of seed. Mature plants yield [[Garlic]].\n\nThey can be purchased at [[Pierre's General Store]] starting in year 2, from the Magic Shop Boat at the [[Night Market]] on Winter 15 (starting in year 2), and occasionally from the [[Traveling Cart]]. They can also be obtained by using the [[Seed Maker]].  Five to twenty Garlic Seeds may occasionally be found in [[Skull Cavern#Treasure Rooms|treasure rooms]] in the Skull Cavern.\n\n==Stages==\n{{#lsth:Garlic|Stages}}\n\n==Gifting==\n{{GiftsByItem\n|dislike=Robin,Demetrius,Maru,Sebastian,Linus,Pierre,Caroline,Abigail,Alex,George,Evelyn,Lewis,Clint,Penny,Pam,Emily,Haley,Jas,Vincent,Jodi,Kent,Sam,Leah,Shane,Marnie,Elliott,Gus,Dwarf,Wizard,Harvey,Sandy,Willy,Krobus,Leo\n}}\n\n{{NavboxSeeds}}\n\n[[Category:Spring seeds]]\n\n[[de:Knoblauch-Saat]]\n[[es:Semillas de ajo]]\n[[fr:Graines d'ail]]\n[[it:Semi d'aglio]]\n[[ja:ニンニクのタネ]]\n[[ko:마늘 씨앗]]\n[[hu:Fokhagyma magvak]]\n[[pt:Sementes de alho]]\n[[ru:Семена чеснока]]\n[[tr:Sarımsak Tohumu]]\n[[zh:大蒜种子]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Spring seeds"
+     }
+    ]
+   },
+   {
+    "pageid": 3705,
+    "ns": 0,
+    "title": "Parsnip Seeds",
+    "revisions": [
+     {
+      "revid": 193542,
+      "parentid": 193541,
+      "timestamp": "2026-06-08T01:12:28Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "{{Infobox seed\n|image     = Parsnip Seeds.png\n|crop      = {{Name|Parsnip}}\n|growth    = 4 days\n|season    = Spring\n|sellprice = {{Price|10}}\n|gPrice    = {{Price|20}}\n|jPrice    = {{Price|25}}\n|tPrice    = {{Tprice|10}}\n|nmday     = 15\n}}\n'''Parsnip Seeds''' are a type of seed. Mature plants yield [[Parsnip]]s.\n\nFifteen Seeds are provided by [[Lewis|Mayor Lewis]] at the start of the game on every map other than the [[Farm Maps#Meadowlands|Meadowlands Farm]]. Thereafter, they can be purchased at [[Pierre's General Store]], at [[JojaMart]], from the Magic Shop Boat at the [[Night Market]] on Winter 15, and occasionally from the [[Traveling Cart]]. They can also be obtained by using the [[Seed Maker]], as well as having a chance of being planted when using [[Mixed Seeds]]. Five to twenty Parsnip Seeds may occasionally be found in [[Skull Cavern#Treasure Rooms|treasure rooms]] in the Skull Cavern. Eight to twenty Parsnip Seeds may be received from opening a [[Mystery Box]] or [[Golden Mystery Box]].\n\n==Stages==\n{{#lsth:Parsnip|Stages}}\n\n==Gifting==\n{{GiftsByItem\n|dislike=Robin,Demetrius,Maru,Sebastian,Linus,Pierre,Caroline,Abigail,Alex,George,Evelyn,Lewis,Clint,Penny,Pam,Emily,Haley,Jas,Vincent,Jodi,Kent,Sam,Leah,Shane,Marnie,Elliott,Gus,Dwarf,Wizard,Harvey,Sandy,Willy,Krobus,Leo\n}}\n\n==Quests==\n*Plant at least one Parsnip Seed and harvest at least one [[Parsnip]] for the [[Quests#Getting Started|\"Getting Started\" Quest]].\n\n{{NavboxSeeds}}\n\n[[Category:Spring seeds]]\n\n[[de:Pastinaken-Saat]]\n[[es:Semillas de chirivía]]\n[[fr:Graines de panais]]\n[[it:Semi di pastinaca]]\n[[ja:パースニップのタネ]]\n[[ko:파스닙 씨앗]]\n[[hu:Paszternák magvak]]\n[[pt:Sementes de chirívia]]\n[[ru:Семена пастернака]]\n[[tr:Yaban Havucu Tohumu]]\n[[zh:防风草种子]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Spring seeds"
+     }
+    ]
+   },
+   {
+    "pageid": 3713,
+    "ns": 0,
+    "title": "Rhubarb Seeds",
+    "revisions": [
+     {
+      "revid": 193243,
+      "parentid": 176703,
+      "timestamp": "2026-05-19T16:38:23Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "{{Infobox seed\n|image     = Rhubarb Seeds.png\n|crop      = {{Name|Rhubarb}}\n|growth    = 13 days\n|season    = Spring\n|sellprice = {{Price|50}}\n|gPrice    = Not Sold\n|jPrice    = Not Sold\n|oPrice    = {{Price|100}}\n|tPrice    = {{Tprice|50}}\n}}\n'''Rhubarb Seeds''' are a type of seed. Mature plants yield [[Rhubarb]].\n\nThey can be purchased at the [[Oasis]] and occasionally from the [[Traveling Cart]]. They can also be obtained by using the [[Seed Maker]].  Five to twenty Rhubarb Seeds may occasionally be found in [[Skull Cavern#Treasure Rooms|treasure rooms]] in the Skull Cavern. Rhubarb may also grow from [[Mixed Seeds]] planted on [[Ginger Island]].\n\n==Stages==\n{{#lsth:Rhubarb|Stages}}\n\n==Gifting==\n{{GiftsByItem\n|dislike=Robin,Demetrius,Maru,Sebastian,Linus,Pierre,Caroline,Abigail,Alex,George,Evelyn,Lewis,Clint,Penny,Pam,Emily,Haley,Jas,Vincent,Jodi,Kent,Sam,Leah,Shane,Marnie,Elliott,Gus,Dwarf,Wizard,Harvey,Sandy,Willy,Krobus,Leo\n}}\n\n{{NavboxSeeds}}\n\n[[Category:Spring seeds]]\n\n[[de:Rhabarber-Saat]]\n[[es:Brote de ruibarbo]]\n[[fr:Graines de rhubarbe]]\n[[it:Semi di rabarbaro]]\n[[ja:ルバーブのタネ]]\n[[ko:대황 씨앗]]\n[[hu:Rebarbara magvak]]\n[[pt:Sementes de ruibarbo]]\n[[ru:Семена ревеня]]\n[[tr:Uşkun Tohumu]]\n[[zh:大黄种子]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Spring seeds"
+     }
+    ]
+   },
+   {
+    "pageid": 3929,
+    "ns": 0,
+    "title": "Strawberry Seeds",
+    "revisions": [
+     {
+      "revid": 191000,
+      "parentid": 190999,
+      "timestamp": "2026-01-30T20:00:34Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "{{Infobox seed\n|image      = Strawberry Seeds.png\n|crop       = {{Name|Strawberry}}\n|growth     = 8 days\n|season     = [[Spring]]\n|sellprice  = {{Price|0}}\n|gPrice     = Not Sold\n|jPrice     = Not Sold\n|tPrice     = Not Sold\n|otherprice = [[Egg Festival]]: {{Price|100}}\t\n}}\n'''Strawberry Seeds''' are a type of seed. Mature plants yield [[Strawberry|Strawberries]].\n\nThey can be purchased for {{Price|100}} at the [[Egg Festival]], on the first and third days of the [[Desert Festival]] from the [[Desert Festival#Calico Egg Merchant|Calico Egg Merchant]] for {{Price|5|Calico}} and {{Price|6|Calico}} [[Calico Egg]]s respectively, or from [[Maru]]'s [[Desert Festival#Villager Shops|shop]] at the Desert Festival. They can also be obtained by using the [[Seed Maker]].\n\nWhen harvested, each Strawberry plant gives 1 Strawberry every 4 days, with a small random chance for more Strawberries.<ref name=\"extraharvest\" />\n\n==Stages==\n{{#lst:Strawberry|cropstages}}\n\n==Gifting==\n{{GiftsByItem\n|dislike=Robin,Demetrius,Maru,Sebastian,Linus,Pierre,Caroline,Abigail,Alex,George,Evelyn,Lewis,Clint,Penny,Pam,Emily,Haley,Jas,Vincent,Jodi,Kent,Sam,Leah,Shane,Marnie,Elliott,Gus,Dwarf,Wizard,Harvey,Sandy,Willy,Krobus,Leo\n}}\n\n==Notes==\n<references>\n<ref name=\"extraharvest\">The game generates a random number between 0 and 1, and if it is less than 0.02, then another Strawberry will spawn.  This repeats until the random number is greater than or equal to 0.02, at which point the chance for an extra Strawberry ends.  Daily [[Luck]] can double the amount of extra Strawberries spawned by the above formula.</ref>\n</references>\n*Unlike most other types of seed, Strawberry Seeds have no sell value. Therefore, unlike other multi-harvest crops, it is not profitable to process the crops with a [[Seed Maker]].\n\n==History==\n{{History|1.0|Introduced.}}\n{{History|1.6|Now obtainable during [[Desert Festival]].}}\n\n{{NavboxSeeds}}\n\n[[Category:Spring seeds]]\n\n[[de:Erdbeer-Saat]]\n[[es:Semillas de fresa]]\n[[fr:Graines de fraise]]\n[[it:Semi di fragola]]\n[[ja:イチゴのタネ]]\n[[ko:딸기 씨앗]]\n[[hu:Eper magvak]]\n[[pt:Sementes de morango]]\n[[ru:Семена клубники]]\n[[tr:Çilek Tohumu]]\n[[zh:草莓种子]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Spring seeds"
+     }
+    ]
+   },
+   {
+    "pageid": 3737,
+    "ns": 0,
+    "title": "Sunflower Seeds",
+    "revisions": [
+     {
+      "revid": 193137,
+      "parentid": 192593,
+      "timestamp": "2026-05-19T16:37:54Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "{{Infobox seed\n|image     = Sunflower Seeds.png\n|crop      = {{Name|Sunflower}}\n|growth    = 8 days\n|season    = {{Season|Summer}} • {{Season|Fall}}\n|sellprice = {{Price|20}} (harvested)<br />{{Price|100}} (purchased from [[JojaMart]])\n|gPrice    = {{Price|200}}\n|jPrice    = {{Price|125}}\n|tPrice    = {{Tprice|20}}\n|type      = sunflower seeds\n|nmday     = 16 & 17\n}}\n'''Sunflower Seeds''' are a type of seed. Mature plants yield [[Sunflower]]s and 0-2 Sunflower Seeds.\n\nThey can be purchased  at [[Pierre's General Store]], at [[JojaMart]], from the Magic Shop Boat at the [[Night Market]] on Winter 16 & 17, and occasionally from the [[Traveling Cart]]. They can also be obtained by using the [[Seed Maker]] or by planting [[Mixed Flower Seeds]]. Sunflower Seeds are the only seeds you can buy cheaper at [[JojaMart]] than at [[Pierre's General Store]].\n\n==Stages==\n{{#lsth:Sunflower|Stages}}\n\n==Gifting==\n{{GiftsByItem\n|dislike=Robin,Demetrius,Maru,Sebastian,Linus,Pierre,Caroline,Abigail,Alex,George,Evelyn,Lewis,Clint,Penny,Pam,Emily,Haley,Jas,Vincent,Jodi,Kent,Sam,Leah,Shane,Marnie,Elliott,Gus,Dwarf,Wizard,Harvey,Sandy,Willy,Krobus,Leo\n}}\n\n==Recipes==\nSunflower Seeds are not used in any recipes.\n\n==Artisan Goods==\nNote that the game does not consider [[Oil]] to be an [[Artisan Goods|Artisan Good]], so it does not benefit from the [[Farming#Farming Skill|Artisan Profession]].\n{| class=\"wikitable roundedborder\"\n!Image\n!Name\n!Description\n!Ingredients\n!Equipment\n!Time\n!Energy / Health\n!Sell Price\n|-\n|[[File:Oil.png|center]]\n|[[Oil]]\n|{{Description|Oil}}\n|{{Name|Sunflower Seeds|1}}\n|style=\"text-align: center;\"|[[File:Oil Maker.png|center]][[Oil Maker]]\n|{{Duration|3200m (&#8776;53.33h)}}\n|{{energy|13}}{{health|5}}\n|{{Price|100}}\n|-\n|}\n\n==Bug==\n*When selling Sunflower Seeds to Pierre, seeds collected by harvesting Sunflowers or purchased from Pierre sell for {{Price|20}} each.  However, seeds purchased from JojaMart sell for {{Price|100}}.  Thus, if you purchase one seed from JojaMart, then add collected seeds to that stack in inventory, all the seeds will sell for {{Price|100}} each.\n**If you instead add the purchased seed to the stack of collected seeds (or seeds purchased from Pierre), all the seeds will sell for {{Price|20}} each.\n\n==History==\n{{History|1.0|Introduced.}}\n{{History|1.1|Made plantable in [[summer]] in addition to [[fall]].}}\n{{History|1.4|Sunflower Seeds purchased from [[Pierre]] now sell back to him for {{Price|20}} instead of {{Price|100}}.}}\n\n{{NavboxSeeds}}\n\n[[Category:Fall seeds]]\n[[Category:Summer seeds]]\n[[Category:Bugs tested in 1.5]]\n\n[[de:Sonnenblumen-Saat]]\n[[es:Semillas de girasol]]\n[[fr:Graines de tournesol]]\n[[it:Semi di girasole]]\n[[ja:ヒマワリのタネ]]\n[[ko:해바라기 씨앗]]\n[[hu:Napraforgó magvak]]\n[[pt:Sementes de Girassol]]\n[[ru:Семена подсолнуха]]\n[[tr:Ayçiçeği Tohumu]]\n[[zh:向日葵种子]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Fall seeds"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Summer seeds"
+     }
+    ]
+   }
+  ]
+ }
+}

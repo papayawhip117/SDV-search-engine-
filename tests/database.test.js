@@ -5,7 +5,7 @@ import { readFileSync } from 'node:fs';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { buildFromRawData } from '../src/db/buildDatabase.js';
 import { openDatabase } from '../src/db/database.js';
-import { getCropsBySeason } from '../src/queries/cropQueries.js';
+import { getCropsBySeason, getProfitInputs } from '../src/queries/cropQueries.js';
 
 const fixture = JSON.parse(readFileSync(new URL('./fixtures/crop-pages.json', import.meta.url)));
 const RETRIEVED_AT = '2026-11-16T00:18:00.000Z';
@@ -106,5 +106,37 @@ describe('a crop that is its own seed', () => {
     const row = coffeeDb.prepare('SELECT c.item_id, c.seed_item_id, i.item_type FROM crops c JOIN items i ON i.id = c.item_id').get();
     expect(row.seed_item_id).toBe(row.item_id);
     expect(row.item_type).toBe('crop');
+  });
+});
+
+describe('seed prices and profit inputs', () => {
+  it('connects each crop to the cheapest shop price for its seed, with sources', () => {
+    const seedPages = JSON.parse(readFileSync(new URL('./fixtures/seed-pages.json', import.meta.url)));
+    const report2 = buildFromRawData(db, { retrievedAt: RETRIEVED_AT, pages: seedPages.query.pages });
+    expect(report2.savedSeeds).toHaveLength(7);
+
+    const spring = getProfitInputs(db, 'Spring');
+    const parsnip = spring.find((crop) => crop.name === 'Parsnip');
+    expect(parsnip).toMatchObject({
+      seasons: ['Spring'],
+      seedName: 'Parsnip Seeds',
+      seedPrice: 20, // Pierre 20g beats JojaMart 25g
+      seedShop: "Pierre's General Store",
+      seedPriceSourceUrl: 'https://stardewvalleywiki.com/Parsnip_Seeds',
+      cropSourceUrl: 'https://stardewvalleywiki.com/Parsnip',
+    });
+    expect(spring.find((crop) => crop.name === 'Strawberry')).toMatchObject({ seedPrice: 100, seedShop: 'Egg Festival' });
+
+    const corn = getProfitInputs(db, 'Fall').find((crop) => crop.name === 'Corn');
+    expect(corn).toMatchObject({ seasons: ['Summer', 'Fall'], seedPrice: 150 });
+  });
+
+  it('the seed page becomes the source of the seed item', () => {
+    const seedPages = JSON.parse(readFileSync(new URL('./fixtures/seed-pages.json', import.meta.url)));
+    buildFromRawData(db, { retrievedAt: RETRIEVED_AT, pages: seedPages.query.pages });
+    const row = db
+      .prepare(`SELECT sp.page_title AS source FROM items i JOIN source_pages sp ON sp.id = i.source_page_id WHERE i.name = 'Parsnip Seeds'`)
+      .get();
+    expect(row.source).toBe('Parsnip Seeds');
   });
 });

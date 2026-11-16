@@ -1,4 +1,4 @@
-// Opening the database and saving crops into it.
+// Opening the database and saving crops and seeds into it.
 //
 // We use better-sqlite3. "Synchronous" means each database call finishes
 // before the next line runs, so there's no `await` here. That keeps the
@@ -26,6 +26,40 @@ function toSqlBoolean(value) {
 }
 
 /**
+ * Save the wiki page a fact came from, plus its categories, and return its id.
+ * If we already have this exact revision, only the download date is updated.
+ * Call it inside a transaction (saveCrop and saveSeed do).
+ */
+export function saveSourcePage(db, page, retrievedAt) {
+  const revision = page.revisions[0];
+  const { id: sourcePageId } = db
+    .prepare(
+      `INSERT INTO source_pages
+         (page_title, page_url, wiki_page_id, revision_id, revision_time, retrieved_at, category, raw_wikitext)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+       ON CONFLICT (page_title, revision_id) DO UPDATE SET retrieved_at = excluded.retrieved_at
+       RETURNING id`,
+    )
+    .get(
+      page.title,
+      pageUrl(page.title),
+      page.pageid ?? null,
+      revision.revid,
+      revision.timestamp ?? null,
+      retrievedAt,
+      page.foundInCategory ?? null,
+      revision.slots.main.content,
+    );
+
+  // The wiki's own category labels for this page.
+  const insertCategory = db.prepare('INSERT OR IGNORE INTO page_categories (source_page_id, category) VALUES (?, ?)');
+  for (const category of page.categories ?? []) {
+    insertCategory.run(sourcePageId, category.title.replace(/^Category:/, ''));
+  }
+  return sourcePageId;
+}
+
+/**
  * Save one crop and its source page.
  *
  * @param db         an open database
@@ -37,34 +71,9 @@ function toSqlBoolean(value) {
  * (if anything fails) none of them are, so the database is never half-updated.
  */
 export function saveCrop(db, page, crop, retrievedAt) {
-  const revision = page.revisions[0];
-
   const save = db.transaction(() => {
-    // 1. The source page. If we already have this exact revision, just update the download date.
-    const { id: sourcePageId } = db
-      .prepare(
-        `INSERT INTO source_pages
-           (page_title, page_url, wiki_page_id, revision_id, revision_time, retrieved_at, category, raw_wikitext)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-         ON CONFLICT (page_title, revision_id) DO UPDATE SET retrieved_at = excluded.retrieved_at
-         RETURNING id`,
-      )
-      .get(
-        page.title,
-        pageUrl(page.title),
-        page.pageid ?? null,
-        revision.revid,
-        revision.timestamp ?? null,
-        retrievedAt,
-        page.foundInCategory ?? null,
-        revision.slots.main.content,
-      );
-
-    // 2. The wiki's own category labels for this page.
-    const insertCategory = db.prepare('INSERT OR IGNORE INTO page_categories (source_page_id, category) VALUES (?, ?)');
-    for (const category of page.categories ?? []) {
-      insertCategory.run(sourcePageId, category.title.replace(/^Category:/, ''));
-    }
+    // 1-2. The source page and its categories.
+    const sourcePageId = saveSourcePage(db, page, retrievedAt);
 
     // 3. The harvested crop as an item. Newer data replaces older data.
     const { id: cropItemId } = db
@@ -121,6 +130,54 @@ export function saveCrop(db, page, crop, retrievedAt) {
     crop.stageDays.forEach((days, index) => insertStage.run(cropItemId, index + 1, days));
 
     return cropItemId;
+  });
+
+  return save();
+}
+
+/**
+ * Save a seed's own page, sell price and shop prices.
+ *
+ * @param seed  the result of extractSeed(page).seed
+ *
+ * A few items are both a crop and a seed (you plant a Coffee Bean). Those
+ * stay a 'crop' item; we only add their shop prices.
+ */
+export function saveSeed(db, page, seed, retrievedAt) {
+  const save = db.transaction(() => {
+    const sourcePageId = saveSourcePage(db, page, retrievedAt);
+
+    const existing = db.prepare('SELECT id, item_type FROM items WHERE name = ?').get(seed.name);
+    let seedItemId;
+    if (existing?.item_type === 'crop') {
+      seedItemId = existing.id;
+    } else {
+      // The seed's own page is a better source than the crop page that
+      // first mentioned it, so it replaces that source here.
+      seedItemId = db
+        .prepare(
+          `INSERT INTO items (name, item_type, base_sell_price, source_page_id)
+           VALUES (?, 'seed', ?, ?)
+           ON CONFLICT (name) DO UPDATE SET
+             base_sell_price = excluded.base_sell_price, source_page_id = excluded.source_page_id
+           RETURNING id`,
+        )
+        .get(seed.name, seed.sellPrice, sourcePageId).id;
+    }
+
+    // Replace this seed's shop prices with the ones on the current page.
+    db.prepare('DELETE FROM shop_prices WHERE item_id = ?').run(seedItemId);
+    const insertShop = db.prepare('INSERT OR IGNORE INTO shops (name) VALUES (?)');
+    const findShop = db.prepare('SELECT id FROM shops WHERE name = ?');
+    const insertPrice = db.prepare(
+      `INSERT INTO shop_prices (shop_id, item_id, buy_price, availability_note, source_page_id)
+       VALUES (?, ?, ?, ?, ?)`,
+    );
+    for (const { shop, price, note } of seed.prices) {
+      insertShop.run(shop);
+      insertPrice.run(findShop.get(shop).id, seedItemId, price, note, sourcePageId);
+    }
+    return seedItemId;
   });
 
   return save();

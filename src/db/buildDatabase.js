@@ -2,24 +2,34 @@
 //
 // Run with:  npm run build-db
 //
-// Reads the newest data/raw/crops-*.json (made by `npm run collect`),
-// extracts each page, saves the crops to data/sdv.db, and prints a report
+// Reads the newest data/raw/crops-*.json (made by `npm run collect` or
+// `npm run import`), extracts each page, saves crops and seeds to data/sdv.db, and prints a report
 // of skipped pages and warnings so they can be checked by hand.
 
 import { readdirSync, readFileSync, rmSync } from 'node:fs';
 import path from 'node:path';
 import { extractCrop } from '../extract/cropExtractor.js';
+import { extractSeed, isSeedPage } from '../extract/seedExtractor.js';
 import { isRunDirectly } from '../utils/isRunDirectly.js';
-import { openDatabase, saveCrop } from './database.js';
+import { openDatabase, saveCrop, saveSeed } from './database.js';
 
 export const DATABASE_PATH = path.join('data', 'sdv.db');
 const RAW_DATA_FOLDER = path.join('data', 'raw');
 
 /** Extract and save every page in a raw collection. Returns a report. */
 export function buildFromRawData(db, rawData) {
-  const report = { saved: [], skipped: [], warnings: [], notes: [] };
+  const report = { saved: [], savedSeeds: [], skipped: [], warnings: [], notes: [] };
 
   for (const page of rawData.pages) {
+    // Seed pages ({{Infobox seed}}) hold shop prices; everything else is tried as a crop.
+    if (isSeedPage(page)) {
+      const result = extractSeed(page);
+      saveSeed(db, page, result.seed, rawData.retrievedAt);
+      report.savedSeeds.push(result.seed.name);
+      for (const warning of result.warnings) report.warnings.push({ title: page.title, warning });
+      continue;
+    }
+
     const result = extractCrop(page);
     if (!result.ok) {
       report.skipped.push({ title: page.title, reason: result.reason });
@@ -60,7 +70,7 @@ function main() {
   const report = buildFromRawData(db, rawData);
   db.close();
 
-  console.log(`\nSaved ${report.saved.length} crops to ${DATABASE_PATH}`);
+  console.log(`\nSaved ${report.saved.length} crops and ${report.savedSeeds.length} seeds to ${DATABASE_PATH}`);
   if (report.skipped.length) {
     console.log(`\nSkipped ${report.skipped.length} pages (not crops, or unreadable):`);
     for (const { title, reason } of report.skipped) console.log(`  - ${title}: ${reason}`);

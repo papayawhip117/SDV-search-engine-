@@ -70,8 +70,8 @@ CREATE TABLE IF NOT EXISTS crop_growth_stages (
   PRIMARY KEY (crop_item_id, stage_number)
 );
 
--- Shops and what they charge. Created now so the design is complete;
--- filled in a later phase from seed and shop pages.
+-- Shops and what they charge, filled from the seed pages' infoboxes.
+-- Each shop row is created the first time a price mentions it.
 CREATE TABLE IF NOT EXISTS shops (
   id             INTEGER PRIMARY KEY,
   name           TEXT NOT NULL UNIQUE,
@@ -81,7 +81,8 @@ CREATE TABLE IF NOT EXISTS shops (
 CREATE TABLE IF NOT EXISTS shop_prices (
   shop_id        INTEGER NOT NULL REFERENCES shops(id),
   item_id        INTEGER NOT NULL REFERENCES items(id),
-  buy_price      INTEGER NOT NULL,
-  source_page_id INTEGER NOT NULL REFERENCES source_pages(id),
+  buy_price         INTEGER NOT NULL,
+  availability_note TEXT,   -- e.g. '(Year 2+)', copied from the wiki
+  source_page_id    INTEGER NOT NULL REFERENCES source_pages(id),
   PRIMARY KEY (shop_id, item_id)
 );

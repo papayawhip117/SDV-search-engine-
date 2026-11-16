@@ -4,7 +4,7 @@ A Stardew Valley search engine built from the [Stardew Valley Wiki](https://star
 
 An AI assistant will come later. It will only answer from this verified local database and will cite the wiki page behind every fact.
 
-> **Status:** Phase 2, crops proof of concept. Only crops are collected so far.
+> **Status:** Phase 3. Crops, seed prices and profit-per-day calculations.
 
 ## How it works
 
@@ -54,6 +54,7 @@ Run these one at a time:
 | `npm run import` | Prints 3 wiki URLs to save from your browser into `data/browser/`. Then `npm run import -- data/browser/*.json` turns them into `data/raw/`. |
 | `npm run build-db` | Reads the newest file in `data/raw/` (from `collect` or `import`), extracts the crop facts, and saves them to `data/sdv.db`. |
 | `npm run crops -- Summer` | Lists Summer crops by sell price, with wiki links. Try `Spring` or `Fall` too. |
+| `npm run profit -- Spring` | Ranks Spring crops by profit per day, using seed prices from the wiki. Add a day to plant later: `npm run profit -- Spring 10`. |
 
 ## Project layout
 
@@ -61,13 +62,17 @@ Run these one at a time:
 src/
   wiki/apiClient.js        talks to the wiki API (rate limiting, retries)
   collect/collectCrops.js  finds every crop page and saves the raw data
+  collect/importBrowserFiles.js  turns API responses saved in a browser into raw data
   extract/wikitext.js      general tools for reading wiki markup
   extract/cropExtractor.js turns one crop page into clean crop facts
+  extract/seedExtractor.js reads shop prices from one seed page
+  calc/profit.js           harvests, costs and profit per day (no AI involved)
   db/schema.sql            the database tables
   db/database.js           opens the database and saves crops
   db/buildDatabase.js      raw data → extractor → database
   queries/cropQueries.js   reusable database searches
   cli/listCrops.js         the command-line search
+  cli/profit.js            the command-line profit table
 tests/
   fixtures/                real wiki pages saved for tests
   *.test.js                Vitest tests

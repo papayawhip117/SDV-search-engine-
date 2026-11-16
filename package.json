@@ -13,7 +13,8 @@
     "collect": "node src/collect/collectCrops.js",
     "import": "node src/collect/importBrowserFiles.js",
     "build-db": "node src/db/buildDatabase.js",
-    "crops": "node src/cli/listCrops.js"
+    "crops": "node src/cli/listCrops.js",
+    "profit": "node src/cli/profit.js"
   },
   "dependencies": {
     "better-sqlite3": "^13.2.0"
