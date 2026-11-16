@@ -2,10 +2,12 @@
 # so it never goes into Git.
 node_modules/
 
-# Secrets. API keys (for the AI assistant, later) live in a .env file
+# Secrets. API keys (for the AI assistant) live in a .env file
 # on your own computer and must NEVER be committed.
 .env
 .env.*
+# ...except the template, which has no real key in it.
+!.env.example
 
 # Downloaded wiki data and the generated database. These are rebuilt by
 # `npm run collect` and `npm run build-db`, so they don't belong in Git.

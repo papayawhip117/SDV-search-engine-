@@ -1,16 +1,18 @@
-// Ask a question and see the facts the assistant would get.
+// Ask the assistant a question.
 //
 //   npm run ask -- "What does Abigail love?"
 //   npm run ask -- "best crops to plant in summer"
+//   npm run ask -- --facts "best crops to plant in summer"   only the facts, no AI
 //
-// This is step 1 of the AI assistant: no AI yet. It shows what the app
-// understood and every fact it found, each with its wiki source. Step 2
-// will hand exactly these facts to Claude to write the answer.
+// The app finds the facts (step 1), then Claude writes an answer from those
+// facts only, citing them like [F2] (step 2). Without an API key in .env, or
+// with --facts, it shows the facts and doesn't call Claude.
 
 import { existsSync } from 'node:fs';
 import { DATABASE_PATH } from '../db/buildDatabase.js';
 import { openDatabase } from '../db/database.js';
 import { findFacts } from '../assistant/findFacts.js';
+import { answerQuestion, createClaudeAI, explainError } from '../assistant/answer.js';
 import { isRunDirectly } from '../utils/isRunDirectly.js';
 
 /** The result of findFacts → printable lines. Exported for tests. */
@@ -36,10 +38,31 @@ export function formatFacts({ understood, facts, usedSearch }) {
   return lines;
 }
 
-function main() {
-  const question = process.argv.slice(2).join(' ').trim();
+/** An answer from answerQuestion → printable lines: the answer, then the sources it cites. Exported for tests. */
+export function formatAnswer({ answer, cited, uncitedIds }) {
+  const lines = [answer, ''];
+  if (cited.length > 0) {
+    lines.push('Sources:');
+    for (const fact of cited) {
+      lines.push(`[${fact.id}] ${fact.text}`);
+      for (const source of fact.sources) lines.push(`      ${source.title}: ${source.url} (revision ${source.revision})`);
+    }
+  }
+  if (uncitedIds.length > 0) lines.push(`Warning: the answer cites ${uncitedIds.join(', ')}, which we never gave it.`);
+  return lines;
+}
+
+/** Load .env (where the API key lives) if there is one. Node 20.12+ can do this itself. */
+function loadEnvFile() {
+  if (existsSync('.env') && typeof process.loadEnvFile === 'function') process.loadEnvFile('.env');
+}
+
+async function main() {
+  const args = process.argv.slice(2);
+  const factsOnly = args.includes('--facts');
+  const question = args.filter((arg) => arg !== '--facts').join(' ').trim();
   if (!question) {
-    console.error('Usage: npm run ask -- "What does Abigail love?"');
+    console.error('Usage: npm run ask -- "What does Abigail love?"   (add --facts to skip the AI)');
     process.exitCode = 1;
     return;
   }
@@ -48,12 +71,23 @@ function main() {
     process.exitCode = 1;
     return;
   }
+  loadEnvFile();
   const db = openDatabase(DATABASE_PATH);
-  const result = findFacts(db, question);
-  db.close();
-  console.log(formatFacts(result).join('\n'));
-  console.log('\nThese are the only facts the AI assistant will be allowed to use (step 2).');
-  console.log('Data from the Stardew Valley Wiki (CC BY-NC-SA).');
+  try {
+    if (factsOnly || !process.env.ANTHROPIC_API_KEY) {
+      console.log(formatFacts(findFacts(db, question)).join('\n'));
+      if (!factsOnly) console.log('\n(No ANTHROPIC_API_KEY in .env, so no AI answer. These are the facts it would get.)');
+    } else {
+      const result = await answerQuestion(db, question, { ai: createClaudeAI() });
+      console.log(formatAnswer(result).join('\n'));
+    }
+    console.log('\nData from the Stardew Valley Wiki (CC BY-NC-SA).');
+  } catch (error) {
+    console.error(`Could not get an answer: ${explainError(error)}`);
+    process.exitCode = 1;
+  } finally {
+    db.close();
+  }
 }
 
 if (isRunDirectly(import.meta.url)) main();
