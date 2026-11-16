@@ -189,6 +189,32 @@ CREATE TABLE IF NOT EXISTS dish_ingredients (
   PRIMARY KEY (dish_item_id, position)
 );
 
+-- Crafting recipes, all read from the wiki's Crafting page. item_id is the
+-- crafted item. Items that already exist (Keg, Spring Seeds...) keep their
+-- own type and source; this table adds how to craft them.
+CREATE TABLE IF NOT EXISTS crafting_recipes (
+  item_id          INTEGER PRIMARY KEY REFERENCES items(id),
+  position         INTEGER NOT NULL,  -- order on the Crafting page
+  section          TEXT,      -- the Crafting page section: 'Sprinklers', 'Fertilizer'...
+  output_quantity  INTEGER NOT NULL,  -- how many one craft makes (Speed-Gro: 5)
+  name_note        TEXT,      -- another name on the page, e.g. 'Wild Seeds (Sp)'
+  details          TEXT,      -- extra columns, e.g. 'Radius: 3' or 'Energy: 45; Health: 18'
+  recipe_source    TEXT,      -- e.g. 'Farming Level 2' or 'Carpenter''s Shop for 100g'
+  ingredients_note TEXT,      -- e.g. the Crab Pot's cheaper recipe with the Trapper profession
+  source_page_id   INTEGER NOT NULL REFERENCES source_pages(id)
+);
+
+-- What goes into each crafting recipe, in the wiki's order. Like
+-- dish_ingredients: one item by name, or any item of a group ('Fish').
+CREATE TABLE IF NOT EXISTS crafting_ingredients (
+  crafted_item_id  INTEGER NOT NULL REFERENCES crafting_recipes(item_id),
+  position         INTEGER NOT NULL,
+  ingredient_name  TEXT,
+  ingredient_group TEXT,
+  quantity         INTEGER NOT NULL,
+  PRIMARY KEY (crafted_item_id, position)
+);
+
 -- Full-text search index (SQLite's built-in FTS5). One row per item.
 -- It's filled from the tables above by rebuildSearchIndex() after each build,
 -- so it never holds facts of its own, only text to search through.

@@ -5,7 +5,7 @@
 //   npm run search -- --type seed --sort buy
 //   npm run search -- melon --sort sell --limit 5
 //
-// Options: --season <Spring|Summer|Fall|Winter>  --type <crop|seed|fish|artisan|machine|dish>
+// Options: --season <Spring|Summer|Fall|Winter>  --type <crop|seed|fish|artisan|machine|dish|crafted>
 //          --sort <relevance|name|sell|buy>  --reverse  --limit <number>
 
 import { existsSync } from 'node:fs';
@@ -50,7 +50,7 @@ function main() {
     return;
   }
   if (!args.text && !args.season && !args.type && !args.sort) {
-    console.error('Usage: npm run search -- <words> [--season fall] [--type crop|seed|fish|artisan|machine|dish] [--sort relevance|name|sell|buy] [--reverse] [--limit 20]');
+    console.error('Usage: npm run search -- <words> [--season fall] [--type crop|seed|fish|artisan|machine|dish|crafted] [--sort relevance|name|sell|buy] [--reverse] [--limit 20]');
     process.exitCode = 1;
     return;
   }

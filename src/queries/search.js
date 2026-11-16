@@ -13,8 +13,9 @@
 import { SEASON_ORDER } from '../calc/profit.js';
 import { getRecipesFor } from './artisanQueries.js';
 import { getDishIngredients, getDishesUsing } from './cookingQueries.js';
+import { getCraftedUsing, getCraftingRecipe } from './craftingQueries.js';
 
-export const ITEM_TYPES = ['crop', 'seed', 'fish', 'artisan', 'machine', 'dish'];
+export const ITEM_TYPES = ['crop', 'seed', 'fish', 'artisan', 'machine', 'dish', 'crafted'];
 
 // Each sort option maps to a fixed piece of SQL. User input only ever picks
 // a key from this list; it's never pasted into the SQL itself.
@@ -74,7 +75,7 @@ const SEASONS_SQL = `
  *
  * @param options.text        words to look for in names, wiki categories and summaries
  * @param options.season      'Spring' | 'Summer' | 'Fall' | 'Winter'
- * @param options.type        'crop' | 'seed' | 'fish' | 'artisan' | 'machine' | 'dish'
+ * @param options.type        'crop' | 'seed' | 'fish' | 'artisan' | 'machine' | 'dish' | 'crafted'
  * @param options.sortBy      'relevance' (default when searching text) | 'name' | 'sell' | 'buy'
  * @param options.descending  true/false to override the sort's usual direction
  * @param options.limit       maximum number of results (default 50)
@@ -268,6 +269,9 @@ export function getItemDetails(db, name) {
     madeBy: getRecipesFor(db, item.name),
     dish,
     usedInDishes: getDishesUsing(db, item.name).map((row) => row.name),
+    // How to craft it (from the Crafting page), and what it can be crafted into.
+    crafting: getCraftingRecipe(db, item.name),
+    usedInCrafting: getCraftedUsing(db, item.name).map((row) => row.name),
     growsInto,
     source: { title: item.title, url: item.url, revision: item.revision, revisionTime: item.revisionTime, retrievedAt: item.retrievedAt },
   };

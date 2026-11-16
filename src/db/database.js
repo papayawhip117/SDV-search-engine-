@@ -1,4 +1,4 @@
-// Opening the database and saving crops, seeds, fish, artisan goods and dishes into it.
+// Opening the database and saving crops, seeds, fish, artisan goods, dishes and crafting recipes into it.
 //
 // We use better-sqlite3. "Synchronous" means each database call finishes
 // before the next line runs, so there's no `await` here. That keeps the
@@ -368,6 +368,64 @@ export function saveDish(db, page, dish, retrievedAt) {
       insertIngredient.run(dishItemId, index + 1, ingredient.name, ingredient.group, ingredient.quantity),
     );
     return dishItemId;
+  });
+  return save();
+}
+
+/**
+ * Save every crafting recipe from the Crafting page.
+ *
+ * Crafted items that are already in the database (machines like the Keg,
+ * seed packs like Spring Seeds) keep their own type and wiki source; new
+ * ones become items of type 'crafted' that cite the Crafting page.
+ *
+ * @param result  the result of extractCraftingRecipes(page): { recipes, groups }
+ */
+export function saveCraftingRecipes(db, page, { recipes, groups }, retrievedAt) {
+  const save = db.transaction(() => {
+    const sourcePageId = saveSourcePage(db, page, retrievedAt);
+    db.prepare('DELETE FROM crafting_ingredients').run();
+    db.prepare('DELETE FROM crafting_recipes').run();
+    const insertRecipe = db.prepare(
+      `INSERT OR REPLACE INTO crafting_recipes
+         (item_id, position, section, output_quantity, name_note, details, recipe_source, ingredients_note, source_page_id)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    );
+    const insertIngredient = db.prepare(
+      `INSERT INTO crafting_ingredients (crafted_item_id, position, ingredient_name, ingredient_group, quantity)
+       VALUES (?, ?, ?, ?, ?)`,
+    );
+    recipes.forEach((recipe, position) => {
+      db.prepare(
+        `INSERT INTO items (name, item_type, base_sell_price, source_page_id) VALUES (?, 'crafted', ?, ?)
+         ON CONFLICT (name) DO NOTHING`,
+      ).run(recipe.name, recipe.sellPrice, sourcePageId);
+      const itemId = db.prepare('SELECT id FROM items WHERE name = ?').get(recipe.name).id;
+      insertRecipe.run(
+        itemId,
+        position + 1,
+        recipe.section,
+        recipe.outputQuantity,
+        recipe.nameNote,
+        recipe.details,
+        recipe.recipeSource,
+        recipe.ingredientsNote,
+        sourcePageId,
+      );
+      db.prepare('DELETE FROM crafting_ingredients WHERE crafted_item_id = ?').run(itemId);
+      recipe.ingredients.forEach((ingredient, index) =>
+        insertIngredient.run(itemId, index + 1, ingredient.name, ingredient.group, ingredient.quantity),
+      );
+    });
+
+    // Groups the page defines, like "Wild Seeds" (any of the four seed packs).
+    for (const [groupName, names] of Object.entries(groups ?? {})) {
+      db.prepare('DELETE FROM item_groups WHERE group_name = ?').run(groupName);
+      const insertMember = db.prepare(
+        'INSERT OR REPLACE INTO item_groups (group_name, item_name, base_price, source_page_id) VALUES (?, ?, NULL, ?)',
+      );
+      for (const name of names) insertMember.run(groupName, name, sourcePageId);
+    }
   });
   return save();
 }

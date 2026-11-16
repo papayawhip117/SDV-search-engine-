@@ -85,8 +85,11 @@ export function formatItemDetails(item) {
     }
   }
   if (item.machine) {
-    lines.push(`Recipe:      ${item.machine.recipeSource ?? 'unknown'}`);
-    lines.push(`Made from:   ${item.machine.ingredients ?? 'unknown'}`);
+    // A machine's crafting recipe is shown under "Crafting" below when we have it.
+    if (!item.crafting) {
+      lines.push(`Recipe:      ${item.machine.recipeSource ?? 'unknown'}`);
+      lines.push(`Made from:   ${item.machine.ingredients ?? 'unknown'}`);
+    }
     if (item.machine.products.length) lines.push(`Makes:       ${item.machine.products.join(', ')}`);
   }
   if (item.madeBy.length) {
@@ -101,6 +104,19 @@ export function formatItemDetails(item) {
     lines.push(`Recipe from: ${dish.recipeSource ?? 'unknown'}`);
   }
   if (item.usedInDishes.length) lines.push(`Cooked into: ${item.usedInDishes.join(', ')}`);
+  if (item.crafting) {
+    const { crafting } = item;
+    const makes = crafting.outputQuantity > 1 ? `  (one craft makes ${crafting.outputQuantity})` : '';
+    lines.push(`Crafting:    ${crafting.ingredients.map(formatIngredient).join(', ')}${makes}`);
+    if (crafting.ingredientsNote) lines.push(`             ${crafting.ingredientsNote}`);
+    if (crafting.details) lines.push(`Details:     ${crafting.details}`);
+    lines.push(`Recipe from: ${crafting.recipeSource ?? 'unknown'}`);
+    if (crafting.nameNote) lines.push(`Also called: ${crafting.nameNote}`);
+    if (crafting.sourceUrl !== item.source.url) {
+      lines.push(`             (crafting recipe from ${crafting.sourceUrl}, revision ${crafting.revisionId})`);
+    }
+  }
+  if (item.usedInCrafting.length) lines.push(`Crafted into: ${item.usedInCrafting.join(', ')}`);
   if (item.growsInto.length) lines.push(`Grows into:  ${item.growsInto.join(', ')}`);
   if (item.categories.length) lines.push(`Categories:  ${item.categories.join(', ')}`);
 
