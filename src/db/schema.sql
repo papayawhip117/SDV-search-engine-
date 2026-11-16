@@ -87,3 +87,17 @@ CREATE TABLE IF NOT EXISTS shop_prices (
   source_page_id    INTEGER NOT NULL REFERENCES source_pages(id),
   PRIMARY KEY (shop_id, item_id)
 );
+
+-- Full-text search index (SQLite's built-in FTS5). One row per item.
+-- It's filled from the tables above by rebuildSearchIndex() after each build,
+-- so it never holds facts of its own, only text to search through.
+-- The "trigram" tokenizer matches any 3+ letters inside a word, so
+-- "berry" finds Strawberry and Blueberry Seeds.
+CREATE VIRTUAL TABLE IF NOT EXISTS search_index USING fts5(
+  name,
+  categories,
+  shops,
+  summary,
+  item_id UNINDEXED,
+  tokenize = 'trigram remove_diacritics 1'
+);

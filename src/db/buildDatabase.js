@@ -12,6 +12,7 @@ import { extractCrop } from '../extract/cropExtractor.js';
 import { extractSeed, isSeedPage } from '../extract/seedExtractor.js';
 import { isRunDirectly } from '../utils/isRunDirectly.js';
 import { openDatabase, saveCrop, saveSeed } from './database.js';
+import { rebuildSearchIndex } from './searchIndex.js';
 
 export const DATABASE_PATH = path.join('data', 'sdv.db');
 const RAW_DATA_FOLDER = path.join('data', 'raw');
@@ -41,6 +42,8 @@ export function buildFromRawData(db, rawData) {
     for (const warning of result.warnings) report.warnings.push({ title: page.title, warning });
     for (const note of result.notes) report.notes.push({ title: page.title, note });
   }
+  // Last step: refresh the search index from everything saved above.
+  report.indexed = rebuildSearchIndex(db);
   return report;
 }
 
@@ -72,6 +75,7 @@ function main() {
   db.close();
 
   console.log(`\nSaved ${report.saved.length} crops and ${report.savedSeeds.length} seeds to ${DATABASE_PATH}`);
+  console.log(`Search index holds ${report.indexed} items`);
   if (report.skipped.length) {
     console.log(`\nSkipped ${report.skipped.length} pages (not crops, or unreadable):`);
     for (const { title, reason } of report.skipped) console.log(`  - ${title}: ${reason}`);
