@@ -1,0 +1,641 @@
+/* Stardew Guide: one stylesheet for every page.
+   Colours and sizes live in the variables below, so the whole look can be
+   changed in one place. Sections follow the order things appear on a page. */
+
+:root {
+  /* Colours */
+  --cream: #fdf6e9;        /* page background */
+  --paper: #fffbf3;        /* boxes and the search bar */
+  --peach: #fbe7d7;        /* header, hover */
+  --pink: #f3d6d6;         /* dusty pink accents */
+  --sage: #557549;         /* buttons, links on hover (white text passes contrast checks) */
+  --sage-dark: #44603a;
+  --sage-light: #e2ecd6;
+  --brown: #4f3326;        /* main text */
+  --brown-soft: #6e4f40;   /* quieter text */
+  --line: #c9a891;         /* outlines */
+  --line-strong: #8a6552;  /* the search bar outline */
+  --link: #8b4a3c;
+  --focus: #557549;
+
+  /* Shapes and spacing */
+  --radius: 14px;
+  --radius-small: 10px;
+  --border: 2px solid var(--line);
+  --space: 1rem;
+
+  /* Text. Rounded system fonts feel friendly next to the pixel art and need
+     no download (ui-rounded is the rounded San Francisco font on a Mac). */
+  --font: ui-rounded, "SF Pro Rounded", "Nunito", "Varela Round", "Trebuchet MS", system-ui, sans-serif;
+}
+
+/* ---- Basics ------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 106.25%; /* 17px */
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--cream);
+  color: var(--brown);
+  font-family: var(--font);
+  line-height: 1.6;
+}
+
+h1,
+h2 {
+  line-height: 1.25;
+  letter-spacing: 0.01em;
+}
+
+h1 {
+  font-size: clamp(1.6rem, 4.5vw, 2.25rem);
+  margin: 0.5rem 0 0.75rem;
+}
+
+h2 {
+  font-size: 1.2rem;
+  margin: 0 0 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+a {
+  color: var(--link);
+  text-underline-offset: 0.15em;
+}
+
+a:hover {
+  color: var(--sage-dark);
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Pixel art: keep the pixels square and sharp when it's scaled up. */
+.pixel {
+  image-rendering: pixelated;
+  flex-shrink: 0;
+}
+
+.muted {
+  color: var(--brown-soft);
+}
+
+/* Hidden on screen, still read out by screen readers. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  padding: 0.5rem 1rem;
+  background: var(--paper);
+  border: var(--border);
+  border-radius: var(--radius-small);
+  z-index: 1;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* ---- Header ------------------------------------------------------------- */
+
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  padding: 0.75rem clamp(1rem, 4vw, 2.5rem);
+  background: var(--peach);
+  border-bottom: var(--border);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--brown);
+  font-weight: 700;
+  font-size: 1.25rem;
+  text-decoration: none;
+}
+
+.site-nav {
+  display: flex;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-nav a {
+  display: block;
+  padding: 0.35rem 0.8rem;
+  border-radius: var(--radius-small);
+  color: var(--brown);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.site-nav a:hover {
+  background: var(--paper);
+}
+
+.site-nav a[aria-current="page"] {
+  background: var(--paper);
+  box-shadow: inset 0 0 0 2px var(--line);
+}
+
+/* ---- Page area ---------------------------------------------------------- */
+
+.page {
+  flex: 1;
+  width: 100%;
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: clamp(1.25rem, 4vw, 2.5rem) 1rem 2.5rem;
+}
+
+.page--wide {
+  max-width: 56rem;
+}
+
+.back {
+  margin: 0 0 0.5rem;
+}
+
+/* ---- Homepage hero ------------------------------------------------------ */
+
+.hero {
+  text-align: center;
+  padding-top: 0.5rem;
+}
+
+.hero__art {
+  width: min(360px, 85%);
+  height: auto;
+}
+
+.hero h1 {
+  margin-top: 0.75rem;
+}
+
+.hero__tagline {
+  margin: 0 0 1.75rem;
+  color: var(--brown-soft);
+  font-size: 1.1rem;
+}
+
+.hero__tagline .pixel {
+  margin: 0 0.4rem;
+  vertical-align: 0.05em;
+}
+
+/* ---- Search bar (used on every search page) ----------------------------- */
+
+.search {
+  margin-bottom: 1rem;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.35rem 0.35rem 0.9rem;
+  background: var(--paper);
+  border: 3px solid var(--line-strong);
+  border-radius: var(--radius);
+}
+
+.search-bar:focus-within {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.search-bar__icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  flex-shrink: 0;
+  color: var(--brown-soft);
+}
+
+.search-bar input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.5rem 0.25rem;
+  border: 0;
+  background: transparent;
+  color: var(--brown);
+  font: inherit;
+}
+
+.search-bar input:focus {
+  outline: none; /* the whole bar shows the focus ring instead */
+}
+
+.search-bar input::placeholder {
+  color: var(--brown-soft);
+  opacity: 0.85;
+}
+
+.search--big .search-bar {
+  padding: 0.45rem 0.45rem 0.45rem 1.1rem;
+  font-size: 1.15rem;
+}
+
+.search--big .search-bar__icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* ---- Buttons ------------------------------------------------------------ */
+
+.button {
+  padding: 0.55rem 1.3rem;
+  border: 2px solid var(--sage-dark);
+  border-radius: var(--radius-small);
+  background: var(--sage);
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: var(--sage-dark);
+}
+
+.button--quiet {
+  background: var(--paper);
+  color: var(--brown);
+  border-color: var(--line);
+}
+
+.button--quiet:hover {
+  background: var(--peach);
+}
+
+/* ---- Filters (results page) --------------------------------------------- */
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.field select {
+  margin-top: 0.2rem;
+  padding: 0.45rem 0.6rem;
+  border: var(--border);
+  border-radius: var(--radius-small);
+  background: var(--paper);
+  color: var(--brown);
+  font: inherit;
+  font-weight: 400;
+}
+
+/* ---- Category chips ----------------------------------------------------- */
+
+.chips ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chip {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.4rem 0.95rem 0.4rem 0.7rem;
+  border: var(--border);
+  border-radius: var(--radius);
+  background: var(--paper);
+  color: var(--brown);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.chip:hover {
+  background: var(--peach);
+  color: var(--brown);
+}
+
+.chip[aria-current="page"] {
+  background: var(--sage-light);
+  border-color: var(--sage);
+}
+
+/* ---- Tags (type and season labels) -------------------------------------- */
+
+.tag {
+  display: inline-block;
+  padding: 0.05rem 0.55rem;
+  border-radius: 999px;
+  background: #f1e3d3;
+  color: var(--brown);
+  font-size: 0.8rem;
+  font-weight: 600;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.tag--spring { background: #e1efd2; }
+.tag--summer { background: #fde3b8; }
+.tag--fall   { background: #f5d2bd; }
+.tag--winter { background: #d8e6f3; }
+
+/* ---- Search results ----------------------------------------------------- */
+
+.results {
+  margin-top: 1.75rem;
+}
+
+.results__count {
+  color: var(--brown-soft);
+  margin: 0 0 0.5rem;
+}
+
+.result-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 2px dashed var(--line);
+}
+
+.result {
+  padding: 0.85rem 0.25rem;
+  border-bottom: 2px dashed var(--line);
+}
+
+.result__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.5rem;
+}
+
+.result__name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-right: 0.25rem;
+}
+
+.result__facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.5rem;
+  margin: 0.3rem 0 0;
+}
+
+.result__facts div {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.result__facts dt {
+  color: var(--brown-soft);
+}
+
+.result__facts dd {
+  margin: 0;
+  font-weight: 700;
+}
+
+.result__source,
+.source {
+  font-size: 0.85rem;
+  color: var(--brown-soft);
+}
+
+.result__source {
+  margin: 0.2rem 0 0;
+}
+
+.villager-hint {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ---- Item and villager pages -------------------------------------------- */
+
+.item h1 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.item__summary {
+  font-size: 1.1rem;
+}
+
+.panel {
+  margin: 1.25rem 0;
+  padding: 1rem 1.25rem;
+  background: var(--paper);
+  border: var(--border);
+  border-radius: var(--radius);
+}
+
+.facts {
+  margin: 0;
+}
+
+.facts > div {
+  display: grid;
+  grid-template-columns: 9rem 1fr;
+  gap: 1rem;
+  padding: 0.45rem 0;
+  border-bottom: 1px dashed var(--line);
+}
+
+.facts > div:last-child {
+  border-bottom: 0;
+}
+
+.facts dt {
+  font-weight: 700;
+  color: var(--brown-soft);
+}
+
+.facts dd {
+  margin: 0;
+}
+
+.item__source p {
+  margin: 0.25rem 0;
+  font-size: 0.85rem;
+  color: var(--brown-soft);
+}
+
+.villager-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  gap: 0.5rem 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+.villager-list a {
+  font-weight: 700;
+  margin-right: 0.35rem;
+}
+
+/* ---- Ask AI ------------------------------------------------------------- */
+
+.ask-intro p {
+  margin-top: 0;
+}
+
+.answer p {
+  margin: 0;
+  white-space: pre-line;
+}
+
+.answer-facts {
+  margin-top: 1.5rem;
+}
+
+.fact-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fact-list li {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+  border-bottom: 2px dashed var(--line);
+}
+
+.fact-list p {
+  margin: 0;
+}
+
+.fact-list__id {
+  flex-shrink: 0;
+  min-width: 2.4rem;
+  height: fit-content;
+  padding: 0 0.4rem;
+  border-radius: var(--radius-small);
+  background: var(--sage-light);
+  font-weight: 700;
+  text-align: center;
+}
+
+/* ---- Notices ------------------------------------------------------------ */
+
+.notice {
+  margin: 1rem 0;
+  padding: 0.75rem 1rem;
+  border: 2px dashed var(--line);
+  border-radius: var(--radius);
+  background: var(--paper);
+}
+
+.notice--error {
+  background: var(--pink);
+  border-color: #c98f8f;
+}
+
+.notice ul {
+  margin: 0.4rem 0;
+}
+
+/* ---- About -------------------------------------------------------------- */
+
+.prose h2 {
+  margin-top: 1.75rem;
+}
+
+.count-list {
+  columns: 2 12rem;
+  padding-left: 1.25rem;
+}
+
+/* ---- Footer ------------------------------------------------------------- */
+
+.site-footer {
+  margin-top: auto;
+}
+
+/* Our pixel hills and fence, repeated across the page. */
+.site-footer__art {
+  height: 88px;
+  background: url("/art/footer.svg") repeat-x left bottom / auto 88px;
+  image-rendering: pixelated;
+}
+
+.site-footer__text {
+  margin: 0;
+  padding: 0.75rem 1rem 1rem;
+  background: #5a8a45;
+  color: #fff;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.site-footer__text a {
+  color: #fff;
+}
+
+/* ---- Small screens ------------------------------------------------------ */
+
+@media (max-width: 34rem) {
+  .site-header {
+    justify-content: center;
+  }
+
+  .search--big .search-bar {
+    font-size: 1rem;
+  }
+
+  .button {
+    padding: 0.5rem 0.9rem;
+  }
+
+  .facts > div {
+    grid-template-columns: 1fr;
+    gap: 0.1rem;
+  }
+}

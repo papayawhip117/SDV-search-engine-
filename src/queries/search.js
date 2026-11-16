@@ -4,8 +4,8 @@
 // weight a match in the name 10×, in categories or shops 3×, and in the
 // summary 1×, so "corn" ranks Corn above a page that merely mentions corn.
 //
-// The command line uses it now; the web API, web page and AI assistant will
-// call the same two functions later, so they all give the same answers.
+// The command line, the web page (src/web/) and the AI assistant all call
+// these same two functions, so they all give the same answers.
 //
 //   searchItems(db, { text: 'berry', season: 'Summer', type: 'seed', sortBy: 'buy' })
 //   getItemDetails(db, 'Blueberry')
@@ -127,7 +127,8 @@ export function searchItems(db, { text, season, type, sortBy, descending, limit 
          (SELECT MIN(p.buy_price) FROM shop_prices p WHERE p.item_id = i.id) AS buyPrice,
          ${query ? 'bm25(search_index, 10.0, 3.0, 3.0, 1.0)' : '0'} AS relevance,
          sp.page_title     AS sourceTitle,
-         sp.page_url       AS sourceUrl
+         sp.page_url       AS sourceUrl,
+         sp.revision_id    AS sourceRevision
        FROM search_index
        JOIN items i         ON i.id = search_index.item_id
        JOIN source_pages sp ON sp.id = i.source_page_id
