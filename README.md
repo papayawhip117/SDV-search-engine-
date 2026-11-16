@@ -16,6 +16,17 @@ Hi, I'm **Papaya** (Aaliyah)! Stardew Valley is one of my favorite games, and th
 - 🍄 **Forage, minerals, artifacts, flowers and books.**
 - 🤖 **`npm run ask`**, an assistant that answers only from verified data and cites each fact. An optional Claude AI layer can write the answer (it needs your own API key and is off without one), and the app checks every AI answer before showing it.
 
+## 👀 A peek inside
+
+| | |
+|:---:|:---:|
+| <img src="docs/images/home.png" alt="The homepage: a pixel farmhouse, a big search bar and category buttons" width="420"> | <img src="docs/images/search.png" alt="Search results for berry, each with its price and wiki source" width="420"> |
+| 🏡 **Home:** one big search bar and quick category buttons. | 🔎 **Search:** prices, seasons and the wiki page behind every result. |
+| <img src="docs/images/profit.png" alt="The profit planner ranking crops by gold per day for Spring 1" width="420"> | <img src="docs/images/today.png" alt="Today on the farm for Fall 13: birthdays, crops, fish and forage" width="420"> |
+| 🧮 **Profit planner:** which crops earn the most gold per day from your planting day. | 📅 **Today on the farm:** birthdays, crops worth planting, fish to catch and forage for your day. |
+
+<sub>Screenshots use the small sample data from the tests, so your own copy will show more results.</sub>
+
 ## 🚜 Quick start
 
 You need [Node.js](https://nodejs.org/) 20 or newer.
