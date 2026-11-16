@@ -60,3 +60,13 @@ a machine with no products table (Tapper), and a page with no infobox.
 
 Same license (CC BY-NC-SA, Stardew Valley Wiki). Source pages:
 https://stardewvalleywiki.com/ + the page title with spaces as underscores.
+
+`cooking-pages.json` holds ten dish pages from the cooking downloads saved 2026-11-16:
+Pizza (190608), Sashimi (177679), Maki Roll (190241), Lobster Bisque (193165),
+Squid Ink Ravioli (192630), Banana Pudding (193712), Fried Egg (190238), Fish Taco
+(193286), Tortilla (192712) and Miner's Treat (190495). Between them they cover:
+"any Fish" ingredients, a recipe from TV and a shop, a recipe by friendship mail,
+buffs with a duration, and a dish that is an ingredient of another (Tortilla in Fish Taco).
+
+Same license (CC BY-NC-SA, Stardew Valley Wiki). Source pages:
+https://stardewvalleywiki.com/ + the page title with spaces as underscores.

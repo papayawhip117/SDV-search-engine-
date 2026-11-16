@@ -19,10 +19,11 @@ import { isRunDirectly } from '../utils/isRunDirectly.js';
 import { CROP_CATEGORIES } from './collectCrops.js';
 import { FISH_PAGE_GROUPS } from './fishPages.js';
 import { ARTISAN_PAGES, FRUIT_LIST_PAGE } from './artisanPages.js';
+import { COOKING_PAGE_GROUPS } from './cookingPages.js';
 import { FISH_CATEGORIES } from '../extract/fishExtractor.js';
 
 // The categories that say which collection a page belongs to, in order of preference.
-const COLLECTION_CATEGORIES = [...CROP_CATEGORIES, ...FISH_CATEGORIES, 'Artisan Goods', 'Craftable items', 'Crops'];
+const COLLECTION_CATEGORIES = [...CROP_CATEGORIES, ...FISH_CATEGORIES, 'Artisan Goods', 'Craftable items', 'Crops', 'Cooking'];
 import { openDatabase } from '../db/database.js';
 
 const DATABASE_PATH = path.join('data', 'sdv.db');
@@ -151,6 +152,10 @@ function printInstructions() {
   console.log(`  ${browserUrlForPages(ARTISAN_PAGES)}\n`);
   console.log('The Fruits page (which fruits make Wine, Jelly...), save as fruits.json:');
   console.log(`  ${browserUrlForPages([FRUIT_LIST_PAGE])}\n`);
+  COOKING_PAGE_GROUPS.forEach((titles, index) => {
+    console.log(`Cooking recipes, part ${index + 1} of ${COOKING_PAGE_GROUPS.length} (${titles.length} dishes), save as cooking-${index + 1}.json:`);
+    console.log(`  ${browserUrlForPages(titles)}\n`);
+  });
   console.log('Then run:  npm run import -- data/browser/*.json');
 }
 

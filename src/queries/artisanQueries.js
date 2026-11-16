@@ -61,7 +61,7 @@ export function getRecipesFor(db, productName) {
  *   Vegetables from Category:Vegetables on the item's own page
  *   Fish       every item in the fish table
  */
-function groupsOf(db, name) {
+export function groupsOf(db, name) {
   const groups = db
     .prepare('SELECT group_name AS name FROM item_groups WHERE item_name = ? COLLATE NOCASE')
     .all(name)

@@ -18,7 +18,8 @@
     "search": "node src/cli/search.js",
     "item": "node src/cli/item.js",
     "fish": "node src/cli/fish.js",
-    "artisan": "node src/cli/artisan.js"
+    "artisan": "node src/cli/artisan.js",
+    "cook": "node src/cli/cook.js"
   },
   "dependencies": {
     "better-sqlite3": "^13.2.0"

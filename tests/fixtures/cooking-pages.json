@@ -1,0 +1,297 @@
+{
+ "batchcomplete": true,
+ "query": {
+  "pages": [
+   {
+    "pageid": 2559,
+    "ns": 0,
+    "title": "Pizza",
+    "revisions": [
+     {
+      "revid": 190608,
+      "parentid": 184617,
+      "timestamp": "2026-01-12T19:37:16Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "<onlyinclude>{{{{{1|Infobox cooking}}}\n|name        = Pizza\n|image       = Pizza.png\n|description = {{Description|Pizza}}\n|source      = [[Cooking]] • [[The Stardrop Saloon|The Saloon]]\n|recipe      = {{CookingChannel|7 Spring, Year 2}}<p style=\"padding-top: 6px; white-space: nowrap;\">[[File:Gus Icon.png|22px|link=]] [[The Stardrop Saloon#Menu|Stardrop Saloon]] for {{Price|150}}</p>\n|ingredients = {{Name|Wheat Flour|1}}{{Name|Tomato|1}}{{Name|Cheese|1}}\n|sellprice   = 300\n|edibility   = 60\n}}</onlyinclude>\n'''Pizza''' is a [[Cooking|cooked dish]]. It is prepared using either the kitchen inside an upgraded [[farmhouse]] or a [[Cookout Kit]].\n\nPizza is also available for purchase daily at [[The Stardrop Saloon]] for {{Price|600}} and may randomly appear in [[Krobus]]' shop on [[Days of the Week#Saturday|Saturdays]]. [[Shane]] sells Pizza in his [[Desert Festival#Villager Shops|shop]] at the [[Desert Festival]] for {{Price|5|Calico}} [[Calico Egg]]s.\nOne Pizza may be received from opening a [[Mystery Box]]. The [[Statue Of Endless Fortune]] produces one Pizza per year on [[Shane]]'s birthday, [[Spring|Spring 20]]. \n\n==Gifting==\n{{GiftsByItem\n|like=Robin,Demetrius,Maru,Sebastian,Linus,Pierre,Caroline,Abigail,Alex,George,Evelyn,Lewis,Clint,Penny,Pam,Emily,Haley,Jas,Vincent,Jodi,Kent,Marnie,Gus,Dwarf,Wizard,Sandy\n|love=Sam,Shane\n|hate=Leah\n|dislike=Elliott,Harvey,Willy,Krobus,Leo\n}}\n\n==Bundles==\nPizza is not used in any [[bundles]].\n\n==Tailoring==\nPizza is used in the spool of the [[2 Willow Lane#Sewing Machine|Sewing Machine]] to create the {{Name|Party Hat (red)|class=inline}}. It can also be used as a red dye in the dye pots, located in [[Haley]]'s and [[Emily]]'s house, [[2 Willow Lane]].\n\n==Quests==\nOne Pizza may be requested by [[Blobfish]] in a [[Fish Pond#Quests|Fish Pond quest]] to increase the capacity of the pond from 3 to 5.\n\n==History==\n{{History|1.4|Recipe price reduced from {{Price|750}} to {{Price|150}}.  [[Harvey]] now dislikes it as a gift.  Can now be used in [[Tailoring]]. Can be requested in a [[Fish Pond]] quest.}}\n{{History|1.5|Can now be prepared using a [[Cookout Kit]].}}\n{{History|1.6|Can now be purchased at [[Desert Festival]].}}\n\n{{NavboxRecipes}}\n\n[[Category:Recipes]]\n[[Category:Cooking]]\n\n[[de:Pizza]]\n[[es:Pizza]]\n[[fr:Pizza]]\n[[it:Pizza]]\n[[ja:ピザ]]\n[[ko:피자]]\n[[hu:Pizza]]\n[[pt:Pizza]]\n[[ru:Пицца]]\n[[tr:Pizza]]\n[[zh:披萨]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Cooking"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Recipes"
+     }
+    ]
+   },
+   {
+    "pageid": 2616,
+    "ns": 0,
+    "title": "Sashimi",
+    "revisions": [
+     {
+      "revid": 177679,
+      "parentid": 177585,
+      "timestamp": "2024-08-30T21:42:50Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "<onlyinclude>{{{{{1|Infobox cooking}}}\n|name        = Sashimi\n|image       = Sashimi.png\n|description = {{Description|Sashimi}}\n|recipe      = {{NPC|Linus|Mail - 3+ [[File:HeartIconLarge.png|16px|link=]]}}\n|ingredients = [[File:Fish.png|24px|link=]] Any [[Fish]] (1)\n|sellprice   = 75\n|edibility   = 30\n}}</onlyinclude>\n'''Sashimi''' is a [[Cooking|cooked dish]]. It is prepared using either the kitchen inside an upgraded [[farmhouse]] or a [[Cookout Kit]].\n\nSashimi may randomly appear in [[Krobus]]' shop on [[Days of the Week#Saturday|Saturdays]], in the [[Garbage Can]] outside the saloon, or in [[the Stardrop Saloon]]'s rotating stock. [[Linus]] may randomly send one Sashimi in the mail as a gift. One Sashimi may be received from opening a [[Mystery Box]]. \n\nNote: This recipe can be [[Cooking#Profitable Recipes|profitable]] if using [[fish]] worth less than {{Price|75}} (see [[Fish#When to turn fish into Sashimi|When to turn fish into sashimi]] for more info).  Saving fish worth less than {{Price|75}} for [[Quests#Help Wanted Quests|Help Wanted quests]] may be a better option, though, since these quests generally pay triple the fish's base value.  ([[Periwinkle]] is an exception -- at {{Price|20}} base price it's more profitable to turn into Sashimi than save for quests). \n\n==Gifting==\n{{GiftsByItem\n|like=Robin,Demetrius,Maru,Linus,Pierre,Caroline,Abigail,Alex,George,Lewis,Clint,Penny,Pam,Haley,Jas,Vincent,Jodi,Sam,Leah,Shane,Marnie,Elliott,Gus,Dwarf,Wizard,Harvey,Sandy\n|love=Sebastian\n|hate=Evelyn,Emily,Kent\n|dislike=Krobus,Leo\n|neutral=Willy\n}}\n\n==Bundles==\nSashimi is not used in any [[Bundles|bundles]].\n\n==Recipes==\nSashimi is not used in any recipes.\n\n==Tailoring==\nSashimi is used in the spool of the [[2 Willow Lane#Sewing Machine|Sewing Machine]] to create a [[Tailoring|Shirt]]. [[File:Shirt036.png|24px]] It can also be used as a red dye in the dye pot, located at [[Emily]]'s and [[Haley]]'s house, [[2 Willow Lane]].\n\n==Quests==\n*[[Pierre]] requests Sashimi by mail on the 21st of [[Spring]] (year 2) in the [[Quests#Pierre's Notice|\"Pierre's Notice\" quest]].  The reward is {{Price|1000}} and 1 [[Friendship]] heart.\n\n==History==\n{{History|1.4|Can now be used in [[Tailoring]]. [[Willy]] is now neutral towards Sashimi.}}\n{{History|1.5|Can now be prepared using a [[Cookout Kit]].}}\n\n\n{{NavboxRecipes}}\n\n[[Category:Recipes]]\n[[Category:Cooking]]\n\n[[de:Sashimi]]\n[[es:Sashimi]]\n[[fr:Sashimi]]\n[[it:Sashimi]]\n[[ja:刺し身]]\n[[ko:회]]\n[[hu:Sashimi]]\n[[pt:Sashimi]]\n[[ru:Сашими]]\n[[tr:Saşimi]]\n[[zh:生鱼片]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Cooking"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Recipes"
+     }
+    ]
+   },
+   {
+    "pageid": 2622,
+    "ns": 0,
+    "title": "Maki Roll",
+    "revisions": [
+     {
+      "revid": 190241,
+      "parentid": 185612,
+      "timestamp": "2026-01-12T17:58:25Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "<onlyinclude>{{{{{1|Infobox cooking}}}\n|name        = Maki Roll\n|image       = Maki Roll.png\n|description = {{Description|Maki Roll}}\n|edibility   = 40\n|sellprice   = 220\n|recipe      = {{CookingChannel|21 Summer, Year 1}}<p class=\"no-wrap\" style=\"padding-top: 6px;\">[[File:Gus Icon.png|22px|link=]] [[The Stardrop Saloon#Menu|Stardrop Saloon]] for {{Price|300}}</p>\n|ingredients = [[File:Fish.png|24px|link=]] Any [[Fish]] (1){{Name|Seaweed|1}}{{Name|Rice|1}}\n}}</onlyinclude>\n'''Maki Roll''' is a [[Cooking|cooked dish]]. It is prepared using either the kitchen inside an upgraded [[farmhouse]] or a [[Cookout Kit]].\n\n'''Note:''' This recipe is [[Cooking#Profitable Recipes|profitable]] when using [[Rice]] made in the mill and fish selling below {{Price|100}}.\n\nMaki Roll may randomly appear in [[Krobus]]' shop on [[Days of the Week#Saturday|Saturdays]] or in [[the Stardrop Saloon]]'s rotating stock. It can also be found occasionally in the [[Garbage Can]] outside [[The Stardrop Saloon]]. [[Linus]] may randomly send Maki Roll in the mail as a gift. One Maki Roll may be received from opening a [[Mystery Box]].\n\n==Gifting==\n{{GiftsByItem\n|like=Robin,Demetrius,Maru,Sebastian,Linus,Pierre,Caroline,Abigail,Alex,George,Lewis,Clint,Penny,Pam,Haley,Jas,Vincent,Jodi,Sam,Leah,Shane,Marnie,Elliott,Gus,Dwarf,Wizard,Harvey,Sandy,Kent\n|neutral=Willy\n|hate=Evelyn,Emily\n|dislike=Krobus,Leo\n}}\n\n==Bundles==\nMaki Roll is used in the {{Bundle|chef||y}}.\n\n==Recipes==\nMaki Roll is not used in any recipes.\n\n==Tailoring==\nMaki Roll is used in the spool of the [[2 Willow Lane#Sewing Machine|Sewing Machine]] with [[Cloth]] in the feed to create a {{Name|Shirt037|link=Tailoring{{!}}Shirt|class=inline}}. It is a black dye when used in the spool of the Sewing Machine with a dyeable clothing item in the feed.\n\n==Quests==\nMaki Roll is not used in any [[Quests|quests]].\n\n==History==\n{{History|1.4|Recipe price reduced from {{Price|1500}} to {{Price|300}}. Can now be used in [[Tailoring]]. [[Willy]] is now neutral towards Maki Roll.}}\n{{History|1.5|Can now be prepared using a [[Cookout Kit]].}}\n\n\n{{NavboxRecipes}}\n\n[[Category:Recipes]]\n[[Category:Cooking]]\n\n[[de:Maki-Rolle]]\n[[es:Rollitos maki]]\n[[fr:Maki]]\n[[it:Rotolo di maki]]\n[[ja:巻きずし]]\n[[ko:마키 롤]]\n[[hu:Maki tekercs]]\n[[pt:Rolinhos de arroz]]\n[[ru:Суши-роллы]]\n[[tr:Dilim Maki]]\n[[zh:生鱼寿司]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Cooking"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Recipes"
+     }
+    ]
+   },
+   {
+    "pageid": 2599,
+    "ns": 0,
+    "title": "Lobster Bisque",
+    "revisions": [
+     {
+      "revid": 193165,
+      "parentid": 190384,
+      "timestamp": "2026-05-19T16:38:03Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "<onlyinclude>{{{{{1|Infobox cooking}}}\n|name        = Lobster Bisque\n|image       = Lobster Bisque.png\n|description = {{Description|Lobster Bisque}}\n|buff        = {{Name|Fishing|+3}}{{Name|Max Energy|+50}}\n|duration    = 16m 47s\n|dsvduration = 1647\n|edibility   = 90\n|sellprice   = 205\n|recipe      = {{CookingChannel|14 Winter, Year 2}}{{NPC|Willy|Mail - 9+ [[File:HeartIconLarge.png|16px|link=]]}}\n|ingredients = {{Name|Lobster|1}}{{Name|Milk|1}}\n}}</onlyinclude>\n'''Lobster Bisque''' is a [[Cooking|cooked dish]]. It is prepared using either the kitchen inside an upgraded [[farmhouse]] or a [[Cookout Kit]]. It can randomly be found at the [[Traveling Cart]] for {{Tprice|205}}. Five can be purchased from [[Gus]]'s [[Desert Festival#Villager Shops|shop]] at the [[Desert Festival]] for {{Price|30|calico}} [[Calico Egg]]s each. One Lobster Bisque may be received from opening a [[Mystery Box]]. \n\n==Gifting==\n{{GiftsByItem\n|like=Robin,Demetrius,Maru,Sebastian,Linus,Pierre,Caroline,Abigail,Alex,George,Evelyn,Lewis,Clint,Penny,Pam,Emily,Haley,Jas,Vincent,Jodi,Kent,Sam,Leah,Shane,Marnie,Elliott,Gus,Dwarf,Wizard,Sandy,Willy,Harvey\n|dislike=Krobus,Leo\n}}\n\n==Bundles==\nLobster Bisque is not used in any [[bundles]].\n\n==Tailoring==\nLobster Bisque is used in the spool of the [[2 Willow Lane#Sewing Machine|Sewing Machine]] to create a [[Tailoring|Shirt]]. [[File:Shirt125.png|24px]]\n\n==Quests==\nLobster Bisque is not used in any [[quests]].\n\n==Trivia==\n*Receiving the letter from [[Willy]] with the Lobster Bisque recipe on 14 Winter, Year 2 and watching [[The Queen of Sauce]] before checking the mail will result in the letter still in the mailbox, but the recipe box at the bottom of the letter will be blank.\n*Although its description states that it is \"a secret family recipe\", it can be learned from The Queen of Sauce.\n\n==History==\n{{History|1.3.27|The Lobster Bisque recipe now accepts [[Large Milk]] in addition to [[Milk|regular milk]].}}\n{{History|1.4|Can now be used in [[Tailoring]].}}\n{{History|1.5|Can now be prepared using a [[Cookout Kit]].}}\n{{History|1.6|Now obtainable during [[Desert Festival]].}}\n\n{{NavboxRecipes}}\n\n[[Category:Recipes]]\n[[Category:Cooking]]\n\n[[de:Hummer-Bisque]]\n[[es:Crema de langosta]]\n[[fr:Bisque de homard]]\n[[it:Zuppa d'aragosta]]\n[[ja:ロブスターのビスク]]\n[[ko:가재 비스크]]\n[[hu:Homár krémleves]]\n[[pt:Bisque de lagosta]]\n[[ru:Биск из омара]]\n[[tr:Istakoz Çorbası]]\n[[zh:龙虾浓汤]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Cooking"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Recipes"
+     }
+    ]
+   },
+   {
+    "pageid": 11790,
+    "ns": 0,
+    "title": "Squid Ink Ravioli",
+    "revisions": [
+     {
+      "revid": 192630,
+      "parentid": 170184,
+      "timestamp": "2026-04-28T19:53:11Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "<onlyinclude>{{{{{1|Infobox cooking}}}\n|name        = Squid Ink Ravioli\n|image       = Squid Ink Ravioli.png\n|description = {{Description|Squid Ink Ravioli}}\n|source      = [[Cooking]]\n|recipe      = [[File:Combat Skill Icon.png|24px|link=]] [[Combat]] Level 9\n|ingredients = {{Name|Squid Ink|1}}{{Name|Wheat Flour|1}}{{Name|Tomato|1}}\n|sellprice   = 150\n|edibility   = 50\n|buff        = {{Name|Mining|+1}}[[File:Squid Ink Ravioli Buff.png|24px|link=]] [[Buffs#Squid Ink Ravioli|Squid Ink Ravioli Buff]]\n|duration    = 4m 39s (Mining)<br />[[File:Time Icon.png|24px|link=]] 2m 59s (Squid Ink<includeonly><br /></includeonly> Ravioli Buff)\n|dsvduration = 0259\n}}</onlyinclude>\n'''Squid Ink Ravioli''' is a [[Cooking|cooked dish]]. It is prepared using either the kitchen inside an upgraded [[farmhouse]] or a [[Cookout Kit]]. Five may be purchased from [[Gus]]'s [[Desert Festival#Villager Shops|shop]] at the [[Desert Festival]] for {{Price|30|calico}} [[Calico Egg]]s each.\n\n==Gifting==\n{{GiftsByItem\n|like=Robin,Demetrius,Maru,Sebastian,Linus,Pierre,Caroline,Abigail,Alex,George,Evelyn,Lewis,Clint,Penny,Pam,Emily,Haley,Jas,Vincent,Jodi,Kent,Sam,Leah,Shane,Marnie,Elliott,Gus,Wizard,Harvey,Sandy,Dwarf\n|dislike=Leo,Willy,Krobus\n}}\n\n==Bundles==\nSquid Ink Ravioli is not used in any [[bundles]].\n\n==Recipes==\nSquid Ink Ravioli is not used in any recipes.\n\n==Tailoring==\nSquid Ink Ravioli is not used in any [[tailoring]].\n\n==Quests==\nSquid Ink Ravioli is not used in any [[quests]].\n\n==History==\n{{History|1.5|Introduced.}}\n{{History|1.6|Fixed description having an extra blank line. Can now be purchased from [[Gus]] during the [[Desert Festival]].}}\n\n{{NavboxRecipes}}\n\n[[Category:Recipes]]\n[[Category:Cooking]]\n\n[[de:Tintenfisch-Tintenravioli]]\n[[es:Ravioli de tinta de calamar]]\n[[fr:Raviolis à l’encre de seiche]]\n[[it:Ravioli al nero di seppia]]\n[[ja:イカスミのラビオリ]]\n[[ko:오징어 먹물 라비올리]]\n[[hu:Tintahal tintás ravioli]]\n[[pt:Ravioli de Tinta de Lula]]\n[[ru:Равиоли с чернилами кальмара]]\n[[tr:Mürekkepli Makarna]]\n[[zh:墨汁意大利饺]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Cooking"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Recipes"
+     }
+    ]
+   },
+   {
+    "pageid": 11807,
+    "ns": 0,
+    "title": "Banana Pudding",
+    "revisions": [
+     {
+      "revid": 193712,
+      "parentid": 192411,
+      "timestamp": "2026-07-01T16:26:38Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "<onlyinclude>{{{{{1|Infobox cooking}}}\n|name        = Banana Pudding\n|image       = Banana Pudding.png\n|description = {{Description|Banana Pudding}}\n|buff        = {{Name|Mining|+1}}{{Name|Luck|+1}}{{Name|Defense|+1}}\n|duration    = 5m 1s\n|dsvduration = 0501\n|edibility   = 50\n|sellprice   = 260\n|recipe      = {{NPC|Island Trader|size=24}} for {{Name|Bone Fragment|30|class=inline}}\n|ingredients = {{Name|Banana|1}}<p>{{Name|Milk|1|class=inline}}</p>{{Name|Sugar|1}}\n}}</onlyinclude>\n'''Banana Pudding''' is a [[Cooking|cooked dish]]. It is prepared using either the kitchen inside an upgraded [[farmhouse]] or a [[Cookout Kit]]. 1-2 Banana Pudding may occasionally be found in [[Supply Crate]]s on the [[Farm Maps#Beach|Beach Farm]] provided the player has upgraded the [[Farmhouse]] at least two times.\n\n==Gifting==\n{{GiftsByItem\n|love=Abigail\n|like=Alex,Caroline,Clint,Demetrius,Dwarf,Elliott,Emily,Evelyn,George,Gus,Haley,Harvey,Jas,Jodi,Kent,Leah,Lewis,Linus,Marnie,Maru,Pam,Penny,Pierre,Robin,Sam,Sandy,Sebastian,Shane,Vincent,Wizard\n|dislike=Krobus,Leo,Willy\n}}\n\n==Bundles==\nBanana Pudding is not used in any [[bundles]].\n\n==Recipes==\nBanana Pudding is not used in any recipes.\n\n==Tailoring==\nBanana Pudding is used in the spool of the [[2 Willow Lane#Sewing Machine|Sewing Machine]] with [[Cloth]] in the feed to create a {{Name|Banana Shirt|link=Tailoring{{!}}Banana Shirt|class=inline}}. It is a yellow dye when used in the spool of the Sewing Machine with a dyeable clothing item in the feed. It can be placed in the yellow dye pot at [[Emily]]'s and [[Haley]]'s house, [[2 Willow Lane]], for use in [[dyeing]].\n\n==Quests==\nBanana Pudding is not used in any [[quests]].\n\n==History==\n{{History|1.5|Introduced.}}\n\n{{NavboxRecipes}}\n\n[[Category:Recipes]]\n[[Category:Cooking]]\n\n[[de:Bananenpudding]]\n[[es:Pudding de plátano]]\n[[fr:Pudding à la banane]]\n[[it:Budino di banana]]\n[[ja:バナナプリン]]\n[[ko:바나나 푸딩]]\n[[hu:Banános puding]]\n[[pt:Pudim de Banana]]\n[[ru:Банановый пудинг]]\n[[tr:Muzlu Muhallebi]]\n[[zh:香蕉布丁]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Cooking"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Recipes"
+     }
+    ]
+   },
+   {
+    "pageid": 2555,
+    "ns": 0,
+    "title": "Fried Egg",
+    "revisions": [
+     {
+      "revid": 190238,
+      "parentid": 177712,
+      "timestamp": "2026-01-12T17:58:23Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "<onlyinclude>{{{{{1|Infobox cooking}}}\n|name        = Fried Egg\n|image       = Fried Egg.png\n|description = {{Description|Fried Egg}}\n|edibility   = 20\n|sellprice   = 35\n|recipe      = ''Starter''\n|ingredients = {{Name|Egg|1}}\n}}</onlyinclude>\n'''Fried Egg''' is a [[Cooking|cooked dish]]. It is prepared using either the kitchen inside an upgraded [[farmhouse]] or a [[Cookout Kit]]. It is the only recipe known to the player upon creating a new save file.\n\nFried Egg may randomly appear in [[Krobus]]' shop on [[Days of the Week#Saturday|Saturdays]], in the [[Garbage Can]] outside the saloon, or in [[the Stardrop Saloon]]'s rotating stock. It is also sold by [[Alex]] at the [[Desert Festival]] for {{Price|10|Calico}} [[Calico Egg]]s. One Fried Egg may be received from opening a [[Mystery Box]]. \n\n==Gifting==\n{{GiftsByItem\n|neutral=Robin,Demetrius,Maru,Sebastian,Linus,Pierre,Caroline,Abigail,Alex,George,Evelyn,Lewis,Clint,Penny,Pam,Emily,Haley,Jas,Vincent,Jodi,Kent,Sam,Shane,Marnie,Elliott,Gus,Dwarf,Wizard,Harvey,Sandy,Willy,Krobus,Leo\n|dislike=Leah\n}}\n\n==Bundles==\nFried Egg is used in the {{Bundle|chef||y}}.\n\n==Recipes==\n{{Recipes|header}}\n{{:Complete Breakfast|RecipeRow}}\n{{Recipes|footer}}\n\n==Tailoring==\nFried Egg is used in the spool of the [[2 Willow Lane#Sewing Machine|Sewing Machine]] to create the [[Tailoring|Fried Egg Shirt]].  [[File:Shirt246.png|24px]]\n\n==Quests==\nFried Egg is not used in any [[quests]].\n\n==History==\n{{History|1.4|Can now be used in [[Tailoring]].}}\n{{History|1.5|Can now be prepared using a [[Cookout Kit]]. Recipe is now known upon starting a new game instead of after upgrading the [[farmhouse]].}}\n{{History|1.6|Can now be purchased from [[Alex]] at the [[Desert Festival]].}}\n\n{{NavboxRecipes}}\n\n[[Category:Recipes]]\n[[Category:Cooking]]\n\n[[de:Spiegelei]]\n[[es:Huevo frito]]\n[[fr:Oeuf sur le plat]]\n[[it:Uovo fritto]]\n[[ja:目玉焼き]]\n[[ko:계란 프라이]]\n[[hu:Tükörtojás]]\n[[pt:Ovo frito]]\n[[ru:Яичница]]\n[[tr:Sahanda Yumurta]]\n[[zh:煎鸡蛋]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Cooking"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Recipes"
+     }
+    ]
+   },
+   {
+    "pageid": 2582,
+    "ns": 0,
+    "title": "Fish Taco",
+    "revisions": [
+     {
+      "revid": 193286,
+      "parentid": 190768,
+      "timestamp": "2026-05-19T16:38:37Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "<onlyinclude>{{{{{1|Infobox cooking}}}\n|name        = Fish Taco\n|image       = Fish Taco.png\n|description = {{Description|Fish Taco}}\n|source      = [[Cooking]] • [[Fishing#Golden Treasure Chests|Golden Fishing Treasure Chests]]\n|buff        = {{Name|Fishing|+2}}\n|duration    = 7m\n|dsvduration = 0700\n|edibility   = 66\n|sellprice   = 500\n|recipe      = <div class=\"no-wrap\">{{NPC|Linus|Mail - 7+ [[File:HeartIconLarge.png|16px|link=]]}}</div>\n|ingredients = {{Name|Tuna|1}}{{Name|Tortilla|1}}{{Name|Red Cabbage|1}}{{Name|Mayonnaise|1}}\n}}</onlyinclude>\n'''Fish Taco''' is a [[Cooking|cooked dish]]. It is prepared using either the kitchen inside an upgraded [[farmhouse]] or a [[Cookout Kit]]. It can also be found in [[Fishing#Golden Treasure Chests|Golden Fishing Treasure Chests]] (7% chance).<ref name=\"chestchance\" />\n\nIt can randomly appear in [[Krobus]]' shop on [[Days of the Week#Saturday|Saturdays]] for {{Price|50}}–{{Price|500}}, in [[the Stardrop Saloon]]'s rotating stock for {{Price|1000}}, or at the [[Traveling Cart]] for {{Tprice|500}}. It can also randomly be found in [[Garbage Can]]s outside the saloon. One Fish Taco may be received from opening a [[Mystery Box]]. The [[Statue Of Endless Fortune]] produces one Fish Taco per year on [[Caroline]]'s birthday, [[Winter|Winter 7]].\n\n==Gifting==\n{{GiftsByItem\n|like=Robin,Demetrius,Maru,Sebastian,Linus,Pierre,Abigail,Alex,George,Evelyn,Lewis,Clint,Penny,Pam,Haley,Jas,Vincent,Jodi,Kent,Sam,Leah,Shane,Marnie,Elliott,Dwarf,Wizard,Harvey,Sandy,Willy\n|love=Caroline,Gus\n|hate=Emily\n|dislike=Krobus,Leo\n}}\n\n==Bundles==\nFish Taco is not used in any [[bundles]].\n\n==Tailoring==\nFish Taco is used in the spool of the [[2 Willow Lane#Sewing Machine|Sewing Machine]] to create the {{Name|Party Hat (green)|class=inline}}. It can be used in [[dyeing]], serving as a yellow dye at the dye pots, located in [[Emily]]'s and [[Haley]]'s house, [[2 Willow Lane]].\n\n==Quests==\nFish Taco is not used in any [[quests]].\n\n==References==\n<references>\n    <ref name=\"chestchance\">See <samp>FishingRod::openTreasureMenuEndFunction</samp> in the game code.</ref>\n</references>\n\n==History==\n{{History|1.4|Can now be used in [[Tailoring]].}}\n{{History|1.5|Can now be prepared using a [[Cookout Kit]].}}\n{{History|1.6|Can now be obtained from [[Fishing#Golden Treasure Chests|Golden Fishing Treasure Chests]].}}\n\n{{NavboxRecipes}}\n\n[[Category:Recipes]]\n[[Category:Cooking]]\n\n[[de:Fisch-Taco]]\n[[es:Taco de pescado]]\n[[fr:Tacos de poisson]]\n[[it:Taco di pesce]]\n[[ja:フィッシュタコス]]\n[[ko:생선 타코]]\n[[hu:Hal taco]]\n[[pt:Taco de peixe]]\n[[ru:Рыбные тако]]\n[[tr:Balıklı Tako]]\n[[zh:鱼肉卷]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Cooking"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Recipes"
+     }
+    ]
+   },
+   {
+    "pageid": 2618,
+    "ns": 0,
+    "title": "Tortilla",
+    "revisions": [
+     {
+      "revid": 192712,
+      "parentid": 177692,
+      "timestamp": "2026-04-28T19:54:09Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "<onlyinclude>{{{{{1|Infobox cooking}}}\n|name        = Tortilla\n|image       = Tortilla.png\n|description = {{Description|Tortilla}}\n|recipe      = {{CookingChannel|7 Fall, Year 1}}<p class=\"no-wrap\" style=\"padding-top: 6px;\">[[File:Gus Icon.png|22px|link=]] [[The Stardrop Saloon#Menu|Stardrop Saloon]] for {{Price|100}}</p>\n|ingredients = {{Name|Corn|1}}\n|sellprice   = 50\n|edibility   = 20\n}}</onlyinclude>\n'''Tortilla''' is a [[Cooking|cooked dish]]. It is prepared using either the kitchen inside an upgraded [[farmhouse]] or a [[Cookout Kit]].\n\nTortilla may randomly appear in [[Krobus]]' shop on [[Days of the Week#Saturday|Saturdays]], in the [[Garbage Can]] outside the saloon, or in [[the Stardrop Saloon]]'s rotating stock. One Tortilla may be received from opening a [[Mystery Box]]. \n\n==Gifting==\n{{GiftsByItem\n|like=Robin,Demetrius,Maru,Sebastian,Linus,Caroline,Abigail,Alex,George,Evelyn,Lewis,Clint,Penny,Pam,Emily,Haley,Jas,Vincent,Jodi,Sam,Shane,Marnie,Elliott,Gus,Dwarf,Wizard,Harvey,Sandy\n|hate=Pierre,Kent\n|dislike=Leah,Willy,Krobus,Leo\n}}\n\n==Recipes==\n{{Recipes|header}}\n{{:Fish Taco|RecipeRow}}\n{{:Lucky Lunch|RecipeRow}}\n{{Recipes|footer}}\n\n==Tailoring==\nTortilla is used in the spool of the [[2 Willow Lane#Sewing Machine|Sewing Machine]] to create the [[Tailoring|Tortilla Shirt]].  [[File:Shirt252.png|24px]] It can be used in [[dyeing]], serving as an orange dye at the dye pots, located in [[Emily]]'s and [[Haley]]'s house, [[2 Willow Lane]].\n\n==Quests==\nTortilla is not used in any [[quests]].\n\n==History==\n{{History|1.4|Recipe price reduced from {{Price|500}} to {{Price|100}}. Can now be used in [[Tailoring]].}}\n{{History|1.5|Can now be prepared using a [[Cookout Kit]].}}\n\n\n{{NavboxRecipes}}\n\n[[Category:Recipes]]\n[[Category:Cooking]]\n\n[[de:Tortilla]]\n[[es:Tortilla de maíz]]\n[[fr:Tortilla]]\n[[it:Tortilla]]\n[[ja:トルティーヤ]]\n[[ko:또띠아]]\n[[hu:Tortilla]]\n[[pt:Tortilha]]\n[[ru:Тортилья]]\n[[tr:Tortilla]]\n[[zh:墨西哥薄饼]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Cooking"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Recipes"
+     }
+    ]
+   },
+   {
+    "pageid": 2587,
+    "ns": 0,
+    "title": "Miner's Treat",
+    "revisions": [
+     {
+      "revid": 190495,
+      "parentid": 176712,
+      "timestamp": "2026-01-12T19:36:30Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "<onlyinclude>{{{{{1|Infobox cooking}}}\n|name        = Miner's Treat\n|image       = Miner's Treat.png\n|description = {{Description|Miner's Treat}}\n|source      = [[Cooking]] • [[Dwarf]] • [[Mummy]] drop\n|buff        = {{Name|Mining|+3}}{{Name|Magnetism|+32}}\n|duration    = 5m 35s\n|dsvduration = 0535\n|edibility   = 50\n|sellprice   = 200\n|recipe      = <div class=\"no-wrap\">[[File:Mining Skill Icon.png|24px|link=]] [[Mining]] Level 3</div>\n|ingredients = {{Name|Cave Carrot|2}}{{Name|Sugar|1}}{{Name|Milk|1}}\n}}</onlyinclude>\n'''Miner's Treat''' is a [[Cooking|cooked dish]]. It is prepared using either the kitchen inside an upgraded [[farmhouse]] or a [[Cookout Kit]].\n\nMiner's Treat can be purchased any day from the [[Dwarf]] for {{Price|1000}} or randomly from [[Krobus]]' shop on [[Days of the Week#Saturday|Saturdays]]. [[Mummy|Mummies]] in the [[Skull Cavern]] have a 4% chance of dropping a Miner's Treat. 5 Miner's Treat may occasionally be found in a [[Skull Cavern#Treasure Rooms|treasure room]] in the Skull Cavern. One Miner's Treat is a reward for submitting an [[Desert Festival#Skull Cavern|Egg Rating]] of 1-4 to [[Gil]] during the [[Desert Festival]].\n\n==Gifting==\n{{GiftsByItem\n|like=Robin,Demetrius,Sebastian,Linus,Pierre,Caroline,Abigail,Alex,George,Evelyn,Lewis,Clint,Penny,Pam,Emily,Haley,Jas,Vincent,Jodi,Kent,Sam,Leah,Shane,Marnie,Elliott,Gus,Dwarf,Wizard,Harvey,Sandy\n|love=Maru\n|dislike=Willy,Krobus,Leo\n}}\n\n==Bundles==\nMiner's Treat is not used in any [[bundles]].\n\n==Tailoring==\nMiner's Treat is used in the spool of the [[2 Willow Lane#Sewing Machine|Sewing Machine]] to create the {{Name|Propeller Hat|class=inline}}. It can also serve as a red dye color at the dye pots at [[Emily]]'s and [[Haley]]'s house, [[2 Willow Lane]].\n\n==Quests==\nMiner's Treat is not used in any [[quests]].\n\n==History==\n{{History|1.4|Can now be used in [[Tailoring]].}}\n{{History|1.5|Can now be prepared using a [[Cookout Kit]].}}\n{{History|1.6|Now obtainable from [[Desert Festival]].}}\n\n{{NavboxRecipes}}\n\n[[Category:Recipes]]\n[[Category:Cooking]]\n\n[[de:Bergarbeiter-Leckerbissen]]\n[[es:Capricho de minero]]\n[[fr:Friandise de mineur]]\n[[it:Gioia del minatore]]\n[[ja:マインキャンディ]]\n[[ko:광부의 간식]]\n[[hu:Bányászok eledele]]\n[[pt:Refeição de mineiro]]\n[[ru:«Шахтерский леденец»]]\n[[tr:Madenci Şekeri]]\n[[zh:矿工特供]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Cooking"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Recipes"
+     }
+    ]
+   }
+  ]
+ }
+}

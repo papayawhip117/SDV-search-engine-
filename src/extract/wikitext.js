@@ -198,17 +198,20 @@ export function toPlainText(wikitext) {
  */
 export function extractSummary(wikitext, maxLength = 300) {
   if (!wikitext) return null;
-  let body = wikitext;
+  // Cooking pages write their infobox as {{{{{1|Infobox cooking}}} ... }}.
+  const text = wikitext.replace(/\{\{\{\{\{1\|\s*(Infobox[^}]*)\}\}\}/i, '{{$1');
+  let body = text;
   const infobox =
-    findTemplateCall(wikitext, 'Infobox seed') ??
-    findTemplateCall(wikitext, 'Infobox fish') ??
-    findTemplateCall(wikitext, 'Infobox');
-  if (infobox !== null) body = wikitext.slice(wikitext.indexOf(infobox) + infobox.length + 2);
+    findTemplateCall(text, 'Infobox seed') ??
+    findTemplateCall(text, 'Infobox fish') ??
+    findTemplateCall(text, 'Infobox cooking') ??
+    findTemplateCall(text, 'Infobox');
+  if (infobox !== null) body = text.slice(text.indexOf(infobox) + infobox.length + 2);
 
   const paragraph = body
     .split('\n')
     .map((line) => line.trim())
-    .find((line) => line && !/^(\{\{|\{\||\||!|==|\[\[(File|Category):|<|\*|#|__|:|;)/i.test(line));
+    .find((line) => line && !/^(\{\{|\}\}|\{\||\||!|==|\[\[(File|Category):|<|\*|#|__|:|;)/i.test(line));
   if (!paragraph) return null;
 
   const plain = toPlainText(paragraph);

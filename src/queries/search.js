@@ -12,8 +12,9 @@
 
 import { SEASON_ORDER } from '../calc/profit.js';
 import { getRecipesFor } from './artisanQueries.js';
+import { getDishIngredients, getDishesUsing } from './cookingQueries.js';
 
-export const ITEM_TYPES = ['crop', 'seed', 'fish', 'artisan', 'machine'];
+export const ITEM_TYPES = ['crop', 'seed', 'fish', 'artisan', 'machine', 'dish'];
 
 // Each sort option maps to a fixed piece of SQL. User input only ever picks
 // a key from this list; it's never pasted into the SQL itself.
@@ -73,7 +74,7 @@ const SEASONS_SQL = `
  *
  * @param options.text        words to look for in names, wiki categories and summaries
  * @param options.season      'Spring' | 'Summer' | 'Fall' | 'Winter'
- * @param options.type        'crop' | 'seed' | 'fish' | 'artisan' | 'machine'
+ * @param options.type        'crop' | 'seed' | 'fish' | 'artisan' | 'machine' | 'dish'
  * @param options.sortBy      'relevance' (default when searching text) | 'name' | 'sell' | 'buy'
  * @param options.descending  true/false to override the sort's usual direction
  * @param options.limit       maximum number of results (default 50)
@@ -246,6 +247,12 @@ export function getItemDetails(db, name) {
       }
     : null;
 
+  // If this item is a dish: what goes in it, its buffs and how to get the recipe.
+  const dishRow = db
+    .prepare('SELECT edibility, buffs, buff_duration AS buffDuration, recipe_source AS recipeSource FROM dishes WHERE item_id = ?')
+    .get(item.id);
+  const dish = dishRow ? { ...dishRow, ingredients: getDishIngredients(db, item.name) } : null;
+
   return {
     name: item.name,
     type: item.type,
@@ -259,6 +266,8 @@ export function getItemDetails(db, name) {
     fish,
     machine,
     madeBy: getRecipesFor(db, item.name),
+    dish,
+    usedInDishes: getDishesUsing(db, item.name).map((row) => row.name),
     growsInto,
     source: { title: item.title, url: item.url, revision: item.revision, revisionTime: item.revisionTime, retrievedAt: item.retrievedAt },
   };

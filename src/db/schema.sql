@@ -167,6 +167,28 @@ CREATE TABLE IF NOT EXISTS item_groups (
   PRIMARY KEY (group_name, item_name)
 );
 
+-- Cooked dishes, from {{Infobox cooking}}. item_id is the dish as an item.
+CREATE TABLE IF NOT EXISTS dishes (
+  item_id        INTEGER PRIMARY KEY REFERENCES items(id),
+  edibility      INTEGER,   -- the wiki's edibility number (energy and health come from it)
+  buffs          TEXT,      -- e.g. 'Farming +2, Max Energy +50'
+  buff_duration  TEXT,      -- e.g. '7m'
+  recipe_source  TEXT,      -- e.g. 'The Queen of Sauce: 7 Spring, Year 2; Stardrop Saloon for 150g'
+  source_page_id INTEGER NOT NULL REFERENCES source_pages(id)
+);
+
+-- What goes into each dish, in the order the wiki lists it. Either one item
+-- (ingredient_name, which may not be in items yet: Wheat Flour, Sugar...)
+-- or any item of a group (ingredient_group 'Fish' for Sashimi).
+CREATE TABLE IF NOT EXISTS dish_ingredients (
+  dish_item_id     INTEGER NOT NULL REFERENCES dishes(item_id),
+  position         INTEGER NOT NULL,
+  ingredient_name  TEXT,
+  ingredient_group TEXT,
+  quantity         INTEGER NOT NULL,
+  PRIMARY KEY (dish_item_id, position)
+);
+
 -- Full-text search index (SQLite's built-in FTS5). One row per item.
 -- It's filled from the tables above by rebuildSearchIndex() after each build,
 -- so it never holds facts of its own, only text to search through.

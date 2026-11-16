@@ -171,7 +171,25 @@ What "Any X" means:
 | Fish | the item is in the fish table |
 | Mushrooms, Forage, Roe | not collected yet (later phases), so nothing matches them yet |
 
-## 10. Tests: `tests/`
+## 10. Cooking: `src/extract/cookingExtractor.js` and `src/queries/cookingQueries.js`
+
+The 81 dish pages come from the tables on the Cooking page (revision 195432), in two downloads of at most 50 pages. Each dish page wraps its infobox as `{{{{{1|Infobox cooking}}}`, so the same text can also be shown as a row of the Cooking page's table. On the dish's own page that means `{{Infobox cooking ...}}`, so the extractor turns the wrapper into a plain infobox call before reading it.
+
+From each infobox we keep:
+
+| Field | Example (Pizza) |
+|---|---|
+| sell price | 300 |
+| edibility (can be negative) | 60 |
+| ingredients, in order | Wheat Flour ×1, Tomato ×1, Cheese ×1 |
+| buffs and how long they last | none for Pizza; Lobster Bisque gives "Fishing +3" |
+| how you get the recipe | "The Queen of Sauce: 7 Spring, Year 2; Stardrop Saloon for 150g" |
+
+**Ingredients** are stored as rows in `dish_ingredients`, one per ingredient, by name. "Any [[Fish]] (1)" (Sashimi, Maki Roll) is stored as the group Fish, using the same groups as artisan goods, so `npm run cook -- Tuna` finds Sashimi.
+
+**What the ingredients are worth** is worked out in code: the sell prices of the ingredients we have, times the quantities. If any ingredient's price is unknown (an item we don't collect yet, or "any Fish"), the total is left empty rather than guessed. Fish Taco sells for 500g; its raw ingredients (Tuna, Tortilla, Red Cabbage, Mayonnaise) are worth 600g.
+
+## 11. Tests: `tests/`
 
 | File | Checks |
 |---|---|
@@ -185,6 +203,8 @@ What "Any X" means:
 | `fish.test.js` | fish into an in-memory database, the season/weather/area filters, fish in search and item details |
 | `artisanExtractor.test.js` | real machine and goods pages: rowspan tables, price formulas, times, ingredient alternatives and exceptions, the Fruits list |
 | `artisan.test.js` | crops + fish + artisan pages into one database, "what can I make from this" values worked out by hand, exclusions, machines in search |
+| `cookingExtractor.test.js` | real dish pages: the infobox wrapper, "any Fish" ingredients, recipe sources (TV, shops, friendship mail), buffs and how long they last |
+| `cooking.test.js` | dishes into one database with crops, fish and artisan goods, "what can I cook with this", ingredient values, dishes in search and item details |
 | `search.test.js` | partial words, related terms, all-words matching, every filter and sort, hostile input, item details, typo suggestions |
 
 Run them with `npm test`.
@@ -202,8 +222,9 @@ We **don't** get around a refusal by pretending to be a web browser. The wiki de
 
 ## Known limitations (so far)
 
-- Crops in the Spring, Summer and Fall categories, their seeds, 71 fish and the artisan goods. Cooking, crafting, villagers, fruit trees, forage and more come in the next phases.
+- Crops in the Spring, Summer and Fall categories, their seeds, 71 fish, the artisan goods and 81 dishes. Crafting, villagers, fruit trees, forage and more come in the next phases.
 - Cask aging (silver to iridium quality) and the Heavy Tapper's own page aren't stored yet. Recipes that take mushrooms, forage or roe are stored, but those items aren't collected yet.
+- Dish ingredients we don't collect yet (Egg, Milk, Wheat Flour, Sugar, Oil, Rice...) are shown by name without a price or wiki link until later phases add them.
 - Artisan values ignore the Artisan profession (+40%) and ingredient quality.
 - Profit doesn't model when a shop is open (Strawberry Seeds are only sold at the Egg Festival) or fertilizer, quality and professions.
 - Traveling Cart prices are random, so seeds only sold there have no price.
