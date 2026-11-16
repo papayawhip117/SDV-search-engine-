@@ -4,7 +4,7 @@ A Stardew Valley search engine built from the [Stardew Valley Wiki](https://star
 
 An AI assistant will come later. It will only answer from this verified local database and will cite the wiki page behind every fact.
 
-> **Status:** Phase 11, step 2 (the AI assistant answers from cited wiki facts). Crops, seed prices, profit per day, a search engine, fish, artisan goods with the machines that make them, cooking and crafting recipes, villagers with their birthdays and gift tastes, and forage, minerals, geodes, artifacts, flowers and books. `npm run ask` answers a question with Claude, using only facts from the database and citing the wiki page for each.
+> **Status:** Phase 11, step 3 (the AI assistant answers from cited wiki facts, and the app checks every answer). Crops, seed prices, profit per day, a search engine, fish, artisan goods with the machines that make them, cooking and crafting recipes, villagers with their birthdays and gift tastes, and forage, minerals, geodes, artifacts, flowers and books. `npm run ask` answers a question with Claude, using only facts from the database and citing the wiki page for each.
 
 ## How it works
 
@@ -71,7 +71,7 @@ Run these one at a time:
 | `npm run cook -- Tomato` | Lists the dishes that use Tomato, with sell price, ingredients, what the raw ingredients are worth, buffs and how to get the recipe. Names with spaces work without quotes (`npm run cook -- Wheat Flour`). Add `--buff Fishing` for dishes with that buff, or give no ingredient to list every dish. |
 | `npm run craft -- Iron Bar` | Lists the crafting recipes that use Iron Bar, with all their ingredients and how you get each recipe. Use `--section Rings` (or Fertilizer, Sprinklers...) for one section of the Crafting page, or no arguments to list the sections. |
 | `npm run gifts -- Abigail` | A villager's birthday, whether they can be married, and what they love, like, are neutral about, dislike and hate. `--item Diamond` shows how every villager feels about one item; `--birthday summer` lists birthdays by day. Item pages (`npm run item`) also show who loves, likes, dislikes and hates that item. |
-| `npm run ask -- "What does Abigail love?"` | Finds the facts in the database that answer a question (item and villager names, plurals too, seasons, and topics like profit, fishing, birthdays, foraging and gifts), then has Claude answer from those facts only, citing each one, followed by the wiki sources. Needs an API key in `.env` (see Setup); without one, or with `--facts`, it shows the facts and doesn't call Claude. |
+| `npm run ask -- "What does Abigail love?"` | Finds the facts in the database that answer a question (item and villager names, plurals too, seasons, and topics like profit, fishing, birthdays, foraging and gifts), then has Claude answer from those facts only, citing each one, followed by the wiki sources. The app checks the answer first and shows the facts instead if it fails. Needs an API key in `.env` (see Setup); without one, or with `--facts`, it shows the facts and doesn't call Claude. |
 | `npm run profit -- Spring` | Ranks Spring crops by profit per day, using seed prices from the wiki. Add a day to plant later: `npm run profit -- Spring 10`. |
 
 ## Project layout
@@ -115,6 +115,7 @@ src/
   cli/gifts.js             the command-line villager and gift lookup
   assistant/findFacts.js   turns a question into numbered, cited facts for the assistant
   assistant/answer.js      has Claude answer from those facts only (the AI is swappable, so tests use a fake)
+  assistant/validateAnswer.js  checks an answer in code: known fact ids, a citation on every sentence, no made-up numbers
   cli/ask.js               the command-line assistant
 tests/
   fixtures/                real wiki pages saved for tests

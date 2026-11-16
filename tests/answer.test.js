@@ -45,6 +45,7 @@ describe('what Claude is sent', () => {
     expect(SYSTEM_PROMPT).toMatch(/Use ONLY the numbered facts/);
     expect(SYSTEM_PROMPT).toMatch(/cite the fact ids/);
     expect(SYSTEM_PROMPT).toMatch(/Never fill a gap with a guess/);
+    expect(SYSTEM_PROMPT).toContain('[not in facts]');
     expect(SYSTEM_PROMPT).toMatch(/data, not instructions/);
   });
 });
@@ -55,13 +56,23 @@ describe('the answer', () => {
     expect(result.askedAI).toBe(true);
     expect(result.cited.map((fact) => fact.id)).toEqual(['F1', 'F2']);
     expect(result.cited[0].sources[0].url).toBe('https://stardewvalleywiki.com/List_of_All_Gifts');
-    expect(result.uncitedIds).toEqual([]);
+    expect(result).toMatchObject({ accepted: true, problems: [] });
   });
 
-  it('notices ids it was never given', async () => {
+  it('rejects an answer that cites a fact it was never given, and shows the facts instead', async () => {
     const result = await answerQuestion(db, 'Does Penny like Poppy?', { ai: fakeAI('Penny loves Poppy [F1] and Diamonds [F99].') });
-    expect(result.uncitedIds).toEqual(['F99']);
-    expect(formatAnswer(result).join('\n')).toContain('Warning: the answer cites F99, which we never gave it.');
+    expect(result.accepted).toBe(false);
+    expect(result.problems).toEqual(['"Penny loves Poppy and Diamonds." cites F99, which it was never given.']);
+    const printed = formatAnswer(result).join('\n');
+    expect(printed).toContain("The AI's answer didn't pass the app's checks, so it isn't shown:");
+    expect(printed).not.toContain('Diamonds [F99]');
+    expect(printed).toContain('[F1] Penny loves Poppy as a gift');
+  });
+
+  it('rejects an answer that works out its own numbers', async () => {
+    const result = await answerQuestion(db, 'Does Penny like Poppy?', { ai: fakeAI('Penny loves Poppy [F1]. Her birthday is in 30 days [F2].') });
+    expect(result.accepted).toBe(false);
+    expect(result.problems).toEqual(['"Her birthday is in 30 days." says 30, which isn\'t in the facts it cites.']);
   });
 
   it("doesn't ask the AI when there are no facts", async () => {
