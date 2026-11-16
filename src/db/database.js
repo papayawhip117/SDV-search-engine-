@@ -1,4 +1,5 @@
-// Opening the database and saving crops, seeds, fish, artisan goods, dishes and crafting recipes into it.
+// Opening the database and saving crops, seeds, fish, artisan goods, dishes, crafting recipes,
+// villagers and gift tastes into it.
 //
 // We use better-sqlite3. "Synchronous" means each database call finishes
 // before the next line runs, so there's no `await` here. That keeps the
@@ -425,6 +426,75 @@ export function saveCraftingRecipes(db, page, { recipes, groups }, retrievedAt) 
         'INSERT OR REPLACE INTO item_groups (group_name, item_name, base_price, source_page_id) VALUES (?, ?, NULL, ?)',
       );
       for (const name of names) insertMember.run(groupName, name, sourcePageId);
+    }
+  });
+  return save();
+}
+
+/**
+ * Save villagers and gift tastes.
+ *
+ * @param pages  { giftPage, gifts, villagersPage, villagerList, friendshipPage, universalDislikes }
+ *   gifts: the result of extractGiftList(giftPage)
+ *   villagerList: the result of extractVillagerList(villagersPage), or null
+ *   universalDislikes: { dislike: [entries], hate: [entries] } from the Friendship page, or null
+ */
+export function saveVillagerData(db, { giftPage, gifts, villagersPage, villagerList, friendshipPage, universalDislikes }, retrievedAt) {
+  const save = db.transaction(() => {
+    const giftPageId = saveSourcePage(db, giftPage, retrievedAt);
+    const villagersPageId = villagersPage ? saveSourcePage(db, villagersPage, retrievedAt) : null;
+    const friendshipPageId = friendshipPage ? saveSourcePage(db, friendshipPage, retrievedAt) : null;
+
+    db.prepare('DELETE FROM gift_tastes').run();
+    db.prepare('DELETE FROM villagers').run();
+    const insertVillager = db.prepare(
+      `INSERT INTO villagers (name, birthday_season, birthday_day, marriageable, source_page_id, villagers_page_id)
+       VALUES (?, ?, ?, ?, ?, ?) RETURNING id`,
+    );
+    const insertTaste = db.prepare(
+      `INSERT INTO gift_tastes (villager_id, taste, item_name, group_name, exceptions, note, position, source_page_id)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+    );
+    let position = 0;
+    const saveTastes = (villagerId, tastes, sourcePageId) => {
+      for (const [taste, entries] of Object.entries(tastes)) {
+        for (const entry of entries) {
+          insertTaste.run(
+            villagerId,
+            taste,
+            entry.itemName,
+            entry.groupName,
+            entry.exceptions.length ? entry.exceptions.join(' | ') : null,
+            entry.note,
+            ++position,
+            sourcePageId,
+          );
+        }
+      }
+    };
+
+    for (const villager of gifts.villagers) {
+      const marriageable = villagerList ? Number(villagerList.marriageable.includes(villager.name)) : null;
+      const { id } = insertVillager.get(
+        villager.name,
+        villager.birthday?.season ?? null,
+        villager.birthday?.day ?? null,
+        marriageable,
+        giftPageId,
+        villagersPageId,
+      );
+      saveTastes(id, villager.tastes, giftPageId);
+    }
+    if (gifts.universal) saveTastes(null, gifts.universal, giftPageId);
+    if (universalDislikes) saveTastes(null, universalDislikes, friendshipPageId);
+
+    // Groups the gift page spells out ("All Eggs = Egg, Brown Egg, ...").
+    for (const [groupName, names] of Object.entries(gifts.groups ?? {})) {
+      db.prepare('DELETE FROM item_groups WHERE group_name = ?').run(groupName);
+      const insertMember = db.prepare(
+        'INSERT OR REPLACE INTO item_groups (group_name, item_name, base_price, source_page_id) VALUES (?, ?, NULL, ?)',
+      );
+      for (const name of names) insertMember.run(groupName, name, giftPageId);
     }
   });
   return save();

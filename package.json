@@ -20,7 +20,8 @@
     "fish": "node src/cli/fish.js",
     "artisan": "node src/cli/artisan.js",
     "cook": "node src/cli/cook.js",
-    "craft": "node src/cli/craft.js"
+    "craft": "node src/cli/craft.js",
+    "gifts": "node src/cli/gifts.js"
   },
   "dependencies": {
     "better-sqlite3": "^13.2.0"
