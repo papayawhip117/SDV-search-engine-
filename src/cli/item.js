@@ -14,6 +14,15 @@ function formatPrices(prices) {
   return prices.map(({ shop, price, note }) => `${price}g at ${shop}${note ? ` ${note}` : ''}`).join('; ');
 }
 
+/** "Keg: Any Fruit (1) → 1, 10000 min (6.25 days), 3 × Base Fruit Price" */
+export function formatRecipe(recipe) {
+  const output = recipe.outputQuantity > 1 ? ` → ${recipe.outputQuantity}` : '';
+  const time = recipe.minutes !== null ? `${recipe.minutes} min (${recipe.days} days)` : recipe.timeNote ?? 'time unknown';
+  const price = recipe.sellPrice !== null ? `${recipe.sellPrice}g` : recipe.priceNote ?? 'price unknown';
+  const except = recipe.inputExclusions.length ? ` (not ${recipe.inputExclusions.join(', ')})` : '';
+  return `${recipe.machine}: ${recipe.inputNote ?? '?'}${except}${output}, ${time}, ${price}`;
+}
+
 /**
  * Suggest names for a misspelt item: search for the name, then for shorter
  * and shorter beginnings of it ("strawbery" → "strawber" finds Strawberry).
@@ -31,9 +40,19 @@ export function formatItemDetails(item) {
   const lines = [`${item.name}  (${item.type})`, ''];
   if (item.summary) lines.push(item.summary, '');
 
-  lines.push(`Sell price:  ${item.sellPrice === null ? 'unknown' : `${item.sellPrice}g`}${item.sellPriceNote ? `  (${item.sellPriceNote})` : ''}`);
+  if (item.sellPrice !== null) {
+    lines.push(`Sell price:  ${item.sellPrice}g${item.sellPriceNote ? `  (${item.sellPriceNote})` : ''}`);
+  } else if (item.sellPriceNote) {
+    lines.push(`Sell price:  ${item.madeBy.some((r) => r.multiplier !== null) ? 'depends on the ingredient: ' : ''}${item.sellPriceNote}`);
+  } else if (item.madeBy.length) {
+    lines.push('Sell price:  see "How it is made" below');
+  } else {
+    lines.push('Sell price:  unknown');
+  }
   if (item.type === 'seed' || item.buyPrices.length) lines.push(`Buy:         ${formatPrices(item.buyPrices)}`);
-  lines.push(`Seasons:     ${item.seasons.join(', ') || 'unknown'}`);
+  if (['crop', 'seed', 'fish'].includes(item.type) || item.seasons.length) {
+    lines.push(`Seasons:     ${item.seasons.join(', ') || 'unknown'}`);
+  }
 
   if (item.crop) {
     const { crop } = item;
@@ -59,6 +78,15 @@ export function formatItemDetails(item) {
     if (fish.fishingLevel !== null) {
       lines.push(`Needs:       fishing level ${fish.fishingLevel}${fish.fishingLevelNote ? ` ${fish.fishingLevelNote}` : ''}`);
     }
+  }
+  if (item.machine) {
+    lines.push(`Recipe:      ${item.machine.recipeSource ?? 'unknown'}`);
+    lines.push(`Made from:   ${item.machine.ingredients ?? 'unknown'}`);
+    if (item.machine.products.length) lines.push(`Makes:       ${item.machine.products.join(', ')}`);
+  }
+  if (item.madeBy.length) {
+    lines.push('How it is made:');
+    for (const recipe of item.madeBy) lines.push(`  - ${formatRecipe(recipe)}`);
   }
   if (item.growsInto.length) lines.push(`Grows into:  ${item.growsInto.join(', ')}`);
   if (item.categories.length) lines.push(`Categories:  ${item.categories.join(', ')}`);

@@ -11,8 +11,9 @@
 //   getItemDetails(db, 'Blueberry')
 
 import { SEASON_ORDER } from '../calc/profit.js';
+import { getRecipesFor } from './artisanQueries.js';
 
-export const ITEM_TYPES = ['crop', 'seed', 'fish'];
+export const ITEM_TYPES = ['crop', 'seed', 'fish', 'artisan', 'machine'];
 
 // Each sort option maps to a fixed piece of SQL. User input only ever picks
 // a key from this list; it's never pasted into the SQL itself.
@@ -72,7 +73,7 @@ const SEASONS_SQL = `
  *
  * @param options.text        words to look for in names, wiki categories and summaries
  * @param options.season      'Spring' | 'Summer' | 'Fall' | 'Winter'
- * @param options.type        'crop' | 'seed' | 'fish'
+ * @param options.type        'crop' | 'seed' | 'fish' | 'artisan' | 'machine'
  * @param options.sortBy      'relevance' (default when searching text) | 'name' | 'sell' | 'buy'
  * @param options.descending  true/false to override the sort's usual direction
  * @param options.limit       maximum number of results (default 50)
@@ -157,10 +158,15 @@ export function getItemDetails(db, name) {
     .get(name);
   if (!item) return null;
 
-  const categories = db
-    .prepare('SELECT category FROM page_categories WHERE source_page_id = ? ORDER BY category')
-    .all(item.sourcePageId)
-    .map((row) => row.category);
+  // Categories belong to the page, so only show them when it's this item's
+  // own page (Jelly is described on the Preserves Jar page).
+  const ownPage = item.title.toLowerCase() === item.name.toLowerCase();
+  const categories = ownPage
+    ? db
+        .prepare('SELECT category FROM page_categories WHERE source_page_id = ? ORDER BY category')
+        .all(item.sourcePageId)
+        .map((row) => row.category)
+    : [];
 
   const shopPrices = (itemId) =>
     db
@@ -223,6 +229,23 @@ export function getItemDetails(db, name) {
       }
     : null;
 
+  // If this item is a machine: how to get it and what it makes.
+  const machineRow = db
+    .prepare('SELECT recipe_source AS recipeSource, ingredients FROM machines WHERE item_id = ?')
+    .get(item.id);
+  const machine = machineRow
+    ? {
+        ...machineRow,
+        products: db
+          .prepare(
+            `SELECT DISTINCT p.name FROM artisan_recipes r JOIN items p ON p.id = r.product_item_id
+             WHERE r.machine_name = ? ORDER BY p.name`,
+          )
+          .all(item.name)
+          .map((row) => row.name),
+      }
+    : null;
+
   return {
     name: item.name,
     type: item.type,
@@ -234,6 +257,8 @@ export function getItemDetails(db, name) {
     categories,
     crop,
     fish,
+    machine,
+    madeBy: getRecipesFor(db, item.name),
     growsInto,
     source: { title: item.title, url: item.url, revision: item.revision, revisionTime: item.revisionTime, retrievedAt: item.retrievedAt },
   };

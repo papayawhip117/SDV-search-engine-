@@ -1,0 +1,365 @@
+{
+ "batchcomplete": true,
+ "query": {
+  "pages": [
+   {
+    "pageid": 1978,
+    "ns": 0,
+    "title": "Keg",
+    "revisions": [
+     {
+      "revid": 195253,
+      "parentid": 194029,
+      "timestamp": "2026-10-03T16:55:27Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "{{Infobox\n|eng         = Keg\n|source      = [[Crafting]]\n|recipe      = {{Name|Farming Skill Icon|link=Farming|Level 8}}\n|ingredients = {{Name|Wood|30}}{{Name|Copper Bar|1}}{{Name|Iron Bar|1}}{{Name|Oak Resin|1}}\n|sellprice   = Cannot be sold\n}}\n{{For|a detailed analysis of profit using the Keg|Keg Productivity}}\nThe '''Keg''' is a type of [[Crafting#Artisan Equipment|Artisan Equipment]] used to make [[Artisan Goods]]. A Keg is the reward for completing the {{Bundle|Artisan||y}} '''or''' the {{Bundle|Brewers||y}}. Four Kegs can be obtained as the 19th prize from the [[Mayor's Manor#Prize Machine|Prize Machine]] (50% chance).\n\n==Products==\nNote that processing times are approximate, since time passes differently from 2am to 6am.  One hour = 60 minutes from 6am to 2am, but 1 hour = 100 minutes from 2am to 6am. One full day is 1600 minutes, where day is 1200 minutes and night is 400 minutes.\n<section begin=\"kegproducts\"/>\n{|class=\"wikitable sortable roundedborder\"\n!class=\"unsortable\" | Image\n!Name\n!Description\n!Ingredient\n!Processing Time<noinclude><ref name=\"processtime\"/></noinclude>\n!Sell Price\n!Energy / Health / Buffs\n|-\n|[[File:Beer.png|center]]\n|[[Beer]]\n|{{Description|Beer}}\n|{{Name|Wheat|1}}\n|data-sort-value=\"01750\"|{{Duration|1750 mins|class=inline}} (&#8776;1.1 Days)\n|{{Price|200}}\n|data-sort-value=\"50\"|{{energy|50}}{{health|22}}{{Name|Speed|&minus;1}}\n|-\n|[[File:Vinegar.png|center]]\n|[[Vinegar]] (2)\n|{{Description|Vinegar}}\n|{{Name|Rice|1}}\n|data-sort-value=\"0600\"|{{Duration|600 mins|class=inline}} (10 Hours)\n|{{Price|100}}\n|data-sort-value=\"13\"|{{energy|13}}{{health|5}}\n|-\n|[[File:Coffee.png|center]]\n|[[Coffee]]\n|{{Description|Coffee}}\n|{{Name|Coffee Bean|5}}\n|data-sort-value=\"00120\"|{{Duration|120 mins|class=inline}} (2 Hours)\n|{{Price|150}}\n|data-sort-value=\"3\"|{{energy|3}}{{health|1}}{{Name|Speed|+1}}\n|-\n|[[File:Green Tea.png|center]]\n|[[Green Tea]]\n|{{Description|Green Tea}}\n|{{Name|Tea Leaves|1}}\n|data-sort-value=\"00120\"|{{Duration|180 mins|class=inline}} (3 Hours)\n|{{Price|100}}\n|data-sort-value=\"13\"|{{energy|13}}{{health|5}}{{Name|Max Energy|+30}}{{Name|Speed|+0.5}}\n|-\n|[[File:Mead.png|center]]\n|[[Mead]]\n|{{Description|Mead}}\n|{{Name|Honey|1}}\n|data-sort-value=\"00600\"|{{Duration|600 mins|class=inline}} (10 hours)\n|{{Price|300}}\n|data-sort-value=\"75\"|{{energy|75}}{{health|33}}{{Name|Speed|&minus;1}}\n|-\n|[[File:Pale Ale.png|center]]\n|[[Pale Ale]]\n|{{Description|Pale Ale}}\n|{{Name|Hops|1}}\n|data-sort-value=\"02250\"|{{Duration|2250 mins|class=inline}} (&#8776;1.4 Days)\n|{{Price|300}}\n|data-sort-value=\"50\"|{{energy|50}}{{health|22}}{{Name|Speed|&minus;1}}\n|-\n|[[File:Juice.png|center]]\n|[[Juice]]\n|{{Description|Juice}}\n|Any [[Vegetables|Vegetable]] (1) ''or'' any positive energy [[Foraging#Foraged Items|Forage]] (other than [[:Category:Mushrooms|Mushrooms]]) (1)\n|data-sort-value=\"06000\"|{{Duration|6000 mins|class=inline}} (4 Days)\n|2.25 &times; Ingredient Base Price\n|data-sort-value=\"2\"|{{energy|2 &times; Base Ingredient Energy}}{{health|2 &times; Base Ingredient Health}}\n|-\n|[[File:Wine.png|center]]\n|[[Wine]]\n|{{Description|Wine}}\n|Any [[Fruits|Fruit]] (1)\n|data-sort-value=\"10000\"|{{Duration|10000 mins|class=inline}} (6.25 Days)\n|3 &times; [[Fruits|Fruit]] Base Price  \n|data-sort-value=\"1.75\"|{{energy|1.75 &times; Base [[Fruits|Fruit]] Energy}}{{health|1.75 &times; Base [[Fruits|Fruit]] Health}}{{Name|Speed|&minus;1}}\n|}<section end=\"kegproducts\"/>\n\n'''Notes'''\n* Juice made from an inedible vegetable will instead give [[File:Energy.png|24px|link=]] 1 &times; Base [[Vegetables|Vegetable]] Price and [[File:Health.png|24px|link=]] 0.45 &times; Base [[Vegetables|Vegetable]] Price.<ref name=\"juice energy\" />\n* Wine made from an inedible fruit will instead give [[File:Energy.png|24px|link=]] 0.25 &times; Base [[Fruits|Fruit]] Price and [[File:Health.png|24px|link=]] 0.1125 &times; Base [[Fruits|Fruit]] Price.<ref name=\"wine energy\" />\n*The following foraged items can be made into Juice: [[Wild Horseradish]], [[Leek]], [[Dandelion]], [[Cave Carrot]], [[Spring Onion]], [[Hazelnut]], [[Winter Root]], [[Snow Yam]], and [[Ginger]].\n\n== Preserves Jar vs. Keg ==\nThe [[Preserves Jar]] increases the profit of a crop using the following equation:  (2 × Base Crop Value + 50), while the Keg multiplies the base value of [[Fruits]] by 3, and most [[Vegetables]] by 2.25.  Because of this, low-value high-yield crops like [[Corn]] or [[tomato|Tomatoes]] are more valuable in the preserves jar.  The Keg, on the other hand, favors crops with a much higher base value, such as [[Ancient Fruit]] or [[Melon]]s. The breakpoint is {{Price|50}} for fruits and {{Price|200}} for vegetables.\n\nBelow is a list of crops that are more beneficial to be put in the Keg, along with their raw base price.  Boldfaced items have a base price above {{Price|200}}.\n\n{|class=\"wikitable roundedborder\"\n|-\n![[Fruits]]\n![[Vegetables]]\n|-\n|\n*'''{{Name|Ancient Fruit|550g|class=inline}}'''\n*{{Name|Apple|100g}}\n*{{Name|Banana|150g}}\n*{{Name|Cactus Fruit|75g}}\n*{{Name|Cherry|80g}}\n*{{Name|Coconut|100g}}\n*{{Name|Cranberries|75g}}\n*{{Name|Crystal Fruit|150g}}\n*{{Name|Grape|80g}}\n*{{Name|Mango|130g}}\n*'''{{Name|Melon|250g|class=inline}}'''\n*{{Name|Orange|100g}}\n*{{Name|Peach|140g}}\n*'''{{Name|Pineapple|300g|class=inline}}'''\n*{{Name|Pomegranate|140g}}\n*{{Name|Powdermelon|60g}}\n*'''{{Name|Rhubarb|220g|class=inline}}'''\n*{{Name|Spice Berry|80g}}\n*'''{{Name|Starfruit|750g|class=inline}}'''\n*{{Name|Strawberry|120g}}\n*{{Name|Wild Plum|80g}}\n|\n*'''{{Name|Pumpkin|320g|class=inline}}'''\n*'''{{Name|Red Cabbage|260g|class=inline}}'''\n*{{Name|Hops|class=inline}} (25g, but [[Pale Ale]] sells for 300g)\n*{{Name|Wheat|class=inline}} (25g, but [[Beer]] sells for 200g)\n|}\n\nIt should be noted that these calculations only involve the value gained in terms of max profit; if looking at profit per day based on the time required, the Preserves Jar will outpace the Keg regardless of the base value of the item (in ''every'' case except for Hops, Wheat, and Tea Leaves) since the Preserves Jar has a much shorter processing time.\n\n==Storage Options==\n===Inside Farm Buildings===\nKegs can be stored in farm buildings. \n\nA [[Shed]], optimally filled with kegs, holds 67 of them, while occupying only 21 tiles of land. An upgraded Big Shed, optimally filled, holds 137 kegs on the same land space. A [[Barn]], however, is cheaper, and holds 90 kegs on 28 tiles of land. The Deluxe Barn increases building costs considerably, but has so far been shown to be able to fit 136 kegs on the same land space as the initial Barn. [[Coop]]s are cheaper still, but smaller, permitting fewer kegs per tile of external farmland used. [[Cabin]]s are the cheapest initially, occupy the smallest land area of 15 tiles, but can only hold 42 kegs without upgrades, assuming the cabin is unclaimed and the gift and bed must remain. The first level of upgraded cabin can hold 114 kegs at a lower cost than any other option. While the second upgrade significantly raises costs, 351 kegs can be stored, in version 1.6, new cabin renovations were added, and 593 kegs can be stored, allowing the largest number of kegs per external farmland used.\n\n<gallery mode=\"packed\" heights=\"150px\">\nFile:Optimal shed layout.png|Optimal Shed layout provides 67 spaces\nOptimal big shed layout.png|Optimal Big Shed layout provides 137 spaces\nKegs in Small Barn x90.png|Optimal Barn layout provides 90 spaces\nFile:Stardew deluxe barn 136 kegs.png|One possible Deluxe Barn layout with 136 kegs\nCabin upgrade 0 no player 42 kegs.png|Empty, unclaimed Cabin layout with 42 kegs\nFile:CabinUpgrade1Kegs.png|Single upgrade Cabin/Farmhouse layout with 114 kegs\nCabin upgrade 2 no cellar 351 kegs.png|Two upgrade Cabin/Farmhouse layout with 352 kegs\nCabin upgrade 2.png|Two upgrades and remodeling Cabin/Farmhouse layout with 594 kegs\n</gallery>\n\n===Outside The Farm===\n:''See also: [[Crafting#Crafted goods outside the farm|Crafted goods outside the farm]]''\nKegs can be stored almost anywhere outside the farm.  Out of the way places are best as NPCs walking through a keg will destroy it.  Other good options not pictured are [[the Desert]] and the [[Railroad]].\n<gallery mode=\"packed\">\nFile:254Kegs Quarry.png|374 Kegs in the [[Quarry]].\nFile:Tunnel 131 Kegs.png|131 Kegs in [[The Tunnel]].\nFile:90 Kegs Road.png|90 Kegs on [[The Tunnel|the Road]]. 2 are inside the tunnel.\n</gallery>\n\n==References==\n<references>\n  <ref name=\"processtime\">See <samp>Object::performObjectDropInAction</samp> in the game code and <samp>Data/ObjectInformation.xnb</samp> for corresponding items IDs and categories.</ref>\n  <ref name=\"juice energy\">See <samp>ObjectDataDefinition::CreateFlavoredJuice</samp> in the game code.</ref>\n  <ref name=\"wine energy\">See <samp>ObjectDataDefinition::CreateFlavoredWine</samp> in the game code.</ref>\n</references>\n\n==History==\n{{History|1.0|Introduced.}}\n{{History|1.1|Mead Added. Removed [[Clay]] from crafting recipe.}}\n{{History|1.4|Green Tea Added.  Adjusted processing time so that machines process 100 minutes per hour only from 2am to 6am, not for every hour the player is asleep. Kegs can now be stacked in a player's [[inventory]] and in [[Chest|chests]].}}\n{{History|1.6|Positive energy foraged items (other than Mushrooms) can now be made into Juice. Green Tea now gives +0.5 Speed. Rice can now be placed into a Keg to make Vinegar. Can now be obtained as a prize from the [[Mayor's Manor#Prize Machine|Prize Machine]].}}\n{{History|1.6.2|Wine Health and Energy now scale with base fruit's values. Juice Health and Energy now scale with base vegetable's values.}}\n\n{{NavboxEquipment}}\n\n[[Category:Craftable items]]\n\n[[de:Fass]]\n[[es:Barril]]\n[[fr:Tonneau]]\n[[it:Barilotto]]\n[[ja:醸造ダル]]\n[[ko:술통]]\n[[hu:Keghordó]]\n[[pt:Barril]]\n[[ru:Бочонок]]\n[[tr:Fıçı]]\n[[zh:小桶]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Craftable items"
+     }
+    ]
+   },
+   {
+    "pageid": 2100,
+    "ns": 0,
+    "title": "Preserves Jar",
+    "revisions": [
+     {
+      "revid": 195389,
+      "parentid": 195386,
+      "timestamp": "2026-10-14T15:38:38Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "{{Infobox\n|eng         = Preserves Jar\n|source      = [[Crafting]]\n|recipe      = {{Name|Farming Skill Icon|link=Farming|Level 4}}\n|ingredients = {{Name|Wood|50}}{{Name|Stone|40}}{{Name|Coal|8}}\n|sellprice   = Cannot be sold\n}}\n{{for|a detailed analysis of profit using the Preserves Jar|Preserves Jar Productivity}}\nThe '''Preserves Jar''' is a type of [[Crafting#Artisan Equipment|Artisan Equipment]] used to make [[Artisan Goods]]. [[Fruits|Fruit]] makes [[Jellies and Pickles|Jelly]]; [[:Category:Mushrooms|Mushrooms]], [[Vegetables]], and [[Foraging#Foraged Items|foraged items]] make [[Jellies and Pickles|Pickles]]; [[Sturgeon]] [[Roe]] makes [[Caviar]]; and other fish [[Roe]] make their respective [[Aged Roe]].\n\nA Preserves Jar is the reward for completing the {{Bundle|Quality Crops||y}} '''or''' the {{Bundle|Rare Crops||y}}.\n\n4 Preserves Jars can be obtained as the seventh prize from the Prize Machine in the [[Mayor's Manor]] (33% chance).\n\n==Products==\nQuality of ingredients makes no difference to the finished product. The value of the finished product is determined using the base value (''i.e.,'' with no silver or gold star) of the item. However, the preserved version is always at least as profitable as even gold star produce, although the profit margin is lower compared to normal produce.\n\nNote that processing times are approximate, since time passes differently from 2am to 6am. One hour = 60 minutes from 6am to 2am, but 1 hour = 100 minutes from 2am to 6am. One full day is 1600 minutes, where day is 1200 minutes and night is 400 minutes.\n<section begin=\"jellypicklestable\"/>\n{|class=\"wikitable roundedborder\"\n!Image\n!Name\n!Description\n!Ingredients\n!Processing Time<noinclude><ref name=\"processtime\"/></noinclude>\n!Sell Price\n!Energy / Health\n|-\n|[[File:Pickles.png]]\n|[[Jellies and Pickles|Pickles]]\n|{{Description|Pickles}}\n|One of: \n* Any [[Vegetables|vegetable]] (1)\n* Any [[:Category:Mushrooms|mushroom]] (1) (except [[Red Mushroom]])\n* Any positive energy [[Foraging#Foraged Items|Forage]] (1)\n|{{Duration|4000m (2-3 days)|class=inline}}\n|2 × Base Ingredient Price + 50\n|{{energy|1.75 &times; Base Ingredient Energy}}{{health|1.75 &times; Base Ingredient Health}}\n|-\n|[[File:Jelly.png]]\n|[[Jellies and Pickles|Jelly]]\n|{{Description|Jelly}}\n|Any [[Fruits|fruit]] (1)\n|{{Duration|4000m (2-3 days)|class=inline}}\n|2 × Base [[Fruits|Fruit]] Price + 50\n|{{energy|2 &times; Base [[Fruits|Fruit]] Energy}}{{health|2 &times; Base [[Fruits|Fruit]] Health}}\n|-\n|[[File:Caviar.png]]\n|[[Caviar|Caviar]]\n|{{Description|Caviar}}\n|{{Name|Sturgeon Roe|1}}\n|{{Duration|6000m (4 days)|class=inline}}\n|{{Price|500}}\n|{{energy|175}}{{health|78}}\n|-\n|[[File:Aged Roe.png]]\n|[[Aged Roe]]\n|{{Description|Aged Roe}}\n|{{Name|Roe|1}}\n|{{Duration|4000m (2-3 days)|class=inline}}\n|2 × Base [[Roe]] Price\n|{{energy|100}}{{health|45}}\n|-\n|}<section end=\"jellypicklestable\"/>\n'''Notes'''\n*Items that have a 4000m processing time starting at 6:00am are done at 7:20pm two days later. Items starting between 12:40pm and 7:20pm are done at 6:00am three days later.\n*If Caviar processing is started at 6am it finishes at 2am three days later, making it impossible to collect that day. It is ready four days later at the start of the day if processing begins before 12:40 pm. If it were to be started at 1:50am (the latest time it could be started), it would be finished at 7:10pm four days later.\n* [[Truffle]]s are not classified as [[:Category:Mushrooms|Mushrooms]] and therefore cannot be placed into the Preserves Jar.\n* Pickles made from an inedible vegetable will instead give [[File:Energy.png|24px|link=]] 0.625 &times; Base [[Vegetables|Vegetable]] Price and [[File:Health.png|24px|link=]] 0.28125 &times; Base [[Vegetables|Vegetable]] Price.<ref name=\"pickle energy\" />\n* Jelly made from an inedible fruit will instead give [[File:Energy.png|24px|link=]] 0.5 &times; Base [[Fruits|Fruit]] Price and [[File:Health.png|24px|link=]] 0.225 &times; Base [[Fruits|Fruit]] Price.<ref name=\"jelly energy\" />\n*The following foraged items can be pickled: [[Wild Horseradish]], [[Leek]], [[Dandelion]], [[Cave Carrot]], [[Morel]], [[Chanterelle]], [[Spring Onion]], [[Common Mushroom]], [[Hazelnut]], [[Winter Root]], [[Snow Yam]], [[Purple Mushroom]], [[Ginger]], and [[Magma Cap]].\n\n==Preserves Jar vs. Keg==\n:''See also: [[Preserves Jar Productivity]], [[Keg Productivity]]''\nThe Preserves Jar increases the profit of a crop using the following equation: (2 &times; Base [[Crops|Crop]] Value + 50); while the [[Keg]] multiplies the base value of [[Fruits]] by 3, and [[Vegetables]] & [[Foraging|Foraged items]] by 2.25. Because of this, low-value, high-yield crops like [[Corn]] or [[Tomato]]es are more valuable in the preserves jar. The [[keg]], on the other hand, favors crops with a much higher base value, such as [[Ancient Fruit]] or [[Melon]]s. The breakpoint is {{Price|50}} for fruits and {{Price|200}} for vegetables.\n\nBelow is a list of crops that are more beneficial to be put in the preserves jar, along with their raw base sell price.\n{|class=\"wikitable roundedborder\"\n![[Vegetables]]\n![[Fruits]]\n![[Foraging|Forage]]\n|-\n|\n*{{Name|Amaranth|150g}}\n*{{Name|Artichoke|160g}}\n*{{Name|Beet|100g}}\n*{{Name|Bok Choy|80g}}\n*{{Name|Broccoli|70g}}\n*{{Name|Carrot|35g}}\n*{{Name|Cauliflower|175g}}\n*{{Name|Corn|50g}}\n*{{Name|Eggplant|60g}}\n*{{Name|Fiddlehead Fern|90g}}\n*{{Name|Garlic|60g}}\n*{{Name|Green Bean|40g}}\n*{{Name|Kale|110g}}\n*{{Name|Parsnip|35g}}\n*{{Name|Potato|80g}}\n*{{Name|Radish|90g}}\n*{{Name|Summer Squash|45g}}\n*{{Name|Taro Root|100g}}\n*{{Name|Tea Leaves|50g}}\n*{{Name|Tomato|60g}}\n*{{Name|Unmilled Rice|30g}}\n*{{Name|Yam|160g}}\n|\n*{{Name|Apricot|class=inline}} (50g)*\n*{{Name|Blackberry|20g}}\n*{{Name|Blueberry|class=inline}} (50g)*\n*{{Name|Hot Pepper|40g}}\n*{{Name|Qi Fruit|1g}}\n*{{Name|Salmonberry|5g}}\n|\n*{{Name|Cave Carrot|25g}}\n*{{Name|Dandelion|40g}}\n*{{Name|Ginger|60g}}\n*{{Name|Hazelnut|90g}}\n*{{Name|Leek|60g}}\n*{{Name|Snow Yam|100g}}\n*{{Name|Spring Onion|8g}}\n*{{Name|Wild Horseradish|50g}}\n*{{Name|Winter Root|70g}}\n|}\n<nowiki>*</nowiki>''Wine and jelly each sell for {{Price|150}}, but jelly processes faster than wine.''\n\nIt should be noted that these calculations only involve the value gained in terms of max profit; if looking at profit per day based on the time required, the preserves jar outpaces the keg regardless of the base value of the item (in ''every'' case except for Hops and Wheat) since the preserves jar has a much faster processing time.\n\n==Storage Options==\n:''See also: [[Keg#Storage Options|Keg storage options]], [[Crafting#Crafted goods outside the farm|Crafted goods outside the farm]]''\nWhile Preserves Jars can be stored anywhere on the farm, it is more space efficient to store them [[Keg#Inside Farm Buildings|inside farm buildings]] or [[Keg#Outside The Farm|outside the farm]] altogether.\n\n==Trivia==\n*The description of the Preserves Jar states that it makes Jam, but it actually produces Jelly.\n*The description of the Preserves Jar was not updated to include fish roe or caviar in [[Version History#1.4|v1.4]].\n\n==References==\n<references>\n  <ref name=\"processtime\">See <samp>Object::performObjectDropInAction</samp> in the game code and <samp>Data/ObjectInformation.xnb</samp> for corresponding items IDs and categories.</ref>\n<ref name=\"pickle energy\">See <samp>ObjectDataDefinition::CreateFlavoredPickle</samp> in the game code.</ref>\n<ref name=\"jelly energy\">See <samp>ObjectDataDefinition::CreateFlavoredJelly</samp> in the game code.</ref>\n</references>\n\n==History==\n{{History|1.4|Added ability to make [[Caviar]] and [[Aged Roe]]. Adjusted processing time so that machines process 100 minutes from 2am to 6am, not every hour the player is asleep. Preserves Jars can now be stacked in a player's [[inventory]] and in [[chest]]s.}}\n{{History|1.5|Pickled [[Ginger]] added.}}\n{{History|1.6|Pickled [[Carrot]], [[Summer Squash]], [[Broccoli]], [[Wild Horseradish]], [[Leek]], [[Dandelion]], [[Spring Onion]], [[Winter Root]], [[Snow Yam]], [[Hazelnut]], [[Cave Carrot]], [[Purple Mushroom]], [[Chanterelle]], [[Common Mushroom]], [[Morel]], and [[Magma Cap]] added. [[Powdermelon]] Jam and Aged [[Clam]] and [[Goby]] Roe added. Now obtainable from the [[Mayor's Manor#Prize Machine|Prize Machine]].}}\n\n{{NavboxEquipment}}\n\n[[Category:Craftable items]]\n\n[[de:Einmachgefäß]]\n[[es:Envasadora]]\n[[fr:Bocal]]\n[[it:Barattolo per conserve]]\n[[ja:保存ジャー]]\n[[ko:절임통]]\n[[hu:Tartósítótégely]]\n[[pt:Jarra de conserva]]\n[[ru:Кадка]]\n[[tr:Kavanoz]]\n[[zh:罐头瓶]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Craftable items"
+     }
+    ]
+   },
+   {
+    "pageid": 2098,
+    "ns": 0,
+    "title": "Oil Maker",
+    "revisions": [
+     {
+      "revid": 190486,
+      "parentid": 185500,
+      "timestamp": "2026-01-12T19:36:26Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "{{Infobox\n|eng         = Oil Maker\n|source      = [[Crafting]]\n|recipe      = {{Name|Farming Skill Icon|link=Farming|Level 8}}\n|ingredients = {{Name|Slime|50}}{{Name|Hardwood|20}}{{Name|Gold Bar|1}}\n|sellprice   = Cannot be sold\n}}\nThe '''Oil Maker''' is a type of [[Crafting#Artisan Equipment|Artisan Equipment]] used to make [[Artisan Goods]]. It takes specific items and turns them into [[oil]].\n\n==Products==\n:''For Truffle/Truffle Oil profitability, see also: [[Animal Products Profitability]]''\n<section begin=\"oilmakerproducts\"/>\n{|class=\"wikitable roundedborder\"\n!Image\n!Name\n!Description\n!Ingredient\n!Processing Time<noinclude><ref name=\"processtime\"/></noinclude>\n!Sell Price\n!Energy / Health\n|-\n|[[File:Truffle Oil.png]]\n|[[Truffle Oil]]\n|{{Description|Truffle Oil}}\n|{{Name|Truffle|1}}\n|{{Duration|360m (6 Hours)}}\n|{{Price|1065}}\n|{{energy|38}}{{health|17}}\n|-\n|rowspan=\"3\"|[[File:Oil.png]]\n|rowspan=\"3\"|[[Oil]]\n|rowspan=\"3\"|{{Description|Oil}}\n|{{Name|Corn|1}}\n|{{Duration|1000m (&#8776;16 Hours)}}\n|rowspan=\"3\"|{{Price|100}}\n|rowspan=\"3\"|{{energy|13}}{{health|5}}\n|-\n|{{Name|Sunflower Seeds|1}}\n|{{Duration|3200m (2 Days)}}\n|-\n|{{Name|Sunflower|1}}\n|{{Duration|60m (1 Hour)}}\n|}<section end=\"oilmakerproducts\"/>\nProcessing time calculates differently depending on the time of day. 1 hour = 60 minutes from 6:00 AM to 2:00 AM, but = 100 minutes from 2:00 AM to 6:00 AM.\n\n==References==\n<references>\n  <ref name=\"processtime\">See <samp>Object::performObjectDropInAction</samp> in the game code and <samp>Data\\ObjectInformation.xnb</samp> for corresponding items IDs.</ref>\n</references>\n\n==History==\n{{History|1.0|Introduced.}}\n{{History|1.4|Adjusted processing time so that machines process 100 minutes from 2:00 AM to 6:00 AM, not every hour the player is asleep. Oil makers can now be stacked in a player's [[inventory]] and in [[Chest|chests]].}}\n\n{{NavboxEquipment}}\n\n[[Category:Craftable items]]\n\n[[de:Ölpresse]]\n[[es:Aceitera]]\n[[fr:Machine à huile]]\n[[it:Frantoio]]\n[[ja:オイルメーカー]]\n[[ko:착유기]]\n[[hu:Olajkészítő]]\n[[pt:Gerador de óleo]]\n[[ru:Пресс для масла]]\n[[tr:Yağ Üreteci]]\n[[zh:产油机]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Craftable items"
+     }
+    ]
+   },
+   {
+    "pageid": 2087,
+    "ns": 0,
+    "title": "Bee House",
+    "revisions": [
+     {
+      "revid": 191201,
+      "parentid": 190800,
+      "timestamp": "2026-02-19T14:08:23Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "{{Infobox\n|eng         = Bee House\n|image2      = Bee House Full\n|image2spacing = true\n|source      = [[Crafting]]\n|season      = [[Spring]] • [[Summer]] • [[Fall]]\n|recipe      = {{Name|Farming Skill Icon|link=Farming|Level 3}}\n|ingredients = {{Name|Wood|40}}{{Name|Coal|8}}{{Name|Iron Bar|1}}{{Name|Maple Syrup|1}}\n|sellprice   = Cannot be sold\n}}\nThe '''Bee House''' is a type of [[Crafting#Artisan Equipment|Artisan Equipment]] used to make [[Honey]]. A Bee House is the reward for completing the {{Bundle|Fall Crops|18|y}}. Four Bee Houses can be obtained as the 19th prize from the [[Mayor's Manor#Prize Machine|Prize Machine]] (50% chance).\n\nTo make honey, place a Bee House on the farm during any season but winter, and wait 4 nights. Bee houses can be placed indoors (''e.g.,'' in the [[Greenhouse]]) but will not produce honey there, regardless of any flowers within range. Bee houses placed outside the farm will produce wild honey every 4 days, but they will be destroyed if they are placed in a [[Crafting#Crafted goods outside the farm|villager's path]].\n\nA fully-grown and unharvested [[Flowers|flower]] within 5 tiles of a Bee House (including those grown in [[Garden Pot]]s) will cause it to produce flower honey, which always sells for more than flowerless Wild Honey. Flowers that are normally foraged (''i.e.,'' [[Crocus]] and [[Sweet Pea]]) do not affect the honey. Additionally, a [[Dandelion]] or [[Daffodil]] will not affect the honey as these items are classified as [[Foraging|forage]] rather than flowers.\n\nThe type of honey is established the moment it is harvested. If a Bee House has produced flower honey, but the flower is harvested before the honey, the honey will become wild honey. Similarly, if a Bee House has produced flowerless wild honey, but the honey is harvested after a flower bloomed in range, the harvested honey will be flower honey.\n\n==Products==\n<!--Note: This section is transcluded on the Artisan Goods page-->\n<section begin=\"beeproducts\" />\n{|class=\"wikitable roundedborder\"\n!Image\n!Name\n!Description\n!Energy/Health\n!Processing Time<noinclude><ref name=\"processtime\"/></noinclude>\n!Availability\n!colspan=\"2\"|Base Sell Price\n|-\n|rowspan=\"8\"|[[File:Honey.png]]\n|rowspan=\"8\"|[[Honey]]\n|rowspan=\"8\"|{{Description|Honey}}\n|rowspan=\"8\" style=\"text-align: center;\"|''Inedible''\n|rowspan=\"8\"|{{Duration|4 Nights}}\n|class=\"no-wrap|All but [[Winter]]\n| Wild\n|{{Price|100}}\n|-\n|rowspan=\"2\"|{{Season|Spring}}\n|{{Name|Tulip}}\n|{{Price|160}}\n|-\n|{{Name|Blue Jazz}}\n|{{Price|200}}\n|-\n|rowspan=\"3\"|{{Season|Summer}}\n|{{Name|Sunflower}}\n|{{Price|260}}\n|-\n|{{Name|Summer Spangle}}\n|{{Price|280}}\n|-\n|{{Name|Poppy}}\n|{{Price|380}}\n|-\n|rowspan=\"2\"|{{Season|Fall}}\n|{{Name|Sunflower}}\n|{{Price|260}}\n|-\n|{{Name|Fairy Rose}}\n|{{Price|680}}\n|}<section end=\"beeproducts\" />\n\n==Range==\n[[File:Bee House Range.png|200px|right|thumb|Flower zone indicator for modified [[Honey]].]]\nWith the exception of [[Crocus]] and [[Sweet Pea]], the Bee House can produce unique types of honey when it is within 5 tiles in any cardinal direction of a blooming flower (for a total area of 60, excluding the tile the Bee House is placed on). When there is more than one type of flower within range, the closest flower takes priority. At equal distances, the flower at the horizontal left takes priority, followed by the next clockwise flower.\n\n==Tips==\n* Planting flowers near Bee Houses on [[Ginger Island]] will produce flavored Honey year-round.\n* Garden Pots can be used in parts of the farm and Ginger Island farm where flowers can't be planted.\n* Filling all inventory slots but 1 will allow collecting honey without collecting any adjacent flowers.\n* Planting a [[Sunflower]] on Summer 20 will make sure flower honey can be harvested in early Fall\n\n==References==\n<references>\n  <ref name=\"processtime\">See <samp>Object::performDropDownAction</samp>, <samp>Object::DayUpdate</samp>, and <samp>Object::minutesElapsed</samp> in the game code. Bee House <samp>parentSheetIndex</samp> is <samp>10</samp>, as specified in <samp>Content\\Data\\BigCraftablesInformation.xnb</samp>.</ref>\n</references>\n\n==History==\n{{History|1.4|Added honey from Sunflowers. Fixed lopsided flower range. Bee Houses can now be stacked in a player's [[inventory]] and in [[Chest|chests]].}}\n{{History|1.5|Fixed bug where processing time was affected by the time of day.}}\n{{History|1.5.2|Fixed bug where Honey could not be collected from Beehouses on Ginger Island farm in Winter.}}\n{{History|1.6|Removing a Bee House with honey ready for harvesting no longer drops the honey as \"Wild Honey\". Can now be obtained as a prize from the [[Mayor's Manor#Prize Machine|Prize Machine]].}}\n{{History|1.6|Fixed bug where placing a Bee House on exactly Winter 28 will produce honey on Spring 4. A Bee house will now first produce honey on Spring 5}}\n{{History|1.6.6|Now produces flower honey with flowers in garden pots.}}\n\n{{NavboxEquipment}}\n\n[[Category:Craftable items]]\n[[Category:Bugs fixed in 1.5]]\n\n[[de:Bienenhaus]]\n[[es:Colmena]]\n[[fr:Ruche]]\n[[it:Arnia]]\n[[ja:ハチの巣箱]]\n[[ko:양봉장]]\n[[hu:Méhkaptár]]\n[[pt:Apiário]]\n[[ru:Улей]]\n[[tr:Arı Kovanı]]\n[[zh:蜂房]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Bugs fixed in 1.5"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Craftable items"
+     }
+    ]
+   },
+   {
+    "pageid": 15017,
+    "ns": 0,
+    "title": "Dehydrator",
+    "revisions": [
+     {
+      "revid": 193436,
+      "parentid": 193435,
+      "timestamp": "2026-05-27T20:42:03Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "{{Infobox\n|eng         = Dehydrator\n|source      = [[Crafting]]\n|recipe      = [[Pierre's]] for {{Price|10000}}\n|ingredients = {{Name|Wood|30}}{{Name|Clay|2}}{{Name|Fire Quartz|1}}\n|sellprice   = Cannot be sold\n}}\nThe '''Dehydrator''' is a type of [[Crafting#Artisan Equipment|Artisan Equipment]] that is used to create [[Dried Mushrooms]], [[Dried Fruit]], or [[Raisins]]. It can be crafted after purchasing the recipe from [[Pierre]] for {{Price|10000}}. It is also a possible reward as the 12th prize from the [[Mayor's Manor#Prize Machine|Prize Machine]] in the Mayor's Manor (50% chance). One is included in the [[The Cave|Farm Cave]] if the player chooses the mushroom option.\n\n==Products==\nDehydrator requires five [[:Category:Mushrooms|Mushrooms]] (except [[Red Mushroom]]) or [[Fruits]] of the same '''type''' and '''quality'''.\n<section begin=\"dehydratorproducts\"/><!--Transcluded onto Artisan Goods page-->\n{|class=\"wikitable roundedborder\"\n!Image\n!Name\n!Description\n!Ingredients\n!Processing Time\n!Sell Price\n!Energy / Health\n|-\n||[[File:Dried Mushrooms.png|center]]\n|[[Dried Mushrooms]]\n|{{Description|Dried Mushrooms}}\n|5 of Any [[:Category:Mushrooms|Mushroom]] (except [[Red Mushroom]])\n|data-sort-value=\"01\"|{{Duration|1 day|class=inline}} (ready the next morning)\n|7.5 &times; [[:Category:Mushrooms|Mushroom]] Base Price + {{Price|25}} (1.5 &times; Base + {{Price|5}} per [[:Category:Mushrooms|Mushroom]])\n|3 &times; base [[:Category:Mushrooms|Mushroom]] Energy/Health restoration\n|-\n||[[File:Dried Fruit.png|center]]\n|[[Dried Fruit]]\n|{{Description|Dried Fruit}}\n|5 of Any [[Fruits|Fruit]] (except [[Grape]]s)\n|data-sort-value=\"01\"|{{Duration|1 day|class=inline}} (ready the next morning)\n|7.5 &times; [[Fruits|Fruit]] Base Price + {{Price|25}} (1.5 &times; Base + {{Price|5}} per [[Fruits|Fruit]])\n|3 &times; base [[Fruits]] Energy/Health restoration\n|-\n||[[File:Raisins.png|center]]\n|[[Raisins]]\n|{{Description|Raisins}}\n|5 [[Grape]]s\n|data-sort-value=\"01\"|{{Duration|1 day|class=inline}} (ready the next morning)\n|{{Price|600}}\n|{{energy|125}}{{health|56}}\n|}<section end=\"dehydratorproducts\"/>\n\n==Notes==\n* The quality of the dried product is always normal and '''not''' affected by the quality of items used.\n* Inedible fruits become edible after being turned into [[Dried Fruit]]. The formula for [[Energy]] is: <samp>[Base fruit sell price ÷ 2 × 0.5 × 5]</samp>, or <samp>[Base fruit sell price × 1.25]</samp>. ''This is the same as the calculation for base silver quality sell price, but rounded instead of truncated.''\n**Dried [[Ancient Fruit]]s give 688 [[Energy]] and 309 [[Health]]\n**Dried [[Coconut]]s give 125 [[Energy]] and 56 [[Health]]\n**Dried [[Rhubarb]]s give 275 [[Energy]] and 123 [[Health]]\n* The dehydrator effectively makes the [[:Category:Mushrooms|Mushrooms]] or [[Fruits]] sell at gold quality price +5 each.\n* [[Truffle]]s are not classified as [[:Category:Mushrooms|mushrooms]] and therefore cannot be placed into the Dehydrator.\n\n==History==\n{{History|1.6|Introduced.}}\n\n{{NavboxArtisanGoods}}\n{{NavboxEquipment}}\n\n[[Category:Craftable items]]\n\n[[de:Dehydrator]]\n[[es:Deshidratador]]\n[[fr:Déshydrateur]]\n[[it:Essiccatore]]\n[[ja:乾燥器]]\n[[ko:탈수기]]\n[[hu:Aszaló]]\n[[pt:Desidratador]]\n[[ru:Сушилка]]\n[[tr:Kurutucu]]\n[[zh:烘干机]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Craftable items"
+     }
+    ]
+   },
+   {
+    "pageid": 14798,
+    "ns": 0,
+    "title": "Fish Smoker",
+    "revisions": [
+     {
+      "revid": 194228,
+      "parentid": 194227,
+      "timestamp": "2026-09-09T00:12:29Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "{{Infobox\n|eng         = Fish Smoker\n|image2      = Fish Smoker On\n|image2spacing = true\n|source      = [[Crafting]]\n|recipe      = [[Fish Shop]] for {{Price|10000}}\n|ingredients = {{Name|Hardwood|10}}{{Name|Sea Jelly|1}}{{Name|River Jelly|1}}{{Name|Cave Jelly|1}}\n|sellprice   = Cannot be sold\n}}\nThe '''Fish Smoker''' is a type of [[Crafting#Artisan Equipment|Artisan Equipment]] that is used to create [[Smoked Fish|smoked fish]] using any [[fish]] and 1 [[coal]]. It doubles the sell price of a fish while retaining quality, as well as multiplying the [[energy]] and [[health]] restoration by 1.5 (if that fish restored energy or health, otherwise the value remains unchanged).<ref name=\"energy\" /> The smoker accepts [[Fish#Legendary Fish|Legendary Fish]] as well as [[Crab Pot]] specific fish, making the latter edible.<ref name=\"inedible\" />\n\nIt can be crafted after purchasing the recipe from the [[Fish Shop]] for {{Price|10000}}. It is also a possible reward as the 12th prize from the [[Mayor's Manor#Prize Machine|Prize Machine]] in the Mayor's Manor (50% chance). Players on the [[Farm Maps#Riverland|Riverland Farm]] start with one Fish Smoker.\n\n==Products==\n<section begin=\"fishsmokerproducts\"/><!--Transcluded onto Artisan Goods page-->\n{| class=\"wikitable\"\n! Image\n! Name\n! Description\n! Ingredients\n! Processing Time\n! Sell Price\n! Energy / Health\n|-\n| [[File:Smoked Fish.png]] || [[Smoked Fish]] || A whole fish, smoked to perfection. || [[File:Fish.png|24px|link=]] Any [[Fish]] (1) {{Name|Coal|1}} || {{duration|50 mins}} || 2 × Fish Price || {{Energy|1.5 × Fish Energy}}{{Health|1.5 × Fish Health}}\n|}<section end=\"fishsmokerproducts\"/>\n\n==References==\n<references>\n    <ref name=\"energy\">See <samp>ObjectDataDefinition::CreateFlavoredSmokedFish</samp> in the game code.</ref>\n    <ref name=\"inedible\">The edibility of a crab pot fish that is normally inedible is calculated as <samp>Sell Price × 0.3</samp>. See <samp>ObjectDataDefinition::CreateFlavoredSmokedFish</samp> in the game code.</ref>\n</references>\n\n==History==\n{{History|1.6|Introduced.}}\n\n{{NavboxArtisanGoods}}\n{{NavboxEquipment}}\n\n[[Category:Craftable items]]\n\n[[de:Fischräucherer]]\n[[es:Ahumador de Peces]]\n[[fr:Fumoir à poisson]]\n[[it:Affumicatore]]\n[[ja:魚のくんせい器]]\n[[ko:생선 훈제기]]\n[[hu:Halfüstölő]]\n[[pt:Defumador de Peixes]]\n[[ru:Коптильня для рыбы]]\n[[tr:Balık Tütsüleyici]]\n[[zh:熏鱼机]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Craftable items"
+     }
+    ]
+   },
+   {
+    "pageid": 5767,
+    "ns": 0,
+    "title": "Cask",
+    "revisions": [
+     {
+      "revid": 179542,
+      "parentid": 178453,
+      "timestamp": "2024-10-27T13:47:17Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "{{Infobox\n|eng         = Cask\n|source      = [[Crafting]]\n|ingredients = {{Name|Wood|20}}{{Name|Hardwood|1}}\n|sellprice   = Cannot be sold\n|recipe      = Final [[Farmhouse]] upgrade\n}}\n{{For|a detailed analysis of profit using the Cask|Cask Productivity}}\nThe '''Cask''' is a type of [[Crafting#Artisan Equipment|Artisan Equipment]] used to age [[Artisan Goods]]. It takes [[Beer]], [[Cheese]], [[Goat Cheese]], [[Mead]], [[Pale Ale]], and [[Wine]], and ages them to increase their quality and value.\n\nNormal, silver, and gold quality items can be prematurely removed from a cask at any time by striking the cask with an [[Axes|Axe]], [[Hoes|Hoe]], or [[Pickaxes|Pickaxe]]. A star will appear on the front of the cask denoting the quality of the item inside. \n\nCasks are able to produce items with \"iridium star\" quality. Iridium star is the highest level of quality, which doubles the value of an item. Different types of items take longer or slower to age. [[Wine]] takes the longest, at 2 seasons of aging to go from basic wine to iridium quality wine.\n\nCasks can be placed anywhere; however, they will only accept goods to refine if they are actually in the [[Farmhouse#Upgrades|cellar]].\n\n==Placement Strategy==\nThe cellar comes with 33 casks. It is possible to fill the cellar with 125 casks (on PC) and still leave paths to reach all of them without displacing any of them.\n\nIt's also possible to completely fill the cellar with Casks. This requires 189 casks, made of 156 [[Hardwood]] and 3120 [[Wood]]. In order to use all 189 casks, the player must fill the casks all at once, placing additional casks while moving towards the exit. In order to harvest the finished product, the player must reverse the process, removing empty casks while carving a path to the furthest ones. This can be time-consuming, so it may be a desirable option for only the most valuable products (''e.g.,'' [[Starfruit]] or [[Ancient Fruit]] wine).\n\nOn mobile devices, casks in corners cannot be reached, so 118 is the maximum reachable number of casks. With a controller, it's possible that casks in diagonal corners may not be reachable.\n\nPC and mobile layouts described here are shown in the [[#Gallery|Gallery]] below.\n\n==Aged Values==\n<!--Note: This section is transcluded on the Artisan Goods page-->\n<section begin=\"caskagedvalues\" />\n{|class=\"wikitable sortable roundedborder\"\n!Image\n!Name\n!Ingredient\n!Base Quality\n!Silver Star<br />(x 1.25)\n!Gold Star<br />(x 1.5)\n!Iridium Star<br />(x 2)\n|-\n|[[File:Wine.png]]\n|[[Wine]]\n|Any [[Fruits|fruit]] (1)\n|style=\"vertical-align:top;\"|{{Qualityprice|Wine|3 x Base<br />[[Fruits|Fruit]] Price|quality=normal}}\n|style=\"vertical-align:top;\"|{{Qualityprice|Wine|(3 x Base) x 1.25|quality=silver}}\n''Aged: 14 Days''\n|style=\"vertical-align:top;\"|{{Qualityprice|Wine|(3 x Base) x 1.5|quality=gold}}\n''Aged: 14 Days''<br />''Total: 28 Days''\n|style=\"vertical-align:top;\"|{{Qualityprice|Wine|(3 x Base) x 2|quality=iridium}}\n''Aged: 28 Days''<br />''Total: 56 Days''\n|-\n|[[File:Pale Ale.png]]\n|[[Pale Ale]]\n|{{Name|Hops|1}}\n|style=\"vertical-align:top;\"|{{Qualityprice|Pale Ale|300|quality=normal}}\n|style=\"vertical-align:top;\"|{{Qualityprice|Pale Ale|300|quality=silver}}\n''Aged: 9 Days''\n|style=\"vertical-align:top;\"|{{Qualityprice|Pale Ale|300|quality=gold}}\n''Aged: 8 Days''<br />''Total: 17 Days''\n|style=\"vertical-align:top;\"|{{Qualityprice|Pale Ale|300|quality=iridium}}\n''Aged: 17 Days''<br />''Total: 34 Days''\n|-\n|[[File:Beer.png]]\n|[[Beer]]\n|{{Name|Wheat|1}}\n|style=\"vertical-align:top;\"|{{Qualityprice|Beer|200|quality=normal}}\n|style=\"vertical-align:top;\"|{{Qualityprice|Beer|200|quality=silver}}\n''Aged: 7 Days''\n|style=\"vertical-align:top;\"|{{Qualityprice|Beer|200|quality=gold}}\n''Aged: 7 Days''<br />''Total: 14 Days''\n|style=\"vertical-align:top;\"|{{Qualityprice|Beer|200|quality=iridium}}\n''Aged: 14 Days''<br />''Total: 28 Days''\n|-\n|[[File:Mead.png]]\n|[[Mead]]\n|{{Name|Honey|1}}\n|style=\"vertical-align:top;\"|{{Qualityprice|Mead|300|quality=normal}}\n|style=\"vertical-align:top;\"|{{Qualityprice|Mead|300|quality=silver}}\n''Aged: 7 Days''\n|style=\"vertical-align:top;\"|{{Qualityprice|Mead|300|quality=gold}}\n''Aged: 7 Days''<br />''Total: 14 Days''\n|style=\"vertical-align:top;\"|{{Qualityprice|Mead|300|quality=iridium}}\n''Aged: 14 Days''<br />''Total: 28 Days''\n|-\n|[[File:Cheese.png]]\n|[[Cheese]]\n|{{Name|Milk|1|class=inline}} or{{Name|Large Milk|1}}\n|style=\"vertical-align:top;\"|{{Qualityprice|Cheese|230|quality=normal}}\n|style=\"vertical-align:top;\"|{{Qualityprice|Cheese|230|quality=silver}}\n''Aged: 3 Days''\n|style=\"vertical-align:top;\"|{{Qualityprice|Cheese|230|quality=gold}}\n''Aged: 4 Days''<br />''Total: 7 Days''\n|style=\"vertical-align:top;\"|{{Qualityprice|Cheese|230|quality=iridium}}\n''Aged: 7 Days''<br />''Total: 14 Days''\n|-\n|[[File:Goat Cheese.png]]\n|[[Goat Cheese]]\n|{{Name|Goat Milk|1|class=inline}} or{{Name|Large Goat Milk|1}}\n|style=\"vertical-align:top;\"|{{Qualityprice|Goat Cheese|400|quality=normal}}\n|style=\"vertical-align:top;\"|{{Qualityprice|Goat Cheese|400|quality=silver}}\n''Aged: 3 Days''\n|style=\"vertical-align:top;\"|{{Qualityprice|Goat Cheese|400|quality=gold}}\n''Aged: 4 Days''<br />''Total: 7 Days''\n|style=\"vertical-align:top;\"|{{Qualityprice|Goat Cheese|400|quality=iridium}}\n''Aged: 7 Days''<br />''Total: 14 Days''\n|-\n|}<section end=\"caskagedvalues\" />\n\n==Gallery==\n<gallery mode=packed widths=100% heights=100%>\nCellar Inside.png|The cellar [[Farmhouse]] upgrade with 33 starting casks\nOptimal cellar layout.png|Optimal layout for mouse/keyboard: 125 accessible casks\nAnother optimal cellar layout.png|Optimal layout for mouse/keyboard: 125 accessible casks\nOptimal cellar layout mobile.png|Optimal layout for mobile: 118 accessible casks\nMax cellar layout.png|Cellar filled with the maximum 189 casks, all in use.\n</gallery>\n\n==History==\n{{History|1.1|Introduced.}}\n{{History|1.3.27|Removed bug that crashed the game when striking a ready-to-harvest cask with a tool.}}\n{{History|1.4|Iridium quality items can no longer be put into casks. Casks can now be stacked in a player's [[inventory]] and in [[chest]]s.}}\n\n{{NavboxEquipment}}\n\n[[Category:Craftable items]]\n\n[[de:Reifefass]]\n[[es:Tonel]]\n[[fr:Fût]]\n[[it:Botte]]\n[[ja:熟成ダル]]\n[[ko:숙성용 나무통]]\n[[hu:Fahordó]]\n[[pt:Barril de madeira]]\n[[ru:Бочка]]\n[[tr:Varil]]\n[[zh:木桶]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Craftable items"
+     }
+    ]
+   },
+   {
+    "pageid": 2103,
+    "ns": 0,
+    "title": "Tapper",
+    "revisions": [
+     {
+      "revid": 193620,
+      "parentid": 192739,
+      "timestamp": "2026-06-20T18:59:02Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "{{Infobox\n|eng         = Tapper\n|source      = [[Crafting]]\n|season      = All\n|recipe      = {{Name|Foraging Skill Icon|link=Foraging|Level 4}}\n|ingredients = {{Name|Wood|40}}{{Name|Copper Bar|2}}\n|sellprice   = Cannot be sold\n}}\n{{For|the profession|Skills#Foraging|R=This article is about the item.}}\nThe '''Tapper''' is a type of [[Crafting#Refining Equipment|Refining Equipment]] that can be placed on a [[Trees|tree]] to produce [[Maple Syrup]], [[Oak Resin]], [[Pine Tar]], [[Sap]], or [[Mystic Syrup]]. It can also be placed on a [[Mushroom Tree]] to produce different mushrooms. It can also be placed on a [[Green Rain Trees|Green Rain Tree (Type 3)]] to produce [[Fiddlehead Fern]]s. Other types of Green Rain Tree cannot be tapped.\n\nWhen a tree has a Tapper on it, the tree is unable to be directly shaken (by interacting with it). However, if the tree is moss-covered, it will be shaken when the player swings a scythe or weapon on the tree to remove the moss.\n\nThe Tapper can be removed from a tree by hitting it once with an [[Axes|axe]] or [[Pickaxes|pickaxe]]. This leaves the Tapper intact and able to be reused. If the Tapper is on a tree when it is struck by [[Weather#Storm|lightning]] or hit by an exploding [[Crafting#Bombs|bomb]], both the Tapper and its contents are destroyed.\n\nDuring [[Winter]], tappers placed on [[Maple Tree]]s, [[Oak Tree]]s, [[Pine Tree]]s, [[Mahogany Tree]]s, or [[Mystic Tree]]s continue to produce; however since [[Mushroom Tree]]s and [[Green Rain Trees|Green Rain Trees (Type 3)]] turn to stumps in [[Winter]], tappers placed on them produce nothing during that season.\n\nThe Tapper cannot be placed on [[Fruit Trees]].\n\nThree Tappers are the reward for completing the {{Bundle|foragers|24|y}}.\n\n==Products==\n{|class=\"wikitable sortable roundedborder\"\n!class=\"unsortable\" | Image\n!Name\n!Description\n!Source\n!Time<ref name=\"processtime\"/>\n!Sell Price\n!Energy / Health\n|-\n|[[File:Maple Syrup.png]]\n|[[Maple Syrup]]\n|{{Description|Maple Syrup}}\n|[[Maple Tree]]\n|data-sort-value=\"9\"|{{Duration|9 Nights}}\n|{{Price|200}}\n|data-sort-value=\"50\"|{{Energy|50}}{{Health|22}}\n|-\n|[[File:Oak Resin.png]]\n|[[Oak Resin]]\n|{{Description|Oak Resin}}\n|[[Oak Tree]]\n|data-sort-value=\"7\"|{{Duration|7 Nights}}\n|{{Price|150}}\n|data-sort-value=\"-300\"|''Inedible''\n|-\n|[[File:Pine Tar.png]]\n|[[Pine Tar]]\n|{{Description|Pine Tar}}\n|[[Pine Tree]]\n|data-sort-value=\"5\"|{{Duration|5 Nights}}\n|{{Price|100}}\n|data-sort-value=\"-300\"|''Inedible''\n|-\n|[[File:Sap.png]]\n|5 - 10 [[Sap]]\n|{{Description|Sap}}\n|[[Mahogany Tree]]\n|data-sort-value=\"1\"|{{Duration|1 Night}}\n|{{Price|2}}\n|data-sort-value=\"-2\"|{{Energy|&minus;2}}\n|-\n|[[File:Common Mushroom.png]]\n|[[Common Mushroom]]\n|{{Description|Common Mushroom}}\n|[[Mushroom Tree]]\n|{{Duration|Varies}}\n|{{Price|40}}\n|data-sort-value=\"38\"|{{Energy|38}}{{Health|17}}\n|-\n|[[File:Red Mushroom.png]]\n|[[Red Mushroom]]\n|{{Description|Red Mushroom}}\n|[[Mushroom Tree]]\n|{{Duration|Varies}}\n|{{Price|75}}\n|data-sort-value=\"-50\"|{{Energy|&minus;50}}\n|-\n|[[File:Purple Mushroom.png]]\n|[[Purple Mushroom]]\n|{{Description|Purple Mushroom}}\n|[[Mushroom Tree]]\n|{{Duration|Varies}}\n|{{Price|250}}\n|data-sort-value=\"125\"|{{Energy|125}}{{Health|56}}\n|-\n|[[File:Mystic_Syrup.png]]\n|[[Mystic Syrup]]\n|{{Description|Mystic Syrup}}\n|[[Mystic Tree]]\n|data-sort-value=\"7\"|{{Duration|7 Nights}}\n|{{Price|1000}}\n|data-sort-value=\"500\"|{{Energy|500}}{{Health|225}}\n|-\n|[[File:Fiddlehead Fern.png]]\n|[[Fiddlehead Fern]]\n|{{Description|Fiddlehead Fern}}\n|[[Green Rain Trees|Green Rain Tree (Type 3)]]\n|data-sort-value=\"2\"|{{Duration|2 Nights}}\n|{{Price|90}}\n|data-sort-value=\"25\"|{{Energy|25}}{{Health|11}}\n|}\n\n==Types==\n{|class=\"wikitable roundedborder\"\n!style=\"width: 48px;\" | Image\n!Name\n!Description\n!Ingredients\n!Recipe Source\n|-\n|[[File:Tapper.png|center]]\n|[[Tapper]]\n|{{Description|Tapper}}\n|{{Name|Wood|40}}{{Name|Copper Bar|2}}\n|[[File:Foraging Skill Icon.png|24px|link=]] [[Foraging]] Level 4\n|-\n|[[File:Heavy Tapper.png|center]]\n|[[Heavy Tapper]]\n|{{Description|Heavy Tapper}}\n|{{Name|Hardwood|30}}{{Name|Radioactive Bar|1}}\n|[[Qi's Walnut Room]] for {{Price|20|Gem}}\n|-\n|}\n\n==References==\n<references>\n  <ref name=\"processtime\">See <samp>Tree::UpdateTapperProduct</samp> in the game code. Tree type indexes can be deduced by looking at <samp>Tree::loadTexture</samp> and the <samp>Content\\TerrainFeatures\\</samp> folder.</ref>\n</references>\n\n==History==\n{{History|1.4|Fixed issue that could leave trees unchoppable if tapper was removed in unusual fashion. Tappers can now be stacked in a player's [[inventory]] and in [[chest]]s.}}\n{{History|1.5|Added the [[Heavy Tapper]]. Fixed bug where processing time was affected by the time of day. Can now be obtained from the Forager's Bundle.}}\n{{History|1.6|Recipe is now learned at [[Skills#Foraging|Foraging]] Level 4 instead of Level 3. [[Mystic Syrup]] and [[Fiddlehead Fern]] are now possible products.}}\n\n{{NavboxEquipment}}\n\n[[Category:Craftable items]]\n[[Category:Bugs fixed in 1.5]]\n\n[[de:Zapfhahn]]\n[[es:Resinera]]\n[[fr:Saigneur]]\n[[it:Estrattore]]\n[[ja:樹液採取器]]\n[[ko:수액 채취기]]\n[[hu:Csapoló]]\n[[pt:Torneirinha]]\n[[ru:Подсочник]]\n[[tr:Akıtaç]]\n[[zh:树液采集器]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Bugs fixed in 1.5"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Craftable items"
+     }
+    ]
+   },
+   {
+    "pageid": 2085,
+    "ns": 0,
+    "title": "Wine",
+    "revisions": [
+     {
+      "revid": 192625,
+      "parentid": 176847,
+      "timestamp": "2026-04-28T19:53:09Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "{{Infobox\n|eng             = Wine\n|source          = [[Artisan Goods]]\n|buff            = {{Name|Tipsy|link=Buffs#Tipsy{{!}}Tipsy}}{{Name|Speed|−1}}\n|buffduration    = 30s\n|sellprice       = 3 × Base [[Fruits|Fruit]] Price\n|ingredients     = Any [[Fruits|Fruit]] (1)\n|craftingstation = {{Name|Keg}}\n|crafttime       = 10,000m (&#8776;7d)\n}}\n{{For|a detailed analysis of profit using the Keg|Keg Productivity}}\n{{For|a full list of wine prices|Fruits}}\n'''Wine''' is an [[Artisan Goods|Artisan Good]] made from the [[Keg]], taking 7 days.  It can also be received as a gift at the [[Feast of the Winter Star]].\n\nThe sell price of Wine depends on the [[Fruits|fruit]] used (3 &times; Base Fruit Value).  When consumed, wine causes a [[Buffs|Tipsy]] buff that decreases [[Speed]] by 1. The [[energy]] and [[health]] restored by Wine is equal to 1.75 &times; Base Fruit Value for edible fruit. For inedible fruit, Wine will restore energy equal to 25% Base Fruit Value and health equal to 11.25% Base Fruit Value.<ref name=\"wine energy\" /> The color of the Wine also depends on the fruit used.\n\n'''Note:''' It is possible to acquire Wine that has no base fruit (from the [[Traveling Cart]] or a [[Statue Of Endless Fortune]], as a gift at the [[Feast of the Winter Star]], or a New Year's Eve gift from [[Leah]] or [[Elliott]]). This item is simply titled \"Wine\", has a selling price of {{Price|400}} (or {{Price|560}} with the [[Farming#Farming Skill|Artisan Profession]]), and restores 50 [[energy]] and 22 [[health]].\n\n==Aged Values==\nWine can be placed inside a [[Cask]] to age from normal quality to silver, gold, and eventually iridium quality. Iridium quality doubles the base sell price of Wine.  \n\nWine takes the longest to age of any item in [[Cask]]s. It takes 2 seasons of aging to go from basic wine to iridium quality wine.\n\nNormal, silver, and gold quality Wine can be prematurely removed from a cask at any time by striking the cask with an [[Axes|Axe]], [[Hoes|Hoe]], or [[Pickaxes|Pickaxe]].\n\n{| class=\"wikitable roundedborder\"\n!Normal Quality\n!Silver Quality<br />(x 1.25)\n!Gold Quality<br />(x 1.5)\n!Iridium Quality<br />(x 2)\n|-\n|{{Qualityprice|Wine|3 × [[Fruits|Fruit]] Base Sell Price|quality=normal|dsv=false}}\n|{{Qualityprice|Wine|(3 × Base) × 1.25|quality=silver|dsv=false}} ''Aged: 14 Days''\n|{{Qualityprice|Wine|(3 × Base) × 1.50|quality=gold|dsv=false}} ''Aged: 14 Days<br />Total: 28 Days''\n|{{Qualityprice|Wine|(3 × Base) × 2|quality=iridium|dsv=false}} ''Aged: 28 Days<br />Total: 56 Days''\n|-\n|}\n\n==Gifting==\n{{GiftsByItem\n|like=Robin,Demetrius,Maru,Linus,Pierre,Caroline,Abigail,Alex,George,Evelyn,Lewis,Clint,Pam,Emily,Haley,Jodi,Kent,Sam,Shane,Marnie,Elliott,Gus,Dwarf,Wizard,Sandy,Willy,Krobus\n|hate=Sebastian,Penny,Jas,Vincent,Leo\n|love=Leah,Harvey\n}}\n\n==Bundles==\n*Wine is used in the {{Bundle|enchanter||y}}.\n*One silver (or better) quality wine is an option for {{bundle|missing||y}}.\n*Wine is one of the options for the {{bundle|brewers||y}}.\n\n==Tailoring==\nWine can be used in the spool of the [[2 Willow Lane#Sewing Machine|Sewing Machine]] to create the [[Tailoring|Black Leather Jacket]].  [[File:Shirt138.png|24px]] It can be used in [[dyeing]], serving as a purple dye at the dye pots, located in [[Emily]]'s and [[Haley]]'s house, [[2 Willow Lane]].\n\n==Quests==\nOne Wine (of any type) may be requested by [[Blobfish]] in a [[Fish Pond#Quests|Fish Pond quest]] to increase the capacity of the pond from 5 to 7.\n\n==References==\n<references>\n<ref name=\"wine energy\">See <samp>ObjectDataDefinition::CreateFlavoredWine</samp> in the game code.</ref>\n</references>\n\n==History==\n{{History|1.0|Introduced.}}\n{{History|1.1|Added ability to age in [[cask]]s.}}\n{{History|1.4|Added the Missing Bundle.  Wine can now be used in Tailoring.  Can be requested in a Blobfish Fish Pond quest.}}\n{{History|1.5|Is now an option in the Brewer's Bundle.}}\n{{History|1.6|Wine now changes color depending on the fruit used to make it. Broke texture of basic wine.}}\n{{History|1.6.2|Fixed texture of basic wine. Health and Energy now scales with base fruit's values.}}\n\n{{NavboxArtisanGoods}}\n\n[[Category:Artisan Goods]]\n\n[[de:Wein]]\n[[es:Vino]]\n[[fr:Vin]]\n[[it:Vino]]\n[[ja:ワイン]]\n[[ko:와인]]\n[[hu:Bor]]\n[[pt:Vinho]]\n[[ru:Вино]]\n[[tr:Şarap]]\n[[zh:果酒]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Artisan Goods"
+     }
+    ]
+   },
+   {
+    "pageid": 2086,
+    "ns": 0,
+    "title": "Juice",
+    "revisions": [
+     {
+      "revid": 190319,
+      "parentid": 186300,
+      "timestamp": "2026-01-12T17:59:13Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "{{Infobox\n|eng             = Juice\n|source          = [[Artisan Goods]]\n|sellprice       = 2.25 × Base [[Vegetables|Vegetable]] / [[Foraging#Foraged Items|Forage]] Price\n|ingredients     = Any [[Vegetables|vegetable]] (1) (other than [[Wheat]], [[Hops]], & [[Tea Leaves]]) ''or''<br />Any positive energy [[Foraging#Foraged Items|foraged item]] (1) (other than [[:Category:Mushrooms|Mushrooms]])\n|craftingstation = {{Name|Keg}}\n|crafttime       = 6000m (&#8776;4d)\n|quality         = false\n}}\n{{For|a detailed analysis of profit using the Keg|Keg Productivity}}\n'''Juice''' is an [[Artisan Goods|Artisan Good]] made from placing a [[Vegetables|vegetable]] or [[Foraging#Foraged Items|foraged item]] inside a [[Keg]], taking approximately 4 [[Day Cycle|days]]. Its selling price is the base value of the ingredient input multiplied by 2.25 (3.15 with the [[Skills#Farming|Artisan]] profession).\n\nThe [[energy]] and [[health]] restored by Juice is equal to 2 &times; Base Ingredient Value for edible vegetables and foraged items. For inedible vegetables, Juice will restore energy equal to exactly Base [[vegetables|Vegetable]] Value and health equal to 45% Base [[vegetables|Vegetable]] Value.<ref name=\"juice energy\" /> The color of the Juice also depends on the item used.\n\nAlthough [[Wheat]], [[Hops]], and [[Tea Leaves]] are classified as [[vegetables]], when used with a [[Keg]], they produce [[Beer]], [[Pale Ale]], and [[Green Tea]] respectively.\n\nThe following foraged items can be made into Juice: [[Cave Carrot]], [[Dandelion]], [[Ginger]], [[Hazelnut]], [[Leek]], [[Spring Onion]], [[Snow Yam]], [[Wild Horseradish]], and [[Winter Root]].\n\nJuice cannot be put in a [[cask]].\n\n==Gifting==\n{{GiftsByItem\n|like=Robin,Demetrius,Maru,Linus,Pierre,Caroline,Abigail,Alex,George,Evelyn,Lewis,Clint,Penny,Pam,Emily,Haley,Jodi,Kent,Sam,Leah,Shane,Marnie,Elliott,Gus,Dwarf,Wizard,Harvey,Sandy,Willy,Krobus,Leo\n|hate=Sebastian,Jas,Vincent\n}}\n\n==Bundles==\nJuice is one of the options for the {{bundle|brewers||y}}.\n\n==Recipes==\nJuice is not used in any recipes.\n\n==Tailoring==\nJuice is used in the spool of the [[2 Willow Lane#Sewing Machine|Sewing Machine]] to create the dyeable [[File:Shirt209.png|24px]] [[Tailoring|Sports Shirt]]. It can be used in [[dyeing]], serving as a green dye at the dye pots, located in [[Emily]]'s and [[Haley]]'s house, [[2 Willow Lane]].\n\n==Quests==\n*[[Pam]] requests 12 Potato Juice in the [[Quests#The Strong Stuff|\"The Strong Stuff\"]] Special Order.\n*One Juice is requested by the Raccoon at the [[Giant Stump]] as part of his fourth request. It may also be requested as part of any request starting with the sixth.\n\n==Trivia==\nJuice sold by the [[Traveling Cart]] will not be of any ingredients type, will sell for {{Price|150}} (or {{Price|210}} with the [[Skills#Farming|Artisan Profession]]), and will restore 75 [[energy]] and 33 [[health]].\n\n==References==\n<references>\n<ref name=\"juice energy\">See <samp>ObjectDataDefinition::CreateFlavoredJuice</samp> in the game code.</ref>\n</references>\n\n==History==\n{{History|1.4|Can now be used in [[Tailoring]].}}\n{{History|1.5|Is now an option in the Brewer's Bundle.}}\n{{History|1.6|Inventory icon changed, it is no longer a recolor of the Wine sprite. The new Juice icon now changes color to match the item used to create it. Positive energy Forage can now be made into Juice. Juice is now requested by the Raccoon.}}\n{{History|1.6.2|Health and Energy now scales with base vegetable's values.}}\n{{NavboxArtisanGoods}}\n\n[[Category:Artisan Goods]]\n\n[[de:Saft]]\n[[es:Zumo]]\n[[fr:Jus]]\n[[it:Succo]]\n[[ja:ジュース]]\n[[ko:주스]]\n[[hu:Gyümölcslé]]\n[[pt:Suco]]\n[[ru:Сок]]\n[[tr:Meyve Suyu]]\n[[zh:果汁]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Artisan Goods"
+     }
+    ]
+   },
+   {
+    "pageid": 2091,
+    "ns": 0,
+    "title": "Cheese",
+    "revisions": [
+     {
+      "revid": 189929,
+      "parentid": 188975,
+      "timestamp": "2025-12-25T23:31:49Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "{{Infobox\n|eng             = Cheese\n|source          = [[Artisan Goods]] • [[Desert Trader]] • [[Animals#Cat or Dog|Cat]]\n|ingredients     = {{Name|Milk|1|class=inline}} ''or''{{Name|Large Milk|1}}\n|edibility       = 50\n|sellprice       = 230\n|craftingstation = {{Name|Cheese Press}}\n|crafttime       = 200min (3.3h)\n}}\n'''Cheese''' is an [[Artisan Goods|Artisan Good]] made from the [[Cheese Press]], taking 3.3 hours. Using [[Milk]] will produce normal quality Cheese, while [[Large Milk]] will produce gold quality Cheese. It can also be gifted by a [[Animals#Pets|pet]] cat with max [[Animals#Friendship|friendship]]. The [[Desert Trader]] will trade one Cheese for one [[Emerald]] on Fridays. \n\n==Aged Values==\nCheese can be placed inside a [[Cask]] to age from normal quality to silver, gold, and eventually iridium quality. Iridium quality doubles the base sell price of Cheese.  \n\nNormal, silver, and gold quality Cheese can be prematurely removed from a cask at any time by striking the cask with an [[Axes|Axe]], [[Hoes|Hoe]], or [[Pickaxes|Pickaxe]].\n\n{|class=\"wikitable roundedborder\"\n!Normal Quality\n!Silver Quality<br />(x 1.25)\n!Gold Quality<br />(x 1.5)\n!Iridium Quality<br />(x 2)\n|-\n|{{Qualityprice|Cheese|230|quality=normal|dsv=false}}\n|{{Qualityprice|Cheese|230|quality=silver|dsv=false}} ''Aged: 3 Days''\n|{{Qualityprice|Cheese|230|quality=gold|dsv=false}} ''Aged: 4 Days<br />Total: 7 Days''\n|{{Qualityprice|Cheese|230|quality=iridium|dsv=false}} ''Aged: 7 Days<br />Total: 14 Days''\n|}\n\n==Gifting==\n{{GiftsByItem\n|like=Robin,Demetrius,Maru,Linus,Pierre,Caroline,Abigail,Alex,George,Evelyn,Lewis,Clint,Penny,Pam,Emily,Haley,Jodi,Kent,Sam,Leah,Shane,Marnie,Elliott,Gus,Dwarf,Wizard,Sandy,Willy,Krobus,Leo\n|hate=Sebastian,Jas,Vincent\n|dislike=Harvey\n}}\n\n==Bundles==\nCheese is an option for the {{Bundle|Artisan||y}}.\n\n==Recipes==\n{{Recipes|header}}\n{{:Cheese Cauliflower|RecipeRow}}\n{{:Pizza|RecipeRow}}\n{{:Pepper Poppers|RecipeRow}}\n{{Recipes|footer}}\n\n==Tailoring==\nCheese is used in the spool of the [[2 Willow Lane#Sewing Machine|Sewing Machine]] to create a [[Tailoring|Shirt]]. [[File:Shirt066.png|24px]] It can be used in [[dyeing]], serving as a yellow dye at the dye pots, located in [[Emily]]'s and [[Haley]]'s house, [[2 Willow Lane]].\n\n==Quests==\nCheese is not used in any [[Quests|quests]].\n\n==History==\n{{History|1.0|Introduced.}}\n{{History|1.1|Added ability to age in [[cask]]s. Increased sell price from 160g to 200g.}}\n{{History|1.4|Increased sell price from 200g to 230g. Can now be used in [[Tailoring]].}}\n{{History|1.6|Can now be gifted by a [[Animals#Pets|pet]] cat with max [[Animals#Friendship|friendship]].}}\n\n{{NavboxArtisanGoods}}\n\n[[Category:Artisan Goods]]\n\n[[de:Käse]]\n[[es:Queso]]\n[[fr:Fromage]]\n[[it:Formaggio]]\n[[ja:チーズ]]\n[[ko:치즈]]\n[[hu:Sajt]]\n[[pt:Queijo]]\n[[ru:Сыр]]\n[[tr:Peynir]]\n[[zh:奶酪]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Artisan Goods"
+     }
+    ]
+   },
+   {
+    "pageid": 2104,
+    "ns": 0,
+    "title": "Maple Syrup",
+    "revisions": [
+     {
+      "revid": 190350,
+      "parentid": 184572,
+      "timestamp": "2026-01-12T17:59:26Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "{{Infobox\n|eng         = Maple Syrup\n|source      = <nowiki />\n*[[Crafting]]\n*[[Wood Chipper]] (0.66%)\n|season      = All\n|sellprice   = 200\n|quality     = false\n|edibility   = 20\n|craftingstation = {{Name|Tapper}} {{Name|Heavy Tapper}}\n|crafttime   = 9 or 4 days\n|ingredients = [[Maple Tree]]\n}}\n'''Maple Syrup''' is [[Trees|Tree]] sap made from the [[Tapper]] when it is placed on a [[Maple Tree]], taking {{duration|9 days|class=inline}}, or {{duration|4 days|class=inline}} with a [[Heavy Tapper]].\n\nMaple Syrup can be obtained by tapping [[Maple Tree]]s grown by the player or growing naturally in Stardew Valley (''e.g.,'' in [[Cindersap Forest]]). It can also rarely be obtained after processing [[Hardwood]] in a [[Wood Chipper]].\n\nAlthough Maple Syrup is labeled \"Artisan Good\" in-game, it does not benefit from the [[Skills#Farming|Artisan Profession]], but instead from the [[Skills#Foraging|Tapper Profession]] (+25% sell price).\n\n==Gifting==\n{{GiftsByItem\n|like=Robin,Demetrius,Sebastian,Linus,Pierre,Caroline,Abigail,Alex,George,Evelyn,Lewis,Clint,Penny,Pam,Emily,Haley,Jas,Vincent,Jodi,Kent,Sam,Leah,Shane,Marnie,Elliott,Gus,Dwarf,Wizard,Harvey,Sandy,Willy,Krobus,Leo\n|dislike=Maru\n}}\n\n==Bundles==\n*Maple Syrup is used in the {{Bundle|Chef||y}}.\n*Maple Syrup is one of the options for the {{Bundle|Exotic||y}}.\n\n==Recipes==\n===Cooking===\n{{Recipes|header}}\n{{:Maple Bar|RecipeRow}}\n{{Recipes|footer}}\n\n===Crafting===\n{|class=\"wikitable roundedborder\"\n!Image\n!Name\n!Description\n!Ingredients\n!Recipe Source\n|-\n|[[File:Bee House.png]]\n|[[Bee House]]\n|{{Description|Bee House}}\n|{{Name|Wood|40}}{{Name|Coal|8}}{{Name|Iron Bar|1}}{{Name|Maple Syrup|1}}\n|[[File:Farming Skill Icon.png|24px|link=]] [[Skills#Farming|Farming]] Level 3\n|-\n|}\n\n==Tailoring==\nMaple Syrup can be used in the spool of the [[2 Willow Lane#Sewing Machine|Sewing Machine]] to create the {{Name|Floppy Beanie|class=inline}}. It can be used in [[dyeing]], serving as an orange dye at the dye pots located in [[Emily]]'s and [[Haley]]'s house, [[2 Willow Lane]]. It can also be used as a brown dye when used in the spool of the [[Sewing Machine]] with a dyeable clothing item in the feed.\n\n==Quests==\n*One Maple Syrup is required to complete the [[Quests#Strange Note|\"Strange Note\" quest]] that is triggered by reading [[Secret Notes#Secret Note #23|Secret Note #23]].\n*One or two Maple Syrup may be requested by several fish in [[Fish Pond#Quests|Fish Pond quests]].\n\n==History==\n{{History|1.3.27|Added Strange Note quest.}}\n{{History|1.4|Can now be used in [[Tailoring]]. Can be requested in [[Fish Pond#Quests|Fish Pond quests]].}}\n{{History|1.5|Added [[Heavy Tapper]].}}\n\n{{NavboxArtisanGoods}}\n\n[[Category:Artisan Goods]]\n\n[[de:Ahornsirup]]\n[[es:Jarabe de arce]]\n[[fr:Sirop d'érable]]\n[[it:Sciroppo d'acero]]\n[[ja:メープルシロップ]]\n[[ko:메이플 시럽]]\n[[hu:Juharfaszirup]]\n[[pt:Xarope de ácer]]\n[[ru:Кленовый сироп]]\n[[tr:Akçaağaç Pekmezi]]\n[[zh:枫糖浆]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Artisan Goods"
+     }
+    ]
+   },
+   {
+    "pageid": 15066,
+    "ns": 0,
+    "title": "Raisins",
+    "revisions": [
+     {
+      "revid": 193433,
+      "parentid": 193432,
+      "timestamp": "2026-05-27T05:38:19Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "{{Infobox\n|eng             = Raisins\n|source          = [[Artisan Goods]]\n|ingredients     = {{Name|Grape|5}}\n|edibility       = 50\n|sellprice       = 600\n|craftingstation = {{Name|Dehydrator}}\n|crafttime       = 1750m (&#8776;29h)\n|quality         = false\n}}\n'''Raisins''' are an [[Artisan Goods|Artisan Good]] made from placing five [[Grape]]s inside a [[Dehydrator]], taking one in-game day. Raisins are always normal quality.\n\n==Gifting==\n{{GiftsByItem\n|love=Evelyn\n|like=Abigail,Alex,Caroline,Clint,Demetrius,Dwarf,Elliott,Emily,George,Gus,Haley,Harvey,Jodi,Kent,Krobus,Leah,Leo,Lewis,Marnie,Maru,Pam,Penny,Pierre,Robin,Sam,Sandy,Shane,Willy,Wizard\n|hate=Jas,Sebastian,Vincent\n}}\n\n==Bundles==\nRaisins are not used in any [[bundles]].\n\n==Tailoring==\nRaisins are not used in any [[tailoring]]. They can be used in [[dyeing]], serving as a purple dye at the dye pots located in [[Emily]]'s and [[Haley]]'s house, [[2 Willow Lane]].\n\n==Quests==\nRaisins are not used in any [[quests]].\n\n==Secrets==\nIf Raisins are placed in a [[Junimo Hut]], then the Junimos have a 20% chance to double harvest crops.<ref name=\"harvest\" />\nThis is hinted at in [[Secret Notes#Secret Note #24|Secret Note #24]] and [[Secret Notes#Secret Note #26|Secret Note #26]].\nOne bag of Raisins is consumed by the Junimos every week (except in [[Winter]]), and a small sign is placed outside of the hut. Multiple bags can be stacked in the hut, and they will be consumed over time. \n\n==References==\n<references>\n      <ref name=\"harvest\">See <samp>JunimoHarvester::update</samp> in the game code.</ref>\n</references>\n\n==History==\n{{History|1.6|Introduced.}}\n\n{{NavboxArtisanGoods}}\n\n[[Category:Artisan Goods]]\n\n[[de:Rosinen]]\n[[es:Pasas]]\n[[fr:Raisins]]\n[[it:Uvetta]]\n[[ja:干しブドウ]]\n[[ko:건포도]]\n[[hu:Mazsola]]\n[[pt:Passas]]\n[[ru:Изюм]]\n[[tr:Kuru Üzüm]]\n[[zh:葡萄干]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Artisan Goods"
+     }
+    ]
+   },
+   {
+    "pageid": 2859,
+    "ns": 0,
+    "title": "Jellies and Pickles",
+    "revisions": [
+     {
+      "revid": 191929,
+      "parentid": 191927,
+      "timestamp": "2026-03-25T16:51:51Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "{{for|a detailed analysis of profit using the Preserves Jar|Preserves Jar Productivity}}\n'''Jellies''' and '''Pickles''' can be produced by inserting either a [[Fruits|fruit]] or a [[Vegetables|vegetable]] / [[Foraging#Foraged Items|foraged item]] in a [[Preserves Jar|preserves jar]], respectively. The value of a single jar of jelly or pickles is equal to (2 * Base [[Crops|Crop]] Value + 50). Jelly and pickles are unaffected by the quality of the fruit or vegetable used.\n\nA [[Preserves Jar|preserves jar]] requires 4000 minutes, or 2-3 days, to produce jelly or pickles.<ref name=\"timing details\" />\n\n{|class=\"wikitable roundedborder\"\n!Image\n!Name\n!Description\n!Ingredients\n!Recipe Source\n|-\n|[[File:Preserves Jar.png]]\n|[[Preserves Jar]]\n|{{Description|Preserves Jar}}\n|{{Name|Wood|50}}{{Name|Stone|40}}{{Name|Coal|8}}\n|[[File:Farming Skill Icon.png|24px|link=]] [[Farming]] Level 4\n|-\n|}\n\n==Products==\nQuality of ingredients makes no difference to the finished product. The value of the finished product is determined using the base value (''i.e.,'' with no silver or gold star) of the [[Fruits|fruit]]/[[Vegetables|vegetable]].\n{|class=\"wikitable roundedborder\"\n!Image\n!Name\n!Description\n!Ingredients\n!Processing Time\n!Sell Price\n!Energy / Health\n|-\n|[[File:Pickles.png]]\n|[[Jellies and Pickles|Pickles]]\n|{{Description|Pickles}}\n|Any [[Vegetables|vegetable]] (1) ''or'' any positive energy [[Foraging#Foraged Items|Forage]] (1)\n|{{Duration|4000m (2-3 days)|class=inline}}\n|[[File:Pickles.png|24px|link=]]2 &times; Base Ingredient Price + 50\n|{{energy|1.75 &times; Base Ingredient Energy}}{{health|1.75 &times; Base Ingredient Health}}\n|-\n|[[File:Jelly.png]]\n|[[Jellies and Pickles|Jelly]]\n|{{Description|Jelly}}\n|Any [[Fruits|fruit]] (1)\n|{{Duration|4000m (2-3 days)|class=inline}}\n|[[File:Jelly.png|24px|link=]]2 &times; Base [[Fruits|Fruit]] Price + 50\n|{{energy|2 &times; Base [[Fruits|Fruit]] Energy}}{{health|2 &times; Base [[Fruits|Fruit]] Health}}\n|-\n|}\n\n'''Notes'''\n* Pickles made from an inedible vegetable will instead give [[File:Energy.png|24px|link=]] 0.625 &times; Base [[Vegetables|Vegetable]] Price and [[File:Health.png|24px|link=]] 0.28125 &times; Base [[Vegetables|Vegetable]] Price.<ref name=\"pickle energy\" />\n* Jelly made from an inedible fruit will instead give [[File:Energy.png|24px|link=]] 0.5 &times; Base [[Fruits|Fruit]] Price and [[File:Health.png|24px|link=]] 0.225 &times; Base [[Fruits|Fruit]] Price.<ref name=\"jelly energy\" />\n* The following foraged items can be pickled: [[Cave Carrot]], [[Chanterelle]], [[Common Mushroom]], [[Dandelion]], [[Ginger]], [[Hazelnut]], [[Leek]], [[Magma Cap]], [[Morel]], [[Purple Mushroom]], [[Snow Yam]], [[Spring Onion]], [[Wild Horseradish]], and [[Winter Root]].\n* The color of Jelly or Pickles changes depending on the item used to make it.\n\n==Gifting Jelly==\n{{GiftsByItem\n|like=Pam,Haley,Robin,Demetrius,Linus,Harvey,Penny,Gus,Evelyn,Abigail,George,Alex,Clint,Shane,Willy,Elliott,Krobus,Leah,Jodi,Sam,Marnie,Wizard,Kent,Dwarf,Lewis,Pierre,Caroline,Sandy,Emily,Maru,Vincent,Jas,Leo\n|hate=Sebastian\n}}\n\n==Gifting Pickles==\n{{GiftsByItem\n|love    = Harvey\n|like    = Pam,Haley,Robin,Demetrius,Linus,Penny,Gus,Evelyn,Abigail,George,Alex,Clint,Willy,Elliott,Krobus,Leah,Jodi,Marnie,Wizard,Kent,Dwarf,Lewis,Pierre,Caroline,Sandy,Emily\n|dislike = Leo\n|hate    = Jas,Vincent,Sebastian,Sam,Maru,Shane\n}}\n\n==Bundles==\nJelly is one of the options for the {{Bundle|Artisan||y}}.\n\n==Tailoring==\nJelly is used in the spool of the [[2 Willow Lane#Sewing Machine|Sewing Machine]] to create a [[Tailoring|Shirt]]. [[File:Shirt092.png|24px]]\n\nPickles are used in the spool of the [[2 Willow Lane#Sewing Machine|Sewing Machine]] to create a [[Tailoring|Shirt]]. [[File:Shirt091.png|24px]]\n\nJelly can also be used as a red dye color at the dye pots in [[Emily]]'s and [[Haley]]'s house, located at [[2 Willow Lane]], and Pickles can be used as a green dye.\n\n==Quests==\n*One Jelly (of any type) or one Pickles (of any type) may be requested by [[Catfish]], [[Rainbow Trout]], [[Spook Fish]], [[Super Cucumber]], or [[Sturgeon]] in [[Fish Pond#Quests|Fish Pond quests]].\n*One Jelly is requested by the Raccoon at the [[Giant Stump]] as part of his second request. It may also be requested as part of any request starting with the sixth.\n*One Pickles is requested by the Raccoon at the [[Giant Stump]] as part of his fourth request. It may also be requested as part of any request starting with the sixth.\n\n==Trivia==\n*Jelly sold by the [[Traveling Cart]] will not be of any fruit type and will sell for {{Price|160}} ({{Price|224}} with the [[Skills#Farming|Artisan Profession]]).\n*Pickles sold by the [[Traveling Cart]] will not be of any vegetable type and will sell for {{Price|100}} ({{Price|140}} with the [[Skills#Farming|Artisan Profession]]).\n*The description of the [[Preserves Jar]] states that it makes Jam, but it actually produces Jelly.\n\n==References==\n<references>\n<ref name=\"timing details\">One hour = 60 minutes from 6am to 2am, but 1 hour = 100 minutes from 2am to 6am.</ref>\n<ref name=\"pickle energy\">See <samp>ObjectDataDefinition::CreateFlavoredPickle</samp> in the game code.</ref>\n<ref name=\"jelly energy\">See <samp>ObjectDataDefinition::CreateFlavoredJelly</samp> in the game code.</ref>\n</references>\n\n==History==\n{{History|1.0|Introduced.}}\n{{History|1.4|Jas & Vincent no longer hate Jelly, they like it.  Jellies and Pickles can now be used in Tailoring. Can be requested in [[Fish Pond#Quests|Fish Pond quests]].}}\n{{History|1.6|Jellies and Pickles now change color depending on the item used to make them. Jellies and Pickles are now consumable. Positive energy foraged items can now be made into Pickles. Both Jelly and Pickles are now requested by the Raccoon.}}\n{{History|1.6.2|Fixed inedible items becoming poisonous after being turned into jelly or pickles.}}\n\n[[Category:Artisan Goods]]\n\n{{NavboxArtisanGoods}}\n\n[[Category:Artisan Goods]]\n\n[[de:Gelees und Eingelegtes]]\n[[es:Mermeladas y Encurtidos]]\n[[fr:Gelées et Cornichons]]\n[[it:Gelatine e sottaceti]]\n[[ja:ジャムとピクルス]]\n[[ko:젤리와 피클]]\n[[hu:Dzsemek és uborkák]]\n[[pt:Geléias e Picles]]\n[[ru:Джемы и консервы]]\n[[tr:Reçel ve Turşu]]\n[[zh:果酱和腌菜]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Artisan Goods"
+     }
+    ]
+   }
+  ]
+ }
+}

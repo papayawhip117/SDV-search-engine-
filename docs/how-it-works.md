@@ -148,7 +148,30 @@ Fish pages use `{{Infobox fish}}`:
 
 **Time** is kept as text ("6am – 11am; 6pm – 2am"). Legendary fish also store the fishing level they need (`fl`).
 
-## 9. Tests: `tests/`
+## 9. Artisan goods: `src/extract/artisanExtractor.js` and `src/queries/artisanQueries.js`
+
+Three kinds of page go in:
+
+- **Machine pages** (Keg, Preserves Jar, Cheese Press, Bee House, Oil Maker, Dehydrator, Fish Smoker, Loom, Mayonnaise Machine, Cask, Tapper). Each has a products table: what goes in, what comes out, how long, and the price. These tables are the main source of recipes, because they list every product, even ones without their own page (Jelly, Pickles, Vinegar), and every ingredient separately (Oil from Corn takes 1000 minutes, from Sunflower 60).
+- **Goods pages** (Wine, Cheese...) in `Category:Artisan Goods`. They give the item itself (with its own page as the source) and are checked against the machine tables: a different fixed price becomes a **warning**. They also add exceptions the table leaves out (Juice "other than Wheat, Hops & Tea Leaves"). Goods that no table lists (the Tapper's syrups) take their recipe from their own page, with a **note**.
+- **The Fruits page.** The wiki has a `Category:Vegetables` but no fruit category, so "Any Fruit" is read from the table on the Fruits page (27 fruits with their base prices) into `item_groups`.
+
+Machine tables use `rowspan` (one Oil row covering three ingredients) and `colspan`, so `parseTableWithSpans()` in `wikitext.js` lays the cells out on a grid and repeats a spanning cell in each row it covers.
+
+**Prices that depend on the ingredient** are stored as a multiplier and a bonus, read from the wiki's own formula: Wine "3 × Fruit Base Price" → 3 and 0, Jelly "2 × Base Fruit Price + 50" → 2 and 50. `npm run artisan -- Starfruit` then works the value out in code: Wine 3 × 750 = 2250g, Jelly 2 × 750 + 50 = 1550g, Dried Fruit needs 5 Starfruit for 7.5 × 750 + 25 = 5650g, so 1130g per Starfruit. Values are shown exactly as the formula gives them (Juice from a 35g Parsnip is 78.75g); the wiki doesn't say how the game rounds that, so we don't round it.
+
+**Time.** The machine tables give minutes. The game clock runs 1600 minutes a day (the Keg page explains: 1200 from 6am to 2am, then 400 from 2am to 6am), so 10000 minutes of Wine is 6.25 days. Times the wiki gives as days or nights ("1 day (ready the next morning)", "4 Nights") stay as text.
+
+What "Any X" means:
+
+| Group | Comes from |
+|---|---|
+| Fruits | the Fruits page |
+| Vegetables | the item's own page is in `Category:Vegetables` |
+| Fish | the item is in the fish table |
+| Mushrooms, Forage, Roe | not collected yet (later phases), so nothing matches them yet |
+
+## 10. Tests: `tests/`
 
 | File | Checks |
 |---|---|
@@ -160,6 +183,8 @@ Fish pages use `{{Infobox fish}}`:
 | `profit.test.js` | harvest counts and profit worked out by hand for Parsnip, Strawberry and Corn |
 | `fishExtractor.test.js` | real fish pages: plain vs. conditional seasons, two time windows, crab pot fish, legendary fish, Night Market fish, unclear weather |
 | `fish.test.js` | fish into an in-memory database, the season/weather/area filters, fish in search and item details |
+| `artisanExtractor.test.js` | real machine and goods pages: rowspan tables, price formulas, times, ingredient alternatives and exceptions, the Fruits list |
+| `artisan.test.js` | crops + fish + artisan pages into one database, "what can I make from this" values worked out by hand, exclusions, machines in search |
 | `search.test.js` | partial words, related terms, all-words matching, every filter and sort, hostile input, item details, typo suggestions |
 
 Run them with `npm test`.
@@ -177,7 +202,9 @@ We **don't** get around a refusal by pretending to be a web browser. The wiki de
 
 ## Known limitations (so far)
 
-- Crops in the Spring, Summer and Fall categories, their seeds, and 71 fish. Artisan goods, cooking, crafting, villagers, fruit trees, forage and more come in the next phases.
+- Crops in the Spring, Summer and Fall categories, their seeds, 71 fish and the artisan goods. Cooking, crafting, villagers, fruit trees, forage and more come in the next phases.
+- Cask aging (silver to iridium quality) and the Heavy Tapper's own page aren't stored yet. Recipes that take mushrooms, forage or roe are stored, but those items aren't collected yet.
+- Artisan values ignore the Artisan profession (+40%) and ingredient quality.
 - Profit doesn't model when a shop is open (Strawberry Seeds are only sold at the Egg Festival) or fertilizer, quality and professions.
 - Traveling Cart prices are random, so seeds only sold there have no price.
 - Search covers only what's in the database, and search words need 3+ letters.

@@ -124,6 +124,49 @@ CREATE TABLE IF NOT EXISTS fish_areas (
   PRIMARY KEY (fish_item_id, area)
 );
 
+-- Artisan equipment (Keg, Preserves Jar...). item_id is the machine as an item.
+CREATE TABLE IF NOT EXISTS machines (
+  item_id        INTEGER PRIMARY KEY REFERENCES items(id),
+  recipe_source  TEXT,   -- how you get the recipe, e.g. 'Farming Level 8'
+  ingredients    TEXT,   -- what it's crafted from, e.g. 'Wood ×30, Copper Bar ×1'
+  source_page_id INTEGER NOT NULL REFERENCES source_pages(id)
+);
+
+-- What each machine turns into what. One row per way of making a product:
+-- Cheese from Milk and Cheese from Large Milk are two rows.
+-- The input is either one item (input_name) or any item of a group
+-- (input_group: 'Fruits', 'Vegetables', 'Fish'...), minus input_exclusions.
+-- The price is either fixed (sell_price) or depends on the input:
+--   price = price_multiplier × the input's base sell price + price_bonus
+CREATE TABLE IF NOT EXISTS artisan_recipes (
+  id                INTEGER PRIMARY KEY,
+  machine_name      TEXT    NOT NULL,   -- 'Keg' ('Heavy Tapper' has no page of its own yet)
+  product_item_id   INTEGER NOT NULL REFERENCES items(id),
+  output_quantity   INTEGER NOT NULL,   -- Vinegar: 2 per Rice
+  input_name        TEXT,               -- 'Wheat'
+  input_group       TEXT,               -- 'Fruits'
+  input_quantity    INTEGER,            -- NULL when nothing is used up (Bee House flowers, Tapper trees)
+  input_exclusions  TEXT,               -- 'Grape' or 'Wheat | Hops | Tea Leaves'
+  input_note        TEXT,               -- the wiki's own wording
+  minutes           INTEGER,            -- NULL when the wiki gives days, not minutes
+  time_note         TEXT,
+  sell_price        INTEGER,
+  price_multiplier  REAL,
+  price_bonus       INTEGER,
+  price_note        TEXT,               -- e.g. '3 × Base Fruit Price'
+  source_page_id    INTEGER NOT NULL REFERENCES source_pages(id)
+);
+
+-- Lists of items the wiki keeps on a page instead of in a category.
+-- So far: the Fruits page, which says what "Any Fruit" means.
+CREATE TABLE IF NOT EXISTS item_groups (
+  group_name     TEXT    NOT NULL,   -- 'Fruits'
+  item_name      TEXT    NOT NULL,   -- 'Apple' (not every fruit is in items yet)
+  base_price     INTEGER,            -- the base sell price listed on that page
+  source_page_id INTEGER NOT NULL REFERENCES source_pages(id),
+  PRIMARY KEY (group_name, item_name)
+);
+
 -- Full-text search index (SQLite's built-in FTS5). One row per item.
 -- It's filled from the tables above by rebuildSearchIndex() after each build,
 -- so it never holds facts of its own, only text to search through.

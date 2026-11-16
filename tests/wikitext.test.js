@@ -61,6 +61,7 @@ describe('small cleaners', () => {
   it('toPlainText keeps the words inside Name, Season and Weather templates', () => {
     expect(toPlainText('{{Season|Summer}} • {{Weather inline|Sun}} at {{Name|Crab Pot|class=inline}}')).toBe('Summer • Sun at Crab Pot');
     expect(toPlainText('at the Traveling Cart for {{tprice|100}}.')).toBe('at the Traveling Cart for a random price.');
+    expect(toPlainText('completing the {{Bundle|Artisan||y}}')).toBe('completing the Artisan Bundle');
   });
 
   it('parseLeadingInteger reads the number at the start', () => {
