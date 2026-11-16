@@ -2,7 +2,19 @@
   "name": "sdv-search-engine",
   "version": "0.1.0",
   "private": true,
-  "description": "Stardew Valley search engine built from the Stardew Valley Wiki, with source attribution for every fact.",
+  "description": "A cozy Stardew Valley search engine and cited-facts assistant, built from the Stardew Valley Wiki with source attribution for every fact.",
+  "author": "Papaya",
+  "keywords": [
+    "stardew-valley",
+    "search-engine",
+    "sqlite",
+    "mediawiki",
+    "rag"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/papayawhip117/SDV-search-engine-.git"
+  },
   "type": "module",
   "engines": {
     "node": ">=20"
