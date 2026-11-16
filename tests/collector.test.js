@@ -3,7 +3,7 @@
 // "answer", we replace the built-in fetch() with a fake one.
 
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { buildApiUrl, pageUrl } from '../src/wiki/apiClient.js';
+import { buildApiUrl, callWikiApi, pageUrl } from '../src/wiki/apiClient.js';
 import { listCategoryMembers, mergeCategoryLists } from '../src/collect/collectCrops.js';
 
 describe('buildApiUrl', () => {
@@ -57,5 +57,28 @@ describe('listCategoryMembers', () => {
     expect(secondUrl.searchParams.get('cmcontinue')).toBe('page|2');
     // ...and every request identifies us
     expect(fakeFetch.mock.calls[0][1].headers['User-Agent']).toMatch(/^SDVSearchEngine/);
+  });
+});
+
+describe('a refused request (HTTP 403)', () => {
+  afterEach(() => vi.unstubAllGlobals());
+
+  it('stops at once and explains who refused it', async () => {
+    const headers = new Headers({ server: 'cloudflare', 'cf-mitigated': 'challenge', 'content-type': 'text/html' });
+    const fakeFetch = vi.fn(async () => ({
+      ok: false,
+      status: 403,
+      headers,
+      text: async () => '<html><title>Just a moment...</title></html>',
+    }));
+    vi.stubGlobal('fetch', fakeFetch);
+
+    const error = await callWikiApi({ action: 'query' }).catch((e) => e);
+
+    expect(fakeFetch).toHaveBeenCalledTimes(1); // no retries: a 403 won't fix itself
+    expect(error.message).toMatch(/HTTP 403/);
+    expect(error.message).toMatch(/server: cloudflare/);
+    expect(error.message).toMatch(/cf-mitigated: challenge/);
+    expect(error.message).toMatch(/Just a moment/);
   });
 });

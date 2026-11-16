@@ -76,6 +76,15 @@ The command line, the future web app and the future AI assistant will all call t
 
 Run them with `npm test`.
 
+## If the wiki refuses the collector
+
+If `npm run collect` stops with **HTTP 403**, the site refused the program on purpose. The error message prints the `server` and `cf-mitigated` headers and the start of the page that came back, which shows who refused it (for example a Cloudflare bot check).
+
+We **don't** get around a refusal by pretending to be a web browser. The wiki decides who may use it automatically. Instead:
+
+1. Save the API responses from your browser, which the wiki does allow, and build the database from those files.
+2. If we need regular automated access later, ask the wiki's administrators.
+
 ## Known limitations (so far)
 
 - Only crops in the Spring, Summer and Fall categories. Fruit trees, forage and special crops come later.

@@ -88,10 +88,40 @@ export async function callWikiApi(params) {
       continue;
     }
 
-    throw new Error(`Wiki API request failed with HTTP ${response.status}: ${url}`);
+    // Anything else (403 "forbidden", 404...) won't fix itself, so stop and
+    // show enough of the answer to tell WHY it was refused.
+    throw new Error(await describeRefusal(response, url));
   }
 
   throw new Error(`Wiki API request failed after ${MAX_ATTEMPTS} attempts: ${url}`);
+}
+
+/**
+ * Build a helpful error message for a refused request: the status, the
+ * headers that say who refused it, and the start of the response body.
+ */
+export async function describeRefusal(response, url) {
+  const header = (name) => response.headers?.get?.(name) ?? '(none)';
+  let bodyStart = '';
+  try {
+    bodyStart = (await response.text()).replace(/\s+/g, ' ').slice(0, 300);
+  } catch {
+    bodyStart = '(could not read body)';
+  }
+  const lines = [
+    `Wiki API request failed with HTTP ${response.status}: ${url}`,
+    `  server: ${header('server')}`,
+    `  cf-mitigated: ${header('cf-mitigated')}`,
+    `  content-type: ${header('content-type')}`,
+    `  body starts with: ${bodyStart}`,
+  ];
+  if (response.status === 403) {
+    lines.push(
+      '  A 403 means the site refused this program on purpose. We do not try to get around that.',
+      '  See docs/how-it-works.md, "If the wiki refuses the collector".',
+    );
+  }
+  return lines.join('\n');
 }
 
 /**
