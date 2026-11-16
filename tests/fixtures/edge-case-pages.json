@@ -1,0 +1,159 @@
+{
+ "batchcomplete": true,
+ "query": {
+  "pages": [
+   {
+    "pageid": 1878,
+    "ns": 0,
+    "title": "Ancient Fruit",
+    "revisions": [
+     {
+      "revid": 192083,
+      "parentid": 192028,
+      "timestamp": "2026-04-01T23:20:35Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "{{Infobox\n|eng         = Ancient Fruit\n|seed        = {{Name|Ancient Seeds}}\n|growth      = 28 days\n|season      = {{Season|Spring}} • {{Season|Summer}} • {{Season|Fall}}\n|xp          = 38 [[Farming#Experience Points|Farming XP]]\n|sellprice   = 550\n|edibility   = -300\n|color       = Light Blue\n}}\nThe '''Ancient Fruit''' is a [[Fruits|fruit]] [[Crops|crop]] that grows from [[Ancient Seeds]] after 28 days and continues to produce every 7 days after maturity.\n\n==Stages==\n{|class=\"wikitable roundedborder\" style=\"text-align:center;\"\n!Stage 1\n!Stage 2\n!Stage 3\n!Stage 4\n!Stage 5\n!Harvest\n!After-Harvest\n|-\n|[[File:Ancient Fruit Stage 1.png|center|link=]]\n|[[File:Ancient Fruit Stage 2.png|center|link=]]\n|[[File:Ancient Fruit Stage 3.png|center|link=]]\n|[[File:Ancient Fruit Stage 4.png|center|link=]]\n|[[File:Ancient Fruit Stage 5.png|center|link=]]\n|[[File:Ancient Fruit Stage 6.png|center|link=]]\n|[[File:Ancient Fruit Stage 7.png|center|link=]]\n|-\n|2 Days\n|7 Days\n|7 Days\n|7 Days\n|5 Days\n|Total: 28 Days\n|Regrowth: 7 Days\n|-\n|}\n\n==Crop Growth Calendar==\n{{#lst:Crop Growth Calendars|Ancient Fruit}}\n\n==Gifting==\n{{GiftsByItem\n|like=Robin,Demetrius,Linus,Pam,Jodi,Kent,Leah,Shane,Elliott,Harvey,Sandy\n|neutral=Maru,Sebastian,Pierre,Caroline,Alex,George,Evelyn,Leo,Lewis,Clint,Penny,Emily,Sam,Marnie,Gus,Dwarf,Wizard,Willy,Krobus\n|dislike=Abigail,Haley,Jas,Vincent\n}}\n\n==Bundles==\n* Five gold quality Ancient Fruit are an option for {{bundle|missing||y}}.\n* Ancient Fruit is one of the options for the {{Bundle|rare crops||y}}.\n\n==Recipes==\nAncient Fruit is not used in any recipes.\n\n==Tailoring==\nAncient Fruit can be used in the spool of the [[2 Willow Lane#Sewing Machine|Sewing Machine]] to create the dyeable [[File:Genie Pants.png|36px]] [[Tailoring#Pants|Genie Pants]]. It can be used in [[dyeing]], serving as a blue dye at the dye pots, located in [[Emily]]'s and [[Haley]]'s house, [[2 Willow Lane]].\n\n==Quests==\nAncient Fruit is not used in any quests.\n\n==History==\n{{History|1.0|Introduced.}}\n{{History|1.1|Reduced value to 550g, down from 750g.}}\n{{History|1.4|Added as option for the Missing Bundle.  Can now be used in [[Tailoring]].}}\n{{History|1.5|Iridium quality is now possible when using [[Deluxe Fertilizer]].  Bugfix for stages of growth (25% non-Agriculturist, 20% and 35% Agriculturist). Now used in the remixed Rare Crops bundle.}}\n\n{{NavboxCrop}}\n\n[[Category:Spring crops]]\n[[Category:Summer crops]]\n[[Category:Fall crops]]\n[[Category:Multi-Seasonal crops]]\n[[Category:Multiple harvest crops]]\n\n[[de:Uralte Frucht]]\n[[es:Fruta milenaria]]\n[[fr:Fruit ancien]]\n[[it:Frutto antico]]\n[[ja:古代のフルーツ]]\n[[ko:고대 과일]]\n[[hu:Ősi gyümölcs]]\n[[pt:Fruta antiga]]\n[[ru:Древний плод]]\n[[tr:Eski Meyve]]\n[[zh:上古水果]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Fall crops"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Multi-Seasonal crops"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Multiple harvest crops"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Spring crops"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Summer crops"
+     }
+    ]
+   },
+   {
+    "pageid": 5770,
+    "ns": 0,
+    "title": "Coffee Bean",
+    "revisions": [
+     {
+      "revid": 193175,
+      "parentid": 192093,
+      "timestamp": "2026-05-19T16:38:04Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "{{Infobox\n|eng       = Coffee Bean\n|source    = [[Dust Sprite]] • [[Traveling Cart]]\n|seed      = {{Name|Coffee Bean}}\n|growth    = 10 days\n|season    = {{Season|Spring}} • {{Season|Summer}}\n|xp        = 4 [[Farming#Experience Points|Farming XP]] per harvest\n|sellprice = 15\n|edibility = -300\n}}\nA '''Coffee Bean''' is a plantable seed that is also the [[Crops|crop]] harvested from the plants. Coffee Beans grow after 10 days and continue to produce every 2 days after maturity in [[Spring]] and [[Summer]]. The primary source of Coffee Beans is [[Dust Sprite]]s, but they are only rarely dropped (1% chance). They may also randomly appear in the [[Traveling Cart]]'s Special Stock for {{Price|2500}} (25% chance in Fall/Winter) or Standard Stock for {{Tprice|15}} (during all seasons). Coffee Beans cannot be purchased from any other stores.\n\nWhen harvested, each plant gives four beans every 2 days, with a 2% chance for more beans.  [[Basic Fertilizer]] and [[Quality Fertilizer]] affect only the first bean from every harvest.\n\nBecause Coffee Bean is fundamentally considered to be a seed (rather than a vegetable or fruit), its sale price does not benefit from the [[Skills#Farming|Tiller]] profession. Also, it cannot be placed into a [[Preserves Jar]]. However, 5 Coffee Beans can be placed inside a [[Keg]] to produce [[Coffee]].\n\n==Stages==\n{|class=\"wikitable roundedborder\" style=\"text-align:center;\"\n!Stage 1\n!Stage 2\n!Stage 3\n!Stage 4\n!Stage 5\n!Harvest\n!After-Harvest\n|-\n|[[File:Coffee Stage 1.png|center|link=]]\n|[[File:Coffee Stage 2.png|center|link=]]\n|[[File:Coffee Stage 3.png|center|link=]]\n|[[File:Coffee Stage 4.png|center|link=]]\n|[[File:Coffee Stage 5.png|center|link=]]\n|[[File:Coffee Stage 6.png|center|link=]]\n|[[File:Coffee Stage 7.png|center|link=]]\n|-\n|1 Day\n|2 Days\n|2 Days\n|3 Days\n|2 Days\n|Total: 10 Days\n|Regrowth: 2 Days\n|-\n|}\n\n==Crop Growth Calendar==\n{{#lst:Crop Growth Calendars|Coffee Bean}}\n\n==Multi-Seasonal Crop==\nCoffee Beans may be planted in both Spring and Summer. There is no difference in their behavior in either season.\n\nIf a Coffee Bean plant (of any growth stage) is in the ground on the 28th of Spring, it will continue growing on the 1st of Summer as though nothing had changed. Fertilizer in the ground underneath a Coffee Bean plant on Spring 28 will not disappear on Summer 1.\n\n==Crafting==\nIn order to make [[Coffee]], 5 Coffee Beans '''from one stack''' must be put into the Keg. It is not possible, for example, to place 3 Coffee Beans of silver quality and 2 of gold quality into a Keg, because the different quality levels are not stackable with each other, and the Keg will only accept 5 Coffee Beans at a time.\n\n{|class=\"wikitable roundedborder\"\n!Image\n!Name\n!Description\n!Ingredient\n!Equipment\n!Time\n!Sell Price\n|-\n|[[File:Coffee.png|center]]\n|[[Coffee]]\n|It smells delicious. This is sure to give you a boost.\n|{{Name|Coffee Bean|5}}\n|style=\"text-align: center;\"|[[File:Keg.png|center|40px]][[Keg]]\n|{{duration|120m (2h)}}\n|{{Price|150}}\n|}\n\n==Gifting==\n{{GiftsByItem\n|dislike=Robin,Demetrius,Maru,Sebastian,Linus,Pierre,Caroline,Abigail,Alex,George,Evelyn,Lewis,Clint,Penny,Pam,Emily,Haley,Jas,Vincent,Jodi,Kent,Sam,Leah,Shane,Marnie,Elliott,Gus,Dwarf,Wizard,Harvey,Sandy,Willy,Krobus,Leo\n}}\n\n==Bundles==\nCoffee Bean is not used in any [[Bundles]].\n\n==Recipes==\nCoffee Bean is not used in any recipes.\n\n==Tailoring==\nCoffee Bean is used in the spool of the [[2 Willow Lane#Sewing Machine|Sewing Machine]] to create the dyeable [[File:Shirt154.png|24px]] [[Tailoring|Flannel Shirt]]. It can be used in [[dyeing]], serving as an orange dye at the dye pots, located in [[Emily]]'s and [[Haley]]'s house, [[2 Willow Lane]].\n\n==Quests==\nFive Coffee Beans may be requested by [[Blobfish]] in a [[Fish Pond#Quests|Fish Pond quest]] to increase the capacity of the pond from 3 to 5.\n\n==Notes==\n* For Coffee Beans of Gold Star quality (sold at {{Price|22}} each) or lower, it is always more profitable to brew the beans into coffee before shipping. Each coffee is sold at {{Price|150}} each, regardless of the quality level of the source beans. \n** Using Iridium-star Coffee Beans to brew coffee is not profitable, because the price of 5 Iridium beans ({{Price|30}} each) is equal to 1 Coffee ({{Price|150}} each).\n* There is no price difference between selling 3 Coffees and 1 [[Triple Shot Espresso]], so it is more time efficient to simply ship the Coffee.\n\n==History==\n{{History|1.1|Introduced.}}\n{{History|1.4|Can now be used in [[Tailoring]]. Can be requested in a [[Fish Pond#Quests|Fish Pond quest]].}}\n{{History|1.5|Iridium quality is now possible when using [[Deluxe Fertilizer]].}}\n\n{{NavboxCrop}}\n{{NavboxSeeds}}\n\n[[Category:Summer crops]]\n[[Category:Spring crops]]\n[[Category:Spring seeds]]\n[[Category:Summer seeds]]\n[[Category:Multi-Seasonal crops]]\n[[Category:Multiple harvest crops]]\n\n[[de:Kaffeebohne]]\n[[es:Grano de café]]\n[[fr:Grain de café]]\n[[it:Chicco di caffè]]\n[[ja:コーヒー豆]]\n[[ko:커피콩]]\n[[hu:Kávébab]]\n[[pt:Grão de café]]\n[[ru:Кофейное зерно]]\n[[tr:Kahve Çekirdeği]]\n[[zh:咖啡豆]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Multi-Seasonal crops"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Multiple harvest crops"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Spring crops"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Spring seeds"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Summer crops"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Summer seeds"
+     }
+    ]
+   },
+   {
+    "pageid": 1868,
+    "ns": 0,
+    "title": "Grape",
+    "revisions": [
+     {
+      "revid": 192072,
+      "parentid": 190413,
+      "timestamp": "2026-04-01T23:09:25Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "{{Infobox\n|eng         = Grape\n|source      = [[Foraging]] • [[Farming]]\n|seed        = {{Name|Summer Seeds|Summer}}{{Name|Grape Starter|Fall}}\n|growth      = 7 days (Summer Seeds)<br />10 days (Grape Starter)\n|season      = {{Season|Summer}} (Summer Seeds and Foraging)<br />{{Season|Fall}} (Grape Starter)\n|xp          = Summer Seeds: 2 [[Foraging#Experience Points|Foraging XP]] and 3 [[Farming#Experience Points|Farming XP]]<br />Foraging: 7 [[Foraging#Experience Points|Foraging XP]]<br />Grape Starter: 14 [[Farming#Experience Points|Farming XP]]\n|edibility   = 15\n|sellprice   = 80\n|color       = Dark Purple\n}}\nThe '''Grape''' is a [[Fruits|fruit]] that is both a [[Foraging|forageable]] item and a standard [[Crops|crop]]:\n* In [[Summer]], Grapes are a [[Foraging|forageable]] fruit found that grows wild throughout Stardew Valley or can be grown from [[Summer Seeds]]. Specifically, forageable Grapes can be found at: the [[Backwoods]] (62% of all forageable items at this location); [[the Mountain]] (62%); the [[Bus Stop]] (27%); the [[Railroad]] (27%); or, the [[Farm Maps#Forest|Forest Farm Map]] (25%). It can also randomly be found in [[Garbage Can]]s during Summer.\n* In [[Fall]], Grapes are a standard [[fruit]] [[Crops|crop]] that grows from a [[Grape Starter]] after 10 days and continues to produce every 3 days after maturity.\n\nGrapes grown as a crop (in Fall) receive the +10% [[Skills#Farming|Tiller]] profession bonus when sold (as do all crops). However, foraged Grapes in summer do not get the Tiller bonus. If you combine Summer and Fall grapes into the same stack, the entire stack will receive the Tiller bonus (see [[Fruits#Tiller Profession Details|the Fruit page]] for more details).\n\nOther than the Tiller profession bonus, foraged Grapes and crop-grown Grapes are identical and can be used interchangeably in crafting, gifts, bundles, recipes, and quests.\n\n==Stages==\nYou cannot walk through grape plants grown from a Grape Starter at any stage of growth. You can walk through dead Grape plants.\n{|class=\"wikitable roundedborder\" style=\"text-align:center;\"\n!Stage 1\n!Stage 2\n!Stage 3\n!Stage 4\n!Stage 5\n!Harvest\n!After-Harvest\n|-\n|[[File:Grape Stage 1.png|center|link=]]\n|[[File:Grape Stage 2.png|center|link=]]\n|[[File:Grape Stage 3.png|center|link=]]\n|[[File:Grape Stage 4.png|center|link=]]\n|[[File:Grape Stage 5.png|center|link=]]\n|[[File:Grape Stage 6.png|center|link=]]\n|[[File:Grape Stage 7.png|center|link=]]\n|-\n|1 Day\n|1 Day\n|2 Days\n|3 Days\n|3 Days\n|Total: 10 Days\n|Regrowth: 3 Days\n|-\n|}\n\n==Crop Growth Calendar==\n{{#lst:Crop Growth Calendars|Grape}}\n\n==Gifting==\n{{GiftsByItem\n|like=Robin,Demetrius,Linus,Pam,Jodi,Kent,Leah,Shane,Elliott,Harvey,Sandy\n|neutral=Maru,Sebastian,Pierre,Caroline,Alex,George,Evelyn,Lewis,Clint,Emily,Sam,Marnie,Gus,Dwarf,Wizard,Willy,Krobus,Leo\n|dislike=Abigail,Haley,Jas\n|hate=Penny\n|love=Vincent\n}}\n\n==Bundles==\nA Grape is used in the {{Bundle|Summer Foraging||y}}.\n\n==Recipes==\n{|class=\"wikitable roundedborder\"\n!Image\n!Name\n!Description\n!Ingredients\n!Recipe Source\n!Sell Price\n|-\n|[[File:Summer Seeds.png|center]]\n|[[Crafting#Seeds|Wild Seeds (Su)]]\n||{{Description|Summer Seeds}}<br />''(Produces 10 Summer Seeds per craft.)''\n|{{Name|Spice Berry|1}}{{Name|Grape|1}}{{Name|Sweet Pea|1}}\n|[[File:Foraging Skill Icon.png|24px|link=]] [[Foraging]] Level 4\n|{{Price|55}}\n|-\n|}\n\n==Tailoring==\nGrape can be used in the spool of the [[2 Willow Lane#Sewing Machine|Sewing Machine]] to create the dyeable [[Tailoring#Pants|Shorts]]. [[File:Shorts.png|36px]] It can be used in [[dyeing]], serving as a purple dye at the dye pots, located in [[Emily]]'s and [[Haley]]'s house, [[2 Willow Lane]].\n\n==Quests==\n*The Grape may be randomly requested in [[Summer]] at the [[Quests#Help Wanted Quests|\"Help Wanted\" board]] outside [[Pierre's General Store]] for a reward of {{Price|240}} and 150 [[Friendship]] points.\n\n==History==\n{{History|1.4|Can now be used in [[Tailoring]]. Fixed how Tiller bonus applies when foraged and non-foraged fruit are combined in one stack.}}\n{{History|1.5|Iridium quality is now possible from grown grapes using [[Deluxe Fertilizer]].}}\n{{History|1.6|It is now possible to process grapes into [[Raisins]] in a [[Dehydrator]].}}\n\n{{NavboxForaging}}\n{{NavboxCrop}}\n\n[[Category:Fall crops]]\n[[Category:Summer Forage]]\n[[Category:Trellis Crops]]\n[[Category:Multiple harvest crops]]\n\n[[de:Weintraube]]\n[[es:Uva]]\n[[fr:Raisin]]\n[[it:Uva]]\n[[ja:ブドウ]]\n[[ko:포도]]\n[[hu:Szőlő]]\n[[pt:Uva]]\n[[ru:Виноград]]\n[[tr:Üzüm]]\n[[zh:葡萄]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Fall crops"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Multiple harvest crops"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Summer Forage"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Trellis Crops"
+     }
+    ]
+   },
+   {
+    "pageid": 9689,
+    "ns": 0,
+    "title": "Unmilled Rice",
+    "revisions": [
+     {
+      "revid": 194130,
+      "parentid": 194028,
+      "timestamp": "2026-08-29T22:09:58Z",
+      "slots": {
+       "main": {
+        "contentmodel": "wikitext",
+        "contentformat": "text/x-wiki",
+        "content": "{{Infobox\n|eng         = Unmilled Rice\n|seed        = {{Name|Rice Shoot}}\n|growth      = 8 days (6 when irrigated)\n|season      = Spring\n|xp          = 7 [[Farming#Experience Points|Farming XP]]\n|sellprice   = 30\n|edibility   = 1\n|color       = Brown\n}}\n'''Unmilled Rice''' is a [[Vegetables|vegetable]] [[Crops|crop]] that grows from [[Rice Shoot]]s  after 8 days (6 when irrigated). Unmilled Rice is harvested using a [[Scythe]].\n\nPlayers have the ability to craft [[Rice]] from Unmilled Rice by using a [[Mill]]. Once placed in the Mill, one Unmilled Rice will make one [[Rice]]. Rice will appear in the box on the right side of the Mill the following morning.\n\nRice Shoots planted in most farm tiles take 8 days to mature. Rice Shoots planted approximately within 3 tiles of a water source (such as a pond or a river) in any direction are considered to be irrigated. Paddies need not be contiguous with each other or adjacent to water in order to count as irrigated. Irrigated Rice Shoots mature in 6 days and do not need to be watered.\n\n==Stages==\nWhen harvested, each Rice Shoot has a 50/50 chance of giving either one or two Unmilled Rice at farming level 0, or one or three Unmilled Rice at farming level 10 or higher, plus an additional 10% chance of one or more extra rice (1.61 rice on average, or 2.11 at farming level 10+).<ref name=\"extra_rice\">The game randomly selects with equal odds either the minimum harvest value of 1, or the maximum harvest value (which is also 1) + 1 + Farming Level / 10. This is the base number of Unmilled Rice to spawn. It can only be an integer and decimals are ignored, so only farming levels of 10 and above make a difference and add one. After that, the game generates a random number between 0 and 1, and if it is less than 0.1, then yet another Unmilled Rice will spawn. This repeats until the random number generated is greater than or equal to 0.1, at which point the chance for an extra Unmilled Rice ends. This, on average, will give 0.11 extra Unmilled Rice on top of the initial 50/50 chance for one or two extra Unmilled Rice to be produced. Keep in mind that [[Luck]] can also double the total amount of extra Unmilled Rice spawned by the above formula.</ref>\n\n{| class=\"wikitable roundedborder\" style=\"text-align: center;\"\n!Rice Type\n!Stage 1\n!Stage 2\n!Stage 3\n!Stage 4\n!Harvest\n|-\n|\n|[[File:Unmilled Rice Stage 1.png|center|link=]]\n|[[File:Unmilled Rice Stage 2.png|center|link=]]\n|[[File:Unmilled Rice Stage 3.png|center|link=]]\n|[[File:Unmilled Rice Stage 4.png|center|link=]]\n|[[File:Unmilled Rice Stage 5.png|center|link=]]\n|-\n| Non-Irrigated\n| 1 Day\n| 2 Days\n| 2 Days\n| 3 Days\n|Total: 8 Days\n|-\n| Irrigated\n| 1 Day\n| 1 Day\n| 1 Day\n| 3 Days\n|Total: 6 Days\n|}\n\n==Crop Growth Calendar==\n{{#lst:Crop Growth Calendars|Unmilled Rice}}\n\n==Gifting==\n{{GiftsByItem\n|dislike=Robin,Demetrius,Maru,Sebastian,Linus,Pierre,Alex,George,Evelyn,Lewis,Clint,Penny,Pam,Emily,Jodi,Kent,Leah,Marnie,Elliott,Gus,Dwarf,Wizard,Sandy,Willy,Krobus,Abigail,Caroline,Haley,Harvey,Jas,Vincent,Sam,Shane\n|hate=Leo\n}}\n\n==Bundles==\nIt is not used in any [[Bundles]].\n\n==Recipes==\n{| class=\"wikitable roundedborder\"\n!Image\n!Name\n!Description\n!Ingredient\n!Equipment\n!Time\n!Sell Price\n|-\n|[[File:Rice.png|center]]\n|[[Rice]]\n|{{Description|Rice}}\n|{{Name|Unmilled Rice|1}}\n|style=\"text-align: center;\" | [[File:Mill.png|48px|center]] [[Mill]]\n|Ready the next morning\n|{{Price|100}}\n|}\n\n==Tailoring==\nUnmilled Rice can be used in the spool of the [[2 Willow Lane#Sewing Machine|Sewing Machine]] to create the dyeable [[Tailoring|Shirt And Belt]].  [[File:Shirt159.png|24px]] It can be used in [[dyeing]], serving as an orange dye at the dye pots, located in [[Emily]]'s and [[Haley]]'s house, [[2 Willow Lane]].\n\n==Quests==\n*Unmilled Rice may be randomly requested in [[Spring]] at the [[Quests#Help Wanted Quests|\"Help Wanted\" board]] outside [[Pierre's General Store]] for a reward of {{Price|90}} and 150 [[Friendship]] points.\n\n==Notes==\n*If grown from [[Rice Shoot]]s purchased from [[Pierre's General Store|Pierre's]], it is only profitable to sell gold quality Unmilled Rice directly. With the [[Skills#Farming|Tiller Profession]], silver quality Unmilled Rice becomes profitable by {{Price|1}}.  In all cases it is profitable to process Unmilled Rice into [[Rice]] using a [[Mill]], or [[Jellies and Pickles|Pickles]] using a [[Preserves Jar]].\n*The day you harvest an Unmilled Rice from an irrigated tile, the tile retains the irrigation water. Anything you plant there that same day will not need watering.\n\n==References==\n<references />\n\n==History==\n{{History|1.4|Introduced.}}\n{{History|1.4.2|Gift taste changed to universal dislike.}}\n{{History|1.5|Iridium quality is now possible when using [[Deluxe Fertilizer]].  Bugfix for Agriculturist stages of growth.}}\n\n{{NavboxCrop}}\n\n[[Category:Spring crops]]\n[[Category:Vegetables]]\n\n[[de:Ungemahlener Reis]]\n[[es:Arroz sin moler]]\n[[fr:Riz non moulu]]\n[[it:Riso non macinato]]\n[[ja:玄米]]\n[[ko:가공되지 않은 쌀]]\n[[hu:Hántolatlan rizs]]\n[[pt:Arroz não moído]]\n[[ru:Неочищенный рис]]\n[[tr:Öğütülmemiş Pirinç]]\n[[zh:未碾米]]"
+       }
+      }
+     }
+    ],
+    "categories": [
+     {
+      "ns": 14,
+      "title": "Category:Spring crops"
+     },
+     {
+      "ns": 14,
+      "title": "Category:Vegetables"
+     }
+    ]
+   }
+  ]
+ }
+}
